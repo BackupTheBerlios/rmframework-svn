@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="hibernateMapping" default="createSchema" basedir=".">
+  
+  
+  <description>Mapping default tables on the database</description>
+  <property file="ant.properties" />
+  
+  <target name="hibernate_init" depends="init">
+    
+ 
+    <echo>${build.web.dir.real}</echo>
+    <echo>${build.classes.dir}</echo>
+    
+    <path id="hibernate.path">
+      <pathelement path="${javac.classpath}" />
+      <pathelement path="${build.classes.dir}" />
+      
+    </path>
+  </target>
+  
+  
+  
+  <target name="createSchema" description="Generates the database schema" depends="hibernate_init">
+    
+    
+    
+    <taskdef name="schemaexport" classname="org.hibernate.tool.hbm2ddl.SchemaExportTask"
+             classpathref="hibernate.path" />
+    <schemaexport output="schema-export.sql" config="${build.classes.dir}/hibernate.cfg.xml" quiet="no" text="no" drop="no" delimiter=";">
+      <fileset dir="${build.classes.dir}">
+        <include name="*.hbm.xml" />
+      </fileset>
+    </schemaexport>
+  </target>
+  
+</project>

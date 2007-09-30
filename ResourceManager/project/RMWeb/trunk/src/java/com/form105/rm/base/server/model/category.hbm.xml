@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+  
+  <class name="com.form105.rm.base.server.model.AbstractCategory" table="ABSTRACTCATEGORY" >
+    <id name="oid" type="java.lang.Long" column="OID" >
+      <generator class="native" />
+    </id>
+    <property name="name" type="java.lang.String" column="name" length="40" />
+   
+    
+    <many-to-one name="parent" column="PARENT" 
+      cascade="none"
+      outer-join="false"
+      class="com.form105.rm.base.server.model.AbstractCategory"
+      lazy="false"
+      index="fk_parent_category" />
+    
+    <list name="children" cascade="all" outer-join="true">
+      <key column="OID" />
+      <list-index column="CHILDREN" />
+      <one-to-many class="com.form105.rm.base.server.model.AbstractCategory" />
+    </list>
+    
+    
+    
+    <joined-subclass name="com.form105.rm.base.server.model.Category" table="CATEGORY">
+      <key column="CATEGORY_ID" />
+    </joined-subclass>
+    
+  </class>
+  
+</hibernate-mapping>
