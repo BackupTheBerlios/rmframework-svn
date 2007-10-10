@@ -27,7 +27,11 @@
     <property name="cache.use_minimal_puts">false</property>
     <property name="max_fetch_depth">3</property>
     
+    
+    
     <!-- Mapping files -->
-    <mapping resource="com/form105/rm/base/server/model/category.hbm.xml" />
+    
+    <mapping class="com.form105.rm.base.server.model.User" />
+    <mapping class="com.form105.rm.base.server.model.Category" />
   </session-factory>
 </hibernate-configuration>

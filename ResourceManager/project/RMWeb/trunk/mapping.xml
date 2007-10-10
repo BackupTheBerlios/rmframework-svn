@@ -6,9 +6,9 @@
   <description>Mapping default tables on the database</description>
   <property file="ant.properties" />
   
-  <target name="hibernate_init" depends="init">
+  <target name="hibernate_init" depends="clean,dist,init">
     
- 
+    
     <echo>${build.web.dir.real}</echo>
     <echo>${build.classes.dir}</echo>
     
@@ -32,6 +32,20 @@
         <include name="*.hbm.xml" />
       </fileset>
     </schemaexport>
+  </target>
+  
+  <target name="createSchemaAnnotation" description="Generate the database schema with annotations" depends="hibernate_init">
+    <taskdef name="hibernateTool" classname="org.hibernate.tool.ant.HibernateToolTask" 
+             classpathref="hibernate.path" />
+    
+    <hibernateTool destdir="${basedir}">
+      <annotationconfiguration  configurationfile="${build.classes.dir}/hibernate.cfg.xml"/>
+      <!--annotationconfiguration configurationfile="${build.classes.dir}/hibernate.cfg.xml"/-->
+      <!--hbm2ddl export="true" create="true" delimiter=";" format="true" outputfilename="schema-export.sql" /-->
+      <!--hbm2ddl update="false" export="true" outputfilename="schema-export.sql" delimiter=";" format="true"/-->
+      <hbm2ddl export="true" outputfilename="export.sql" create="true" update="false" format="true" drop="true"/>
+      
+    </hibernateTool>
   </target>
   
 </project>

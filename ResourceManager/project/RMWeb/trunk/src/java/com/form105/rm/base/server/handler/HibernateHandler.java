@@ -10,6 +10,7 @@ package com.form105.rm.base.server.handler;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 
@@ -18,19 +19,13 @@ import org.hibernate.cfg.Configuration;
  * @author Heiko Kundlacz
  */
 public class HibernateHandler {
-  
-  private static Logger logger = Logger.getLogger(HibernateHandler.class);
 
+  private static Logger logger = Logger.getLogger(HibernateHandler.class);
   private static final SessionFactory sessionFactory;
   static {
-    try {
-      // Create the SessionFactory from hibernate.cfg.xml
-      sessionFactory = new Configuration().configure().buildSessionFactory();
-    } catch (Throwable ex) {
-      // Make sure you log the exception, as it might be swallowed
-      System.err.println("Initial SessionFactory creation failed." + ex);
-      throw new ExceptionInInitializerError(ex);
-    }
+    final AnnotationConfiguration cfg = new AnnotationConfiguration();
+    cfg.configure("/hibernate.cfg.xml");
+    sessionFactory = cfg.buildSessionFactory();
   }
 
   public static SessionFactory getSessionFactory() {
@@ -44,6 +39,4 @@ public class HibernateHandler {
   public static void closeSessionFactory() throws HibernateException {
     sessionFactory.close();
   }
- 
-       
 }
