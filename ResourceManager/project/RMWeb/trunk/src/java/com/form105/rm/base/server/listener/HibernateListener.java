@@ -9,7 +9,7 @@
 
 package com.form105.rm.base.server.listener;
 
-import com.form105.rm.base.server.handler.HibernateHandler;
+import com.form105.rm.base.server.handler.InitSessionFactory;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -20,11 +20,11 @@ import javax.servlet.ServletContextListener;
 public class HibernateListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent arg0) {
-        HibernateHandler.getSessionFactory();
+        InitSessionFactory.getInstance();
     }
 
     public void contextDestroyed(ServletContextEvent arg0) {
-        HibernateHandler.closeSessionFactory();
+        InitSessionFactory.close();
     }
     
 }
