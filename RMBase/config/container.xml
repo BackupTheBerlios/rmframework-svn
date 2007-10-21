@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : container.xml
+    Created on : October 21, 2007, 8:54 PM
+    Author     : Heiko Kundlacz
+    Description:
+        Purpose of the document follows.
+-->
+
+<container>
+    <component-implementation class='com.form105.rm.container.DBContainer'/>
+</container>
+
+
