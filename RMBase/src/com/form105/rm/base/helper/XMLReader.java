@@ -5,7 +5,7 @@
  * Licensed under the GNU GPL Version 3. For full terms see the file license.txt
  */
 
-package com.form105.rm.helper;
+package com.form105.rm.base.helper;
 
 import java.io.File;
 import org.apache.log4j.Logger;

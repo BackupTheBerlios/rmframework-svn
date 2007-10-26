@@ -5,7 +5,7 @@
  * Licensed under the GNU GPL Version 3. For full terms see the file license.txt
  */
 
-package com.form105.rm.container;
+package com.form105.rm.base.container;
 
 
 import org.apache.log4j.Logger;
