@@ -8,9 +8,7 @@
   
   <target name="hibernate_init" depends="clean,dist,init">
     
-    
-    <echo>${build.web.dir.real}</echo>
-    <echo>${build.classes.dir}</echo>
+    <echo>build.classes.dir: ${build.classes.dir}</echo>
     
     <path id="hibernate.path">
       <pathelement path="${javac.classpath}" />
@@ -19,7 +17,8 @@
     </path>
   </target>
   
-  
+  <target name="dist" depends="init,compile">
+  </target>
   
   <target name="createSchema" description="Generates the database schema" depends="hibernate_init">
     

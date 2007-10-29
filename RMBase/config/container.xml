@@ -9,7 +9,8 @@
 -->
 
 <container>
-    <component-implementation class='com.form105.rm.container.DBContainer'/>
+    <component-implementation class='com.form105.rm.base.container.BackgroundThreadContainer'/>
+    <component-implementation class='com.form105.rm.base.container.DBContainer'/>
 </container>
 
 
