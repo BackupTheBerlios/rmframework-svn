@@ -31,7 +31,9 @@
     
     <!-- Mapping files -->
     
-    <mapping class="com.form105.rm.base.server.model.User" />
-    <mapping class="com.form105.rm.base.server.model.Category" />
+    <mapping class="com.form105.rm.base.model.user.Group" />
+    <mapping class="com.form105.rm.base.model.user.User" />
+    <mapping class="com.form105.rm.base.model.category.Category" />
+    <mapping class="com.form105.rm.base.model.AgentObject" />
   </session-factory>
 </hibernate-configuration>

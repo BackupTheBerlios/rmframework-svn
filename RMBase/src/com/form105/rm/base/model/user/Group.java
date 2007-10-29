@@ -7,24 +7,41 @@
 
 package com.form105.rm.base.model.user;
 
-import javax.persistence.Id;
+import com.form105.rm.base.model.AgentObject;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+
 
 /**
  *
- * @author heiko
+ * @author Heiko Kundlacz
  */
-public class Group {
+@Entity(name="t_group")
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Group extends AgentObject implements Serializable {
 
-  @Id
-  private Integer id;
-  private String name;
-
+  @OneToMany
+  private Set<String> accessIds = new HashSet<String>();
   
-  public String getName() {
-    return name;
+  public void addAccessId(String accessId) {
+    accessIds.add(accessId);
   }
-
-  public void setName(String name) {
-    this.name = name;
+  
+  public void removeAccessId(String accessId) {
+    accessIds.remove(accessId);
   }
+  
+  public boolean accessAllowed(String accessId) {
+    return accessIds.contains(accessId);
+  }
+  
+  public boolean accessDenied(String accessId) {
+    return ! accessIds.contains(accessId);
+  }
+  
 }

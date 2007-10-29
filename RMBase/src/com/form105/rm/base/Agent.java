@@ -7,15 +7,6 @@
 
 package com.form105.rm.base;
 
-import java.io.FileReader;
-import java.io.Reader;
-import org.nanocontainer.script.ScriptedContainerBuilder;
-import org.nanocontainer.script.ScriptedContainerBuilder;
-import org.nanocontainer.script.xml.XMLContainerBuilder;
-import org.picocontainer.PicoContainer;
-import org.picocontainer.defaults.ObjectReference;
-import org.picocontainer.defaults.SimpleReference;
-
 /**
  *
  * @author heiko

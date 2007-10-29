@@ -7,6 +7,7 @@
 
 package com.form105.rm.base.model.category;
 
+import com.form105.rm.base.model.AgentObject;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
@@ -23,11 +25,9 @@ import javax.persistence.OneToMany;
  */
 
 @Entity
-public class Category implements Serializable {
+@PrimaryKeyJoinColumn(name="AGENTOBJECT_ID")
+public class Category extends AgentObject implements Serializable {
 
-  @Id
-  private long oid;
-  private String name;
   @OneToMany(mappedBy="parent", cascade=CascadeType.ALL)
   private Set<Category> children = new HashSet<Category>();
   
@@ -35,17 +35,7 @@ public class Category implements Serializable {
   @JoinColumn(name="parent_id")
   private Category parent;
 
-  public long getOid() {
-    return oid;
-  }
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public Set<Category> getChildren() {
     return children;
