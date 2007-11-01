@@ -8,11 +8,6 @@
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
   
   <application>
-    <locale-config>
-      <default-locale>de</default-locale>
-      <supported-locale>de</supported-locale>
-      <supported-locale>en</supported-locale>
-    </locale-config>
     <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
   </application>
   
