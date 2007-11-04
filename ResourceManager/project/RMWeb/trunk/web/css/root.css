@@ -5,6 +5,35 @@
     Description: Purpose of the stylesheet follows.
 */
 
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/* The main css entry to define basic document layout */
+
+html {
+    background-color: #ebf9ef;
+}
+
+.root {
+  font-family: Verdana, Tahoma, Arial;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  
+  
+}
+
+.menu {
+    position: fixed;
+    float: right;
+    top: 100px;
+    left: 10px;
+    right: 10px;
+    
+}
+
 
 
 
