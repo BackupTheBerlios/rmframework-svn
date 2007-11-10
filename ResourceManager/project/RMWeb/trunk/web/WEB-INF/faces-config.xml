@@ -11,4 +11,10 @@
     <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
   </application>
   
+  <managed-bean>
+  <managed-bean-name>picList</managed-bean-name>
+  <managed-bean-class>com.form105.rm.web.ui.delegator.PictureList</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+  
 </faces-config>

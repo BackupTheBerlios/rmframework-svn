@@ -501,9 +501,11 @@
         <copy-ear-war file="${libs.RichFaces.classpath.libfile.3}" propname="included.lib.libs.RichFaces.classpath.3.X"/>
         <copy-ear-war file="${libs.RichFaces.classpath.libfile.2}" propname="included.lib.libs.RichFaces.classpath.2.X"/>
         <copy-ear-war file="${libs.RichFaces.classpath.libfile.1}" propname="included.lib.libs.RichFaces.classpath.1.X"/>
+        <basename file="${libs.Base.classpath}" property="included.lib.libs.Base.classpath"/>
+        <copy-ear-war file="${libs.Base.classpath}" propname="included.lib.libs.Base.classpath.X"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${included.lib.libs.Facelets.classpath.1.X} ${included.lib.libs.Facelets.classpath.2.X} ${included.lib.libs.Facelets.classpath.3.X} ${included.lib.libs.Facelets.classpath.4.X} ${included.lib.libs.Facelets.classpath.5.X} ${included.lib.libs.Facelets.classpath.6.X} ${included.lib.libs.Facelets.classpath.7.X} ${included.lib.libs.Facelets.classpath.8.X} ${included.lib.libs.Facelets.classpath.9.X} ${included.lib.libs.Facelets.classpath.10.X} ${included.lib.libs.Facelets.classpath.11.X} ${included.lib.libs.Facelets.classpath.12.X} ${included.lib.libs.RichFaces.classpath.1.X} ${included.lib.libs.RichFaces.classpath.2.X} ${included.lib.libs.RichFaces.classpath.3.X} "/>
+            <attribute name="Class-Path" value="${included.lib.libs.Facelets.classpath.1.X} ${included.lib.libs.Facelets.classpath.2.X} ${included.lib.libs.Facelets.classpath.3.X} ${included.lib.libs.Facelets.classpath.4.X} ${included.lib.libs.Facelets.classpath.5.X} ${included.lib.libs.Facelets.classpath.6.X} ${included.lib.libs.Facelets.classpath.7.X} ${included.lib.libs.Facelets.classpath.8.X} ${included.lib.libs.Facelets.classpath.9.X} ${included.lib.libs.Facelets.classpath.10.X} ${included.lib.libs.Facelets.classpath.11.X} ${included.lib.libs.Facelets.classpath.12.X} ${included.lib.libs.RichFaces.classpath.1.X} ${included.lib.libs.RichFaces.classpath.2.X} ${included.lib.libs.RichFaces.classpath.3.X} ${included.lib.libs.Base.classpath} "/>
         </manifest>
         <delete dir="${dist.ear.dir}/temp"/>
     </target>
@@ -523,6 +525,7 @@
         <copy file="${libs.RichFaces.classpath.libfile.3}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.RichFaces.classpath.libfile.2}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.RichFaces.classpath.libfile.1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${libs.Base.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest" name="do-ear-dist">
         <dirname file="${dist.ear.war}" property="dist.jar.dir"/>

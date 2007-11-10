@@ -67,7 +67,7 @@
     </session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>faces/pages/root.xhtml</welcome-file>
+    <welcome-file>faces/pages/content/customTable.xhtml</welcome-file>
   </welcome-file-list>
   
 </web-app>
