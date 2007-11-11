@@ -471,7 +471,6 @@
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,-do-dist-with-manifest,-do-dist-without-manifest" name="do-dist"/>
     <target depends="init" if="dist.ear.dir" name="library-inclusion-in-manifest">
-        <basename file="${libs.Facelets.classpath.libfile.12}" property="included.lib.libs.Facelets.classpath.12"/>
         <basename file="${libs.Facelets.classpath.libfile.11}" property="included.lib.libs.Facelets.classpath.11"/>
         <basename file="${libs.Facelets.classpath.libfile.10}" property="included.lib.libs.Facelets.classpath.10"/>
         <basename file="${libs.Facelets.classpath.libfile.9}" property="included.lib.libs.Facelets.classpath.9"/>
@@ -483,7 +482,6 @@
         <basename file="${libs.Facelets.classpath.libfile.3}" property="included.lib.libs.Facelets.classpath.3"/>
         <basename file="${libs.Facelets.classpath.libfile.2}" property="included.lib.libs.Facelets.classpath.2"/>
         <basename file="${libs.Facelets.classpath.libfile.1}" property="included.lib.libs.Facelets.classpath.1"/>
-        <copy-ear-war file="${libs.Facelets.classpath.libfile.12}" propname="included.lib.libs.Facelets.classpath.12.X"/>
         <copy-ear-war file="${libs.Facelets.classpath.libfile.11}" propname="included.lib.libs.Facelets.classpath.11.X"/>
         <copy-ear-war file="${libs.Facelets.classpath.libfile.10}" propname="included.lib.libs.Facelets.classpath.10.X"/>
         <copy-ear-war file="${libs.Facelets.classpath.libfile.9}" propname="included.lib.libs.Facelets.classpath.9.X"/>
@@ -505,12 +503,11 @@
         <copy-ear-war file="${libs.Base.classpath}" propname="included.lib.libs.Base.classpath.X"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${included.lib.libs.Facelets.classpath.1.X} ${included.lib.libs.Facelets.classpath.2.X} ${included.lib.libs.Facelets.classpath.3.X} ${included.lib.libs.Facelets.classpath.4.X} ${included.lib.libs.Facelets.classpath.5.X} ${included.lib.libs.Facelets.classpath.6.X} ${included.lib.libs.Facelets.classpath.7.X} ${included.lib.libs.Facelets.classpath.8.X} ${included.lib.libs.Facelets.classpath.9.X} ${included.lib.libs.Facelets.classpath.10.X} ${included.lib.libs.Facelets.classpath.11.X} ${included.lib.libs.Facelets.classpath.12.X} ${included.lib.libs.RichFaces.classpath.1.X} ${included.lib.libs.RichFaces.classpath.2.X} ${included.lib.libs.RichFaces.classpath.3.X} ${included.lib.libs.Base.classpath} "/>
+            <attribute name="Class-Path" value="${included.lib.libs.Facelets.classpath.1.X} ${included.lib.libs.Facelets.classpath.2.X} ${included.lib.libs.Facelets.classpath.3.X} ${included.lib.libs.Facelets.classpath.4.X} ${included.lib.libs.Facelets.classpath.5.X} ${included.lib.libs.Facelets.classpath.6.X} ${included.lib.libs.Facelets.classpath.7.X} ${included.lib.libs.Facelets.classpath.8.X} ${included.lib.libs.Facelets.classpath.9.X} ${included.lib.libs.Facelets.classpath.10.X} ${included.lib.libs.Facelets.classpath.11.X} ${included.lib.libs.RichFaces.classpath.1.X} ${included.lib.libs.RichFaces.classpath.2.X} ${included.lib.libs.RichFaces.classpath.3.X} ${included.lib.libs.Base.classpath} "/>
         </manifest>
         <delete dir="${dist.ear.dir}/temp"/>
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
-        <copy file="${libs.Facelets.classpath.libfile.12}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.Facelets.classpath.libfile.11}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.Facelets.classpath.libfile.10}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.Facelets.classpath.libfile.9}" todir="${build.web.dir}/WEB-INF/lib"/>

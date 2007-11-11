@@ -15,26 +15,26 @@
                     onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
                     onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
                     cellpadding="0" cellspacing="0" 
-                    width="700" border="0" var="picture" value="#{picList.list}">
+                    width="700" border="0" var="row" value="#{picList.list}">
                     
-                    <rich:column>
+                    <!--rich:column>
                         <f:facet name="header">
                             <h:outputText value="Id" />
                         </f:facet>
-                        <h:outputText value="#{picture.id}"></h:outputText>
+                        <h:outputText value="#{row.id}"></h:outputText>
                     </rich:column>
                     <rich:column>
                         <f:facet name="header">
                             <h:outputText value="Name" />
                         </f:facet>
-                        <h:outputText value="#{picture.name}"></h:outputText>
+                        <h:outputText value="#{row.name}"></h:outputText>
                     </rich:column>
                     <rich:column>
                         <f:facet name="header">
                             <h:outputText value="Path" />
                         </f:facet>
-                        <h:outputText value="#{picture.path}"></h:outputText>
-                    </rich:column>
+                        <h:outputText value="#{row.path}"></h:outputText>
+                    </rich:column-->
                 </rich:dataTable>
                 
                 
