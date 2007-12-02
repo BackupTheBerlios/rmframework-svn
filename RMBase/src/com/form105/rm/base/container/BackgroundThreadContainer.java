@@ -16,28 +16,24 @@ import org.picocontainer.Startable;
  *
  * @author heiko
  */
-public class BackgroundThreadContainer implements Startable, Disposable {
+public class BackgroundThreadContainer extends AbstractContainer implements Startable {
 
   private static Logger logger = Logger.getLogger(BackgroundThreadContainer.class);
   
   private boolean started = true;
   
   public void start() {
-    while (started) {
+    /*while (started) {
       try {
         Thread.sleep(Long.MAX_VALUE);
       } catch (InterruptedException ex) {
         logger.info(ex, ex);
       }
-    }
+    }*/
   }
 
   public void stop() {
     
-  }
-
-  public void dispose() {
-   
   }
 
 }

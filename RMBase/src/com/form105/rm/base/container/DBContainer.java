@@ -13,7 +13,7 @@ import org.picocontainer.Disposable;
 import org.picocontainer.Startable;
 import org.picocontainer.defaults.LifecycleStrategy;
 
-public class DBContainer implements Startable, Disposable {
+public class DBContainer extends AbstractContainer implements Startable, Disposable {
   
   protected static Logger logger = Logger.getLogger(DBContainer.class);
 

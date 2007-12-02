@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.logging.Level;
 import org.apache.log4j.Logger;
 import org.nanocontainer.script.ScriptedContainerBuilder;
 import org.nanocontainer.script.xml.XMLContainerBuilder;
@@ -30,6 +29,7 @@ public class Container {
     instance.initialize();
   }
 
+  
   public void initialize() {
     Reader script = null;
     try {
@@ -51,6 +51,7 @@ public class Container {
     }
   }
 
+  
   public static PicoContainer getInstance() {
     return container;
   }
