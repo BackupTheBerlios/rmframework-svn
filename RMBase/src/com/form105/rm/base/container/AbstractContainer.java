@@ -13,6 +13,6 @@ import org.apache.log4j.Logger;
  */
 public class AbstractContainer {
     
-    protected static Logger logger = Logger.getLogger(AbstractContainer.class);
+    public static Logger logger = Logger.getLogger(AbstractContainer.class);
 
 }

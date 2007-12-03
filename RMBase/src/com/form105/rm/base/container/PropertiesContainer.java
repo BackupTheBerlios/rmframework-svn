@@ -1,6 +1,8 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * PropertiesContainer.java, Oct 28, 2007, 4:58:11 PM
+ * 
+ * Copyright (c) 2007, form105 Heiko Kundlacz
+ * Licensed under the GNU GPL Version 3. For full terms see the file license.txt
  */
 
 package com.form105.rm.base.container;
@@ -21,12 +23,12 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
     
     private FileInputStream fiStream;
     private Properties properties;
+    private final String PROP_PATH = "config/server.properties.xml";
 
     public void start() {
-        FileInputStream fiStream = null;
         try {
             setProperties(new Properties(System.getProperties()));
-            fiStream = new FileInputStream("config/server.properties.xml");
+            fiStream = new FileInputStream(PROP_PATH);
             getProperties().loadFromXML(fiStream);
             for (Object o : getProperties().keySet()) {
                 String s = (String) o;

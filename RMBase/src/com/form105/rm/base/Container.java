@@ -65,4 +65,5 @@ public class Container {
     builder.buildContainer(containerRef, parentContainerRef, scope, true);
     return (PicoContainer) containerRef.get();
   }
+ 
 }

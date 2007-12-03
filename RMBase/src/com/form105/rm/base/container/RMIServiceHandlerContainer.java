@@ -5,7 +5,7 @@
 
 package com.form105.rm.base.container;
 
-import com.form105.rm.base.service.ServiceHandler;
+import com.form105.rm.base.service.RMIServiceHandler;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
@@ -15,14 +15,15 @@ import org.picocontainer.Startable;
 public class RMIServiceHandlerContainer extends AbstractContainer implements Startable {
     
     private RMIServerContainer rmiServerContainer;
-    private ServiceHandler rmiServiceHandler;
+    private RMIServiceHandler rmiServiceHandler;
     
     public RMIServiceHandlerContainer(RMIServerContainer rmiServerContainer) throws RemoteException {
         this.rmiServerContainer = rmiServerContainer;
-        rmiServiceHandler = new ServiceHandler();
+        rmiServiceHandler = new RMIServiceHandler();
     }
 
     public void start() {
+        logger.info("Starting: Binding RMIServiceHandler to the registry.");
         try {
             Registry registry = rmiServerContainer.getRegistry();
             registry.rebind(rmiServiceHandler.getName(), rmiServiceHandler);
@@ -44,7 +45,7 @@ public class RMIServiceHandlerContainer extends AbstractContainer implements Sta
         }
     }
     
-    public ServiceHandler getServiceHandler() {
+    public RMIServiceHandler getServiceHandler() {
         return rmiServiceHandler;
     }
 

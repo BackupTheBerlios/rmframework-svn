@@ -8,8 +8,8 @@
 package com.form105.rm.base.container;
 
 
+import com.form105.rm.base.BackgroundThread;
 import org.apache.log4j.Logger;
-import org.picocontainer.Disposable;
 import org.picocontainer.Startable;
 
 /**
@@ -20,19 +20,17 @@ public class BackgroundThreadContainer extends AbstractContainer implements Star
 
   private static Logger logger = Logger.getLogger(BackgroundThreadContainer.class);
   
-  private boolean started = true;
+  BackgroundThread bgThread = new BackgroundThread();
+  Thread thread;
   
   public void start() {
-    /*while (started) {
-      try {
-        Thread.sleep(Long.MAX_VALUE);
-      } catch (InterruptedException ex) {
-        logger.info(ex, ex);
-      }
-    }*/
+    
+    thread = new Thread(bgThread);
+    thread.start();
   }
 
   public void stop() {
+      
     
   }
 

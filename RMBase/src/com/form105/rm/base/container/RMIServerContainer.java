@@ -1,6 +1,8 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * RMIServerContainer.java, Oct 28, 2007, 4:58:11 PM
+ * 
+ * Copyright (c) 2007, form105 Heiko Kundlacz
+ * Licensed under the GNU GPL Version 3. For full terms see the file license.txt
  */
 package com.form105.rm.base.container;
 
@@ -30,7 +32,7 @@ public class RMIServerContainer extends AbstractContainer implements Startable {
         props = propContainer.getProperties();
         port = new Integer(props.getProperty("server.rmi.port"));
         
-        logger.info("Starting registry on port: "+port);
+        logger.info("Starting: RMI Registry on port: "+port);
         try {
             registry = LocateRegistry.createRegistry(port);
         } catch (RemoteException ex) {

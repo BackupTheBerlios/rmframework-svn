@@ -6,19 +6,19 @@ package com.form105.rm.base.service.common;
 
 import com.form105.rm.base.exception.RMException;
 import com.form105.rm.base.service.AbstractService;
-import org.apache.log4j.Logger;
+import java.io.Serializable;
 
 /**
  *
  * @author heiko
  */
-public class PrintService extends AbstractService {
+public class PrintService extends AbstractService implements Serializable {
     
     private final String serviceName = "PrintService";
     private ServiceArgument argument = new ServiceArgument();
 
-    public class ServiceArgument {
-        String name;
+    public class ServiceArgument implements Serializable {
+        public String name;
     }
 
     public void execute() throws RMException {
