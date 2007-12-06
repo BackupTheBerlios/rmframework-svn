@@ -13,19 +13,31 @@ import java.rmi.server.UnicastRemoteObject;
 public class RMIServiceHandler extends UnicastRemoteObject implements IServiceHandler {
     
     private final String name = "ServiceHandler";
+    private IService service;
+    private String result = "not_executed";
     
     public RMIServiceHandler() throws RemoteException {
         super();
     }
     
     public void executeService(IService service) throws RemoteException {
-        
+        this.service = service;
         service.execute();
+        result = "executed";
+        
+        
+        
     }
     
     public final String getName() {
         return name;
     }
+
+    public String getResult() throws RemoteException {
+        return result;
+    }
+    
+    
     
     
 

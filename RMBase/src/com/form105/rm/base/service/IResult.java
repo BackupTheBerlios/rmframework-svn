@@ -7,8 +7,7 @@
 
 package com.form105.rm.base.service;
 
-import com.form105.rm.base.service.AbstractResult.Status;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IResult {
 
@@ -16,6 +15,6 @@ public interface IResult {
     
     public void setStatus(Status status);
     
-    public ArrayList getResultSet();
+    public List getResultSet();
 
 }

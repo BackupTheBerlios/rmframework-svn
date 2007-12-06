@@ -30,7 +30,8 @@
     
     
     <!-- Mapping files -->
-    
+    <mapping class="com.form105.rm.base.model.parameter.StringParameter" />
+    <mapping class="com.form105.rm.base.model.parameter.AbstractParameter" />
     <mapping class="com.form105.rm.base.model.user.Group" />
     <mapping class="com.form105.rm.base.model.user.User" />
     <mapping class="com.form105.rm.base.model.category.Category" />

@@ -15,12 +15,7 @@ public abstract class AbstractResult implements IResult {
     
     private Status status;
     
-    public enum Status {
-        SUCCESS,
-        FAIL,
-        UNDEFINED;
-        
-    }
+    
     
     /**
      * Get the status of the result

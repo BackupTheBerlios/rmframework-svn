@@ -6,6 +6,8 @@ package com.form105.rm.base.service.common;
 
 import com.form105.rm.base.exception.RMException;
 import com.form105.rm.base.service.AbstractService;
+import com.form105.rm.base.service.IArgument;
+import com.form105.rm.base.service.ServiceResult;
 import java.io.Serializable;
 
 /**
@@ -17,12 +19,13 @@ public class PrintService extends AbstractService implements Serializable {
     private final String serviceName = "PrintService";
     private ServiceArgument argument = new ServiceArgument();
 
-    public class ServiceArgument implements Serializable {
+    public class ServiceArgument implements IArgument {
         public String name;
     }
 
     public void execute() throws RMException {
         logger.info("Executed PrintService");
+        
     }
 
     public ServiceArgument getArgument() {

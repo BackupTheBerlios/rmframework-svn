@@ -8,9 +8,9 @@
 package com.form105.rm.base.service;
 
 import com.form105.rm.base.exception.RMException;
-import java.rmi.Remote;
+import java.io.Serializable;
 
-public interface IService extends Remote {
+public interface IService extends Serializable {
     
     public void execute() throws RMException;
     
