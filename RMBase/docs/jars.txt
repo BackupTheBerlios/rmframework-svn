@@ -3,6 +3,7 @@ General:
 log4j-1.2.15
 nanocontainer-1.1.1.jar
 picocontainer-1.3.jar
+dom4j-1.6.1.jar (included in hibernate)
 
 Hibernate:
 ----------
@@ -22,5 +23,9 @@ hibernate-annotations.jar
 ejb3-persistence.jar
 org.hibernate.eclipse_3.2.0.beta91/lib/tools/hibernate-tools.jar
 hibernate-commons-annotations.jar
+
+Database:
+---------
+derbyclient.jar - Version: 10.1.3.4
 
 
