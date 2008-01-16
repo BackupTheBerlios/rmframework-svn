@@ -1,24 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.form105.rm.base.model.parameter;
 
-/**
- *
- * @author heiko
- */
-public interface IParameter {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-    String getName();
 
-    String getParameterId();
+@Entity
+public interface IParameter extends Serializable {
+    @Id
+    public Long id;
+    
+    public Long getId();
+    
+    public String getName();
 
-    String getValueAsString();
+    public String getParameterId();
 
-    void setName(String name);
+    public String getValueAsString();
 
-    void setParameterId(String parameterId);
+    public void setName(String name);
+
+    public void setParameterId(String parameterId);
 
 }

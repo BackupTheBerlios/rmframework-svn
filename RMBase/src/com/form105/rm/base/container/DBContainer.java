@@ -8,16 +8,16 @@
 package com.form105.rm.base.container;
 
 
-import org.apache.log4j.Logger;
 import org.picocontainer.Disposable;
 import org.picocontainer.Startable;
 
 public class DBContainer extends AbstractContainer implements Startable, Disposable {
   
-  protected static Logger logger = Logger.getLogger(DBContainer.class);
 
   public void start() {
-    logger.info("Starting Database integration");
+      
+      
+    
   }
 
   public void stop() {
@@ -27,6 +27,6 @@ public class DBContainer extends AbstractContainer implements Startable, Disposa
   public void dispose() {
     
   }
-
+  
 
 }

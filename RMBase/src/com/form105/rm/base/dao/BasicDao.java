@@ -74,6 +74,6 @@ public interface BasicDao<T, ID extends Serializable> {
 	 * @param criteria
 	 * @return
 	 */
-	public List<T> findByCriteria(Criterion... criterion);
+	//public List<T> findByCriteria(Criterion... criterion);
 
 }

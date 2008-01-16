@@ -11,7 +11,7 @@ import com.form105.rm.base.model.category.Category;
 import org.hibernate.SessionFactory;
 
 
-public class CategoryDao extends BasicDaoImp<Category, Integer>{
+public class CategoryDao extends BasicDBDaoImpl<Category, Integer>{
   
   public CategoryDao(SessionFactory factory) {
     super(Category.class, factory);

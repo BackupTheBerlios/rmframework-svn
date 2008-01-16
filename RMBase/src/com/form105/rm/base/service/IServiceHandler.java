@@ -13,6 +13,6 @@ public interface IServiceHandler extends Remote {
     
     public void executeService(IService service) throws RemoteException;
     
-    public String getResult() throws RemoteException;
+    public ServiceResult getResult() throws RemoteException;
 
 }

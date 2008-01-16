@@ -24,11 +24,12 @@ import javax.persistence.InheritanceType;
 @DiscriminatorColumn(name = "parameter_type", discriminatorType=DiscriminatorType.STRING)
 public abstract class AbstractParameter<T> implements IParameter, Serializable {
     
-    @Id private Long oid;
+    @Id 
+    private Long id;
     private String parameterId;
     private String name;
-    private String valueAsString;
-    public T value;
+
+
 
     public String getParameterId() {
         return parameterId;
@@ -48,15 +49,15 @@ public abstract class AbstractParameter<T> implements IParameter, Serializable {
 
     public abstract String getValueAsString();
     
-    abstract T getValue();
+    public abstract T getParameterValue();
     
-    abstract void setValue(T value);
+    public abstract void setParameterValue(T value);
 
-    public Long getOid() {
-        return oid;
+    public Long getId() {
+        return id;
     }
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

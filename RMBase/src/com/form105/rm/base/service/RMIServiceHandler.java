@@ -9,23 +9,31 @@ package com.form105.rm.base.service;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import org.apache.log4j.Logger;
 
 public class RMIServiceHandler extends UnicastRemoteObject implements IServiceHandler {
     
+    private static Logger logger = Logger.getLogger(RMIServiceHandler.class);
+    
     private final String name = "ServiceHandler";
     private IService service;
-    private String result = "not_executed";
+    private ServiceResult result = new ServiceResult();
     
     public RMIServiceHandler() throws RemoteException {
         super();
     }
     
     public void executeService(IService service) throws RemoteException {
+        
+        try {
+        
         this.service = service;
         service.execute();
-        result = "executed";
-        
-        
+        result.setStatus(Status.SUCCESS);
+        } catch (Exception ex) {
+            result.setStatus(Status.FAIL);
+            logger.error(ex);
+        }
         
     }
     
@@ -33,7 +41,7 @@ public class RMIServiceHandler extends UnicastRemoteObject implements IServiceHa
         return name;
     }
 
-    public String getResult() throws RemoteException {
+    public ServiceResult getResult() throws RemoteException {
         return result;
     }
     

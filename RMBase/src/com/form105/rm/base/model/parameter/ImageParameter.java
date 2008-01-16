@@ -7,18 +7,21 @@ package com.form105.rm.base.model.parameter;
 
 import javax.persistence.Entity;
 
-/**
- *
- * @author heiko
- */
+
 
 @Entity
-public class StringParameter extends AbstractParameter<String> {
+public class ImageParameter extends AbstractParameter<String> {
     
     private String parameterValue;
 
-    public String getParameterValue() {
+    @Override
+    public String getValueAsString() {
         return parameterValue;
+    }
+
+    @Override
+    public String getParameterValue() {
+       return parameterValue; 
     }
 
     @Override
@@ -26,9 +29,4 @@ public class StringParameter extends AbstractParameter<String> {
         this.parameterValue = value;
     }
 
-    @Override
-    public String getValueAsString() {
-        return parameterValue;
-    }
-    
 }

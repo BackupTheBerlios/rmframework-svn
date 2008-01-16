@@ -5,15 +5,9 @@
 
 package com.form105.rm.base.model;
 
-import javax.persistence.Entity;
 
-@Entity
-public class Resource extends ParameterizedElement {
+public class ResourceMap extends AbstractModelMap<Resource> {
     
     
-    public Resource() {
-        
-    }
-    
-    
+
 }

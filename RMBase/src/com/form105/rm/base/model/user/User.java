@@ -1,6 +1,6 @@
 package com.form105.rm.base.model.user;
 
-import com.form105.rm.base.model.user.Group;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 public class User implements Serializable {
 
   @Id
-  private Integer id;
+  private Long id;
   private String name;
   private String sirName;
   private String eMail;
@@ -27,6 +27,38 @@ public class User implements Serializable {
   public void setGroups(Set<Group> groups) {
     this.groups = groups;
   }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSirName() {
+        return sirName;
+    }
+
+    public void setSirName(String sirName) {
+        this.sirName = sirName;
+    }
+
+    public String getEMail() {
+        return eMail;
+    }
+
+    public void setEMail(String eMail) {
+        this.eMail = eMail;
+    }
   
   
   

@@ -14,6 +14,7 @@ public class ServiceResult extends AbstractResult {
     private List resultSet = new ArrayList();
     
     public ServiceResult() {
+        setStatus(Status.UNDEFINED);
     }
 
     public List getResultSet() {

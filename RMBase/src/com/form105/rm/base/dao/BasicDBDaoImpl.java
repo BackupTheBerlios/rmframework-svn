@@ -14,13 +14,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 
-public class BasicDaoImp<T, ID extends Serializable> implements BasicDao<T, ID> {
+public class BasicDBDaoImpl<T, ID extends Serializable> implements BasicDao<T, ID> {
 
 	protected Class<T> clazz;
 
 	private SessionFactory factory;
 
-	public BasicDaoImp(Class<T> clazz, SessionFactory factory) {
+	public BasicDBDaoImpl(Class<T> clazz, SessionFactory factory) {
 		this.clazz = clazz;
 		this.factory = factory;
 	}

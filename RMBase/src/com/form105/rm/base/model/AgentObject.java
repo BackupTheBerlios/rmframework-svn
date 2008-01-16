@@ -8,6 +8,8 @@
 package com.form105.rm.base.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -18,12 +20,13 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class AgentObject {
+public class AgentObject implements java.io.Serializable {
   
   @Id
-  private Integer id;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
   private String name;
-  
+  private String elementId;
   
   public String getName() {
     return name;
@@ -32,5 +35,21 @@ public class AgentObject {
   public void setName(String name) {
     this.name = name;
   }
+
+    public String getElementId() {
+        return elementId;
+    }
+
+    public void setElementId(String elementId) {
+        this.elementId = elementId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

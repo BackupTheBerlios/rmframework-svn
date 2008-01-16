@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.connection.ConnectionProvider;
@@ -25,7 +26,7 @@ public class SchemaHelper {
 
 	private static final String HIBERNATE_CFG_XML = "/hibernate.cfg.xml";
 
-	private Configuration cfg = new Configuration();
+	private AnnotationConfiguration cfg = new AnnotationConfiguration();
 	private Properties props = new Properties();
 	private Dialect dialect;
 	private ConnectionProvider connectionProvider;
