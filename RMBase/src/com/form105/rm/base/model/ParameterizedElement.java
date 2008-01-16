@@ -5,7 +5,8 @@
 
 package com.form105.rm.base.model;
 
-import com.form105.rm.base.model.parameter.IParameter;
+import com.form105.rm.base.model.parameter.IParameter; 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CascadeType;

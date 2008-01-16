@@ -20,6 +20,8 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+
+import java.io.Serializable;
 public class AgentObject implements java.io.Serializable {
   
   @Id
