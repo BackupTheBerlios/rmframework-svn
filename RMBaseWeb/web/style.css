@@ -1,0 +1,59 @@
+
+
+body {
+	background-color: white;
+	background-image: url('wicket-logo.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: 96% 96%;
+	color: #6F6F6F;
+	font-family: 'Lucida Sans', 'Helvetica', 'Sans-serif', 'sans';
+	font-size: 9pt;
+	line-height: 1.8em;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
+}
+
+a.navigationItem {
+    
+    color: #003366;
+    text-decoration: none;
+    font-size: 9pt;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+
+a.navigationItem:hover {
+    color: #003366;
+    text-decoration: none;
+    font-size: 11pt;
+}
+
+li {
+    list-style-type: none;
+    margin: 0;
+    
+    vertical-align: text-top;
+}
+
+ul {
+    margin: 0;
+}
+
+.mainNavigationItem {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    line-height: 20px;
+}
+
+#navi {
+    
+    float: left;
+    width: 200px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #003366;
+}
+
+#content {
+    margin-left: 220px;
+}

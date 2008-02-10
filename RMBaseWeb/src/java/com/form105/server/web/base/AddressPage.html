@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+    
+    <body>
+        <wicket:extend>
+            
+            <form wicket:id="adressForm">
+                <fieldset>
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="personName"><wicket:message key="label.personName" /></label>
+                            </td>
+                            <td>
+                                <input class="label" type="text" wicket:id="personName" id="personName" value="" size="50" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="firstName"><wicket:message key="label.firstName" /></label>
+                            </td>
+                            <td>
+                                <input class="label" type="text" wicket:id="firstName" id="firstName" value="" size="50" />
+                            </td>
+                        </tr>
+                        <tr><input type="submit" wicket:id="saveButton" value="save" /></tr>
+                    </table>
+                </fieldset>
+            </form>
+            
+            
+        </wicket:extend>
+    </body>
+</html>
