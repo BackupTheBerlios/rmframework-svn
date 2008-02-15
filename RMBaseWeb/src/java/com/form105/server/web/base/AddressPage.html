@@ -4,8 +4,12 @@
     <body>
         <wicket:extend>
             
-            <form wicket:id="adressForm">
+            <form wicket:id="addressForm">
                 <fieldset>
+                    <div class="mainContentHeader">
+                        mytext
+                    </div>
+                    <div class="mainContentFrame">
                     <table>
                         <tr>
                             <td>
@@ -23,8 +27,30 @@
                                 <input class="label" type="text" wicket:id="firstName" id="firstName" value="" size="50" />
                             </td>
                         </tr>
-                        <tr><input type="submit" wicket:id="saveButton" value="save" /></tr>
+                        <tr>
+                            <td>
+                                <label for="street"><wicket:message key="label.street" /></label>
+                            </td>
+                            <td>
+                                <input class="label" type="text" wicket:id="street" id="street" value="" size="50" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="streetNumber"><wicket:message key="label.streetNumber" /></label>
+                            </td>
+                            <td>
+                                <input class="label" type="text" wicket:id="streetNumber" id="streetNumber" value="" size="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="button" type="submit" wicket:id="saveButton" value="save" />
+                            </td>
+                        </tr>
+                        
                     </table>
+                </div>
                 </fieldset>
             </form>
             

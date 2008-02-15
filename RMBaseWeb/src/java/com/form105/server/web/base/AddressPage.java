@@ -5,7 +5,7 @@
 package com.form105.server.web.base;
 
 import com.form105.server.web.base.model.AdressInputModel;
-import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
@@ -21,28 +21,38 @@ public class AddressPage extends TemplatePage {
 
     public AddressPage() {
         setPageTitle("Adress Page");
-        add(new AdressForm("adressForm"));
+        AddressForm form = new AddressForm("addressForm");
+        add(form);
+
+        form.add(new Button("saveButton"));
         
+
     }
 
-    private class AdressForm extends Form {
+    protected class AddressForm extends Form {
 
-        public AdressForm(String name) {
+        public AddressForm(String name) {
             super(name, new CompoundPropertyModel(new AdressInputModel()));
             RequiredTextField personName = new RequiredTextField("personName");
             personName.setLabel(new Model("personName"));
             add(personName);
-            
+
             TextField firstName = new TextField("firstName");
             add(firstName);
-            
-            TextField street = new TextField("steet");
+
+            TextField street = new TextField("street");
             add(street);
-            
+
             TextField streetNumber = new TextField("streetNumber");
             add(streetNumber.add(NumberValidator.POSITIVE));
-            
-            
+
+
         }
+
+        protected void onSubmit() {
+            info("Form.onSubmit executed");
+        }
+        
     }
+
 }
