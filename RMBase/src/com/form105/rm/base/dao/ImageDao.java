@@ -5,14 +5,14 @@
 
 package com.form105.rm.base.dao;
 
-import com.form105.rm.base.model.image.Image;
+import com.form105.rm.base.model.image.ImageData;
 import org.hibernate.SessionFactory;
 
 
-public class ImageDao extends BasicDBDaoImpl<Image, Long>{
+public class ImageDao extends BasicDBDaoImpl<ImageData, Long>{
   
   public ImageDao(SessionFactory factory) {
-    super(Image.class, factory);
+    super(ImageData.class, factory);
   }
 
 }

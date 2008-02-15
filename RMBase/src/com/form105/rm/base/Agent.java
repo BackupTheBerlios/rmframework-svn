@@ -7,6 +7,8 @@
 
 package com.form105.rm.base;
 
+import com.form105.rm.base.helper.ImageHelper;
+
 /**
  *
  * @author heiko
@@ -18,6 +20,10 @@ public class Agent {
    */
   public static void main(String[] args) {
     Container.getInstance();
+    
+    ImageHelper helper = new ImageHelper();
+    helper.loadImageData();
+    
     
   }
 

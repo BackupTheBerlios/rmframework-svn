@@ -7,10 +7,17 @@ package com.form105.rm.base.model.image;
 import java.io.Serializable;
 import java.net.URL;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class LinkedImage extends Image implements Serializable {
+public class ImageLink implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     private URL url;
 
     public URL getUrl() {
@@ -19,6 +26,14 @@ public class LinkedImage extends Image implements Serializable {
 
     public void setUrl(URL url) {
         this.url = url;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
     

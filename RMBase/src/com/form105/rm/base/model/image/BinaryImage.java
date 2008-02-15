@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import org.hibernate.annotations.Type;
 
 @Entity
-public class BinaryImage extends Image implements Serializable {
+public class BinaryImage extends ImageData implements Serializable {
     
     @Type(type="org.hibernate.type.BinaryType")
     private byte imageAsByte[];

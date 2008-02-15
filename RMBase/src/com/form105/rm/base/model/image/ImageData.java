@@ -6,22 +6,26 @@
 package com.form105.rm.base.model.image;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Image implements Serializable {
+public class ImageData implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Long imageId;
     private String name;
+    @OneToOne(cascade = CascadeType.ALL)
+    private BinaryImage previewBinaryImage;
     
     public Long getId() {
         return id;
@@ -46,5 +50,15 @@ public abstract class Image implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public BinaryImage getPreviewBinaryImage() {
+        return previewBinaryImage;
+    }
+
+    public void setPreviewBinaryImage(BinaryImage previewBinaryImage) {
+        this.previewBinaryImage = previewBinaryImage;
+    }
+
+   
 
 }

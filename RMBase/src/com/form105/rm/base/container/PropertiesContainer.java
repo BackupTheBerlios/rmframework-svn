@@ -11,8 +11,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Set;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
 
 /**
@@ -32,26 +33,28 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
             getProperties().loadFromXML(fiStream);
             for (Object o : getProperties().keySet()) {
                 String s = (String) o;
-                logger.info(s);
+                logger.info(s + "-> "+properties.getProperty(s));
             }
+            
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PropertiesContainer.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex, ex);
         } catch (IOException iex) {
             
         } finally {
             try {
                 fiStream.close();
             } catch (IOException ex) {
-                Logger.getLogger(PropertiesContainer.class.getName()).log(Level.SEVERE, null, ex);
+                logger.error(ex, ex);
             }
         }
+        logSystemProperties();
     }
 
     public void stop() {
         try {
                 fiStream.close();
             } catch (IOException ex) {
-                Logger.getLogger(PropertiesContainer.class.getName()).log(Level.SEVERE, null, ex);
+                logger.error(ex, ex);
             }
     }
 
@@ -61,6 +64,19 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
 
     public void setProperties(Properties properties) {
         this.properties = properties;
+    }
+    
+    public String getProperty(String key) {
+        return (String) properties.get(key);
+    }
+    
+    public void logSystemProperties() {
+        Properties props = System.getProperties();
+        
+        for (Object keyObject : props.keySet()) {
+            String sKey = (String) keyObject;
+            logger.info("System properties key: "+sKey+" -> result: "+props.getProperty(sKey));
+        }
     }
 
 }
