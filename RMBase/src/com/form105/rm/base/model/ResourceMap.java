@@ -5,8 +5,12 @@
 
 package com.form105.rm.base.model;
 
+import javax.persistence.Entity;
 
+@Entity
 public class ResourceMap extends AbstractModelMap<Resource> {
+    
+    
     
     
 

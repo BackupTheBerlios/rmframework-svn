@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -21,6 +24,10 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ParameterizedElement extends AgentObject implements java.io.Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long oid;
 
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="parameter_id")
@@ -33,6 +40,14 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
 
     public void setParameterMap(HashMap<String, IParameter> parameterSet) {
         this.parameterMap = parameterSet;
+    }
+
+    public long getOid() {
+        return oid;
+    }
+
+    public void setOid(long oid) {
+        this.oid = oid;
     }
     
 }
