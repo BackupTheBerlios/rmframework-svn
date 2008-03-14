@@ -31,7 +31,7 @@
     
     <!-- Mapping files -->
     <mapping class="com.form105.rm.base.model.parameter.AbstractParameter" />
-    <mapping class="com.form105.rm.base.model.Resource" />
+    <mapping class="com.form105.rm.base.model.ResourceMap" />
     <mapping class="com.form105.rm.base.model.image.ImageLink" />
     <mapping class="com.form105.rm.base.model.image.ImageData" />
     <mapping class="com.form105.rm.base.model.image.BinaryImage" />

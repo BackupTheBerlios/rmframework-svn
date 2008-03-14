@@ -128,6 +128,27 @@ public class VariableSubstituter {
     	} 
     	
     }
+    
+    /**
+     * Replaces a variable with the key by an substitute
+     * @param source
+     * @param substitute
+     * @param key
+     * @param var
+     * @return
+     */
+    public String replaceVariable(String source, String substitute, String key, Variable var) {
+        getVariable(source, var);
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(var.getIdentifier());
+        buffer.append(var.getStartTag());
+        buffer.append(key);
+        buffer.append(var.getEndTag());
+        
+        source.replace(buffer, substitute);
+        return source;
+        
+    }
 
     
     /**
