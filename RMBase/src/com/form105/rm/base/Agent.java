@@ -21,8 +21,8 @@ public class Agent {
   public static void main(String[] args) {
     Container.getInstance();
     
-    ImageHelper helper = new ImageHelper();
-    helper.loadImageData();
+    //ImageHelper helper = new ImageHelper();
+    //helper.loadImageData();
     
     
   }
