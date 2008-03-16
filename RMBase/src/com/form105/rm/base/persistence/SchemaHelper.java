@@ -22,282 +22,283 @@ import org.hibernate.util.JDBCExceptionReporter;
 
 public class SchemaHelper {
 
-	private static Logger logger = Logger.getLogger(SchemaHelper.class);
+    private static Logger logger = Logger.getLogger(SchemaHelper.class);
+    private static final String HIBERNATE_CFG_XML = "/hibernate.cfg.xml";
+    private AnnotationConfiguration cfg = new AnnotationConfiguration();
+    private Properties props = new Properties();
+    private Dialect dialect;
+    private ConnectionProvider connectionProvider;
+    private Connection connection;
+    private ArrayList<Exception> exceptions = new ArrayList<Exception>();
 
-	private static final String HIBERNATE_CFG_XML = "/hibernate.cfg.xml";
+    public SchemaHelper(String schema) {
+        cfg.configure(HIBERNATE_CFG_XML);
+        // need this for drop Table (IMPORTANT)
+        if (schema != null) {
+            cfg.setProperty(Environment.DEFAULT_SCHEMA, schema);
+        }
+        dialect = Dialect.getDialect(cfg.getProperties());
+        props.putAll(dialect.getDefaultProperties());
+        props.putAll(cfg.getProperties());
 
-	private AnnotationConfiguration cfg = new AnnotationConfiguration();
-	private Properties props = new Properties();
-	private Dialect dialect;
-	private ConnectionProvider connectionProvider;
-	private Connection connection;
-	private ArrayList<Exception> exceptions = new ArrayList<Exception>();
+        // need this for update table (IMPORTANT)
+        if (schema != null) {
+            props.put(Environment.DEFAULT_SCHEMA, schema);
+        }
+        initialize(props);
+    }
 
-	public SchemaHelper(String schema) {
-		cfg.configure(HIBERNATE_CFG_XML);
-		// need this for drop Table (IMPORTANT)
-		cfg.setProperty(Environment.DEFAULT_SCHEMA, schema);
+    public SchemaHelper() {
+        this(null);
+    }
 
-		dialect = Dialect.getDialect(cfg.getProperties());
-		props.putAll(dialect.getDefaultProperties());
-		props.putAll(cfg.getProperties());
+    /**
+     * Initializes the hibernate configuration and creates the sql statements to
+     * drop and create tables.
+     */
+    private void initialize(Properties props) {
+        exceptions = new ArrayList<Exception>();
+        connectionProvider = ConnectionProviderFactory.newConnectionProvider(props);
 
-		// need this for update table (IMPORTANT)
-		props.put(Environment.DEFAULT_SCHEMA, schema);
+    }
 
-		initialize(props);
-	}
+    /**
+     * Initializes the connection based on the properties
+     * 
+     * @param needsAutoCommit
+     * @return The conneciton
+     * @throws SQLException
+     */
+    public Connection prepare(boolean needsAutoCommit) throws SQLException {
+        connectionProvider = ConnectionProviderFactory.newConnectionProvider(props);
+        connection = connectionProvider.getConnection();
+        if (needsAutoCommit && !connection.getAutoCommit()) {
+            connection.commit();
+            connection.setAutoCommit(true);
+        }
+        return connection;
+    }
 
-	/**
-	 * Initializes the hibernate configuration and creates the sql statements to
-	 * drop and create tables.
-	 */
-	private void initialize(Properties props) {
-		exceptions = new ArrayList<Exception>();
-		connectionProvider = ConnectionProviderFactory.newConnectionProvider(props);
+    /**
+     * Drop all tables that are reflected through the configuration. The schema
+     * is set by the constructor.
+     * 
+     */
+    public void dropSchema() {
 
-	}
+        Connection connection = null;
+        Statement stmt = null;
 
-	/**
-	 * Initializes the connection based on the properties
-	 * 
-	 * @param needsAutoCommit
-	 * @return The conneciton
-	 * @throws SQLException
-	 */
-	public Connection prepare(boolean needsAutoCommit) throws SQLException {
-		connectionProvider = ConnectionProviderFactory.newConnectionProvider(props);
-		connection = connectionProvider.getConnection();
-		if (needsAutoCommit && !connection.getAutoCommit()) {
-			connection.commit();
-			connection.setAutoCommit(true);
-		}
-		return connection;
-	}
+        exceptions.clear();
+        try {
 
-	/**
-	 * Drop all tables that are reflected through the configuration. The schema
-	 * is set by the constructor.
-	 * 
-	 */
-	public void dropSchema() {
+            DatabaseMetadata meta;
+            try {
+                logger.info("fetching database metadata");
+                connection = prepare(true);
+                stmt = connection.createStatement();
+            } catch (SQLException sqle) {
+                exceptions.add(sqle);
+                logger.error("could not get database metadata", sqle);
+                throw sqle;
+            }
 
-		Connection connection = null;
-		Statement stmt = null;
+            logger.info("updating schema");
 
-		exceptions.clear();
-		try {
+            String[] dropSQL = cfg.generateDropSchemaScript(dialect);
+            for (int j = 0; j < dropSQL.length; j++) {
 
-			DatabaseMetadata meta;
-			try {
-				logger.info("fetching database metadata");
-				connection = prepare(true);
-				stmt = connection.createStatement();
-			} catch (SQLException sqle) {
-				exceptions.add(sqle);
-				logger.error("could not get database metadata", sqle);
-				throw sqle;
-			}
+                final String sql = dropSQL[j];
+                try {
+                    logger.info("Drop Table: " + sql);
+                    stmt.executeUpdate(sql);
+                } catch (SQLException e) {
+                    exceptions.add(e);
+                    logger.error("Unsuccessful: " + sql);
+                    logger.error(e.getMessage());
+                }
+            }
 
-			logger.info("updating schema");
+            logger.info("schema update complete");
 
-			String[] dropSQL = cfg.generateDropSchemaScript(dialect);
-			for (int j = 0; j < dropSQL.length; j++) {
+        } catch (Exception e) {
+            exceptions.add(e);
+            logger.error("could not complete schema update", e);
+        } finally {
 
-				final String sql = dropSQL[j];
-				try {
-					logger.info("Drop Table: " + sql);
-					stmt.executeUpdate(sql);
-				} catch (SQLException e) {
-					exceptions.add(e);
-					logger.error("Unsuccessful: " + sql);
-					logger.error(e.getMessage());
-				}
-			}
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                release();
+            } catch (Exception e) {
+                exceptions.add(e);
+                logger.error("Error closing connection", e);
+            }
 
-			logger.info("schema update complete");
+        }
+    }
 
-		} catch (Exception e) {
-			exceptions.add(e);
-			logger.error("could not complete schema update", e);
-		} finally {
+    public void updateSchema() {
+        Connection connection = null;
+        Statement stmt = null;
 
-			try {
-				if (stmt != null) {
-					stmt.close();
-				}
-				release();
-			} catch (Exception e) {
-				exceptions.add(e);
-				logger.error("Error closing connection", e);
-			}
+        exceptions.clear();
+        try {
 
-		}
-	}
+            DatabaseMetadata meta;
+            try {
+                logger.info("fetching database metadata");
+                connection = prepare(true);
+                meta = new DatabaseMetadata(connection, dialect);
+                stmt = connection.createStatement();
+            } catch (SQLException sqle) {
+                exceptions.add(sqle);
+                logger.error("could not get database metadata", sqle);
+                throw sqle;
+            }
 
-	public void updateSchema() {
-		Connection connection = null;
-		Statement stmt = null;
+            logger.info("updating schema");
 
-		exceptions.clear();
-		try {
+            String[] createSQL = cfg.generateSchemaUpdateScript(dialect, meta);
+            for (int j = 0; j < createSQL.length; j++) {
 
-			DatabaseMetadata meta;
-			try {
-				logger.info("fetching database metadata");
-				connection = prepare(true);
-				meta = new DatabaseMetadata(connection, dialect);
-				stmt = connection.createStatement();
-			} catch (SQLException sqle) {
-				exceptions.add(sqle);
-				logger.error("could not get database metadata", sqle);
-				throw sqle;
-			}
+                final String sql = createSQL[j];
+                try {
+                    stmt.executeUpdate(sql);
+                } catch (SQLException e) {
+                    exceptions.add(e);
+                    logger.error("Unsuccessful: " + sql);
+                    logger.error(e.getMessage());
+                }
+            }
+            logger.info("schema update complete");
 
-			logger.info("updating schema");
+        } catch (Exception e) {
+            exceptions.add(e);
+            logger.error("could not complete schema update", e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                release();
+            } catch (Exception e) {
+                exceptions.add(e);
+                logger.error("Error closing connection", e);
+            }
+        }
+    }
 
-			String[] createSQL = cfg.generateSchemaUpdateScript(dialect, meta);
-			for (int j = 0; j < createSQL.length; j++) {
+    /**
+     * Checks the tables of hibernate configuration. If the tables exist, the
+     * result will be reported to the DatabaseTable.
+     * 
+     * @return List of DatabaseTable
+     * @throws SQLException
+     */
+    public List<DatabaseTable> checkTable() {
 
-				final String sql = createSQL[j];
-				try {
-					stmt.executeUpdate(sql);
-				} catch (SQLException e) {
-					exceptions.add(e);
-					logger.error("Unsuccessful: " + sql);
-					logger.error(e.getMessage());
-				}
-			}
-			logger.info("schema update complete");
+        ArrayList<DatabaseTable> dbTables = new ArrayList<DatabaseTable>();
 
-		} catch (Exception e) {
-			exceptions.add(e);
-			logger.error("could not complete schema update", e);
-		} finally {
-			try {
-				if (stmt != null) {
-					stmt.close();
-				}
-				release();
-			} catch (Exception e) {
-				exceptions.add(e);
-				logger.error("Error closing connection", e);
-			}
-		}
-	}
+        Connection connection = null;
+        Statement stmt = null;
 
-	
+        exceptions.clear();
 
-	/**
-	 * Checks the tables of hibernate configuration. If the tables exist, the
-	 * result will be reported to the DatabaseTable.
-	 * 
-	 * @return List of DatabaseTable
-	 * @throws SQLException
-	 */
-	public List<DatabaseTable> checkTable() {
+        try {
+            connection = prepare(true);
+            Statement statement = connection.createStatement();
 
-		ArrayList<DatabaseTable> dbTables = new ArrayList<DatabaseTable>();
+            try {
 
-		Connection connection = null;
-		Statement stmt = null;
+                DatabaseMetadata meta;
+                try {
+                    logger.info("fetching database metadata");
+                    connection = prepare(true);
+                    meta = new DatabaseMetadata(connection, dialect);
+                    stmt = connection.createStatement();
+                } catch (SQLException sqle) {
+                    exceptions.add(sqle);
+                    logger.error("could not get database metadata", sqle);
+                    throw sqle;
+                }
 
-		exceptions.clear();
+                logger.info("updating schema");
 
-		try {
-			connection = prepare(true);
-			Statement statement = connection.createStatement();
+                List<String> tableList = getTables();
+                logger.info("Number of tables: " + tableList.size());
+                for (String tableName : getTables()) {
 
-			try {
+                    DatabaseTable table = new DatabaseTable();
+                    String schemaName = cfg.getProperty(Environment.DEFAULT_SCHEMA);
+                    String sql = "select count(*) from " + schemaName + "." + tableName;
+                    try {
+                        table.setTableName(schemaName + "." + tableName);
+                        table.setExists(statement.execute(sql));
+                        dbTables.add(table);
+                    } catch (SQLException e) {
+                        exceptions.add(e);
+                        table.setExists(false);
+                        dbTables.add(table);
+                        logger.error("Unsuccessful: " + sql);
+                        logger.error(e.getMessage());
+                    }
+                }
+                logger.info("Checking table complete");
 
-				DatabaseMetadata meta;
-				try {
-					logger.info("fetching database metadata");
-					connection = prepare(true);
-					meta = new DatabaseMetadata(connection, dialect);
-					stmt = connection.createStatement();
-				} catch (SQLException sqle) {
-					exceptions.add(sqle);
-					logger.error("could not get database metadata", sqle);
-					throw sqle;
-				}
+            } catch (Exception e) {
+                exceptions.add(e);
+                logger.error("could not complete querying tables", e);
+            } finally {
+                try {
+                    if (stmt != null) {
+                        stmt.close();
+                    }
+                    release();
+                } catch (Exception e) {
+                    exceptions.add(e);
+                    logger.error("Error closing connection", e);
+                }
+            }
 
-				logger.info("updating schema");
+        } catch (Exception sEx) {
 
-				List<String> tableList = getTables();
-				logger.info("Number of tables: " + tableList.size());
-				for (String tableName : getTables()) {
+            logger.error(sEx, sEx);
+        } finally {
+            try {
+                release();
+            } catch (SQLException sEx) {
+                logger.error(sEx, sEx);
+            }
+        }
+        return dbTables;
+    }
 
-					DatabaseTable table = new DatabaseTable();
-					String schemaName = cfg.getProperty(Environment.DEFAULT_SCHEMA);
-					String sql = "select count(*) from " + schemaName+"."+tableName;
-					try {
-						table.setTableName(schemaName+"."+tableName);
-						table.setExists(statement.execute(sql));
-						dbTables.add(table);
-					} catch (SQLException e) {
-						exceptions.add(e);
-						table.setExists(false);
-						dbTables.add(table);
-						logger.error("Unsuccessful: " + sql);
-						logger.error(e.getMessage());
-					}
-				}
-				logger.info("Checking table complete");
+    private void release() throws SQLException {
+        if (connection != null) {
+            try {
+                JDBCExceptionReporter.logAndClearWarnings(connection);
+                connectionProvider.closeConnection(connection);
+            } finally {
+                connectionProvider.close();
+            }
+        }
+        connection = null;
+    }
 
-			} catch (Exception e) {
-				exceptions.add(e);
-				logger.error("could not complete querying tables", e);
-			} finally {
-				try {
-					if (stmt != null) {
-						stmt.close();
-					}
-					release();
-				} catch (Exception e) {
-					exceptions.add(e);
-					logger.error("Error closing connection", e);
-				}
-			}
+    private String format(String sql) {
+        return new DDLFormatter(sql).format();
+    }
 
-		} catch (Exception sEx) {
+    public List<String> getTables() {
+        ArrayList<String> list = new ArrayList<String>();
+        Iterator iter = cfg.getTableMappings();
+        while (iter.hasNext()) {
+            Table table = (Table) iter.next();
+            list.add(table.getName());
+        }
+        return list;
 
-			logger.error(sEx, sEx);
-		} finally {
-			try {
-				release();
-			} catch (SQLException sEx) {
-				logger.error(sEx, sEx);
-			}
-		}
-		return dbTables;
-	}
-
-	private void release() throws SQLException {
-		if (connection != null) {
-			try {
-				JDBCExceptionReporter.logAndClearWarnings(connection);
-				connectionProvider.closeConnection(connection);
-			} finally {
-				connectionProvider.close();
-			}
-		}
-		connection = null;
-	}
-
-	private String format(String sql) {
-		return new DDLFormatter(sql).format();
-	}
-
-	public List<String> getTables() {
-		ArrayList<String> list = new ArrayList<String>();
-		Iterator iter = cfg.getTableMappings();
-		while (iter.hasNext()) {
-			Table table = (Table) iter.next();
-			list.add(table.getName());
-		}
-		return list;
-
-	}
-
+    }
 }
