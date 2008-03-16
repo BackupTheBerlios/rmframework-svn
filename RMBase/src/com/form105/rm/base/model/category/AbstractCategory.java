@@ -4,41 +4,50 @@
  * Copyright (c) 2007, form105 Heiko Kundlacz
  * Licensed under the GNU GPL Version 3. For full terms see the file license.txt
  */
-
 package com.form105.rm.base.model.category;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author Heiko Kundlacz
  */
-class AbstractCategory implements ICategory {
-  
-  private long oid;
-  private String name;
-  private Category parent;
-  
-  public long getOid() {
-    return oid;
-  }
-  
-  public void setOid(Long oid) {
-    this.oid = oid;
-  }
-  
-  public String getName() {
-    return name;
-  }
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+public class AbstractCategory implements ICategory {
 
-  public void setName(String name) {
-    this.name = name;
-  }
-  
-  public Category getParent() {
-    return parent;
-  }
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    private Long oid;
+    private String name;
+    private Category parent;
 
-  public void setParent(Category parent) {
-    this.parent = parent;
-  }
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Category getParent() {
+        return parent;
+    }
+
+    public void setParent(Category parent) {
+        this.parent = parent;
+    }
+
+    public Long getOid() {
+        return oid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
 }

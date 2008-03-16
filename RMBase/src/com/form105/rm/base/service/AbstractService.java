@@ -12,7 +12,6 @@ public abstract class AbstractService implements IService {
     protected static Logger logger = Logger.getLogger(AbstractService.class);
 
     private Exception[] exceptions;
-    private String serviceName;
     
     private IResult result;
     

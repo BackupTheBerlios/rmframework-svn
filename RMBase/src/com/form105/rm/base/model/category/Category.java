@@ -6,17 +6,17 @@
  */
 package com.form105.rm.base.model.category;
 
-import com.form105.rm.base.model.AgentObject;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -24,11 +24,11 @@ import javax.persistence.SequenceGenerator;
  * @author Heiko Kundlacz
  */
 @Entity
-@SequenceGenerator(name = "treeitem_seq", sequenceName = "treeitem_id_seq")
-public class Category extends AgentObject implements Serializable {
-
+public class Category implements Serializable {
+    
     @Id
-    private Long oid;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private Set<Category> children = new HashSet<Category>();
@@ -52,11 +52,11 @@ public class Category extends AgentObject implements Serializable {
         this.parent = parent;
     }
 
-    public Long getOid() {
-        return oid;
+    public Long getId() {
+        return id;
     }
 
-    public void setOid(Long oid) {
-        this.oid = oid;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

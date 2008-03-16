@@ -180,7 +180,7 @@ public class SchemaHelper {
         } finally {
             try {
                 if (stmt != null) {
-                    stmt.close();
+                    //stmt.close();
                 }
                 release();
             } catch (Exception e) {

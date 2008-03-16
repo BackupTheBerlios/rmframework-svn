@@ -29,8 +29,6 @@
     
     <!-- Mapping files -->
     <mapping class="com.form105.rm.base.model.AgentObject" />
-    <mapping class="com.form105.rm.base.model.ResourceMap" />
-    <mapping class="com.form105.rm.base.model.ResourceMap" />
     <mapping class="com.form105.rm.base.model.parameter.StringParameter" />
     <mapping class="com.form105.rm.base.model.parameter.ImageParameter" />
     <mapping class="com.form105.rm.base.model.parameter.AbstractParameter" />

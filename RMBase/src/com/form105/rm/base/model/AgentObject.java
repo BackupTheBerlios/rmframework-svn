@@ -4,11 +4,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 public class AgentObject implements Serializable {
 
-    @Id
-    private Long id;
 
     private String name;
 
@@ -26,14 +23,6 @@ public class AgentObject implements Serializable {
     }
 
     public void setElementId (String elementId) {
-    }
-
-    public Long getId () {
-        return id;
-    }
-
-    public void setId (Long id) {
-        this.id = id;
     }
 
 }

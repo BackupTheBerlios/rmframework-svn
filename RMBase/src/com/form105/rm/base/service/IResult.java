@@ -7,9 +7,10 @@
 
 package com.form105.rm.base.service;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface IResult {
+public interface IResult extends Serializable {
 
     public Status getStatus();
     
