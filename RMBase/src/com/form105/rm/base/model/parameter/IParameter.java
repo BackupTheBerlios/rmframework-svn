@@ -8,12 +8,12 @@ public interface IParameter extends Serializable {
 
     public String getName();
 
-    public String getParameterId();
+    public String getElementId();
 
     public String getValueAsString();
 
     public void setName(String name);
 
-    public void setParameterId(String parameterId);
+    public void setElementId(String parameterId);
 
 }

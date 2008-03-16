@@ -26,17 +26,17 @@ public abstract class AbstractParameter<T> implements IParameter, Serializable {
     
     @Id 
     private Long id;
-    private String parameterId;
+    private String elementId;
     private String name;
 
 
 
-    public String getParameterId() {
-        return parameterId;
+    public String getElementId() {
+        return elementId;
     }
 
-    public void setParameterId(String parameterId) {
-        this.parameterId = parameterId;
+    public void setElementId(String elementId) {
+        this.elementId = elementId;
     }
 
     public String getName() {

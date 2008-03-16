@@ -27,20 +27,13 @@
     <property name="cache.use_minimal_puts">false</property>
     <property name="max_fetch_depth">3</property>
     
-    
-    
     <!-- Mapping files -->
-    <mapping class="com.form105.rm.base.model.parameter.AbstractParameter" />
+    <mapping class="com.form105.rm.base.model.AgentObject" />
     <mapping class="com.form105.rm.base.model.ResourceMap" />
-    <mapping class="com.form105.rm.base.model.image.ImageLink" />
-    <mapping class="com.form105.rm.base.model.image.ImageData" />
-    <mapping class="com.form105.rm.base.model.image.BinaryImage" />
+    <mapping class="com.form105.rm.base.model.ResourceMap" />
     <mapping class="com.form105.rm.base.model.parameter.StringParameter" />
     <mapping class="com.form105.rm.base.model.parameter.ImageParameter" />
     <mapping class="com.form105.rm.base.model.parameter.AbstractParameter" />
-    <mapping class="com.form105.rm.base.model.user.Group" />
-    <mapping class="com.form105.rm.base.model.user.User" />
     <mapping class="com.form105.rm.base.model.category.Category" />
-    <mapping class="com.form105.rm.base.model.AgentObject" />
   </session-factory>
 </hibernate-configuration>
