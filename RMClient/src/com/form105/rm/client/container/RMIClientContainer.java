@@ -6,7 +6,6 @@ package com.form105.rm.client.container;
 
 import com.form105.rm.base.container.AbstractContainer;
 import com.form105.rm.base.service.IServiceHandler;
-import com.form105.rm.base.service.RMIServiceHandler;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
