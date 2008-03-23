@@ -19,7 +19,7 @@ public abstract class AbstractCommand implements ICommand {
     public abstract void execute() throws RMException;
 
     public List<Exception> getExceptions() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return exceptions;
     }
 
 }

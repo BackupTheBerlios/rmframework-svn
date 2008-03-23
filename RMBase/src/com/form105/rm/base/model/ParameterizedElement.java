@@ -6,6 +6,7 @@
 package com.form105.rm.base.model;
 
 import com.form105.rm.base.model.parameter.IParameter; 
+import com.form105.rm.base.model.xml.IXmlConverter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CascadeType;
@@ -47,6 +48,10 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
 
     public void setOid(long oid) {
         this.oid = oid;
+    }
+    
+    public void addParameter(IParameter parameter) {
+        parameterMap.put(parameter.getElementId(), parameter);
     }
     
 }

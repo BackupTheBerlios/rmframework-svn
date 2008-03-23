@@ -13,6 +13,16 @@ import java.util.List;
  */
 public class CommandHandler {
     
+    //private ICommandGroup group = SequenceGroupHandler;
+    
+    public CommandHandler() {
+        
+    }
+    
+    public CommandHandler(ICommandGroup group) {
+        
+    }
+    
     public void handle(List<AbstractCommand> commands) {
         for (AbstractCommand command : commands) {
             command.execute();

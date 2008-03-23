@@ -15,27 +15,30 @@ import org.dom4j.Element;
  */
 
 @Entity
-public class StringParameter extends AbstractParameter<String> implements IXmlConverter {
+public class IntParameter extends AbstractParameter<Integer> implements IXmlConverter {
     
-    private String parameterValue;
+    private Integer parameterValue;
 
-    public String getParameterValue() {
+    public Integer getParameterValue() {
         return parameterValue;
     }
 
     @Override
-    public void setParameterValue(String value) {
+    public void setParameterValue(Integer value) {
         this.parameterValue = value;
     }
 
     @Override
     public String getValueAsString() {
-        return parameterValue;
+        return parameterValue.toString();
     }
 
     public void fromDom(Element element) {
         String elementId = element.attributeValue("id");
-        String value = element.attributeValue("value");
+        String stringValue = element.attributeValue("value");
+        
+        Integer value = Integer.parseInt(stringValue);
+        
         setElementId(elementId);
         setParameterValue(value);
         
