@@ -22,12 +22,19 @@ import org.dom4j.io.SAXReader;
  *
  * @author heiko
  */
+
+/**
+ * Loads a xml document and generates model objects.
+ * @author heiko
+ */
 public class XMLLoader {
 
     private static Logger logger = Logger.getLogger(XMLLoader.class);
     private static Document document;
     
     private List resourceList = new ArrayList<Resource>();
+    
+    //private final String ROOTNAME = "model";
     
 
     /**
@@ -41,7 +48,7 @@ public class XMLLoader {
             document = parseStream(inStream);
             return document;
         } catch (DocumentException docException) {
-            logger.error("Exception at processing of a xml document", docException);
+            logger.error("Exception processing of a xml document", docException);
             throw(new RMException("DocumentException occured while trying to parse xml document", docException));
         } catch (FileNotFoundException fnfe) {
             logger.error("can't find xml file for parsing: "+filePath);
@@ -59,7 +66,10 @@ public class XMLLoader {
 
     }
 
-    public void load(Element root) {
+    public void load(Document document) {
+        
+        Element root = document.getRootElement();
+        
         List<Element> rootChilds = root.elements();
 
         for (Element element : rootChilds) {

@@ -5,10 +5,11 @@
 
 package com.form105.rm.base.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 
 @Entity
-public class ResourceMap extends AbstractModelMap<Resource> {
+public class ResourceMap extends AbstractModelMap<Resource> implements Serializable {
     
     
     

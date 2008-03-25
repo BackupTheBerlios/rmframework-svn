@@ -5,11 +5,10 @@
 
 package com.form105.rm.base.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,7 @@ import org.hibernate.annotations.CollectionOfElements;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class AbstractModelMap<T extends AgentObject> implements ModelMap {
+public class AbstractModelMap<T extends AgentObject> implements ModelMap, Serializable {
     
     
     @Id
@@ -32,7 +31,8 @@ public class AbstractModelMap<T extends AgentObject> implements ModelMap {
     
     @CollectionOfElements
     @JoinColumn(name = "modelMapId")
-    @Column(name = "parameterizedElement", nullable=false) private Map<String, ParameterizedElement> modelMap = Collections.synchronizedMap(new HashMap<String, ParameterizedElement>());
+    @Column(name = "parameterizedElement", nullable=false) 
+    private HashMap<String, ParameterizedElement> modelMap = (HashMap) Collections.synchronizedMap(new HashMap<String, ParameterizedElement>());
     
     
     public void addAll(Collection<ParameterizedElement> list) {
@@ -55,11 +55,11 @@ public class AbstractModelMap<T extends AgentObject> implements ModelMap {
         getModelMap().remove(element.getElementId());
     }
 
-    public Map<String, ParameterizedElement> getModelMap() {
+    public HashMap<String, ParameterizedElement> getModelMap() {
         return modelMap;
     }
 
-    public void setModelMap(Map<String, ParameterizedElement> modelMap) {
+    public void setModelMap(HashMap<String, ParameterizedElement> modelMap) {
         this.modelMap = modelMap;
     }
 

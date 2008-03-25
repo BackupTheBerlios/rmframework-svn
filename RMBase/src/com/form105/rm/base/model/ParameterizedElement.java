@@ -6,7 +6,6 @@
 package com.form105.rm.base.model;
 
 import com.form105.rm.base.model.parameter.IParameter; 
-import com.form105.rm.base.model.xml.IXmlConverter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CascadeType;

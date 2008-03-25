@@ -1,8 +1,6 @@
 package com.form105.rm.base.model;
 
 import java.io.Serializable; 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 public class AgentObject implements Serializable {
 
