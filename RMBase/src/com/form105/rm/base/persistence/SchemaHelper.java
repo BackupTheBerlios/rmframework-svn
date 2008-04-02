@@ -281,7 +281,7 @@ public class SchemaHelper {
                 JDBCExceptionReporter.logAndClearWarnings(connection);
                 connectionProvider.closeConnection(connection);
             } finally {
-                connectionProvider.close();
+                    connectionProvider.close();
             }
         }
         connection = null;
