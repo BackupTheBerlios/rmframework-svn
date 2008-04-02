@@ -6,18 +6,25 @@
 package com.form105.rm.base.command;
 
 import com.form105.rm.base.exception.RMException;
-import java.util.List;
+import com.form105.rm.base.model.xml.XMLModelLoader;
 
 /**
  *
  * @author heiko
  */
-public class ImportXMLModelCommand implements ICommand {
+public class ImportXMLModelCommand extends AbstractCommand {
+    
+    private String filePath;
+    
+    public ImportXMLModelCommand(String filePath) {
+        this.filePath = filePath;
+    }
 
     public void execute() throws RMException {
-        
-        
-        
+        XMLModelLoader loader = new XMLModelLoader("config/model.xml");
+        loader.init();
+        loader.load();
+        loader.stop();
     }
 
 }

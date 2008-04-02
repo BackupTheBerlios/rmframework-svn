@@ -5,6 +5,7 @@
 
 package com.form105.rm.base.command;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -28,6 +29,11 @@ public class CommandHandler {
             command.execute();
             
         }
+    }
+    
+    public void handle(Collection<ICommand> commands, GroupHandlerType groupType) {
+        ICommandGroup group = groupType.getObject(commands);
+        
     }
 
 }

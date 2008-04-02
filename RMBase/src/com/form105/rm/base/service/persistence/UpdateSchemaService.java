@@ -25,6 +25,7 @@ public class UpdateSchemaService extends AbstractService implements Serializable
 
     public void execute()  {
         SchemaHelper sHelper = new SchemaHelper(getArgument().schemaName);
+        logger.info("Argument of Service: "+getArgument().schemaName);
         sHelper.updateSchema();
         
     }
@@ -32,14 +33,4 @@ public class UpdateSchemaService extends AbstractService implements Serializable
     public ServiceArgument getArgument() {
         return argument;
     }
-
-    @Override
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public String getName() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }

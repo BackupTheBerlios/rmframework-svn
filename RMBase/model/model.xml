@@ -12,8 +12,8 @@
    xmlns='http://xml.form105.net/schema/model'
    xsi:schemaLocation='http://xml.form105.net/schema/model file:/home/heiko/development/projects/RMBase/src/model.xsd'>
        <resource id="sample" type="muster" name="sampleName">
-           
-           
+           <parameter id="sParameter" type="String" value="sParamValue" /> 
+           <parameter id="iParameter" type="int" value="iParamValue" />
        </resource>
        
 </model>

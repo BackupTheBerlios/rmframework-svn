@@ -4,26 +4,31 @@
  */
 package com.form105.rm.base.service.common;
 
+import com.form105.rm.base.command.ImportXMLModelCommand;
 import com.form105.rm.base.exception.RMException;
 import com.form105.rm.base.service.AbstractService;
 import com.form105.rm.base.service.IArgument;
+import com.form105.rm.base.service.ServiceResult;
+import java.io.Serializable;
 
 /**
  *
  * @author heiko
  */
-public class PrintService extends AbstractService {
+public class ImportXMLService extends AbstractService implements Serializable {
     
     private final String serviceName = "PrintService";
-    private ServiceArgument argument = new ServiceArgument();
+    
+    ServiceArgument argument = new ServiceArgument();
 
     public class ServiceArgument implements IArgument {
-        public String name = "Default";
+        public String filePath;
     }
 
     public void execute() throws RMException {
-        logger.info("Executed PrintService");
-        logger.info(getArgument().name);
+        //ServiceArgument arg = (ServiceArgument) argument;
+        //ImportXMLModelCommand command = new ImportXMLModelCommand(arg.filePath);
+        //command.execute();
         
     }
 
@@ -33,7 +38,7 @@ public class PrintService extends AbstractService {
 
     @Override
     public String getServiceName() {
-        return serviceName;
+        return this.getClass().getName();
     }
 
     public String getName() {

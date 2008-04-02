@@ -224,7 +224,6 @@ public class SchemaHelper {
                     throw sqle;
                 }
 
-                logger.info("updating schema");
 
                 List<String> tableList = getTables();
                 logger.info("Number of tables: " + tableList.size());
@@ -279,9 +278,9 @@ public class SchemaHelper {
         if (connection != null) {
             try {
                 JDBCExceptionReporter.logAndClearWarnings(connection);
-                connectionProvider.closeConnection(connection);
+                //connectionProvider.closeConnection(connection);
             } finally {
-                    connectionProvider.close();
+                connectionProvider.close();
             }
         }
         connection = null;
@@ -299,6 +298,5 @@ public class SchemaHelper {
             list.add(table.getName());
         }
         return list;
-
     }
 }

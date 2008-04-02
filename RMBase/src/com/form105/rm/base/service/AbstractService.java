@@ -19,7 +19,9 @@ public abstract class AbstractService implements IService {
         return result;
     }
     
-    public abstract String getServiceName();
+    public String getServiceName() {
+        return getClass().getName();
+    }
     
     public abstract void execute() throws Exception;
     
