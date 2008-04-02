@@ -6,9 +6,7 @@
 package services;
 
 import com.form105.rm.base.Container;
-import com.form105.rm.base.service.IResult;
 import com.form105.rm.base.service.IServiceHandler;
-import com.form105.rm.base.service.RMIServiceHandler;
 import com.form105.rm.base.service.common.PrintService;
 import com.form105.rm.client.container.RMIClientContainer;
 import java.rmi.RemoteException;

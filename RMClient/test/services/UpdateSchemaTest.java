@@ -4,16 +4,8 @@
  */
 package services;
 
-import com.form105.rm.base.Container;
-import com.form105.rm.base.service.IResult;
-import com.form105.rm.base.service.IServiceHandler;
-import com.form105.rm.base.service.RMIServiceHandler;
-import com.form105.rm.base.service.common.PrintService;
+import com.form105.rm.base.service.ServiceResult;
 import com.form105.rm.base.service.persistence.UpdateSchemaService;
-import com.form105.rm.client.container.RMIClientContainer;
-import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,8 +43,9 @@ public class UpdateSchemaTest extends RemoteTest {
 
             UpdateSchemaService service = new UpdateSchemaService();
             UpdateSchemaService.ServiceArgument arg = service.getArgument();
-            arg.schemaName = "TestSchema";
-            executeService(service);
+            arg.schemaName = "APP1";
+            ServiceResult result = executeService(service);
+            
 
     }
 
