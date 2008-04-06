@@ -10,15 +10,16 @@
         
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> 
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property> 
+        <property name="default_schema">kaiser</property>
         
         <property name="connection.username">postgres</property> 
         <property name="connection.password">postgres</property> 
         
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost/RM</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost/RSP</property>
         
         <property name="connection.isolation">2</property>
         <property name="connection.pool_size">4</property>
-        <property name="hibernate.bytecode.use_reflection_optimizer">true</property>
+        <property name="hibernate.cglib.use_reflection_optimizer">true</property>
         <property name="hibernate.max_fetch_depth">10</property>
         <property name="hibernate.cache.use_query_cache">false</property>
         
@@ -35,14 +36,11 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
         
         <!-- Mapping files -->
-        <mapping class="com.form105.rm.base.model.Resource" />
+        <mapping class="com.form105.rm.base.model.AgentObject" />
         <mapping class="com.form105.rm.base.model.parameter.StringParameter" />
-        <mapping class="com.form105.rm.base.model.parameter.IParameter" />
-        <mapping class="com.form105.rm.base.model.Resource" />
+        <mapping class="com.form105.rm.base.model.parameter.ImageParameter" />
         <mapping class="com.form105.rm.base.model.parameter.AbstractParameter" />
-        <!--mapping class="com.form105.rm.base.model.parameter.ImageParameter" />
-        <mapping class="com.form105.rm.base.model.parameter.AbstractParameter" />
-        <mapping class="com.form105.rm.base.model.category.Category" /-->
+        <mapping class="com.form105.rm.base.model.category.Category" />
         
     </session-factory>
     

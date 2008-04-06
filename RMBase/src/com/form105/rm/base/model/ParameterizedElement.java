@@ -5,7 +5,7 @@
 
 package com.form105.rm.base.model;
 
-import com.form105.rm.base.model.parameter.IParameter; 
+import com.form105.rm.base.model.parameter.AbstractParameter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CascadeType;
@@ -31,13 +31,13 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="parameter_id")
     @MapKey(name="parameterId")
-    private Map<String, IParameter> parameterMap = new HashMap<String, IParameter>();
+    private Map<String, AbstractParameter> parameterMap = new HashMap<String, AbstractParameter>();
 
-    public Map<String, IParameter> getParameterMap() {
+    public Map<String, AbstractParameter> getParameterMap() {
         return parameterMap;
     }
 
-    public void setParameterMap(HashMap<String, IParameter> parameterSet) {
+    public void setParameterMap(HashMap<String, AbstractParameter> parameterSet) {
         this.parameterMap = parameterSet;
     }
 
@@ -49,7 +49,7 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
         this.oid = oid;
     }
     
-    public void addParameter(IParameter parameter) {
+    public void addParameter(AbstractParameter parameter) {
         parameterMap.put(parameter.getElementId(), parameter);
     }
     

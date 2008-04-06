@@ -26,9 +26,9 @@ public class ImportXMLService extends AbstractService implements Serializable {
     }
 
     public void execute() throws RMException {
-        //ServiceArgument arg = (ServiceArgument) argument;
-        //ImportXMLModelCommand command = new ImportXMLModelCommand(arg.filePath);
-        //command.execute();
+        ServiceArgument arg = (ServiceArgument) argument;
+        ImportXMLModelCommand command = new ImportXMLModelCommand(arg.filePath);
+        command.execute();
         
     }
 

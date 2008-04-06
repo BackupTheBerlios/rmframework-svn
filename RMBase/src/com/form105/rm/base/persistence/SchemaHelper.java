@@ -24,6 +24,8 @@ public class SchemaHelper {
 
     private static Logger logger = Logger.getLogger(SchemaHelper.class);
     private static final String HIBERNATE_CFG_XML = "/hibernate.cfg.xml";
+    private String[] dropSQL;
+    private String[] createSQL;
     private AnnotationConfiguration cfg = new AnnotationConfiguration();
     private Properties props = new Properties();
     private Dialect dialect;
@@ -32,7 +34,11 @@ public class SchemaHelper {
     private ArrayList<Exception> exceptions = new ArrayList<Exception>();
 
     public SchemaHelper(String schema) {
-        cfg.configure(HIBERNATE_CFG_XML);
+        this(schema, HIBERNATE_CFG_XML);
+    }
+
+    public SchemaHelper(String schema, String configPath) {
+        cfg.configure(configPath);
         // need this for drop Table (IMPORTANT)
         if (schema != null) {
             cfg.setProperty(Environment.DEFAULT_SCHEMA, schema);
@@ -41,10 +47,11 @@ public class SchemaHelper {
         props.putAll(dialect.getDefaultProperties());
         props.putAll(cfg.getProperties());
 
-        // need this for update table (IMPORTANT)
+        // needed to update table (IMPORTANT)
         if (schema != null) {
             props.put(Environment.DEFAULT_SCHEMA, schema);
         }
+
         initialize(props);
     }
 
@@ -69,8 +76,8 @@ public class SchemaHelper {
      * @return The conneciton
      * @throws SQLException
      */
-    public Connection prepare(boolean needsAutoCommit) throws SQLException {
-        connectionProvider = ConnectionProviderFactory.newConnectionProvider(props);
+    public Connection prepare(boolean needsAutoCommit, Properties properties) throws SQLException {
+        connectionProvider = ConnectionProviderFactory.newConnectionProvider(properties);
         connection = connectionProvider.getConnection();
         if (needsAutoCommit && !connection.getAutoCommit()) {
             connection.commit();
@@ -95,7 +102,7 @@ public class SchemaHelper {
             DatabaseMetadata meta;
             try {
                 logger.info("fetching database metadata");
-                connection = prepare(true);
+                connection = prepare(true, props);
                 stmt = connection.createStatement();
             } catch (SQLException sqle) {
                 exceptions.add(sqle);
@@ -149,7 +156,7 @@ public class SchemaHelper {
             DatabaseMetadata meta;
             try {
                 logger.info("fetching database metadata");
-                connection = prepare(true);
+                connection = prepare(true, props);
                 meta = new DatabaseMetadata(connection, dialect);
                 stmt = connection.createStatement();
             } catch (SQLException sqle) {
@@ -180,7 +187,7 @@ public class SchemaHelper {
         } finally {
             try {
                 if (stmt != null) {
-                    //stmt.close();
+                    stmt.close();
                 }
                 release();
             } catch (Exception e) {
@@ -207,7 +214,7 @@ public class SchemaHelper {
         exceptions.clear();
 
         try {
-            connection = prepare(true);
+            connection = prepare(true, props);
             Statement statement = connection.createStatement();
 
             try {
@@ -215,7 +222,7 @@ public class SchemaHelper {
                 DatabaseMetadata meta;
                 try {
                     logger.info("fetching database metadata");
-                    connection = prepare(true);
+                    connection = prepare(true, props);
                     meta = new DatabaseMetadata(connection, dialect);
                     stmt = connection.createStatement();
                 } catch (SQLException sqle) {
@@ -224,6 +231,7 @@ public class SchemaHelper {
                     throw sqle;
                 }
 
+                logger.info("updating schema");
 
                 List<String> tableList = getTables();
                 logger.info("Number of tables: " + tableList.size());
@@ -278,9 +286,9 @@ public class SchemaHelper {
         if (connection != null) {
             try {
                 JDBCExceptionReporter.logAndClearWarnings(connection);
-                //connectionProvider.closeConnection(connection);
+                connectionProvider.closeConnection(connection);
             } finally {
-                connectionProvider.close();
+                //connectionProvider.close();
             }
         }
         connection = null;
@@ -298,5 +306,6 @@ public class SchemaHelper {
             list.add(table.getName());
         }
         return list;
+
     }
 }
