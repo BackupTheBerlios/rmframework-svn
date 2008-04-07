@@ -9,31 +9,10 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import org.hibernate.annotations.CollectionOfElements;
 
-
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class AbstractModelMap<T extends AgentObject> implements ModelMap, Serializable {
     
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
-    private Long oid;
-    
-    @CollectionOfElements
-    @JoinColumn(name = "modelMapId")
-    @Column(name = "parameterizedElement", nullable=false) 
     private HashMap<String, ParameterizedElement> modelMap = (HashMap) Collections.synchronizedMap(new HashMap<String, ParameterizedElement>());
-    
     
     public void addAll(Collection<ParameterizedElement> list) {
         
@@ -62,15 +41,4 @@ public class AbstractModelMap<T extends AgentObject> implements ModelMap, Serial
     public void setModelMap(HashMap<String, ParameterizedElement> modelMap) {
         this.modelMap = modelMap;
     }
-
-    public Long getOid() {
-        return oid;
-    }
-
-    public void setOid(Long oid) {
-        this.oid = oid;
-    }
-    
-    
-
 }

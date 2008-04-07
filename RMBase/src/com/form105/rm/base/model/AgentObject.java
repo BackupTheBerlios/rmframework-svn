@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class AgentObject implements Serializable {
 
-
     private String name;
 
     private String elementId;

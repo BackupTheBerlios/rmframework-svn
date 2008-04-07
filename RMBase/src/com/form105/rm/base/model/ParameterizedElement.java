@@ -27,10 +27,12 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long oid;
+    
+    private String elementId;
 
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="parameter_id")
-    @MapKey(name="parameterId")
+    @MapKey(name="elementId")
     private Map<String, AbstractParameter> parameterMap = new HashMap<String, AbstractParameter>();
 
     public Map<String, AbstractParameter> getParameterMap() {
@@ -51,6 +53,16 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
     
     public void addParameter(AbstractParameter parameter) {
         parameterMap.put(parameter.getElementId(), parameter);
+    }
+    
+    @Override
+    public String getElementId() {
+        return elementId;
+    }
+    
+    @Override
+    public void setElementId(String elementId) {
+        this.elementId = elementId;
     }
     
 }
