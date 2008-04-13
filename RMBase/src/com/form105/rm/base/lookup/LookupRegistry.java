@@ -27,6 +27,8 @@ public class LookupRegistry {
     private Logger logger = Logger.getLogger(LookupRegistry.class);
     private HashMap<Class, List<Object>> registry = new HashMap<Class, List<Object>>();
 
+    
+    
     /**
      * Registers an object in the lookup registry
      * @param clazz
