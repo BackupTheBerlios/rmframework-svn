@@ -9,7 +9,7 @@ import java.util.Set;
  *
  * @author heiko
  */
-public class AbstractEntry<T> implements IEntry<T>, ILookupListener<T> {
+public class AbstractEntry<T> implements IEntry<T> {
 
     public Set<ILookupListener> listeners = Collections.synchronizedSet(new HashSet<ILookupListener>());
     public Set<T> lookupItems = Collections.synchronizedSet(new HashSet<T>());

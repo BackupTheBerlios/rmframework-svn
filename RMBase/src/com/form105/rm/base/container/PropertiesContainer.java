@@ -4,16 +4,12 @@
  * Copyright (c) 2007, form105 Heiko Kundlacz
  * Licensed under the GNU GPL Version 3. For full terms see the file license.txt
  */
-
 package com.form105.rm.base.container;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.Set;
-import java.util.logging.Level;
-import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
 
 /**
@@ -21,7 +17,7 @@ import org.picocontainer.Startable;
  * @author heiko
  */
 public class PropertiesContainer extends AbstractContainer implements Startable {
-    
+
     private FileInputStream fiStream;
     private Properties properties;
     private final String PROP_PATH = "config/server.properties.xml";
@@ -33,13 +29,13 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
             getProperties().loadFromXML(fiStream);
             for (Object o : getProperties().keySet()) {
                 String s = (String) o;
-                logger.info(s + "-> "+properties.getProperty(s));
+                logger.info(s + "-> " + properties.getProperty(s));
             }
-            
+
         } catch (FileNotFoundException ex) {
             logger.error(ex, ex);
         } catch (IOException iex) {
-            
+
         } finally {
             try {
                 fiStream.close();
@@ -52,10 +48,10 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
 
     public void stop() {
         try {
-                fiStream.close();
-            } catch (IOException ex) {
-                logger.error(ex, ex);
-            }
+            fiStream.close();
+        } catch (IOException ex) {
+            logger.error(ex, ex);
+        }
     }
 
     public Properties getProperties() {
@@ -65,18 +61,25 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
     public void setProperties(Properties properties) {
         this.properties = properties;
     }
-    
+
     public String getProperty(String key) {
         return (String) properties.get(key);
     }
-    
+
     public void logSystemProperties() {
         Properties props = System.getProperties();
-        
+
         for (Object keyObject : props.keySet()) {
             String sKey = (String) keyObject;
-            logger.info("System properties key: "+sKey+" -> result: "+props.getProperty(sKey));
+            logger.info("System properties key: " + sKey + " -> result: " + props.getProperty(sKey));
         }
     }
 
+    public void initialize() {
+        logger.info("##### initialize #####");
+    }
+
+    public void dispose() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

@@ -9,7 +9,7 @@ package com.form105.rm.base.lookup;
  *
  * @author Heiko Kundlacz
  */
-public class LookupEntry<T> extends AbstractEntry<T> {
+public class SimpleLookupEntry<T> extends AbstractEntry<T> {
 
 
 }

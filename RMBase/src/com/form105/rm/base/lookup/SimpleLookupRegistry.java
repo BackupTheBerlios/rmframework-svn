@@ -22,9 +22,9 @@ import org.apache.log4j.Logger;
  */
 
 // TODO Use an Adapter to wrap the entry objects
-public class LookupRegistry {
+public class SimpleLookupRegistry {
 
-    private Logger logger = Logger.getLogger(LookupRegistry.class);
+    private Logger logger = Logger.getLogger(SimpleLookupRegistry.class);
     private HashMap<Class, List<Object>> registry = new HashMap<Class, List<Object>>();
 
     
@@ -64,4 +64,6 @@ public class LookupRegistry {
             }
         }
     }
+    
+    
 }

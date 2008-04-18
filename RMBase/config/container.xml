@@ -2,7 +2,7 @@
 
 <container>
     <component-implementation class='com.form105.rm.base.container.BackgroundThreadContainer'/>
-    <component-implementation class='com.form105.rm.base.container.DBContainer'/>
+    <component-implementation class='com.form105.rm.base.container.DBContainer'>
     <component-implementation class='com.form105.rm.base.container.PropertiesContainer'/>
     <component-implementation class='com.form105.rm.base.container.RMIServerContainer'/>
     <component-implementation class='com.form105.rm.base.container.RMIServiceHandlerContainer'/>
