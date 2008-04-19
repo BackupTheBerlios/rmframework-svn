@@ -5,14 +5,18 @@
 
 package com.form105.rm.base.model.xml;
 
+import com.form105.rm.base.model.AgentObject;
+import java.util.List;
 import org.dom4j.Element;
 
 /**
  *
  * @author heiko
  */
-public interface IXmlConverter {
+public interface IXmlConverter<T extends AgentObject> extends IConverter<T, Element> {
     
-    public void fromDom(Element element);
+    public T convert(T result, Element element);
+    
+    public void processChilds(T source, Element parent);
 
 }

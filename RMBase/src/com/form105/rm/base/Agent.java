@@ -7,10 +7,10 @@
 
 package com.form105.rm.base;
 
-import com.form105.rm.base.helper.ImageHelper;
 
 /**
- *
+ * The main class which starts the agent and gives access to the 
+ * containers started initially.
  * @author heiko
  */
 public class Agent {
@@ -25,6 +25,15 @@ public class Agent {
     //helper.loadImageData();
     
     
+  }
+  
+  /**
+   * Getting an container instance registered at the pico container
+   * @param clazz
+   * @return
+   */
+  public static Object getContainer(Class clazz) {
+      return Container.getInstance().getComponentInstance(clazz);
   }
 
   

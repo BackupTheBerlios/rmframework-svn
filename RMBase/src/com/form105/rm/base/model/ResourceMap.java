@@ -6,10 +6,19 @@
 package com.form105.rm.base.model;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
+import java.util.ArrayList;
+import java.util.List;
+import org.dom4j.Element;
 
-@Entity
 public class ResourceMap extends AbstractModelMap<Resource> implements Serializable {
+    
+    public List<Resource> fromDom(Element rootNode) {
+        
+        rootNode.selectNodes("/resource");
+        
+        
+        return new ArrayList<Resource>();
+    }
     
     
     

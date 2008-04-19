@@ -26,7 +26,7 @@ public class AbstractModelMap<T extends AgentObject> implements ModelMap, Serial
         getModelMap().clear();
     }
     
-    public void add(ParameterizedElement element) {
+    public synchronized void add(ParameterizedElement element) {
         getModelMap().put(element.getElementId(), element);
     }
     

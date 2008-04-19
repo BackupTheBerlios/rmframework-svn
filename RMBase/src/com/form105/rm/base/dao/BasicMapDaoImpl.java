@@ -1,46 +1,44 @@
 /*
-* Copyright (c) 2008, form105 Heiko Kundlacz
-* Licensed under the GNU GPL Version 3. For full terms see the file license.txt
-*/
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 package com.form105.rm.base.dao;
 
 import java.io.Serializable;
 import java.util.List;
-import org.hibernate.criterion.Criterion;
 
 /**
- * Implemenation for accessing transient model objects loaded from xml
- * 
- * @author Heiko Kundlacz
+ *
+ * @author heiko
  */
-public class BasicXMLDaoImpl implements BasicDao {
+public class BasicMapDaoImpl<T, ID extends Serializable> implements BasicDao<T, ID> {
 
-    public Object findById(Serializable id) {
+    public T findById(ID id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void save(Object object) {
+    public void save(T object) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void update(Object object) {
+    public void update(T object) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void saveOrUpdate(Object object) {
+    public void saveOrUpdate(T object) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public Object merge(Object object) {
+    public T merge(T object) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void delete(Object object) {
+    public void delete(T object) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public List findAll() {
+    public List<T> findAll() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

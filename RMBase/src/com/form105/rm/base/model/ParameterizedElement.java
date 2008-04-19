@@ -29,6 +29,7 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
     private long oid;
     
     private String elementId;
+    private String type;
 
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="parameter_id")
@@ -63,6 +64,14 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
     @Override
     public void setElementId(String elementId) {
         this.elementId = elementId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
     
 }

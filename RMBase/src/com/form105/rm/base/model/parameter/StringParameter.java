@@ -6,6 +6,7 @@
 package com.form105.rm.base.model.parameter;
 
 import com.form105.rm.base.model.xml.IXmlConverter;
+import com.form105.rm.base.model.xml.IXmlLoadable;
 import javax.persistence.Entity;
 import org.dom4j.Element;
 
@@ -15,7 +16,7 @@ import org.dom4j.Element;
  */
 
 @Entity
-public class StringParameter extends AbstractParameter<String> implements IXmlConverter {
+public class StringParameter extends AbstractParameter<String> implements IXmlLoadable {
     
     private String parameterValue;
 
@@ -39,6 +40,11 @@ public class StringParameter extends AbstractParameter<String> implements IXmlCo
         setElementId(elementId);
         setParameterValue(value);
         
+    }
+
+    public StringParameter load(IXmlConverter converter, Element element) {
+        converter.convert(this, element);
+        return this;
     }
     
 }

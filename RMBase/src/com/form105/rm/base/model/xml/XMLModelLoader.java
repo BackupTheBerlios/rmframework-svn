@@ -33,6 +33,7 @@ public class XMLModelLoader extends XMLLoader {
         for (Element element : rootChilds) {          
             if (element.getName().equals("resource")) {
                 Resource resource = new Resource();
+                //TODO: add resource command
                 resource.fromDom(element);
                 resourceList.add(resource);
             }

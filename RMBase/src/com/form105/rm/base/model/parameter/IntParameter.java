@@ -6,6 +6,7 @@
 package com.form105.rm.base.model.parameter;
 
 import com.form105.rm.base.model.xml.IXmlConverter;
+import com.form105.rm.base.model.xml.IXmlLoadable;
 import javax.persistence.Entity;
 import org.dom4j.Element;
 
@@ -15,7 +16,7 @@ import org.dom4j.Element;
  */
 
 @Entity
-public class IntParameter extends AbstractParameter<Integer> implements IXmlConverter {
+public class IntParameter extends AbstractParameter<Integer> implements IXmlLoadable {
     
     private Integer parameterValue;
 
@@ -42,6 +43,10 @@ public class IntParameter extends AbstractParameter<Integer> implements IXmlConv
         setElementId(elementId);
         setParameterValue(value);
         
+    }
+
+    public Object load(IXmlConverter converter, Element element) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

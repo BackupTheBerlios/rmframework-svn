@@ -18,6 +18,15 @@ import org.picocontainer.PicoContainer;
 import org.picocontainer.defaults.ObjectReference;
 import org.picocontainer.defaults.SimpleReference;
 
+/**
+ * The PicoContainer used for starting basic services. The individual classes
+ * will be loaded from an xml file in the config folder. Each class that
+ * should be instantiated must be included in the container.xml file. 
+ * The PicoContainer is a IoC Container which resolves its dependencies
+ * automatically and instantiates each required class to fullfill the
+ * instantiation parameters.
+ * @author heiko
+ */
 public class Container {
 
     private Logger logger = Logger.getLogger(Container.class);
@@ -52,10 +61,21 @@ public class Container {
         }
     }
 
+    /**
+     * Static method to get a pico container singleton
+     * @return
+     */
     public static PicoContainer getInstance() {
         return container;
     }
 
+    /**
+     * Building the pico container based on the nano container
+     * @param builder
+     * @param parentContainer
+     * @param scope
+     * @return
+     */
     public PicoContainer buildContainer(ScriptedContainerBuilder builder, PicoContainer parentContainer, Object scope) {
 
         ObjectReference containerRef = new SimpleReference();

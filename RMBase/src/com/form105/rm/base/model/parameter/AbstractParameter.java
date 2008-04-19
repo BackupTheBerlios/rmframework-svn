@@ -5,6 +5,7 @@
 
 package com.form105.rm.base.model.parameter;
 
+import com.form105.rm.base.model.AgentObject;
 import java.io.Serializable;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -22,7 +23,7 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "parameter_type", discriminatorType=DiscriminatorType.STRING)
-public abstract class AbstractParameter<T> implements IParameter, Serializable {
+public abstract class AbstractParameter<T> extends AgentObject implements IParameter, Serializable {
     
     @Id 
     private Long id;
