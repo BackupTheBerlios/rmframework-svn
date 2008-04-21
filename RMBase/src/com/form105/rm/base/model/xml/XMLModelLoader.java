@@ -30,7 +30,7 @@ public class XMLModelLoader extends XMLLoader {
   
         List<Element> rootChilds = root.elements();
 
-        for (Element element : rootChilds) {          
+        /*for (Element element : rootChilds) {          
             if (element.getName().equals("resource")) {
                 Resource resource = new Resource();
                 //TODO: add resource command
@@ -38,8 +38,12 @@ public class XMLModelLoader extends XMLLoader {
                 resourceList.add(resource);
             }
 
-        }
+        }**/
 
+    }
+    
+    public void getRootElement() {
+        
     }
 
 }

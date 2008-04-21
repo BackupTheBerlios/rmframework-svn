@@ -33,7 +33,7 @@ public class Agent {
    * @return
    */
   public static Object getContainer(Class clazz) {
-      return Container.getInstance().getComponentInstance(clazz);
+      return Container.getInstance().getComponent(clazz);
   }
 
   

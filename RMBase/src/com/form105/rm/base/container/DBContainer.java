@@ -15,7 +15,7 @@ public class DBContainer extends AbstractContainer implements Startable, Disposa
   
 
   public void start() {
-      
+      logger.info("Start DBContainer");
       
     
   }

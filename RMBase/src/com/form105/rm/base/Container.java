@@ -6,17 +6,19 @@
  */
 package com.form105.rm.base;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import com.form105.rm.base.model.xml.XMLLoader;
+import java.util.List;
 import org.apache.log4j.Logger;
-import org.nanocontainer.script.ScriptedContainerBuilder;
-import org.nanocontainer.script.xml.XMLContainerBuilder;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.openide.util.Exceptions;
+import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.PicoContainer;
-import org.picocontainer.defaults.ObjectReference;
-import org.picocontainer.defaults.SimpleReference;
+import org.picocontainer.behaviors.Caching;
+import org.picocontainer.lifecycle.ReflectionLifecycleStrategy;
+import org.picocontainer.lifecycle.StartableLifecycleStrategy;
+import org.picocontainer.monitors.LifecycleComponentMonitor;
+
 
 /**
  * The PicoContainer used for starting basic services. The individual classes
@@ -31,7 +33,7 @@ public class Container {
 
     private Logger logger = Logger.getLogger(Container.class);
     private static Container instance;
-    private static PicoContainer container;
+    private static DefaultPicoContainer container;
 
     static {
         instance = new Container();
@@ -39,7 +41,7 @@ public class Container {
     }
 
     public void initialize() {
-        Reader script = null;
+        /*Reader script = null;
         try {
 
             script = new FileReader("config/container.xml");
@@ -58,7 +60,12 @@ public class Container {
             } catch (IOException ex) {
                 logger.info(ex);
             }
-        }
+        }*/
+        
+        container = new DefaultPicoContainer(new Caching());
+        
+        load();
+        container.start();
     }
 
     /**
@@ -76,7 +83,7 @@ public class Container {
      * @param scope
      * @return
      */
-    public PicoContainer buildContainer(ScriptedContainerBuilder builder, PicoContainer parentContainer, Object scope) {
+    /*public PicoContainer buildContainer(ScriptedContainerBuilder builder, PicoContainer parentContainer, Object scope) {
 
         ObjectReference containerRef = new SimpleReference();
         ObjectReference parentContainerRef = new SimpleReference();
@@ -84,5 +91,26 @@ public class Container {
         parentContainerRef.set(parentContainer);
         builder.buildContainer(containerRef, parentContainerRef, scope, true);
         return (PicoContainer) containerRef.get();
+    }*/
+    
+    private void load() {
+        XMLLoader loader = new XMLLoader("config/container.xml");
+        Document document = loader.parseFile();
+        Element rootElement = document.getRootElement();
+        logger.info("Root element of container.xml:"+rootElement.getName());
+        List<Element> classElements = rootElement.elements();
+        
+        for (Element element : classElements) {
+            
+            try {
+                String className = element.attributeValue("class");
+                logger.info("Loading class for container: "+className);
+                Class containerClass = Class.forName(className);
+                container.addComponent(containerClass);
+                
+            } catch (ClassNotFoundException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
     }
 }
