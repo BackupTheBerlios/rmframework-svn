@@ -41,27 +41,6 @@ public class Container {
     }
 
     public void initialize() {
-        /*Reader script = null;
-        try {
-
-            script = new FileReader("config/container.xml");
-            XMLContainerBuilder builder = new XMLContainerBuilder(script, getClass().getClassLoader());
-            container = buildContainer(builder, null, "SOME_SCOPE");
-        } catch (FileNotFoundException ex) {
-            logger.info(ex, ex);
-        } catch (Exception ex) {
-            logger.info(ex, ex);
-        } finally {
-            try {
-                File file = new File(".");
-                logger.info(file.getCanonicalPath());
-                script.close();
-
-            } catch (IOException ex) {
-                logger.info(ex);
-            }
-        }*/
-        
         container = new DefaultPicoContainer(new Caching());
         
         load();
@@ -83,15 +62,7 @@ public class Container {
      * @param scope
      * @return
      */
-    /*public PicoContainer buildContainer(ScriptedContainerBuilder builder, PicoContainer parentContainer, Object scope) {
 
-        ObjectReference containerRef = new SimpleReference();
-        ObjectReference parentContainerRef = new SimpleReference();
-
-        parentContainerRef.set(parentContainer);
-        builder.buildContainer(containerRef, parentContainerRef, scope, true);
-        return (PicoContainer) containerRef.get();
-    }*/
     
     private void load() {
         XMLLoader loader = new XMLLoader("config/container.xml");

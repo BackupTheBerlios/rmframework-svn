@@ -29,7 +29,7 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
             getProperties().loadFromXML(fiStream);
             for (Object o : getProperties().keySet()) {
                 String s = (String) o;
-                logger.info(s + "-> " + properties.getProperty(s));
+                logger.info("RM Property: "+ s + "-> " + properties.getProperty(s));
             }
 
         } catch (FileNotFoundException ex) {
@@ -43,7 +43,7 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
                 logger.error(ex, ex);
             }
         }
-        logSystemProperties();
+        //logSystemProperties();
     }
 
     public void stop() {
