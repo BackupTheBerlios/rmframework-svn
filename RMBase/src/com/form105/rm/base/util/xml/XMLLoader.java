@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.form105.rm.base.model.xml;
+package com.form105.rm.base.util.xml;
 
 import com.form105.rm.base.ILifeCycle;
 import com.form105.rm.base.command.ResultType;
@@ -36,7 +36,6 @@ public class XMLLoader implements ILifeCycle {
     
     public XMLLoader(String filePath) {
         this.filePath = filePath;
-        document = parseFile();
     }
     
 
@@ -44,7 +43,7 @@ public class XMLLoader implements ILifeCycle {
      * 
      * @param filePath
      */
-    private Document parseFile() throws RMException {
+    public Document parseFile() throws RMException {
 
         try {
             inStream = new FileInputStream(filePath);

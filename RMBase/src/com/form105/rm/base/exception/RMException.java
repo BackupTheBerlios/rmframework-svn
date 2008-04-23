@@ -34,10 +34,10 @@ public class RMException extends RuntimeException {
      * @return  the detail message string of this <tt>Throwable</tt> instance
      *          (which may be <tt>null</tt>).
      */
-    @Override
+    /*@Override
     public String getMessage() {
         return java.util.ResourceBundle.getBundle("BundleException").getString(messageKey);
-    }
+    }*/
 
     public void substituteMessage() {
 

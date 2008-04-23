@@ -7,6 +7,7 @@ package com.form105.rm.base.service.common;
 import com.form105.rm.base.exception.RMException;
 import com.form105.rm.base.service.AbstractService;
 import com.form105.rm.base.service.IArgument;
+import com.form105.rm.command.LoadXmlModelCommand;
 import java.io.Serializable;
 
 /**
@@ -19,27 +20,18 @@ public class ImportXMLService extends AbstractService implements Serializable {
     ServiceArgument argument = new ServiceArgument();
 
     public class ServiceArgument implements IArgument {
-        public String filePath;
+        public String modelName;
     }
 
     public void execute() throws RMException {
         ServiceArgument arg = (ServiceArgument) argument;
-        //ImportXMLModelCommand command = new ImportXMLModelCommand(arg.filePath);
-        //command.execute();
+        LoadXmlModelCommand command = new LoadXmlModelCommand(arg.modelName);
+        command.execute();
         
     }
 
     public ServiceArgument getArgument() {
         return argument;
-    }
-
-    @Override
-    public String getServiceName() {
-        return this.getClass().getName();
-    }
-
-    public String getName() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

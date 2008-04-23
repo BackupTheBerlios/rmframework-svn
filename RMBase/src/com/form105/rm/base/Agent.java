@@ -7,6 +7,9 @@
 
 package com.form105.rm.base;
 
+import com.form105.rm.base.container.PropertiesContainer;
+import java.util.Properties;
+
 
 /**
  * The main class which starts the agent and gives access to the 
@@ -34,6 +37,11 @@ public class Agent {
    */
   public static Object getContainer(Class clazz) {
       return Container.getInstance().getComponent(clazz);
+  }
+  
+  public static String getRMProperty(String key) {
+      PropertiesContainer container = (PropertiesContainer) getContainer(PropertiesContainer.class);
+      return container.getProperty(key);
   }
 
   

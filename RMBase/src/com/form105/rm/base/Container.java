@@ -6,7 +6,7 @@
  */
 package com.form105.rm.base;
 
-import com.form105.rm.base.model.xml.XMLLoader;
+import com.form105.rm.base.util.xml.XMLLoader;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;

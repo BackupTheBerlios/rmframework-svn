@@ -3,5 +3,7 @@
     <entry key="server.rmi.port">10099</entry>
     <entry key="server.model.name">model.xml</entry>
     
-    <entry key="server.path.imageTemp">/Users/heiko/temp/images</entry>
+    
+    <!-- memory, db, dual -->
+    <entry key="server.operation.mode">memory</entry>
 </properties>
