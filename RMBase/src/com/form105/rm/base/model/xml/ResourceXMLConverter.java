@@ -19,7 +19,6 @@ import org.dom4j.Element;
 public class ResourceXMLConverter implements IXmlConverter<Resource> {
 
     public static Logger logger = Logger.getLogger(ResourceXMLConverter.class);
-  
     private Resource resource;
     private List<IXmlLoadable> childList = new ArrayList<IXmlLoadable>();
 
@@ -60,14 +59,16 @@ public class ResourceXMLConverter implements IXmlConverter<Resource> {
         }
     }
 
-    private void processIntParameterChild(Resource resource, Element parent,  List<Element> elements) {
+    private void processIntParameterChild(Resource resource, Element parent, List<Element> elements) {
         logger.info("Loading integer parameters: " + elements.size());
         for (Element element : elements) {
-            IntParameter iParameter = new IntParameter();
-            if (iParameter instanceof IXmlLoadable) {
-                childList.add(iParameter);
-                iParameter.load(new IntParameterXMLConverter(), element);
-                resource.addParameter(iParameter);
+            if (element.attributeValue("type").equals("int")) {
+                IntParameter iParameter = new IntParameter();
+                if (iParameter instanceof IXmlLoadable) {
+                    childList.add(iParameter);
+                    iParameter.load(new IntParameterXMLConverter(), element);
+                    resource.addParameter(iParameter);
+                }
             }
 
         }
