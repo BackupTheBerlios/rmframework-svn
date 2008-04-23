@@ -26,7 +26,7 @@ public class RemoteTest {
     protected ServiceResult executeService(IService service) {
         try {
 
-            RMIClientContainer container = (RMIClientContainer) Container.getInstance().getComponentInstance(RMIClientContainer.class);
+            RMIClientContainer container = (RMIClientContainer) Container.getInstance().getComponent(RMIClientContainer.class);
             IServiceHandler sHandler = container.getServiceHandler();
           
 

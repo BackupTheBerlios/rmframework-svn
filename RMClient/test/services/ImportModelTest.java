@@ -5,7 +5,7 @@
 package services;
 
 import com.form105.rm.base.service.ServiceResult;
-import com.form105.rm.base.service.persistence.UpdateSchemaService;
+import com.form105.rm.base.service.common.ImportXMLService;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author heiko
  */
-public class UpdateSchemaTest extends RemoteTest {
+public class ImportModelTest extends RemoteTest {
 
-    public UpdateSchemaTest() {
+    public ImportModelTest() {
     }
 
     @BeforeClass
@@ -39,11 +39,11 @@ public class UpdateSchemaTest extends RemoteTest {
     }
 
     @Test
-    public void updateSchema() {
+    public void importModel() {
 
-            UpdateSchemaService service = new UpdateSchemaService();
-            UpdateSchemaService.ServiceArgument arg = service.getArgument();
-            //arg.schemaName = "APP1";
+            ImportXMLService service = new ImportXMLService();
+            ImportXMLService.ServiceArgument arg = service.getArgument();
+            arg.modelName = "model.xml";
             ServiceResult result = executeService(service);
             
 

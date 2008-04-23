@@ -43,11 +43,11 @@ public class PrintTest {
     @After
     public void tearDown() {
     }
-    
+
     @Test
     public void print() {
         try {
-            RMIClientContainer container = (RMIClientContainer) Container.getInstance().getComponentInstance(RMIClientContainer.class);
+            RMIClientContainer container = (RMIClientContainer) Container.getInstance().getComponent(RMIClientContainer.class);
             IServiceHandler sHandler = container.getServiceHandler();
             PrintService pService = new PrintService();
             PrintService.ServiceArgument arg = pService.getArgument();
