@@ -19,9 +19,7 @@ import org.dom4j.Element;
 public class ResourceXMLConverter implements IXmlConverter<Resource> {
 
     public static Logger logger = Logger.getLogger(ResourceXMLConverter.class);
-    private final String XPATH_TYPE_STRING = "/parameter[@type='String']";
-    private final String XPATH_TYPE_INTEGER = "/parameter[@type='int']";
-    private final String XPATH_TYPE_DECIMAL = "/parameter[@type='decimal']";
+  
     private Resource resource;
     private List<IXmlLoadable> childList = new ArrayList<IXmlLoadable>();
 
@@ -41,12 +39,12 @@ public class ResourceXMLConverter implements IXmlConverter<Resource> {
     }
 
     public void processChilds(Resource source, Element parent) {
-        processStringParameterChild(source, parent);
+        List<Element> elements = parent.elements("parameter");
+        processStringParameterChild(source, parent, elements);
+        processIntParameterChild(source, parent, elements);
     }
 
-    private void processStringParameterChild(Resource resource, Element parent) {
-
-        List<Element> elements = parent.elements("parameter");
+    private void processStringParameterChild(Resource resource, Element parent, List<Element> elements) {
         logger.info("Loading string parameters: " + elements.size());
         for (Element element : elements) {
             if (element.attributeValue("type").equals("string")) {
@@ -62,8 +60,8 @@ public class ResourceXMLConverter implements IXmlConverter<Resource> {
         }
     }
 
-    private void processIntParameterChild(Resource resource, Element parent) {
-        List<Element> elements = parent.selectNodes(XPATH_TYPE_INTEGER);
+    private void processIntParameterChild(Resource resource, Element parent,  List<Element> elements) {
+        logger.info("Loading integer parameters: " + elements.size());
         for (Element element : elements) {
             IntParameter iParameter = new IntParameter();
             if (iParameter instanceof IXmlLoadable) {
