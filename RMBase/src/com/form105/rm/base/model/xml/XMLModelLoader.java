@@ -8,7 +8,6 @@ package com.form105.rm.base.model.xml;
 import com.form105.rm.base.model.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import org.dom4j.Document;
 import org.dom4j.Element;
 
 /**
@@ -18,32 +17,14 @@ import org.dom4j.Element;
 public class XMLModelLoader extends XMLLoader {
     
     List<Resource> resourceList = new ArrayList<Resource>();
+    Element root;
     
     public XMLModelLoader(String filePath) {
         super(filePath);
     }
     
-    public void load() {
-        
-        Document document = super.getDocument();
-        Element root = document.getRootElement();
-  
-        List<Element> rootChilds = root.elements();
-
-        /*for (Element element : rootChilds) {          
-            if (element.getName().equals("resource")) {
-                Resource resource = new Resource();
-                //TODO: add resource command
-                resource.fromDom(element);
-                resourceList.add(resource);
-            }
-
-        }**/
-
-    }
-    
-    public void getRootElement() {
-        
+    public Element getRootElement() {
+        return getDocument().getRootElement();
     }
 
 }

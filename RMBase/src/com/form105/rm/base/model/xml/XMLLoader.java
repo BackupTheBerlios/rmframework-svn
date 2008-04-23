@@ -36,6 +36,7 @@ public class XMLLoader implements ILifeCycle {
     
     public XMLLoader(String filePath) {
         this.filePath = filePath;
+        document = parseFile();
     }
     
 
@@ -43,7 +44,7 @@ public class XMLLoader implements ILifeCycle {
      * 
      * @param filePath
      */
-    public Document parseFile() throws RMException {
+    private Document parseFile() throws RMException {
 
         try {
             inStream = new FileInputStream(filePath);
