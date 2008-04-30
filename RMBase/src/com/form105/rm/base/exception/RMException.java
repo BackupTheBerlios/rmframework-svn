@@ -23,23 +23,5 @@ public class RMException extends RuntimeException {
     public RMException(String defaultMessage, String messageKey, List<String> properties) {
         super(defaultMessage);
         this.messageKey = messageKey;
-
-
-
-    }
-
-    /**
-     * Returns the detail message string of this throwable.
-     *
-     * @return  the detail message string of this <tt>Throwable</tt> instance
-     *          (which may be <tt>null</tt>).
-     */
-    /*@Override
-    public String getMessage() {
-        return java.util.ResourceBundle.getBundle("BundleException").getString(messageKey);
-    }*/
-
-    public void substituteMessage() {
-
     }
 }

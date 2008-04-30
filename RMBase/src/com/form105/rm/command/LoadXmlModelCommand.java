@@ -26,8 +26,7 @@ public class LoadXmlModelCommand extends AbstractCommand {
     private String model;
     
     public LoadXmlModelCommand() {
-        String model = Agent.getRMProperty("model.xml");
-        
+        model = Agent.getRMProperty("server.model.name");
     }
     
     public LoadXmlModelCommand(String model) {
@@ -36,12 +35,9 @@ public class LoadXmlModelCommand extends AbstractCommand {
 
     @Override
     public void execute() throws RMException {
-        
         XMLModelLoader loader = new XMLModelLoader(model, path);
         Element rootElement = loader.getRootElement();
-        
         loadResources(rootElement);
-        
     }
     
     private void loadResources(Element parentElement) {

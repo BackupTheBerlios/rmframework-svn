@@ -5,6 +5,7 @@
 
 package com.form105.rm.base.container;
 
+import com.form105.rm.base.Agent;
 import org.picocontainer.Startable;
 
 /**
@@ -31,7 +32,7 @@ public class ModeContainer extends AbstractContainer implements Startable {
     }
     
     public ModeContainer(PropertiesContainer properties) {
-        String modeName = properties.getProperty(MODE_KEY);
+        String modeName = Agent.getRMProperty(MODE_KEY);
         setCurrentMode(mode.valueOf(modeName.toUpperCase()));
     }
     

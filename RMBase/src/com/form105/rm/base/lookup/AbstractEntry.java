@@ -1,5 +1,7 @@
 package com.form105.rm.base.lookup;
 
+import com.form105.rm.base.exception.RMException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -12,10 +14,18 @@ import java.util.Set;
 public class AbstractEntry<T> implements IEntry<T> {
 
     public Set<ILookupListener> listeners = Collections.synchronizedSet(new HashSet<ILookupListener>());
-    public Set<T> lookupItems = Collections.synchronizedSet(new HashSet<T>());
+    public List<T> lookupItems = Collections.synchronizedList(new ArrayList<T>());
 
-    public Set<T> getItems() {
+    public List<T> getItems() {
         return lookupItems;
+    }
+    
+    public T getFirstItem() {
+        if (lookupItems.size() == 0) {
+            throw new RMException("Entry list size is 0");
+        } else {
+            return lookupItems.get(0);
+        }
     }
 
     public void addListener(ILookupListener listener) {

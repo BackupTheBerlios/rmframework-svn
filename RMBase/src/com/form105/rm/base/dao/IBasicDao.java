@@ -9,13 +9,13 @@ package com.form105.rm.base.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.criterion.Criterion;
+
 
 /**
  * @author hennebrueder
  * 
  */
-public interface BasicDao<T, ID extends Serializable> {
+public interface IBasicDao<T, ID extends Serializable> {
 
 	/**
 	 * finds an object given by the id, returns null when the object was not

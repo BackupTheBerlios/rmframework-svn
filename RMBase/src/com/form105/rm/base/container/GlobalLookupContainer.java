@@ -15,8 +15,9 @@ import org.picocontainer.Startable;
 public class GlobalLookupContainer extends AbstractContainer implements Startable {
     
     EntryLookupRegistry registry;
-
+    
     public void start() {
+        logger.info("Start GlobalLookupContainer");
         registry = new EntryLookupRegistry();
     }
 

@@ -14,7 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 
-public class BasicDBDaoImpl<T, ID extends Serializable> implements BasicDao<T, ID> {
+public class BasicDBDaoImpl<T, ID extends Serializable> implements IBasicDao<T, ID> {
 
 	protected Class<T> clazz;
 

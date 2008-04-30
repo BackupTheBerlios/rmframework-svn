@@ -55,5 +55,15 @@ public class EntryLookupRegistry {
     public IEntry createDefaultEntry() {
         return new SimpleLookupEntry();
     }
+    
+    /**
+     * Returns the first object of the entry which includes a list
+     * @param clazz
+     * @return
+     */
+    public Object getContent(Class clazz) {
+        Object object = registry.get(clazz).getFirstItem();
+        return object;
+    }
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author heiko
  */
-public class BasicMapDaoImpl<T, ID extends Serializable> implements BasicDao<T, ID> {
+public class BasicMapDaoImpl<T, ID extends Serializable> implements IBasicDao<T, ID> {
 
     public T findById(ID id) {
         throw new UnsupportedOperationException("Not supported yet.");

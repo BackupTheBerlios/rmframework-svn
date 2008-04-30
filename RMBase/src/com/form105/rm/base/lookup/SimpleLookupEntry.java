@@ -11,5 +11,6 @@ package com.form105.rm.base.lookup;
  */
 public class SimpleLookupEntry<T> extends AbstractEntry<T> {
 
+    
 
 }

@@ -6,7 +6,6 @@
 package com.form105.rm.base.lookup;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -14,7 +13,9 @@ import java.util.Set;
  */
 public interface IEntry<T> {
     
-    public Set<T> getItems();
+    public List<T> getItems();
+    
+    public T getFirstItem();
     
     public void updateItem(T object);
     
@@ -27,6 +28,5 @@ public interface IEntry<T> {
     public void addItem(T object);
     
     public void addItems(List<T> list);
-
     
 }
