@@ -6,17 +6,16 @@
  */
 package com.form105.rm.base;
 
-import com.form105.rm.base.util.xml.XMLLoader;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.PicoContainer;
 import org.picocontainer.behaviors.Caching;
-import org.picocontainer.lifecycle.ReflectionLifecycleStrategy;
-import org.picocontainer.lifecycle.StartableLifecycleStrategy;
-import org.picocontainer.monitors.LifecycleComponentMonitor;
+
+import com.form105.rm.base.util.xml.XMLLoader;
 
 
 /**
@@ -41,8 +40,6 @@ public class Container {
 
     public void initialize() {
         container = new DefaultPicoContainer(new Caching());
-        
-        load();
         container.start();
     }
 
@@ -50,8 +47,12 @@ public class Container {
      * Static method to get a pico container singleton
      * @return
      */
-    public static PicoContainer getInstance() {
+    public static PicoContainer getContainer() {
         return container;
+    }
+    
+    public static Container getInstance() {
+    	return instance;
     }
 
     /**
@@ -61,8 +62,8 @@ public class Container {
      * @param scope
      * @return
      */
-    private void load() {
-        XMLLoader loader = new XMLLoader("config/container.xml");
+    public void load(ContainerConfiguration configuration) {
+        XMLLoader loader = new XMLLoader(configuration.getPath());
         Document document = loader.parseFile();
         Element rootElement = document.getRootElement();
         logger.info("Root element of container.xml:"+rootElement.getName());
@@ -81,4 +82,7 @@ public class Container {
             }
         }
     }
+    
+    
+    
 }

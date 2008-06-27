@@ -6,6 +6,7 @@
  */
 package com.form105.rm.base;
 
+import com.form105.rm.base.config.SimpleConfiguration;
 import com.form105.rm.base.container.GlobalLookupContainer;
 import com.form105.rm.base.container.PropertiesContainer;
 import com.form105.rm.base.lookup.EntryLookupRegistry;
@@ -21,12 +22,8 @@ public class Agent {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Container.getInstance();
-
-    //ImageHelper helper = new ImageHelper();
-    //helper.loadImageData();
-
-
+    	ContainerConfiguration configuration = new ContainerConfiguration(new SimpleConfiguration());
+        Container.getInstance().load(configuration);
     }
 
     /**
@@ -35,7 +32,7 @@ public class Agent {
      * @return
      */
     public static Object getContainer(Class clazz) {
-        Object container = Container.getInstance().getComponent(clazz);
+        Object container = Container.getContainer().getComponent(clazz);
         if (container == null) {
             System.err.println("Container: " + clazz.getName() + " doesn't exist as a registered container");
             return null;

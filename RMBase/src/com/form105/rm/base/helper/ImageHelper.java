@@ -31,7 +31,7 @@ public class ImageHelper {
     BufferedImage image;
 
     public ImageHelper() {
-        PropertiesContainer properties = (PropertiesContainer) Container.getInstance().getComponent(PropertiesContainer.class);
+        PropertiesContainer properties = (PropertiesContainer) Container.getContainer().getComponent(PropertiesContainer.class);
         imageTempPath = properties.getProperty("server.path.imageTemp");
     }
 
