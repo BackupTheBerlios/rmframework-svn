@@ -8,8 +8,7 @@
     <xsd:element name="model">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:attributeGroup name="newAttributeGroup"/>
-                <xsd:element ref="xsd:resource" maxOccurs="unbounded"/>
+                <xsd:element ref="tns:resource" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
