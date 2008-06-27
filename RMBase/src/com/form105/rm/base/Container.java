@@ -61,8 +61,6 @@ public class Container {
      * @param scope
      * @return
      */
-
-    
     private void load() {
         XMLLoader loader = new XMLLoader("config/container.xml");
         Document document = loader.parseFile();
