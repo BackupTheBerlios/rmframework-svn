@@ -28,7 +28,7 @@ public class BackgroundThreadContainer extends AbstractContainer implements ISta
     }
 
     public void stop() {
-
+        thread.interrupt();
 
     }
 

@@ -11,7 +11,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.Element;
-import org.openide.util.Exceptions;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.PicoContainer;
 import org.picocontainer.behaviors.Caching;
@@ -80,7 +79,7 @@ public class Container {
                 container.addComponent(containerClass);
                 
             } catch (ClassNotFoundException ex) {
-                Exceptions.printStackTrace(ex);
+                logger.error(ex, ex);
             }
         }
     }

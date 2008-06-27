@@ -21,7 +21,7 @@ public class BackgroundThread implements Runnable {
       try {
         Thread.sleep(Long.MAX_VALUE);
       } catch (InterruptedException ex) {
-        logger.error("Thread interrupted. ", ex);
+        logger.error("Thread interrupted. ", ex); 
       }
     }
         
