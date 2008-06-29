@@ -16,6 +16,7 @@ public class Application extends WebApplication {
 	 * Constructor
 	 */
 	public Application() {
+		
 	}
 
 	/**
