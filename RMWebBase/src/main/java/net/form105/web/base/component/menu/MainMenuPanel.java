@@ -3,7 +3,9 @@ package net.form105.web.base.component.menu;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.form105.web.base.HomePage;
 import net.form105.web.base.component.login.LoginLinkPanel;
+import net.form105.web.base.component.login.UserSwitchPanel;
 import net.form105.web.base.model.navigation.DefaultNavigationItem;
 import net.form105.web.base.model.navigation.INavigationItem;
 
@@ -18,10 +20,14 @@ public class MainMenuPanel extends Panel<Object> {
 
 	public MainMenuPanel(String id) {
 		super(id);
-        navList.add(new DefaultNavigationItem("navAdress", LoginLinkPanel.class, "menu.section.masterData.item.address"));
+        navList.add(new DefaultNavigationItem("navHome", HomePage.class, "menu.mainNav.home"));
         
         MainMenuListView listView = new MainMenuListView("mainNavList", navList);
         add(listView);
+        
+        add(new UserSwitchPanel("panel.loginSwitch"));
+        
+        
 	}
 
 	private static final long serialVersionUID = 1L;
