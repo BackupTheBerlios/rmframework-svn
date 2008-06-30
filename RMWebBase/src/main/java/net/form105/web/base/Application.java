@@ -30,5 +30,4 @@ public class Application extends WebApplication {
 	public Session newSession(Request request, Response response) {
 		return super.newSession(request, response);
 	}
-
 }

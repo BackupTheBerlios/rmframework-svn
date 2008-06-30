@@ -2,17 +2,23 @@ package net.form105.web.base.template;
 
 import net.form105.web.base.component.menu.MainMenuPanel;
 
+import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.PropertyModel;
 
 public class DefaultMainTemplate extends WebPage<Void> {
+	
+	public static Logger logger = Logger.getLogger(DefaultMainTemplate.class);
 
 	String pageTitle = "*** Please set title ***";
 
 	public DefaultMainTemplate() {
 		add(new Label("title", new PropertyModel<String>(this, "pageTitle")));
 		add(new MainMenuPanel("menu"));
+		add(new StyleSheetReference("styleSheet", getClass(), getClass()+".css"));
+
 	}
 
 	/**

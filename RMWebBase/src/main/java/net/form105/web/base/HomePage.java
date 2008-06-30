@@ -4,6 +4,7 @@ import net.form105.web.base.template.DefaultMainTemplate;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.PropertyModel;
 
 /**
@@ -24,7 +25,8 @@ public class HomePage extends DefaultMainTemplate {
     	super();
         // Add the simplest type of label
         
-        
+    	//add(new StyleSheetReference("styleSheet", HomePage.class, "styles.css"));
+
         
         
 

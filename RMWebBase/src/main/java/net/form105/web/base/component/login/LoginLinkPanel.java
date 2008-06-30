@@ -7,9 +7,6 @@ import org.apache.wicket.model.ResourceModel;
 
 public class LoginLinkPanel extends Panel<Object> {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public LoginLinkPanel(String id) {
