@@ -24,10 +24,6 @@ public class MainMenuPanel extends Panel<Object> {
         
         MainMenuListView listView = new MainMenuListView("mainNavList", navList);
         add(listView);
-        
-        add(new UserSwitchPanel("panel.loginSwitch"));
-        
-        
 	}
 
 	private static final long serialVersionUID = 1L;

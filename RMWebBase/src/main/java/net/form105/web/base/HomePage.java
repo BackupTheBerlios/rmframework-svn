@@ -23,13 +23,6 @@ public class HomePage extends DefaultMainTemplate {
 	 */
     public HomePage(final PageParameters parameters) {
     	super();
-        // Add the simplest type of label
-        
-    	//add(new StyleSheetReference("styleSheet", HomePage.class, "styles.css"));
-
-        
-        
-
     }
     
     

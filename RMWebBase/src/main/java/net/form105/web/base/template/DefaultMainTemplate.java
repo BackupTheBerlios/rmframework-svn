@@ -1,6 +1,6 @@
 package net.form105.web.base.template;
 
-import net.form105.web.base.component.menu.MainMenuPanel;
+import net.form105.web.base.component.mainNavigation.MainNavigationPanel;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.WebPage;
@@ -16,8 +16,10 @@ public class DefaultMainTemplate extends WebPage<Void> {
 
 	public DefaultMainTemplate() {
 		add(new Label("title", new PropertyModel<String>(this, "pageTitle")));
-		add(new MainMenuPanel("menu"));
-		add(new StyleSheetReference("styleSheet", getClass(), getClass()+".css"));
+		add(new MainNavigationPanel("panel.mainNavigation"));
+		logger.info(this.getClass().getSimpleName());
+		add(new StyleSheetReference("styleSheet", this.getClass(), "HomePage.css"));
+		
 
 	}
 

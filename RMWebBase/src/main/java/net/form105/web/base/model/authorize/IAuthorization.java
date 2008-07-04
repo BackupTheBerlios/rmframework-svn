@@ -1,6 +1,8 @@
 package net.form105.web.base.model.authorize;
 
-public interface IAuthorization {
+import java.io.Serializable;
+
+public interface IAuthorization extends Serializable {
 	
 	public AuthorizationState isAuthorized();
 

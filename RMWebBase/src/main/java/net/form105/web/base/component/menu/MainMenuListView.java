@@ -27,6 +27,7 @@ public class MainMenuListView extends ListView<INavigationItem> {
 	protected void populateItem(ListItem item) {
 		INavigationItem navItem = (INavigationItem) item.getModelObject();
         ResourceModel rModel = new ResourceModel(navItem.getResourceKey());
+        BookmarkablePageLink pageLink = new BookmarkablePageLink("navigationItem", navItem.getNavTargetClass());
         item.add(new BookmarkablePageLink("navigationItem", navItem.getNavTargetClass()).add(new Label("navigationLabel", rModel)));
 	}
 

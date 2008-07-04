@@ -4,6 +4,8 @@ import net.form105.web.base.component.login.authorize.IProvidedUser;
 
 public class Authorization implements IAuthorization {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private IProvidedUser user;
 	
 	public Authorization(IProvidedUser user) {
@@ -13,10 +15,9 @@ public class Authorization implements IAuthorization {
 
 	@Override
 	public AuthorizationState isAuthorized() {
-		// delegate to CredentialHandler
+		// TODO: delegate to CredentialHandler
 		
-		
-		return null;
+		return AuthorizationState.AUTHORIZED;
 	}
 
 }

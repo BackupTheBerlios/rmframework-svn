@@ -24,6 +24,7 @@ public class UserLinkPanel extends Panel<Void> {
 		};
 		userPageLink.add(new Label<String>("userLabel", "heiko.kundlacz@gmx.net"));
 		add(userPageLink);
+		add(new Label<String>("logoutLabel", "logout"));
 	}
 	
 	public boolean isVisible() {
