@@ -22,6 +22,6 @@ public class LoginLinkPanel extends Panel<Object> {
 	}
 	
 	public boolean isVisible() {
-		return true;
+		return false;
 	}
 }

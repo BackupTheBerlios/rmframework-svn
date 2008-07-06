@@ -17,13 +17,8 @@ public class UserLinkPanel extends Panel<Void> {
 	}
 	
 	private void addUserLink() {
-		BookmarkablePageLink userPageLink = new BookmarkablePageLink("userItem", LoginPage.class) {
-			public boolean isVisible() {
-				return true;
-			}
-		};
-		userPageLink.add(new Label<String>("userLabel", "heiko.kundlacz@gmx.net"));
-		add(userPageLink);
+		
+		add(new Label<String>("userLabel", "heiko.kundlacz@gmx.net"));
 		add(new Label<String>("logoutLabel", "logout"));
 	}
 	

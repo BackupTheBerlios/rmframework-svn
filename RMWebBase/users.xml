@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_06" class="java.beans.XMLDecoder"> 
+ <object class="net.form105.web.base.model.authorize.UserList"> 
+  <void property="users"> 
+   <void method="put"> 
+    <string>heiko.kundlacz@gmx.net</string> 
+    <object class="net.form105.web.base.model.authorize.User"> 
+     <void property="password"> 
+      <string>heiko25</string> 
+     </void> 
+     <void property="user"> 
+      <string>heiko.kundlacz@gmx.net</string> 
+     </void> 
+    </object> 
+   </void> 
+  </void> 
+ </object> 
+</java> 
