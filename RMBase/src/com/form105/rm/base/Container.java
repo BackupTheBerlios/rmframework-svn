@@ -32,6 +32,8 @@ public class Container {
     private Logger logger = Logger.getLogger(Container.class);
     private static Container instance;
     private static DefaultPicoContainer container;
+    
+    private ContainerConfiguration configuration;
 
     static {
         instance = new Container();
@@ -56,13 +58,14 @@ public class Container {
     }
 
     /**
-     * Building the pico container based on the nano container
+     * Building the pico container based on the nano container. To create a pico container a configuration must be available
      * @param builder
      * @param parentContainer
      * @param scope
      * @return
      */
     public void load(ContainerConfiguration configuration) {
+    	this.configuration = configuration;
         XMLLoader loader = new XMLLoader(configuration.getPath());
         Document document = loader.parseFile();
         Element rootElement = document.getRootElement();
@@ -81,6 +84,14 @@ public class Container {
                 logger.error(ex, ex);
             }
         }
+    }
+    
+    /**
+     * Get the configuration for this container
+     * @return
+     */
+    public ContainerConfiguration getConfiguration() {
+    	return configuration;
     }
     
     
