@@ -7,7 +7,9 @@
 package com.form105.rm.base.dao;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
@@ -70,7 +72,7 @@ public class BasicDBDaoImpl<T, ID extends Serializable> implements IBasicDao<T, 
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> findAll() {
+	public Collection<T> findAll() {
 		List<T> result = getSession().createCriteria(clazz).list();
 		return result;
 	}

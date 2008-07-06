@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.form105.rm.base.dao;
 
 import com.form105.rm.base.model.Resource;
+
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -46,7 +43,7 @@ public abstract class AbstractResourceDao implements IBasicDao<Resource, Long> {
      * Delegate read access to the read Dao
      * @return
      */
-    public List<Resource> findAll() {
+    public Collection<Resource> findAll() {
         return readDao.findAll();
     }
 

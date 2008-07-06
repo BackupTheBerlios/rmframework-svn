@@ -1,15 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.form105.rm.base.dao;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.form105.rm.base.exception.RMException;
 import com.form105.rm.base.model.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The implementation of the save and load mechanism. This class saves and
@@ -53,7 +49,7 @@ public class ResourceDaoImpl extends AbstractResourceDao {
         
     }
     
-    public List<Resource> findAll() {
+    public Collection<Resource> findAll() {
         return readDao.findAll();
     }
 
