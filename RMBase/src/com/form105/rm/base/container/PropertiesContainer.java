@@ -21,6 +21,10 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
     private FileInputStream fiStream;
     private Properties properties;
     private final String PROP_PATH = "config/server.properties.xml";
+    
+    public PropertiesContainer() {
+    	super();
+    }
 
     public void start() {
         try {

@@ -23,6 +23,7 @@ public class XMLModelLoaderContainer extends AbstractContainer implements Starta
     Document document;
 
     public XMLModelLoaderContainer(PropertiesContainer propContainer) {
+    	super();
         this.propContainer = propContainer;
     }
 

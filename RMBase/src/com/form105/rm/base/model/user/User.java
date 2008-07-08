@@ -20,8 +20,27 @@ public class User implements Serializable {
     private String sirName;
     private String eMail;
     private String password;
+    private String shortName;
+    
     @OneToMany
     private Set<Group> groups = new HashSet<Group>();
+    
+    /**
+     * Getting the shortname of a user. Normally used for an administrator or a default user
+     * @return
+     */
+    public String getShortName() {
+		return shortName;
+	}
+
+    /**
+     * Setting a shortname for the given user. Normally used for an administrator or a default user
+     * @param shortName
+     */
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+
 
     /**
      * Getting the assigned groups of a user

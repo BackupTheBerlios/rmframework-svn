@@ -24,6 +24,7 @@ public class RMIServerContainer extends AbstractContainer implements Startable {
     private Registry registry;
 
     public RMIServerContainer(PropertiesContainer propContainer) {
+    	super();
         this.propContainer = propContainer;
         
     }

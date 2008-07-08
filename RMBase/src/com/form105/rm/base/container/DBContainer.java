@@ -12,6 +12,10 @@ import org.picocontainer.Disposable;
 import org.picocontainer.Startable;
 
 public class DBContainer extends AbstractContainer implements Startable, Disposable {
+	
+	public DBContainer() {
+		super();
+	}
   
 
   public void start() {

@@ -6,18 +6,20 @@
 package com.form105.rm.base.container;
 
 import com.form105.rm.base.lookup.EntryLookupRegistry;
-import org.picocontainer.Startable;
 
 /**
  *
  * @author heiko
  */
-public class GlobalLookupContainer extends AbstractContainer implements Startable {
+public class GlobalLookupContainer extends AbstractContainer {
     
     EntryLookupRegistry registry;
     
+    public GlobalLookupContainer() {
+    	super();
+    }
+    
     public void start() {
-        logger.info("Start GlobalLookupContainer");
         registry = new EntryLookupRegistry();
     }
 

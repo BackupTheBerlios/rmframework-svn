@@ -19,6 +19,7 @@ public class MessageContainer extends AbstractContainer implements Startable {
     private GlobalLookupContainer lookupContainer;
     
     public MessageContainer(GlobalLookupContainer lookupContainer) {
+    	super();
         this.lookupContainer = lookupContainer;
     }
 

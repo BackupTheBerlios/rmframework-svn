@@ -18,6 +18,7 @@ public class RMIServiceHandlerContainer extends AbstractContainer implements Sta
     private RMIServiceHandler rmiServiceHandler;
     
     public RMIServiceHandlerContainer(RMIServerContainer rmiServerContainer) throws RemoteException {
+    	super();
         this.rmiServerContainer = rmiServerContainer;
         rmiServiceHandler = new RMIServiceHandler();
     }

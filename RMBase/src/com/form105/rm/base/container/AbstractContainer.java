@@ -1,18 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.form105.rm.base.container;
 
 import org.apache.log4j.Logger;
+import org.picocontainer.Startable;
 
 /**
  *
- * @author heiko
+ * @author hh
  */
-public class AbstractContainer {
+public abstract class AbstractContainer implements Startable {
     
     public static Logger logger = Logger.getLogger(AbstractContainer.class);
-
+    
+    public AbstractContainer() {
+    	logger.info("Instantiating container: "+getClass().getSimpleName());
+    }
 }

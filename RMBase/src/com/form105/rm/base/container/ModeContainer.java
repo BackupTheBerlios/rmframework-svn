@@ -32,6 +32,7 @@ public class ModeContainer extends AbstractContainer implements Startable {
     }
     
     public ModeContainer(PropertiesContainer properties) {
+    	super();
         String modeName = Agent.getRMProperty(MODE_KEY);
         setCurrentMode(mode.valueOf(modeName.toUpperCase()));
     }
