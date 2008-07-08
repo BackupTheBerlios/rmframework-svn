@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
- * Represents a user which can be identified by its main email address. 
+ * Represents a user which has some user data associated. 
  * @author heiko
  */
 @Entity(name = "SystemUser")

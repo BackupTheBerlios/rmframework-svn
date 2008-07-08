@@ -23,5 +23,8 @@
 	<classpathentry kind="lib" path="lib/postgresql-8.3-603.jdbc3.jar"/>
 	<classpathentry kind="lib" path="lib/picocontainer-2.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="config"/>
+	<classpathentry kind="lib" path="i18n"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

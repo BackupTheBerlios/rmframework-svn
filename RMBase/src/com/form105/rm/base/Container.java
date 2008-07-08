@@ -42,7 +42,7 @@ public class Container {
 
     public void initialize() {
         container = new DefaultPicoContainer(new Caching());
-        container.start();
+        
     }
 
     /**
@@ -69,7 +69,6 @@ public class Container {
         XMLLoader loader = new XMLLoader(configuration.getPath());
         Document document = loader.parseFile();
         Element rootElement = document.getRootElement();
-        logger.info("Root element of container.xml:"+rootElement.getName());
         List<Element> classElements = rootElement.elements();
         
         for (Element element : classElements) {
@@ -84,6 +83,7 @@ public class Container {
                 logger.error(ex, ex);
             }
         }
+        container.start();
     }
     
     /**

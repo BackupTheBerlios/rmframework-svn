@@ -23,7 +23,5 @@ public class TemplateNavigationPanel extends Panel {
     
     public TemplateNavigationPanel(String id) {
         super(id);
-    }
-
-    
+    }    
 }

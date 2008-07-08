@@ -14,6 +14,18 @@ import org.apache.log4j.Logger;
 import com.form105.rm.base.model.user.User;
 import com.form105.rm.base.model.user.UserList;
 
+/**
+ * A simple DAO which saves an userList object to an xml file. The mechanism used is provided by the java xmlDecoder. 
+ * The xmlDecoder saves a bean to an xml file which can be loaded with the xmlEncoder equivalent.
+ * 
+ * To get all users that are defined in the xml file use findAll().
+ * 
+ * The xml file will be written on all functions that change the users list. This means that the userList acts as a
+ * cache for xml file. All read access can be directly delegated to list, without consulting the xml file. 
+ * 
+ * @author HK
+ *
+ */
 public class XMLUserObjectDAO implements IBasicDao<User, String> {
 	
 	public static Logger logger = Logger.getLogger(XMLUserObjectDAO.class);
@@ -23,7 +35,7 @@ public class XMLUserObjectDAO implements IBasicDao<User, String> {
 	private XMLDecoder xmlDecoder;
 	private UserList userList = new UserList();
 	
-	public XMLUserObjectDAO(String file) throws FileNotFoundException {
+	public XMLUserObjectDAO(String file) {
 		this.persistanceFile = file;
 		load();
 	}
@@ -89,7 +101,7 @@ public class XMLUserObjectDAO implements IBasicDao<User, String> {
 			userList = (UserList) xmlDecoder.readObject();
 			xmlDecoder.close();
 		} catch (FileNotFoundException e) {
-			logger.error("Can't write to file "+persistanceFile+"! File not found.");
+			logger.info("Can't load a user list from file "+persistanceFile+". File not found. Continuing ...");
 		}
 	}
 

@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class UserList {
 
-	private Map<String, User> users = Collections.synchronizedMap(new HashMap<String, User>());
+	private Map<String, User> users = new HashMap<String, User>();
 
 	public synchronized Map<String, User> getUsers() {
 		return users;

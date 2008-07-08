@@ -52,7 +52,7 @@ public class MessageParameterTest {
 
     @Test
     public void replaceStringByParameter() {
-        PicoContainer container = Container.getInstance();
+        PicoContainer container = Container.getContainer();
         GlobalLookupContainer lookupContainer = (GlobalLookupContainer) container.getComponent(GlobalLookupContainer.class);
         EntryLookupRegistry lookup = lookupContainer.getLookupRegistry();
         ExceptionMessage message = (ExceptionMessage) lookup.getContent(ExceptionMessage.class);

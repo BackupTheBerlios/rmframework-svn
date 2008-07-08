@@ -6,7 +6,9 @@
 package com.form105.rm.base.lookup;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -50,6 +52,12 @@ public class EntryLookupRegistry {
         } else {
             return registry.get(clazz);
         }
+    }
+    
+    public List getEntryAsList(Class clazz) {
+    	IEntry entry = registry.get(clazz);
+    	return entry.getItems();
+    	
     }
     
     public IEntry createDefaultEntry() {
