@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns:wicket" >
+
+
+	<wicket:head>
+          <link wicket:id="styleSheet" rel="Stylesheet" type="text/css" href="styles/main.css"/>
+      </wicket:head>
+<body>
+
+   <div class="loginPart">
+	
+	
+			<div class="loginBorderBox">	
+	
+			<div id="loginImage">
+				<img src="loginLogo.png" wicket:id="loginLogo" alt="login image"></img>
+			</div>
+			<form wicket:id="loginForm">
+				<div class="loginForm">
+
+					<table>
+						<tr>
+							<td><label for="username"><wicket:message key="label.username" /></label></td>
+							<td><input class="textfield" type="text" wicket:id="username" id="username" value="" size="50" /></td>
+						</tr>
+				
+						<tr>
+							<td><label for="password"><wicket:message key="label.password" /></label></td>
+							<td><input class="textfield" type="password" wicket:id="password" id="password" value="" size="50" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="button"><input class="button" type="submit" wicket:id="saveButton" value="save" /></td>
+						</tr>
+					</table>
+			
+				</div><!-- /loginForm -->
+			</form>
+		
+			
+		</div><!-- /loginBorderBox -->
+	
+	</div><!-- loginPart -->
+	</body>
+</html>

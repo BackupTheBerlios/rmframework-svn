@@ -2,6 +2,7 @@ package net.form105.web.base.component.login;
 
 import net.form105.web.base.ApplicationSession;
 import net.form105.web.base.model.authorize.AuthenticationState;
+import net.form105.web.base.page.login.LoginPage;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.basic.Label;

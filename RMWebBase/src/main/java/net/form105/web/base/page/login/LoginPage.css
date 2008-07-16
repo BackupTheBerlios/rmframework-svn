@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+
+#loginImage {
+	float: left;
+	padding: 30px;
+}
+
+.loginForm {
+	height: 128px;
+	margin-top: 50px;
+}
+
+
+.loginPart {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.loginBorderBox {
+	border: 2px solid #c6e1af;
+	height: 170px;
+}
+
+.loginForm .button {
+	text-align: right;
+	margin-top: 10px;
+}
+
+.loginForm input.button {
+	color: #605016;
+	background-color: #dde9af;
+	border: solid 1px #aaaaaa;
+	text-decoration: bold;
+	font-weight: bolder;
+}
+
+input.textfield {
+	color: #501616;
+}
