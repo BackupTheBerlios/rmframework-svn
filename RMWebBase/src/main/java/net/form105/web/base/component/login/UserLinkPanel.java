@@ -1,5 +1,8 @@
 package net.form105.web.base.component.login;
 
+import net.form105.web.base.ApplicationSession;
+import net.form105.web.base.model.authorize.AuthenticationState;
+
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -23,7 +26,11 @@ public class UserLinkPanel extends Panel<Void> {
 	}
 	
 	public boolean isVisible() {
-		return true;
+		ApplicationSession session = (ApplicationSession) getSession();
+		if (session.getAuthentication() == null) {
+			return false;
+		}
+		return session.getAuthentication().isAuthenticated() == AuthenticationState.AUTHORIZED;
 	}
 
 }

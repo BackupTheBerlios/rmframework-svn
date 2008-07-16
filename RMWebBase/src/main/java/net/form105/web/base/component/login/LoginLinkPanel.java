@@ -1,11 +1,17 @@
 package net.form105.web.base.component.login;
 
+import net.form105.web.base.ApplicationSession;
+import net.form105.web.base.model.authorize.AuthenticationState;
+
+import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.ResourceModel;
 
 public class LoginLinkPanel extends Panel<Object> {
+	
+	public static Logger logger = Logger.getLogger(LoginLinkPanel.class);
 	
 	private static final long serialVersionUID = 1L;
 
@@ -22,6 +28,7 @@ public class LoginLinkPanel extends Panel<Object> {
 	}
 	
 	public boolean isVisible() {
-		return false;
+		ApplicationSession session = (ApplicationSession) getSession();
+		return session.getAuthentication().isAuthenticated() == AuthenticationState.NOTAUTHORIZED;
 	}
 }

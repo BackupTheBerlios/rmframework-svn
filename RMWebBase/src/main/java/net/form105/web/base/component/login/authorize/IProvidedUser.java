@@ -15,7 +15,7 @@ public interface IProvidedUser {
 	public String getUserId();
 	
 	/**
-	 * A human readable name of the user
+	 * A human readable name of the user, which should be used for labels
 	 * @return
 	 */
 	public String getLabel();

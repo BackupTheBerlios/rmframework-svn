@@ -5,7 +5,6 @@ import net.form105.web.base.component.mainNavigation.MainNavigationPanel;
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.PropertyModel;
 
 public class DefaultMainTemplate extends WebPage<Void> {
@@ -15,12 +14,10 @@ public class DefaultMainTemplate extends WebPage<Void> {
 	String pageTitle = "*** Please set title ***";
 
 	public DefaultMainTemplate() {
-		add(new Label("title", new PropertyModel<String>(this, "pageTitle")));
+		add(new Label<String>("title", new PropertyModel<String>(this, "pageTitle")));
 		add(new MainNavigationPanel("panel.mainNavigation"));
 		logger.info(this.getClass().getSimpleName());
-		add(new StyleSheetReference("styleSheet", this.getClass(), "HomePage.css"));
-		
-
+		//add(new StyleSheetReference("styleSheet", this.getClass(), "HomePage.css"));
 	}
 
 	/**

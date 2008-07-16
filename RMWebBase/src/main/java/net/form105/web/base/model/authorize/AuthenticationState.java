@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author hk
  *
  */
-public enum AuthorizationState implements Serializable {
+public enum AuthenticationState implements Serializable {
 	AUTHORIZED,
 	NOTAUTHORIZED;
 }

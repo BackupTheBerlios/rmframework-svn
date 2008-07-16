@@ -36,3 +36,30 @@ body,input,select,textarea {
 #mainNavigation a:active { text-decoration: none; }
 #mainNavigation a:hover { color: gray; text-decoration: underline; }
 
+
+
+/*.whiteBox_subMenu { background: url(img/corner_t.png) repeat-x; }
+.whiteBox_subMenu div { background: url(img/corner_tl.png) no-repeat top left; }
+.whiteBox_subMenu div div { background: url(img/corner_tr.png) no-repeat top right; }*/
+
+.subMenu {
+	width: 200px;
+	background-color: rgb(222, 100, 42);
+}
+
+.contextBox {
+	width: 200px;
+	background-color: rgb(155, 227, 42);
+}
+
+.grey_rbroundbox { background: url(/img/whitebox_back.gif) repeat; }
+.grey_rbtop { background: url(/img/whitebox_t.gif) repeat-x; }
+.grey_rbtop div { background: url(/img/whitebox_tl.gif) no-repeat top left; }
+.grey_rbtop div div { background: url(/img/whitebox_tr.gif) no-repeat top right; }
+.grey_rbbot { background: url(/img/whitebox_b.gif) repeat-x; }
+.grey_rbbot div { background: url(/img/whitebox_bl.gif) no-repeat top left; }
+.grey_rbbot div div { background: url(/img/whitebox_br.gif) no-repeat top right; }
+.grey_rbcontentwrap { background: url(/img/whitebox_l.gif) repeat-y; }
+.grey_rbcontent { background: url(/img/whitebox_r.gif) repeat-y right; }
+.grey_rbtop div, .grey_rbtop, .grey_rbbot div, .grey_rbbot { width: 100%; height: 7px; font-size: 1px; }
+.grey_rbcontent { padding: 1px 0; margin: 0; }

@@ -6,6 +6,7 @@
     <component-implementation class='com.form105.rm.base.container.RMIServiceHandlerContainer'/>
     <component-implementation class='com.form105.rm.base.container.GlobalLookupContainer'/>
     <component-implementation class='com.form105.rm.base.container.MessageContainer'/>
+    <component-implementation class='com.form105.rm.base.container.UserManagementContainer'/>
 </container>
 
 
