@@ -2,14 +2,14 @@
 <html xmlns:wicket" >
 
 
-	<wicket:head>
-          <link wicket:id="styleSheet" rel="Stylesheet" type="text/css" href="styles/main.css"/>
-      </wicket:head>
+<wicket:head>
+	<link wicket:id="styleSheet" rel="Stylesheet" type="text/css" href="styles/main.css"/>
+</wicket:head>
+
 <body>
 
    <div class="loginPart">
-	
-	
+   
 			<div class="loginBorderBox">	
 	
 			<div id="loginImage">
@@ -20,17 +20,17 @@
 
 					<table>
 						<tr>
-							<td><label for="username"><wicket:message key="label.username" /></label></td>
-							<td><input class="textfield" type="text" wicket:id="username" id="username" value="" size="50" /></td>
+							<td><label class="loginLabel" for="username"><wicket:message key="label.username" /></label></td>
+							<td><input class="textfield" type="text" wicket:id="username" id="username" value="" size="35" /></td>
 						</tr>
 				
 						<tr>
-							<td><label for="password"><wicket:message key="label.password" /></label></td>
-							<td><input class="textfield" type="password" wicket:id="password" id="password" value="" size="50" /></td>
+							<td><label class="loginLabel" for="password"><wicket:message key="label.password" /></label></td>
+							<td><input class="textfield" type="password" wicket:id="password" id="password" value="" size="35" /></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td class="button"><input class="button" type="submit" wicket:id="saveButton" value="save" /></td>
+							<td class="button"><input class="button" type="submit" wicket:id="saveButton" /></td>
 						</tr>
 					</table>
 			
@@ -41,5 +41,5 @@
 		</div><!-- /loginBorderBox -->
 	
 	</div><!-- loginPart -->
-	</body>
+</body>
 </html>
