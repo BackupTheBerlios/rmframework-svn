@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
@@ -34,6 +35,9 @@ public class LoginPage extends WebPage<Void> {
 		add(new Image<String>("loginLogo"));
 		
 		add(new StyleSheetReference("styleSheet", this.getClass(), "LoginPage.css"));
+		
+		FeedbackPanel feedback = new FeedbackPanel("warning.input");
+		add(feedback);
 		
 		
 	}
