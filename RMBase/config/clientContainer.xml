@@ -2,6 +2,7 @@
 
 <container>
 
-    <component-implementation class='net.form105.rm.base.container.PropertiesContainer'/>
-
+    <component-implementation class='net.form105.rm.base.container.ClientPropertiesContainer'/>
+    <component-implementation class='net.form105.rm.base.container.RMIClientContainer'/>
+    
 </container>

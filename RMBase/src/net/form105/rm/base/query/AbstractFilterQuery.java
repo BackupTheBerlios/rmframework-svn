@@ -16,11 +16,11 @@ import net.form105.rm.base.selection.ISelection;
  */
 public abstract class AbstractFilterQuery<T> implements IQuery<T> {
 	
-	private List<IFilter> filterList = new ArrayList<IFilter>();
+	private Collection<IFilter> filterList = new ArrayList<IFilter>();
 	private ISelection<T> selection;
 	
 	
-	public AbstractFilterQuery(List<IFilter> filterList, ISelection<T> selection) {
+	public AbstractFilterQuery(Collection<IFilter> filterList, ISelection<T> selection) {
 		this.selection = selection;
 		this.filterList = filterList;
 	}
@@ -64,7 +64,7 @@ public abstract class AbstractFilterQuery<T> implements IQuery<T> {
 	 * Getting all filters that have been registered
 	 * @return
 	 */
-	protected List<IFilter> getFilters() {
+	protected Collection<IFilter> getFilters() {
 		return filterList;
 	}
 

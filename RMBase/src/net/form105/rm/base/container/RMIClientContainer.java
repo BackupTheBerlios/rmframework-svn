@@ -10,6 +10,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
+import net.form105.rm.base.query.IQueryHandler;
 import net.form105.rm.base.service.IServiceHandler;
 
 import org.picocontainer.Startable;
@@ -23,13 +24,15 @@ import org.picocontainer.Startable;
  */
 public class RMIClientContainer extends AbstractContainer implements Startable {
 
-    private PropertiesContainer popertiesContainer;
+    private ClientPropertiesContainer popertiesContainer;
     private int port;
     private String host;
     private IServiceHandler serviceHandler;
+    private IQueryHandler<Void> queryHandler;
     private String serviceHandlerUrl;
+    private String queryHandlerUrl;
 
-    public RMIClientContainer(PropertiesContainer propertiesContainer) {
+    public RMIClientContainer(ClientPropertiesContainer propertiesContainer) {
         this.popertiesContainer = propertiesContainer;
     }
 
@@ -44,10 +47,13 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
 
         // configure url 
         serviceHandlerUrl = "rmi://" + host + ":" + port + "/ServiceHandler";
-        logger.info("RMI Url is: rmi://" + host + ":" + port + "/ServiceHandler");
+        logger.info("Service handler RMI url is: "+serviceHandlerUrl);
+        queryHandlerUrl = "rmi://" + host + ":" + port + "/QueryHandler";
+        logger.info("Query handler RMI url is: "+queryHandlerUrl);
         
         try {
             serviceHandler = (IServiceHandler) Naming.lookup(serviceHandlerUrl);
+            queryHandler = (IQueryHandler) Naming.lookup(queryHandlerUrl);
         } catch (NotBoundException nbex) {
             logger.error("ServiceHandler not bound to registry.", nbex);
         } catch (MalformedURLException muex) {
@@ -63,5 +69,9 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
 
     public IServiceHandler getServiceHandler() {
         return serviceHandler;
+    }
+    
+    public IQueryHandler getQueryHandler() {
+    	return queryHandler;
     }
 }

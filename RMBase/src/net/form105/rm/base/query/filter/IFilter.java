@@ -5,13 +5,13 @@ package net.form105.rm.base.query.filter;
  * @author heiko
  *
  */
-public interface IFilter {
+public interface IFilter<T> {
 
 	/**
 	 * Filter the object. If the object can be filtered return true
 	 * @param object
 	 * @return
 	 */
-	public boolean filter(Object object);
+	public boolean filter(T object);
 	
 }
