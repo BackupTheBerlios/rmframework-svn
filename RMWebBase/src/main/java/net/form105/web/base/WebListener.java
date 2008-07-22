@@ -5,12 +5,13 @@ import java.io.File;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import net.form105.rm.base.Container;
+import net.form105.rm.base.ContainerConfiguration;
+import net.form105.rm.base.IConfiguration;
+import net.form105.rm.base.config.ConfigurationType;
+
 import org.apache.log4j.Logger;
 
-import com.form105.rm.base.Container;
-import com.form105.rm.base.ContainerConfiguration;
-import com.form105.rm.base.IConfiguration;
-import com.form105.rm.base.config.ConfigurationType;
 
 public class WebListener implements ServletContextListener, IConfiguration {
 	
@@ -22,7 +23,7 @@ public class WebListener implements ServletContextListener, IConfiguration {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		
+		Container.getInstance().unload();
 	}
 
 	@Override
