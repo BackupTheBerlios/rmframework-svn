@@ -57,7 +57,6 @@ public class EntryLookupRegistry {
     public List getEntryAsList(Class clazz) {
     	IEntry entry = registry.get(clazz);
     	return entry.getItems();
-    	
     }
     
     public IEntry createDefaultEntry() {
@@ -72,6 +71,14 @@ public class EntryLookupRegistry {
     public Object getContent(Class clazz) {
         Object object = registry.get(clazz).getFirstItem();
         return object;
+    }
+    
+    /**
+     * Removes an entry from the registry
+     * @param clazz
+     */
+    public void removeEntry(Class clazz) {
+    	registry.remove(clazz);
     }
 
 }

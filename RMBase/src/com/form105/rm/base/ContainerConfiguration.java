@@ -34,7 +34,13 @@ public class ContainerConfiguration {
 		return configuration.getType();
 	}
 
-
+	/**
+	 * Getting the directory where the configuration file resides. 
+	 * @return
+	 */
+	public String getConfigurationDirectory() {
+		return configuration.getConfigurationPath();
+	}
 	
 	
 

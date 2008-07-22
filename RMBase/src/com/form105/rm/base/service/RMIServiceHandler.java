@@ -13,7 +13,9 @@ import org.apache.log4j.Logger;
 
 public class RMIServiceHandler extends UnicastRemoteObject implements IServiceHandler {
     
-    private static Logger logger = Logger.getLogger(RMIServiceHandler.class);
+	private static final long serialVersionUID = 1L;
+
+	private static Logger logger = Logger.getLogger(RMIServiceHandler.class);
     
     private final String name = "ServiceHandler";
     private IService service;
@@ -37,6 +39,10 @@ public class RMIServiceHandler extends UnicastRemoteObject implements IServiceHa
         
     }
     
+    /**
+     * The service handler will be registered in the registry by its name
+     * @return
+     */
     public final String getName() {
         return name;
     }

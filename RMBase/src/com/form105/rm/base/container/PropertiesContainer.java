@@ -6,30 +6,41 @@
  */
 package com.form105.rm.base.container;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+
+import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
+
+import com.form105.rm.base.Container;
 
 /**
  *
  * @author heiko
  */
 public class PropertiesContainer extends AbstractContainer implements Startable {
+	
+	public static Logger logger = Logger.getLogger(PropertiesContainer.class);
 
     private FileInputStream fiStream;
     private Properties properties;
-    private final String PROP_PATH = "config/server.properties.xml";
+    private String propFile = "config/server.properties.xml";
+    
     
     public PropertiesContainer() {
     	super();
+    	
+    	String path = Container.getInstance().getConfiguration().getConfigurationDirectory();
+    	propFile = path + "server.properties.xml";
     }
 
     public void start() {
         try {
             setProperties(new Properties(System.getProperties()));
-            fiStream = new FileInputStream(PROP_PATH);
+            fiStream = new FileInputStream(propFile);
             getProperties().loadFromXML(fiStream);
             for (Object o : getProperties().keySet()) {
                 String s = (String) o;

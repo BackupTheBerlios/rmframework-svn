@@ -25,14 +25,21 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 
 	@Override
 	public void stop() {
-		// TODO Auto-generated method stub
-		
+		lookupContainer.getLookupRegistry().removeEntry(XMLUserObjectDAO.class);
 	}
 	
+	/**
+	 * Creates default users if there aren't any
+	 */
 	public void createDefaultUserEntries() {
+		XMLUserObjectDAO dao = (XMLUserObjectDAO) lookupContainer.getLookupRegistry().getEntry(XMLUserObjectDAO.class);
+		if (dao.findAll().size() == 0) return;
 		User user = new User();
 		user.setId(1L);
-		
+		user.setShortName("admin");
+		user.setPassword("admin");
+		dao.save(user);
 	}
-
+	
+	
 }

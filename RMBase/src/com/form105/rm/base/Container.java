@@ -94,6 +94,10 @@ public class Container {
     	return configuration;
     }
     
+    public void unload() {
+    	container.stop();
+    }
+    
     
     
 }

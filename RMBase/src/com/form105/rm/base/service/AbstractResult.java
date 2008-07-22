@@ -7,17 +7,20 @@
 
 package com.form105.rm.base.service;
 
+import java.util.Collection;
+
 /**
  *
- * @author Heiko Kundlacz
+ * @author hk
  */
-public abstract class AbstractResult implements IResult {
+public abstract class AbstractResult<T> implements IResult<T> {
     
-    private Status status;
-    
-    
-    
-    /**
+	private static final long serialVersionUID = 1L;
+	private Status status;
+    private Collection<T> resultList;
+    private Exception exception;
+
+	/**
      * Get the status of the result
      * @return Current status
      */
@@ -33,5 +36,31 @@ public abstract class AbstractResult implements IResult {
         this.status = status;
     }
     
+    public Collection<T> getResultList() {
+    	return resultList;
+    }
+    
+    public void setResultList(Collection<T> resultList) {
+    	this.resultList = resultList;
+    }
+    
+    /**
+     * If the result contains an exception there shouldn't be a result list. 
+     * The exception should be used for remoting where an remote exception
+     * can be transmitted to the client. Therefore it is importend that the result
+     * and the exceptions are remotable.
+     * @return
+     */
+    public Exception getException() {
+		return exception;
+	}
 
+    /**
+     * Setting an exception
+     * @param exception
+     */
+	public void setException(Exception exception) {
+		this.exception = exception;
+	}
+    
 }

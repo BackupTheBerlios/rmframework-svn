@@ -8,14 +8,16 @@
 package com.form105.rm.base.service;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
-public interface IResult extends Serializable {
+public interface IResult<T> extends Serializable {
 
     public Status getStatus();
     
     public void setStatus(Status status);
     
-    public List getResultSet();
+    public Collection<T> getResultList();
+    
+    public void setResultList(Collection<T> resultList);
 
 }

@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ServiceResult extends AbstractResult {
+public class ServiceResult<T> extends AbstractResult<T> {
     
-    private List resultSet = new ArrayList();
+    private List<T> resultList = new ArrayList<T>();
     
     public ServiceResult() {
         setStatus(Status.UNDEFINED);
     }
 
-    public List getResultSet() {
-        return resultSet;
+    public List getResultList() {
+        return resultList;
     }
     
-    public void setResultSet(List resultList) {
-        this.resultSet = resultList;
+    public void setResultList(List<T> resultList) {
+        this.resultList = resultList;
     }
 
   
