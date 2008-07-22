@@ -25,7 +25,7 @@ public class MessageContainer extends AbstractContainer implements Startable {
     }
 
     public void start() {
-        logger.info("Start MessageContainer");
+        logger.info("Starting: MessageContainer");
         lookup = lookupContainer.getLookupRegistry();
         ExceptionMessage exMessage = new ExceptionMessage();
         lookup.addEntry(exMessage.getClass(), exMessage);

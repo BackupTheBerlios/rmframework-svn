@@ -4,18 +4,19 @@ package com.form105.rm.base.i18n;
 import java.util.Collection;
 import java.util.List;
 
+import net.form105.rm.base.Container;
+import net.form105.rm.base.ContainerConfiguration;
+import net.form105.rm.base.config.SimpleConfiguration;
+import net.form105.rm.base.container.GlobalLookupContainer;
+import net.form105.rm.base.dao.XMLUserObjectDAO;
+import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.base.model.user.User;
+
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.form105.rm.base.Container;
-import com.form105.rm.base.ContainerConfiguration;
-import com.form105.rm.base.config.SimpleConfiguration;
-import com.form105.rm.base.container.GlobalLookupContainer;
-import com.form105.rm.base.dao.XMLUserObjectDAO;
-import com.form105.rm.base.lookup.EntryLookupRegistry;
-import com.form105.rm.base.model.user.User;
 
 /**
  * Checks the creation of a

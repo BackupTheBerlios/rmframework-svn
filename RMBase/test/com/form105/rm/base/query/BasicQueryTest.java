@@ -8,8 +8,8 @@ public class BasicQueryTest {
 	
 	@Test
 	public void createUserQuery() {
-		UserQuery query = new UserQuery();
-		query
+		
+		
 	}
 	
 

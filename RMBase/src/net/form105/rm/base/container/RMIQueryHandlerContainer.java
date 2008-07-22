@@ -32,12 +32,12 @@ public class RMIQueryHandlerContainer extends AbstractContainer implements Start
     }
 
     public void start() {
-        logger.info("Starting: Binding RMIServiceHandler to the registry.");
+        logger.info("Starting: Binding RMIQueryHandler to the registry.");
         try {
             Registry registry = rmiServerContainer.getRegistry();
             registry.rebind(rmiQueryHandler.getName(), rmiQueryHandler);
         } catch (RemoteException ex) {
-            logger.error("Error in rebinding the RMIServiceHandler to the registry", ex);
+            logger.error("Error in rebinding the RMIQueryHandler to the registry", ex);
         } 
         
         

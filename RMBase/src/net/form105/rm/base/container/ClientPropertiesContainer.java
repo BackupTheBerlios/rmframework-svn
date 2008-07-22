@@ -1,4 +1,4 @@
-/*
+ /*
  * PropertiesContainer.java, Oct 28, 2007, 4:58:11 PM
  * 
  * Copyright (c) 2007, form105 Heiko Kundlacz
@@ -22,7 +22,7 @@ import org.picocontainer.Startable;
  *
  * @author heiko
  */
-public class PropertiesContainer extends AbstractContainer implements Startable {
+public class ClientPropertiesContainer extends AbstractContainer implements Startable {
 	
 	public static Logger logger = Logger.getLogger(PropertiesContainer.class);
 
@@ -30,7 +30,7 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
     private Properties properties;
     
     
-    public PropertiesContainer() {
+    public ClientPropertiesContainer() {
     	super();
     	
     	
@@ -39,7 +39,7 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
     public void start() {
         try {
         	String path = Container.getInstance().getConfiguration().getConfigurationDirectory();
-        	String propFile = path + "server.properties.xml";
+        	String propFile = path + "client.properties.xml";
         	
             setProperties(new Properties(System.getProperties()));
             fiStream = new FileInputStream(propFile);
@@ -91,4 +91,5 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
             logger.info("System properties key: " + sKey + " -> result: " + props.getProperty(sKey));
         }
     }
+
 }

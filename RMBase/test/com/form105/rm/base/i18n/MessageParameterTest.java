@@ -5,10 +5,11 @@
 
 package com.form105.rm.base.i18n;
 
-import com.form105.rm.base.Container;
-import com.form105.rm.base.container.GlobalLookupContainer;
-import com.form105.rm.base.lookup.EntryLookupRegistry;
-import com.form105.rm.i18n.ExceptionMessage;
+import net.form105.rm.base.Container;
+import net.form105.rm.base.container.GlobalLookupContainer;
+import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.i18n.ExceptionMessage;
+
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
