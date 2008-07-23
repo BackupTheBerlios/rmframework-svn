@@ -14,23 +14,23 @@ import net.form105.rm.base.selection.ISelection;
  *
  * @param <T>
  */
-public abstract class AbstractFilterQuery<T> implements IQuery<T> {
+public class FilterQuery<T> implements IQuery<T> {
 	
 	private Collection<IFilter> filterList = new ArrayList<IFilter>();
 	private ISelection<T> selection;
 	
 	
-	public AbstractFilterQuery(Collection<IFilter> filterList, ISelection<T> selection) {
+	public FilterQuery(Collection<IFilter> filterList, ISelection<T> selection) {
 		this.selection = selection;
 		this.filterList = filterList;
 	}
 	
-	public AbstractFilterQuery(IFilter filter, ISelection<T> selection) {
+	public FilterQuery(IFilter filter, ISelection<T> selection) {
 		this.selection = selection;
 		filterList.add(filter);
 	}
 	
-	public AbstractFilterQuery(ISelection<T> selection) {
+	public FilterQuery(ISelection<T> selection) {
 		this.selection = selection;
 	}
 	
@@ -45,7 +45,7 @@ public abstract class AbstractFilterQuery<T> implements IQuery<T> {
 		
 		for (T object : result) {
 			boolean filtered = true;
-			for (IFilter filter : filterList) {
+			for (IFilter<T> filter : filterList) {
 					filtered = (filtered && filter.filter(object));
 					if (! filtered) break;
 			}
@@ -56,7 +56,7 @@ public abstract class AbstractFilterQuery<T> implements IQuery<T> {
 		return tempList;
 	}
 	
-	public void addFilter(IFilter filter) {
+	public void addFilter(IFilter<T> filter) {
 		filterList.add(filter);
 	}
 	

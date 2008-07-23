@@ -14,7 +14,7 @@ import net.form105.rm.base.selection.ISelection;
  *
  * @param <T>
  */
-public class DefaultFilterQuery<T> extends AbstractFilterQuery<T> {
+public class DefaultFilterQuery<T> extends FilterQuery<T> {
 
 	public DefaultFilterQuery(List<IFilter> filterList, ISelection<T> selection) {
 		super(filterList, selection);

@@ -21,7 +21,6 @@ public class UserByIdFilter<T extends User> implements IFilter<T> {
 
 	@Override
 	public boolean filter(T object) {
-		
 		String userId = object.getId().toString();
 		
 		if (userId.equals(id)) {

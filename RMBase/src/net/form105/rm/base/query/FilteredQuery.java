@@ -7,7 +7,7 @@ import net.form105.rm.base.query.filter.IFilter;
 import net.form105.rm.base.selection.ISelection;
 
 
-public class FilteredQuery<T> extends AbstractFilterQuery<T> {
+public class FilteredQuery<T> extends FilterQuery<T> {
 
 	public FilteredQuery(List<IFilter> filterList, ISelection<T> selection) {
 		super(filterList, selection);
