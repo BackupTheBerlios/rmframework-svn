@@ -5,6 +5,7 @@
 package net.form105.rm.base.model.xml;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import net.form105.rm.base.model.Resource;
@@ -12,7 +13,9 @@ import net.form105.rm.base.model.parameter.IntParameter;
 import net.form105.rm.base.model.parameter.StringParameter;
 
 import org.apache.log4j.Logger;
+import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.XPath;
 
 /**
  *
@@ -40,39 +43,29 @@ public class ResourceXMLConverter implements IXmlConverter<Resource> {
     }
 
     public void processChilds(Resource source, Element parent) {
-        List<Element> elements = parent.elements("parameter");
-        processStringParameterChild(source, parent, elements);
-        processIntParameterChild(source, parent, elements);
+        processStringParameterChild(source, parent);
+        processIntParameterChild(source, parent);
     }
 
-    private void processStringParameterChild(Resource resource, Element parent, List<Element> elements) {
-        logger.info("Loading string parameters: " + elements.size());
+    private void processStringParameterChild(Resource resource, Element parent) {
+    	XPath xpathSelector = DocumentHelper.createXPath("//parameter[@type='string']");
+        List<Element> elements = xpathSelector.selectNodes(parent);
         for (Element element : elements) {
-            if (element.attributeValue("type").equals("string")) {
-                StringParameter sParameter = new StringParameter();
-                if (sParameter instanceof IXmlLoadable) {
-                    childList.add(sParameter);
-                    sParameter.load(new StringParameterXMLConverter(), element);
-                    resource.addParameter(sParameter);
-                    logger.info("Parameter added");
-                }
-            }
-
+        	StringParameter sParameter = new StringParameter();
+        	sParameter.load(new StringParameterXMLConverter(), element);
+        	resource.addParameter(sParameter);
         }
+
     }
 
-    private void processIntParameterChild(Resource resource, Element parent, List<Element> elements) {
-        logger.info("Loading integer parameters: " + elements.size());
-        for (Element element : elements) {
-            if (element.attributeValue("type").equals("int")) {
-                IntParameter iParameter = new IntParameter();
-                if (iParameter instanceof IXmlLoadable) {
-                    childList.add(iParameter);
-                    iParameter.load(new IntParameterXMLConverter(), element);
-                    resource.addParameter(iParameter);
-                }
-            }
+    private void processIntParameterChild(Resource resource, Element parent) {
 
+    	XPath xpathSelector = DocumentHelper.createXPath("//parameter[@type='int']");
+        List<Element> elements = xpathSelector.selectNodes(parent);
+        for (Element element : elements) {
+        	IntParameter sParameter = new IntParameter();
+        	sParameter.load(new IntParameterXMLConverter(), element);
+        	resource.addParameter(sParameter);
         }
     }
 }

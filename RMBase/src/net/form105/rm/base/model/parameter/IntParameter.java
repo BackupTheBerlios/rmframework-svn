@@ -48,7 +48,7 @@ public class IntParameter extends AbstractParameter<Integer> implements IXmlLoad
     }
 
     public Object load(IXmlConverter converter, Element element) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return null;
     }
     
 }

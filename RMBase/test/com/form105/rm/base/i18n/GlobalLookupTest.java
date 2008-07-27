@@ -45,9 +45,9 @@ public class GlobalLookupTest {
     	
     	user = new User();
         user.setEMail("heiko.kundlacz@gmx.net");
-        user.setId(System.nanoTime());
+        user.setId(String.valueOf(System.nanoTime()));
         user.setSirName("Kundlacz");
-        user.setName("Heiko");
+        user.setFirstName("Heiko");
     	
     	SimpleConfiguration configuration = new SimpleConfiguration();
     	ContainerConfiguration containerConfig= new ContainerConfiguration(configuration);
@@ -67,9 +67,8 @@ public class GlobalLookupTest {
         XMLUserObjectDAO dao = (XMLUserObjectDAO) lookup.getEntry(XMLUserObjectDAO.class).getFirstItem();
         Collection<User> users = dao.findAll();
         for (User user : users) {
-        	
         	logger.info(user.getId());
-        	logger.info(user.getName());
+        	logger.info(user.getFirstName());
         	logger.info(user.getSirName());
         	logger.info(user.getEMail());
         }

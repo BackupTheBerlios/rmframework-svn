@@ -9,6 +9,8 @@
     <component-implementation class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
     <component-implementation class='net.form105.rm.base.container.GlobalLookupContainer'/>
     <component-implementation class='net.form105.rm.base.container.MessageContainer'/>
+    <component-implementation class='net.form105.rm.base.container.UserManagementContainer'/>
+    <component-implementation class='net.form105.rm.base.container.XMLModelLoaderContainer'/>
 </container>
 
 

@@ -5,7 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import net.form105.rm.base.service.IResult;
 
-public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHandler<T> {
+public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHandler {
 
 	public RMIQueryHandler() throws RemoteException {
 		super();
@@ -18,7 +18,7 @@ public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHan
 	private final String name = "QueryHandler";
 
 	@Override
-	public void executeQuery(IQuery<T> query) throws RemoteException {
+	public void executeQuery(IQuery query) throws RemoteException{
 		try {
 			result.setResultList(query.execute());
 		} catch (Exception ex) {
@@ -27,7 +27,7 @@ public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHan
 	}
 
 	@Override
-	public IResult<T> getResultList() throws RemoteException {
+	public IResult getResultList() throws RemoteException {
 		return result;
 	}
 	

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<model  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-   xmlns='http://xml.form105.net/schema/model'
-   xsi:schemaLocation='http://xml.form105.net/schema/model file:/home/heiko/development/projects/RMBase/config/model.xsd'>
+<model  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://xml.form105.net/schema/model file:/home/heiko/development/projects/RMBase/config/model.xsd'>
        <resource id="sample" type="muster" name="sampleName">
            <parameter id="sParameter" type="string" value="sParamValue" /> 
            <parameter id="iParameter" type="int" value="iParamValue" />

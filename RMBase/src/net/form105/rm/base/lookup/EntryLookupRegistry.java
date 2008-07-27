@@ -69,8 +69,13 @@ public class EntryLookupRegistry {
      * @return
      */
     public Object getContent(Class clazz) {
-        Object object = registry.get(clazz).getFirstItem();
-        return object;
+    	if (registry.get(clazz) == null) {
+    		logger.error("No object is registered with class: "+clazz.getSimpleName());
+    		return null;
+    	} else {
+    		Object object = registry.get(clazz).getFirstItem();
+    		return object;
+    	}
     }
     
     /**

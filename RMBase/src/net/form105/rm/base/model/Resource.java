@@ -20,4 +20,5 @@ public class Resource extends ParameterizedElement implements IXmlLoadable<Resou
         converter.convert(this, element);
         return this;
     }
+    
 }

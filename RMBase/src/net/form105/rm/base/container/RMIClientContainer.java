@@ -28,7 +28,7 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
     private int port;
     private String host;
     private IServiceHandler serviceHandler;
-    private IQueryHandler<Void> queryHandler;
+    private IQueryHandler queryHandler;
     private String serviceHandlerUrl;
     private String queryHandlerUrl;
 

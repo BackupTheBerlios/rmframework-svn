@@ -36,7 +36,7 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 		XMLUserObjectDAO dao = (XMLUserObjectDAO) lookupContainer.getLookupRegistry().getEntry(XMLUserObjectDAO.class);
 		if (dao.findAll().size() == 0) return;
 		User user = new User();
-		user.setId(1L);
+		user.setId("1");
 		user.setShortName("admin");
 		user.setPassword("admin");
 		dao.save(user);

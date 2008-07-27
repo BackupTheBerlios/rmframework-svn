@@ -5,11 +5,14 @@
 package net.form105.rm.base.container;
 
 import java.io.File;
+
+import net.form105.rm.base.util.xml.XMLModelLoader;
+import net.form105.rm.command.LoadXmlModelCommand;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.picocontainer.Disposable;
 import org.picocontainer.Startable;
 
 /**
@@ -17,7 +20,7 @@ import org.picocontainer.Startable;
  * 
  * @author Heiko Kundlacz
  */
-public class XMLModelLoaderContainer extends AbstractContainer implements Startable, Disposable {
+public class XMLModelLoaderContainer extends AbstractContainer implements Startable {
     
     PropertiesContainer propContainer;
     Document document;
@@ -28,7 +31,7 @@ public class XMLModelLoaderContainer extends AbstractContainer implements Starta
     }
 
     public void start() {
-        File xmlModelFile;
+        /*File xmlModelFile;
         String fileName = "";
         try {
 
@@ -36,21 +39,19 @@ public class XMLModelLoaderContainer extends AbstractContainer implements Starta
             if (fileName == null) {
                 fileName = "model.xml";
             }
-            xmlModelFile = new File("config/" + fileName);
+            xmlModelFile = new File("model/" + fileName);
             document = parse(xmlModelFile);
         } catch (DocumentException ex) {
             logger.error("Can't parse document: config/"+fileName);
             logger.error(ex, ex);
-        }
+        }*/
+    	
+    	loadModel();
         
     }
 
     public void stop() {
         
-    }
-
-    public void dispose() {
-
     }
     
     public Document parse(File file) throws DocumentException {
@@ -73,6 +74,11 @@ public class XMLModelLoaderContainer extends AbstractContainer implements Starta
      */
     public Element getRootElement() {
         return document.getRootElement();
+    }
+    
+    private void loadModel() {
+    	LoadXmlModelCommand command = new LoadXmlModelCommand();
+    	command.execute();
     }
     
 }

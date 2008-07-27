@@ -15,8 +15,10 @@ import net.form105.rm.base.model.Resource;
 import net.form105.rm.base.model.xml.ResourceXMLConverter;
 import net.form105.rm.base.util.xml.XMLModelLoader;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
-import org.dom4j.Element;
+import org.dom4j.XPath;
 
 /**
  *

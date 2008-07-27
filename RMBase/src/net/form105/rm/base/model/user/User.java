@@ -15,8 +15,9 @@ import javax.persistence.OneToMany;
 public class User implements Serializable {
 
     @Id
-    private Long id;
-    private String name;
+    private Long oid;
+    private String id;
+	private String firstName;
     private String sirName;
     private String eMail;
     private String password;
@@ -62,32 +63,48 @@ public class User implements Serializable {
      * Getting the id of the user
      * @return
      */
-    public Long getId() {
-        return id;
+    public Long getOid() {
+        return oid;
     }
+
+    /**
+     * Setting the oid of the user. That's an internal id for hibernate
+     * @param id
+     */
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+    
+    /**
+     * Getting the id of the user.
+     * @return
+     */
+    public String getId() {
+		return id;
+	}
 
     /**
      * Setting the id of the user
      * @param id
      */
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
     /**
      * Setting the name of the user
      * @return
      */
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
     /**
-     * Getting the name of the user
+     * Setting the name of the user
      * @param name
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     /**
