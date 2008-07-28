@@ -34,10 +34,7 @@ public class GlobalLookupTest {
 
 	@Before
 	public void setUp() throws Exception {
-        
-        // create a user
-        
-        
+
 	}
 
     @Test
@@ -61,7 +58,7 @@ public class GlobalLookupTest {
         userDAO = new XMLUserObjectDAO(xmlFile);
         lookup.addEntry(XMLUserObjectDAO.class, userDAO);
         
-        List<XMLUserObjectDAO> list = lookup.getEntryAsList(XMLUserObjectDAO.class);
+        List<XMLUserObjectDAO> list = (List<XMLUserObjectDAO>) lookup.getEntryAsList(XMLUserObjectDAO.class);
         userDAO.save(user);
         Assert.assertEquals(list.get(0), userDAO);
         XMLUserObjectDAO dao = (XMLUserObjectDAO) lookup.getEntry(XMLUserObjectDAO.class).getFirstItem();

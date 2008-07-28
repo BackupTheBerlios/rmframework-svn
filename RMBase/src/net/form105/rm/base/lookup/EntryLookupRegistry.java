@@ -21,14 +21,14 @@ import org.apache.log4j.Logger;
 public class EntryLookupRegistry {
     
     private Logger logger = Logger.getLogger(EntryLookupRegistry.class);
-    private Map<Class, IEntry> registry = new HashMap<Class, IEntry>();
+    private Map<Class<?>, IEntry> registry = new HashMap<Class<?>, IEntry>();
     
     /**
      * Add an object to the registry by its class
      * @param clazz
      * @param object
      */
-    public <T> void addEntry(Class clazz, T object) {
+    public void addEntry(Class<?> clazz, Object object) {
         IEntry entry;
         if (registry.get(clazz) == null) {
             entry = createDefaultEntry();
@@ -46,7 +46,7 @@ public class EntryLookupRegistry {
      * @param clazz
      * @return The entry which holds a list of objects
      */
-    public IEntry getEntry(Class clazz) {
+    public IEntry getEntry(Class<?> clazz) {
         if (registry.get(clazz) == null) {
             return createDefaultEntry();
         } else {
@@ -54,7 +54,7 @@ public class EntryLookupRegistry {
         }
     }
     
-    public List getEntryAsList(Class clazz) {
+    public List<?> getEntryAsList(Class<?> clazz) {
     	IEntry entry = registry.get(clazz);
     	return entry.getItems();
     }
@@ -68,7 +68,7 @@ public class EntryLookupRegistry {
      * @param clazz
      * @return
      */
-    public Object getContent(Class clazz) {
+    public Object getContent(Class<?> clazz) {
     	if (registry.get(clazz) == null) {
     		logger.error("No object is registered with class: "+clazz.getSimpleName());
     		return null;
@@ -82,7 +82,7 @@ public class EntryLookupRegistry {
      * Removes an entry from the registry
      * @param clazz
      */
-    public void removeEntry(Class clazz) {
+    public void removeEntry(Class<?> clazz) {
     	registry.remove(clazz);
     }
 

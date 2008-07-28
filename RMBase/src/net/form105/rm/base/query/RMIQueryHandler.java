@@ -2,10 +2,12 @@ package net.form105.rm.base.query;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import net.form105.rm.base.service.IResult;
 
-public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHandler {
+public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHandler<T> {
 
 	public RMIQueryHandler() throws RemoteException {
 		super();
@@ -18,16 +20,19 @@ public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHan
 	private final String name = "QueryHandler";
 
 	@Override
-	public void executeQuery(IQuery query) throws RemoteException{
+	public void executeQuery(IQuery<T> query) throws RemoteException{
+		
 		try {
-			result.setResultList(query.execute());
+			Collection<T> queryResult = query.execute();
+			result.setResultList(new ArrayList<T>(queryResult));
 		} catch (Exception ex) {
 			result.setException(ex);
 		}
+		
 	}
 
 	@Override
-	public IResult getResultList() throws RemoteException {
+	public IResult<T> getResultList() throws RemoteException {
 		return result;
 	}
 	

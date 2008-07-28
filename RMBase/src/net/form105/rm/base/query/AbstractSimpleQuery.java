@@ -1,13 +1,12 @@
 package net.form105.rm.base.query;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public abstract class AbstractSimpleQuery<T> implements IQuery<T> {
 	
 	
 
 	@Override
-	public abstract List<T> execute();
+	public abstract Collection<T> execute();
 
 }

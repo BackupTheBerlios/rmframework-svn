@@ -11,18 +11,18 @@ import java.util.List;
  *
  * @author Heiko Kundlacz
  */
-public interface ILookupListener<T> {
+public interface ILookupListener {
     
-    public void updateItem(T object);
+    public void updateItem(Object object);
     
-    public void updateItems(List<T> list);
+    public void updateItems(List<?> list);
     
-    public void removeItem(T object);
+    public void removeItem(Object object);
     
-    public void removeItems(List<T> list);
+    public void removeItems(List<?> list);
     
-    public void addItem(T object);
+    public void addItem(Object object);
     
-    public void addItems(List<T> list);
+    public void addItems(List<?> list);
     
 }

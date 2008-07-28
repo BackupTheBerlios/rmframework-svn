@@ -14,7 +14,7 @@ import net.form105.rm.base.exception.RMException;
  */
 public class AbstractEntry<T> implements IEntry<T> {
 
-    public Set<ILookupListener<T>> listeners = Collections.synchronizedSet(new HashSet<ILookupListener<T>>());
+    public Set<ILookupListener> listeners = Collections.synchronizedSet(new HashSet<ILookupListener>());
     public List<T> lookupItems = Collections.synchronizedList(new ArrayList<T>());
 
     public List<T> getItems() {
@@ -29,11 +29,11 @@ public class AbstractEntry<T> implements IEntry<T> {
         }
     }
 
-    public void addListener(ILookupListener<T> listener) {
+    public void addListener(ILookupListener listener) {
         listeners.add(listener);
     }
 
-    public void removeListener(ILookupListener<T> listener) {
+    public void removeListener(ILookupListener listener) {
         listeners.remove(listener);
     }
 
@@ -41,7 +41,7 @@ public class AbstractEntry<T> implements IEntry<T> {
         removeItem(object);
         addItem(object);
         if (listeners.size() > 0) {
-            for (ILookupListener<T> listener : listeners) {
+            for (ILookupListener listener : listeners) {
                 listener.updateItem(object);
             }
         }
@@ -51,16 +51,16 @@ public class AbstractEntry<T> implements IEntry<T> {
         removeItems(list);
         addItems(list);
         if (listeners.size() > 0) {
-            for (ILookupListener<T> listener : listeners) {
+            for (ILookupListener listener : listeners) {
                 listener.updateItems(list);
             }
         }
     }
 
-    public void removeItem(T object) {
+    public void removeItem(Object object) {
         lookupItems.remove(object);
         if (listeners.size() > 0) {
-            for (ILookupListener<T> listener : listeners) {
+            for (ILookupListener listener : listeners) {
                 listener.removeItem(object);
             }
         }
@@ -69,7 +69,7 @@ public class AbstractEntry<T> implements IEntry<T> {
     public void removeItems(List<T> list) {
         lookupItems.removeAll(list);
         if (listeners.size() > 0) {
-            for (ILookupListener<T> listener : listeners) {
+            for (ILookupListener listener : listeners) {
                 listener.removeItems(list);
             }
         }
@@ -78,7 +78,7 @@ public class AbstractEntry<T> implements IEntry<T> {
     public void addItem(T object) {
         lookupItems.add(object);
         if (listeners.size() > 0) {
-            for (ILookupListener<T> listener : listeners) {
+            for (ILookupListener listener : listeners) {
                 listener.addItem(object);
             }
         }
@@ -87,7 +87,7 @@ public class AbstractEntry<T> implements IEntry<T> {
     public void addItems(List<T> list) {
         lookupItems.addAll(list);
         if (listeners.size() > 0) {
-            for (ILookupListener<T> listener : listeners) {
+            for (ILookupListener listener : listeners) {
                 listener.addItems(list);
             }
         }

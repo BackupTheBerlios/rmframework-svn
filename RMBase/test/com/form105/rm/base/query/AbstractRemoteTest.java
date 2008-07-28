@@ -8,28 +8,38 @@ import net.form105.rm.base.config.SimpleClientConfiguration;
 import net.form105.rm.base.container.RMIClientContainer;
 import net.form105.rm.base.query.IQuery;
 import net.form105.rm.base.query.IQueryHandler;
+import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.IService;
 import net.form105.rm.base.service.IServiceHandler;
+import net.form105.rm.base.service.ServiceResult;
+import net.form105.rm.base.service.Status;
 
 import org.apache.log4j.Logger;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
-public class AbstractRemoteTest {
+public class AbstractRemoteTest<T> {
 	
 	public static Logger logger = Logger.getLogger(AbstractRemoteTest.class);
 	
-	RMIClientContainer clientContainer;
+	private static RMIClientContainer clientContainer;
 	
 	public AbstractRemoteTest() {
+		
+	}
+
+	
+	@BeforeClass
+	public static void setupContainer() {
 		logger.info("Configure Container and start ...");
 		ContainerConfiguration configuration = new ContainerConfiguration(new SimpleClientConfiguration());
         Container.getInstance().load(configuration);
-        
         clientContainer = (RMIClientContainer) Container.getContainer().getComponent(RMIClientContainer.class);
 	}
 	
 
 	
-	protected IQueryHandler getQueryHandler() {
+	protected IQueryHandler<T> getQueryHandler() {
 		return clientContainer.getQueryHandler();
 	}
 	
@@ -37,19 +47,25 @@ public class AbstractRemoteTest {
 		return clientContainer.getServiceHandler();
 	}
 	
-	protected void doService(IService service) {
+	protected ServiceResult<T> doService(IService service) {
 		try {
 			getServiceHandler().executeService(service);
+			return getServiceHandler().getResult();
 		} catch (RemoteException re) {
 			logger.error(re, re);
+			ServiceResult<T> result = new ServiceResult<T>();
+			result.setStatus(Status.FAIL);
+			return result;
 		}
 	}
 	
-	protected void doQuery(IQuery query) {
+	protected  IResult<T> doQuery(IQuery<T> query) {
 		try {
 			getQueryHandler().executeQuery(query);
+			return getQueryHandler().getResultList();
 		} catch (RemoteException re) {
 			logger.error(re, re);
+			return null;
 		}
 	}
 	

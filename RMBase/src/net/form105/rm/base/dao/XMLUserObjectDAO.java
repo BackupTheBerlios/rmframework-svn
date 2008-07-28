@@ -64,7 +64,7 @@ public class XMLUserObjectDAO implements IBasicDao<User, String> {
 
 	@Override
 	public synchronized void save(User user) {
-		userList.addUser(user.getId().toString(), user);
+		userList.addUser(user.getId(), user);
 		write();
 		
 	}
