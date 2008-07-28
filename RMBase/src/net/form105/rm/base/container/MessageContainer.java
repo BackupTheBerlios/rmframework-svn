@@ -11,9 +11,11 @@ import net.form105.rm.i18n.ExceptionMessage;
 import org.picocontainer.Startable;
 
 /**
+ * This container is used to save exceptions. The exceptions are saved in the lookup. 
  *
  * @author heiko
  */
+//TODO: Create a ExceptionMessage which is the key for the lookup
 public class MessageContainer extends AbstractContainer implements Startable {
     
     private EntryLookupRegistry lookup;

@@ -34,7 +34,7 @@ public class RMIServiceHandler extends UnicastRemoteObject implements IServiceHa
         result.setStatus(Status.SUCCESS);
         } catch (Exception ex) {
             result.setStatus(Status.FAIL);
-            logger.error(ex, ex);
+            logger.error(ex);
         }
         
     }

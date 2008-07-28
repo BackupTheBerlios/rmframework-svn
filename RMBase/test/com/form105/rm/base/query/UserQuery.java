@@ -11,6 +11,7 @@ import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ServiceResult;
 import net.form105.rm.base.service.Status;
 import net.form105.rm.service.CreateUserService;
+import net.form105.rm.service.DeleteUserService;
 
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -22,7 +23,7 @@ public class UserQuery extends AbstractRemoteTest<User> {
 	
 	@Test
 	public void addUser() {
-		logger.info("Adding user");
+		logger.info("Test: Adding user with id = 9999");
 		CreateUserService service = new CreateUserService();
 		CreateUserService.ServiceArgument arg = service.getArgument();
 		arg.email = "testuser@company.org";
@@ -32,12 +33,14 @@ public class UserQuery extends AbstractRemoteTest<User> {
 		arg.id = "9999";
 		ServiceResult<User> result = doService(service);
 		assertTrue(result.getStatus() == Status.SUCCESS);
-		
+		result = doService(service);
+		logger.info("Test: Adding user with id = 9999 again with failed result");
+		assertTrue(result.getStatus() == Status.FAIL);
 	}
 
 	@Test
 	public void getUsers() {
-		logger.info("Getting user");
+		logger.info("Test: Getting user");
 		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
 		IResult<User> result = doQuery(query);
 		Collection<User> users = result.getResultList();
@@ -45,6 +48,16 @@ public class UserQuery extends AbstractRemoteTest<User> {
 			logger.info("Found users: #"+users.size());
 		}
 		assertTrue(users.size() > 0);
+	}
+	
+	@Test
+	public void deleteUser() {
+		logger.info("Test: Deleting user");
+		DeleteUserService service = new DeleteUserService();
+		DeleteUserService.ServiceArgument arg = service.getArgument();
+		arg.id = "9999";
+		ServiceResult result = doService(service);
+		assertTrue(result.getStatus() == Status.SUCCESS);
 	}
 	
 	

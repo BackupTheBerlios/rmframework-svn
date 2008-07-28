@@ -6,11 +6,12 @@
  */
 package net.form105.rm.base.exception;
 
-import java.util.List;
+import net.form105.rm.i18n.IMessage;
+
 
 public class RMException extends RuntimeException {
 
-    private String messageKey;
+	private static final long serialVersionUID = 1L;
 
     public RMException(String defaultMessage) {
         super(defaultMessage);
@@ -19,9 +20,12 @@ public class RMException extends RuntimeException {
     public RMException(String defaultMessage, Throwable cause) {
         super(defaultMessage, cause);
     }
-
-    public RMException(String defaultMessage, String messageKey, List<String> properties) {
-        super(defaultMessage);
-        this.messageKey = messageKey;
+    
+    public RMException(IMessage message, String key, String[] params, Throwable cause) {
+    	super(message.getMessage(key, params), cause);
+    }
+    
+    public RMException(IMessage message, String key, String[] params) {
+    	super(message.getMessage(key, params));
     }
 }
