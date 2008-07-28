@@ -1,4 +1,4 @@
-package com.form105.rm.base.query;
+package com.form105.rm.base.user;
 
 import static junit.framework.Assert.assertTrue;
 
@@ -17,9 +17,11 @@ import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Test;
 
-public class UserQuery extends AbstractRemoteTest<User> {
+import com.form105.rm.base.query.AbstractRemoteTest;
 
-	public static Logger logger = Logger.getLogger(UserQuery.class);
+public class UserManagementTest extends AbstractRemoteTest<User> {
+
+	public static Logger logger = Logger.getLogger(UserManagementTest.class);
 	
 	@Test
 	public void addUser() {
