@@ -47,7 +47,7 @@ public class AbstractRemoteTest<T> {
 		return clientContainer.getServiceHandler();
 	}
 	
-	protected ServiceResult<T> doService(IService service) {
+	protected IResult<T> doService(IService service) {
 		try {
 			getServiceHandler().executeService(service);
 			return getServiceHandler().getResult();

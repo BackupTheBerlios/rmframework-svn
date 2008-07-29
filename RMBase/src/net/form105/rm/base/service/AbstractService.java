@@ -9,11 +9,13 @@ import org.apache.log4j.Logger;
 
 public abstract class AbstractService implements IService {
     
-    protected static Logger logger = Logger.getLogger(AbstractService.class);
+	private static final long serialVersionUID = 1L;
+
+	protected static Logger logger = Logger.getLogger(AbstractService.class);
 
     private Exception[] exceptions;
     
-    private IResult result;
+    private IResult result = new ServiceResult();
     
     public IResult getResult() {
         return result;
@@ -33,7 +35,7 @@ public abstract class AbstractService implements IService {
         this.exceptions = exceptions;
     }
     
-    protected void setResult(IResult result) {
+    public void setResult(IResult result) {
         this.result = result;
     }
     

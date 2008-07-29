@@ -11,13 +11,14 @@ import java.util.List;
 
 public class ServiceResult<T> extends AbstractResult<T> {
     
-    private List<T> resultList = new ArrayList<T>();
+	private static final long serialVersionUID = 1L;
+	private List<T> resultList = new ArrayList<T>();
     
     public ServiceResult() {
         setStatus(Status.UNDEFINED);
     }
 
-    public List getResultList() {
+    public List<T> getResultList() {
         return resultList;
     }
     

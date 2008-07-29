@@ -12,16 +12,16 @@ import net.form105.rm.base.selection.ISelection;
  * or the super implementation
  * @author hk
  *
- * @param <T>
+ * @param <T> Type of object get back by the query
  */
 public class DefaultFilterQuery<T> extends FilterQuery<T> {
 
-	public DefaultFilterQuery(List<IFilter> filterList, ISelection<T> selection) {
-		super(filterList, selection);
+	public DefaultFilterQuery(ISelection<T> selection, List<IFilter> filterList) {
+		super(selection, filterList);
 	}
 
-	public DefaultFilterQuery(IFilter filter, ISelection<T> selection) {
-		super(filter, selection);
+	public DefaultFilterQuery(ISelection<T> selection, IFilter filter) {
+		super(selection, filter);
 	}
 
 	@Override

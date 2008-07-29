@@ -16,16 +16,18 @@ import net.form105.rm.base.selection.ISelection;
  */
 public class FilterQuery<T> implements IQuery<T> {
 	
+
+	private static final long serialVersionUID = 1L;
 	private Collection<IFilter> filterList = new ArrayList<IFilter>();
 	private ISelection<T> selection;
 	
 	
-	public FilterQuery(Collection<IFilter> filterList, ISelection<T> selection) {
+	public FilterQuery(ISelection<T> selection, Collection<IFilter> filterList) {
 		this.selection = selection;
 		this.filterList = filterList;
 	}
 	
-	public FilterQuery(IFilter filter, ISelection<T> selection) {
+	public FilterQuery(ISelection<T> selection, IFilter filter) {
 		this.selection = selection;
 		filterList.add(filter);
 	}

@@ -14,6 +14,9 @@
      <void property="id"> 
       <string>1001</string> 
      </void> 
+     <void property="password"> 
+      <string>admin</string> 
+     </void> 
      <void property="sirName"> 
       <string>Kundlacz</string> 
      </void> 

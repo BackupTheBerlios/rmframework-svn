@@ -20,6 +20,7 @@ public class CreateUserService extends AbstractService {
 		public String name;
 		public String firstName;
 		public String shortName;
+		public String password;
     }
 
 	@Override
@@ -38,6 +39,7 @@ public class CreateUserService extends AbstractService {
 		user.setId(argument.id);
 		user.setFirstName(argument.firstName);
 		user.setSirName(argument.name);
+		user.setPassword(argument.password);
 		
 		dao.save(user);
 	}

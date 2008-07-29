@@ -13,6 +13,8 @@ public interface IService extends Serializable {
     
     public IResult getResult();
     
+    public void setResult(IResult result);
+    
     public String getServiceName();
     
     public Exception[] getExceptions();

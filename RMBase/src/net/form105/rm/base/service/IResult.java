@@ -11,6 +11,10 @@ import java.io.Serializable;
 import java.util.Collection;
 
 public interface IResult<T> extends Serializable {
+	
+	public Exception getException();
+	
+	public void setException(Exception ex);
 
     public Status getStatus();
     
