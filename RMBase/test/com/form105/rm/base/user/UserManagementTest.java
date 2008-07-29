@@ -48,18 +48,29 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 		Collection<User> users = result.getResultList();
 		if (users != null) {
 			logger.info("Found users: #"+users.size());
+			for (User user : users) {
+				if (user.getId().equals("9999")) {
+					logger.info("Test: Found user with id = 9999");
+					assertTrue(true);
+				}
+			}
 		}
 		assertTrue(users.size() > 0);
 	}
 	
 	@Test
 	public void deleteUser() {
-		logger.info("Test: Deleting user");
+		logger.info("Test: Deleting user with id = 9999");
 		DeleteUserService service = new DeleteUserService();
 		DeleteUserService.ServiceArgument arg = service.getArgument();
 		arg.id = "9999";
-		ServiceResult result = doService(service);
+		ServiceResult<User> result = doService(service);
 		assertTrue(result.getStatus() == Status.SUCCESS);
+		
+		logger.info("Test: Deleting user with id = 9999 again with failed result");
+		result = doService(service);
+		assertTrue(result.getStatus() == Status.FAIL);
+		logger.info(result.getException());
 	}
 	
 	
