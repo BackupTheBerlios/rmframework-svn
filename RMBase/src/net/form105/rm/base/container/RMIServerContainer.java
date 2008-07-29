@@ -6,10 +6,13 @@
  */
 package net.form105.rm.base.container;
 
+import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Properties;
+
 import org.picocontainer.Startable;
 
 /**
@@ -42,6 +45,12 @@ public class RMIServerContainer extends AbstractContainer implements Startable {
     }
 
     public void stop() {
+    	logger.info("Stopping RMIServerContainer");
+    	try {
+			UnicastRemoteObject.unexportObject(registry, true);
+		} catch (NoSuchObjectException e) {
+			e.printStackTrace();
+		}
         
     }
 

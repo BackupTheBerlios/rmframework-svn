@@ -2,6 +2,7 @@ package net.form105.rm.server.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
@@ -31,7 +32,7 @@ public class UserAuthorizationService extends AbstractService {
 	public void execute() throws Exception {
 		XMLUserObjectDAO dao = (XMLUserObjectDAO) Agent.getLookup().getContent(XMLUserObjectDAO.class);
 		User user = dao.findById(argument.userId);
-		Collection<User> resultList = new ArrayList<User>();
+		List<User> resultList = new ArrayList<User>();
 		
 		if (user != null && user.getPassword().equals(argument.password)) {
 			resultList.add(user);

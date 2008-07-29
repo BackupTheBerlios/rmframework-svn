@@ -10,6 +10,6 @@ public interface IQueryHandler<T> extends Remote {
 	
 	public void executeQuery(IQuery<T> query) throws RemoteException;
 	
-	public IResult<T> getResultList() throws RemoteException;
+	public IResult<T> getResult() throws RemoteException;
 
 }

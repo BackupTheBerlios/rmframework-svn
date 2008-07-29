@@ -7,7 +7,7 @@
 
 package net.form105.rm.base.service;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -17,7 +17,7 @@ public abstract class AbstractResult<T> implements IResult<T> {
     
 	private static final long serialVersionUID = 1L;
 	private Status status;
-    private Collection<T> resultList;
+    private List<T> resultList;
     private Exception exception;
 
 	/**
@@ -36,11 +36,11 @@ public abstract class AbstractResult<T> implements IResult<T> {
         this.status = status;
     }
     
-    public Collection<T> getResultList() {
+    public List<T> getResultList() {
     	return resultList;
     }
     
-    public void setResultList(Collection<T> resultList) {
+    public void setResultList(List<T> resultList) {
     	this.resultList = resultList;
     }
     

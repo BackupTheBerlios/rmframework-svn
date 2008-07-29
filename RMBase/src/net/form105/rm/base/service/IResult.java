@@ -8,7 +8,7 @@
 package net.form105.rm.base.service;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 public interface IResult<T> extends Serializable {
 	
@@ -20,8 +20,8 @@ public interface IResult<T> extends Serializable {
     
     public void setStatus(Status status);
     
-    public Collection<T> getResultList();
+    public List<T> getResultList();
     
-    public void setResultList(Collection<T> resultList);
+    public void setResultList(List<T> resultList);
 
 }

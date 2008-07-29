@@ -62,8 +62,8 @@ public class AbstractRemoteTest<T> {
 	protected  IResult<T> doQuery(IQuery<T> query) {
 		try {
 			getQueryHandler().executeQuery(query);
-			return getQueryHandler().getResultList();
-		} catch (RemoteException re) {
+			return getQueryHandler().getResult();
+		} catch (Exception re) {
 			logger.error(re, re);
 			return null;
 		}
