@@ -30,7 +30,7 @@ public class UserLinkPanel extends Panel<Void> {
 		if (session.getAuthentication() == null) {
 			return false;
 		}
-		return session.getAuthentication().isAuthenticated() == AuthenticationState.AUTHORIZED;
+		return session.getAuthentication().isAuthenticated() == AuthenticationState.AUTHENTICATED;
 	}
 
 }

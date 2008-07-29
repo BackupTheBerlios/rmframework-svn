@@ -8,6 +8,6 @@ import java.io.Serializable;
  *
  */
 public enum AuthenticationState implements Serializable {
-	AUTHORIZED,
-	NOTAUTHORIZED;
+	AUTHENTICATED,
+	NOTAUTHENTICATED;
 }

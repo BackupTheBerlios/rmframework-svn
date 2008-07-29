@@ -30,6 +30,6 @@ public class LoginLinkPanel extends Panel<Object> {
 	
 	public boolean isVisible() {
 		ApplicationSession session = (ApplicationSession) getSession();
-		return session.getAuthentication().isAuthenticated() == AuthenticationState.NOTAUTHORIZED;
+		return session.getAuthentication().isAuthenticated() == AuthenticationState.NOTAUTHENTICATED;
 	}
 }

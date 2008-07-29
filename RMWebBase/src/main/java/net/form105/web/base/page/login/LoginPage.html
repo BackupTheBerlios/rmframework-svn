@@ -3,7 +3,7 @@
 
 
 <wicket:head>
-	<link wicket:id="styleSheet" rel="Stylesheet" type="text/css" href="styles/main.css"/>
+	<link wicket:id="styleSheet" />
 </wicket:head>
 
 <body>
@@ -13,7 +13,7 @@
 			<div class="loginBorderBox">	
 	
 			<div id="loginImage">
-				<img src="loginLogo.png" wicket:id="loginLogo" alt="login image"></img>
+				<img src="img/loginLogo.png" wicket:id="loginLogo" alt="login image"></img>
 			</div>
 			<form wicket:id="loginForm">
 				<div class="loginForm">
@@ -21,7 +21,7 @@
 					<table>
 						<tr>
 							<td><label class="loginLabel" for="username"><wicket:message key="label.username" /></label></td>
-							<td><input class="textfield" type="text" wicket:id="username" id="username" value="" size="35" /></td>
+							<td><input class="textfield" type="text" wicket:id="userId" id="username" value="" size="35" /></td>
 						</tr>
 				
 						<tr>

@@ -25,5 +25,23 @@ public interface IProvidedUser {
 	 * @return
 	 */
 	public String getPassword();
+	
+	/**
+	 * Set a unique user id
+	 * @param userId
+	 */
+	public void setUserId(String userId);
+
+	/**
+	 * Set a password
+	 * @param password
+	 */
+	public void setPassword(String password);
+
+	/**
+	 * Set a label for the user
+	 * @param label
+	 */
+	public void setLabel(String label);
 
 }

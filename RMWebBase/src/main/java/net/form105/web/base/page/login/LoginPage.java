@@ -1,9 +1,11 @@
 package net.form105.web.base.page.login;
 
-
-import net.form105.web.base.model.DefaultLoginModel;
+import net.form105.web.base.HomePage;
+import net.form105.web.base.action.AuthenticationAction;
+import net.form105.web.base.component.login.authorize.DefaultUser;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -17,64 +19,78 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 
 /**
- * @author heiko
+ * @author hk
  */
 public class LoginPage extends WebPage<Void> {
-	
+
 	public static Logger logger = Logger.getLogger(LoginPage.class);
-	
+
 	private static final long serialVersionUID = 1L;
+
+	private DefaultUser user = new DefaultUser();
 
 	public LoginPage() {
 
 		LoginForm loginForm = new LoginForm("loginForm");
-		
 		loginForm.add(createLoginButton("saveButton", "button.login"));
-		
+
 		add(loginForm);
 		add(new Image<String>("loginLogo"));
-		
-		add(new StyleSheetReference("styleSheet", this.getClass(), "LoginPage.css"));
-		
+		add(new StyleSheetReference("styleSheet", new ResourceReference(LoginPage.class, "LoginPage.css")));
+
 		FeedbackPanel feedback = new FeedbackPanel("warning.input");
 		add(feedback);
-		
-		
+
 	}
-	
-	protected class LoginForm extends Form {
 
-        public LoginForm(String name) {
-            super(name, new CompoundPropertyModel<Void>(new DefaultLoginModel()));
-            
-            RequiredTextField<String> personName = new RequiredTextField<String>("username");
-            personName.setLabel(new Model<String>("usernameField"));
-            add(personName);
+	public final ResourceReference getMainStyle() {
+		return new ResourceReference(LoginPage.class, "LoginPage.css");
+	}
 
-            PasswordTextField firstName = new PasswordTextField("password");
-            firstName.setLabel(new Model("passwordField"));
-            add(firstName);
+	protected class LoginForm extends Form<Void> {
 
-        }
+		private static final long serialVersionUID = 1L;
 
-        protected void onSubmit() {
-            logger.info("Form.onSubmit executed");
-        }
-        
-    }
-	
-	public Button createLoginButton(String id, String resource) {
-		Button button = new Button(id, new ResourceModel(resource)) {
+		public LoginForm(String name) {
+			super(name, new CompoundPropertyModel<Void>(user));
+
+			RequiredTextField<String> personName = new RequiredTextField<String>("userId");
+			personName.setLabel(new Model<String>("usernameField"));
+			add(personName);
+
+			PasswordTextField firstName = new PasswordTextField("password");
+			firstName.setLabel(new Model<String>("passwordField"));
+			add(firstName);
+
+		}
+
+		protected void onSubmit() {
+			AuthenticationAction action = new AuthenticationAction(this.getPage(), user.getUserId(), user.getPassword());
+			action.doAction();
+		}
+
+	}
+
+	/**
+	 * Creating the button to check the login
+	 * 
+	 * @param id
+	 *            The wicket button id
+	 * @param resource
+	 *            The resource bundle key which holds the label of the button
+	 * @return The wicket button component
+	 */
+	public Button<String> createLoginButton(String id, String resource) {
+		Button<String> button = new Button<String>(id, new ResourceModel(resource)) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				logger.info("login button pressed");
+				
 			}
 		};
 		return button;
 	}
 
 }
-

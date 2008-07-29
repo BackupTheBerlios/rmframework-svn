@@ -23,10 +23,11 @@ public class Authentication implements IAuthentication {
 	public AuthenticationState isAuthenticated() {
 		
 		if (user instanceof NoUser) {
-			return AuthenticationState.NOTAUTHORIZED;
+			return AuthenticationState.NOTAUTHENTICATED;
 		}
 		
-		return AuthenticationState.AUTHORIZED;
+		return AuthenticationState.AUTHENTICATED;
 		
 	}
+
 }

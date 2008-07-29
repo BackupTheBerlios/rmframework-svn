@@ -27,4 +27,16 @@ public class NoUser implements IProvidedUser, Serializable {
 		return null;
 	}
 
+	@Override
+	public void setLabel(String label) {
+	}
+
+	@Override
+	public void setPassword(String password) {
+	}
+
+	@Override
+	public void setUserId(String userId) {
+	}
+
 }

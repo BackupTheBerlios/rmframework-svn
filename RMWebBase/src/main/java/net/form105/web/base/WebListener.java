@@ -7,23 +7,20 @@ import javax.servlet.ServletContextListener;
 
 import net.form105.rm.base.Container;
 import net.form105.rm.base.ContainerConfiguration;
-import net.form105.rm.base.IConfiguration;
-import net.form105.rm.base.config.ConfigurationType;
+import net.form105.rm.base.config.WebConfiguration;
 
 import org.apache.log4j.Logger;
 
 
-public class WebListener implements ServletContextListener, IConfiguration {
+public class WebListener extends WebConfiguration implements ServletContextListener {
 	
 	public static Logger logger = Logger.getLogger(WebListener.class);
-	
-	public String configurationPath;
-	public String containerFile = "container.xml";
-	public ContainerConfiguration configuration;
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
+		logger.info("Destroying context ....");
 		Container.getInstance().unload();
+		
 	}
 
 	@Override
@@ -32,27 +29,12 @@ public class WebListener implements ServletContextListener, IConfiguration {
 		// All other system wide configuration should be loaded by a registered class
 		// in the pico container
 		String realPath = event.getServletContext().getRealPath("/");
-		configurationPath = realPath + "WEB-INF" + File.separator + "config/";
-		configuration = new ContainerConfiguration(this);
+		super.setConfigurationPath(realPath + "WEB-INF" + File.separator + "config/");
+		super.setConfiguration(new ContainerConfiguration(this));
 		
 		// Loading pico container
 		Container.getInstance().load(configuration);
 		
-	}
-
-	@Override
-	public String getConfigurationPath() {
-		return configurationPath;
-	}
-
-	@Override
-	public String getContainerFile() {
-		return containerFile;
-	}
-
-	@Override
-	public ConfigurationType getType() {
-		return ConfigurationType.WEB;
 	}
 
 }
