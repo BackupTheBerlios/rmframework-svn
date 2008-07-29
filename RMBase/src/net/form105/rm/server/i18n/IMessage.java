@@ -1,4 +1,4 @@
-package net.form105.rm.i18n;
+package net.form105.rm.server.i18n;
 
 public interface IMessage {
 	

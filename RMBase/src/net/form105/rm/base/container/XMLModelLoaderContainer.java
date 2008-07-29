@@ -7,7 +7,7 @@ package net.form105.rm.base.container;
 import java.io.File;
 
 import net.form105.rm.base.util.xml.XMLModelLoader;
-import net.form105.rm.command.LoadXmlModelCommand;
+import net.form105.rm.server.command.LoadXmlModelCommand;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;

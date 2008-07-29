@@ -1,6 +1,6 @@
 package com.form105.rm.base.service;
 
-import net.form105.rm.service.CreateUserService;
+import net.form105.rm.server.service.CreateUserService;
 
 import org.junit.Test;
 

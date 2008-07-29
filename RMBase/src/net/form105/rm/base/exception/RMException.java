@@ -6,7 +6,7 @@
  */
 package net.form105.rm.base.exception;
 
-import net.form105.rm.i18n.IMessage;
+import net.form105.rm.server.i18n.IMessage;
 
 
 public class RMException extends RuntimeException {

@@ -1,4 +1,4 @@
-package net.form105.rm.selection;
+package net.form105.rm.server.selection;
 
 import java.util.Collection;
 

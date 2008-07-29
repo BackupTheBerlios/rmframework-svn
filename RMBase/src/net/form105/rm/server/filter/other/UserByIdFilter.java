@@ -1,4 +1,4 @@
-package net.form105.rm.filter.other;
+package net.form105.rm.server.filter.other;
 
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.filter.IFilter;

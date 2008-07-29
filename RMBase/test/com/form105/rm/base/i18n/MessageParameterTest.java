@@ -8,7 +8,7 @@ package com.form105.rm.base.i18n;
 import net.form105.rm.base.Container;
 import net.form105.rm.base.container.GlobalLookupContainer;
 import net.form105.rm.base.lookup.EntryLookupRegistry;
-import net.form105.rm.i18n.ExceptionMessage;
+import net.form105.rm.server.i18n.ExceptionMessage;
 
 import org.apache.log4j.Logger;
 import org.junit.After;

@@ -10,8 +10,8 @@ import net.form105.rm.base.query.FindAllDaoQuery;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ServiceResult;
 import net.form105.rm.base.service.Status;
-import net.form105.rm.service.CreateUserService;
-import net.form105.rm.service.DeleteUserService;
+import net.form105.rm.server.service.CreateUserService;
+import net.form105.rm.server.service.DeleteUserService;
 
 import org.apache.log4j.Logger;
 import org.junit.After;

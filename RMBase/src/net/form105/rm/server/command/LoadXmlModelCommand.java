@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package net.form105.rm.command;
+package net.form105.rm.server.command;
 
 import java.util.ArrayList;
 import java.util.List;

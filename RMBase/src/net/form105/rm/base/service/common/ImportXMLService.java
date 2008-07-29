@@ -9,7 +9,7 @@ import java.io.Serializable;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.service.AbstractService;
 import net.form105.rm.base.service.IArgument;
-import net.form105.rm.command.LoadXmlModelCommand;
+import net.form105.rm.server.command.LoadXmlModelCommand;
 
 /**
  *
