@@ -13,9 +13,9 @@ public class AbstractMenuPanel extends Panel<Void> {
 	
 	private List<INavigationItem> navList = new ArrayList<INavigationItem>();
 
-	public AbstractMenuPanel(String id) {
+	public AbstractMenuPanel(String id, String listId) {
 		super(id);
-		MainMenuListView listView = new MainMenuListView("mainNavList", navList);
+		MainMenuListView listView = new MainMenuListView(listId, navList);
 		add(listView);
 	}
 	

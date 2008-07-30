@@ -11,8 +11,8 @@ public class MainMenuPanel extends AbstractMenuPanel {
 	
 	public static Logger logger = Logger.getLogger(MainMenuPanel.class);
 
-	public MainMenuPanel(String id) {
-		super(id);
+	public MainMenuPanel(String id, String listId) {
+		super(id, listId);
 		addNavigationItem(new DefaultNavigationItem("navHome", HomePage.class, "menu.mainNav.home"));
 	}
 }

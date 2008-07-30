@@ -11,7 +11,7 @@ public class MainNavigationPanel extends Panel<Void>{
 	
 	public MainNavigationPanel(String id) {
 		super(id);
-		add(new MainMenuPanel("panel.mainMenu"));
+		add(new MainMenuPanel("panel.mainMenu", "mainNavList"));
 		add(new UserSwitchPanel("panel.userSwitch"));
 	}
 

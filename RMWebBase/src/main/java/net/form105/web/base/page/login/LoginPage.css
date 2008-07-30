@@ -2,12 +2,13 @@
 
 #loginImage {
 	float: left;
-	padding: 20px;
+	padding: 25px;
 }
 
 .loginForm {
 	height: 128px;
 	margin-top: 50px;
+	font-weight: bold;
 }
 
 
@@ -17,7 +18,7 @@
 	margin-right: auto;
 }
 
-div.loginBorderBox {
+.loginBorderBox {
 	border: 2px solid #c6e1af;
 	height: 170px;
 }
@@ -31,8 +32,7 @@ div.loginBorderBox {
 	color: #605016;
 	background-color: #dde9af;
 	border: solid 1px #aaaaaa;
-	text-decoration: bold;
-	font-weight: bolder;
+
 }
 
 input.textfield {
@@ -48,9 +48,8 @@ input.textfield {
 
 .messageBox {
 text-align: left;
-font-size: 12px;
+font-size: 13px;
 color: #605016;
-font-weight: bold;
 padding-left: 150px;
 }
 

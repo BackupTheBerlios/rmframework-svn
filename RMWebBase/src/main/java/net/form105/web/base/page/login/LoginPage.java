@@ -1,12 +1,11 @@
 package net.form105.web.base.page.login;
 
-import net.form105.web.base.HomePage;
 import net.form105.web.base.action.AuthenticationAction;
 import net.form105.web.base.component.login.authorize.DefaultUser;
+import net.form105.web.base.template.DefaultMainTemplate;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.ResourceReference;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
@@ -21,7 +20,7 @@ import org.apache.wicket.model.ResourceModel;
 /**
  * @author hk
  */
-public class LoginPage extends WebPage<Void> {
+public class LoginPage extends DefaultMainTemplate {
 
 	public static Logger logger = Logger.getLogger(LoginPage.class);
 
