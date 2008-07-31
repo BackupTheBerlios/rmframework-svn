@@ -14,24 +14,10 @@ public class ResourceSubMenuPanel extends Panel {
 
 	public ResourceSubMenuPanel(String id) {
 		super(id);
-		
-		//addNavigationItem(new DefaultNavigationItem("allResources", HomePage.class, "menu.subNav.allResources"));
-		
+
 		RepeatingView menu = new RepeatingView("menuItem");
-		
-		
-		
-		
-		menu.add(new MenuEntryPanel(menu.newChildId(), "label1", AllResourcesPage.class));
-		menu.add(new MenuEntryPanel(menu.newChildId(), "label2", AllResourcesPage.class));
-		
-		
-		
+		menu.add(new MenuEntryPanel(menu.newChildId(), "menu.subNav.allResources", AllResourcesPage.class));
+		menu.add(new MenuEntryPanel(menu.newChildId(), "menu.subNav.specialResources", AllResourcesPage.class));
 		add(menu);
 	}
-		
-		
-
-	
-
 }

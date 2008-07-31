@@ -7,14 +7,14 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.PropertyModel;
 
-public class DefaultMainTemplate extends WebPage<Void> {
+public class DefaultMainTemplate extends WebPage {
 	
 	public static Logger logger = Logger.getLogger(DefaultMainTemplate.class);
 
 	String pageTitle = "*** Please set title ***";
 
 	public DefaultMainTemplate() {
-		add(new Label<String>("title", new PropertyModel<String>(this, "pageTitle")));
+		add(new Label("title", new PropertyModel(this, "pageTitle")));
 		add(new MainNavigationPanel("panel.mainNavigation"));
 		logger.info(this.getClass().getSimpleName());
 		//add(new StyleSheetReference("styleSheet", this.getClass(), "HomePage.css"));

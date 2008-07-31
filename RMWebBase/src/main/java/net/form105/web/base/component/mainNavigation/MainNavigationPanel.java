@@ -5,7 +5,7 @@ import net.form105.web.base.component.menu.MainMenuPanel;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
-public class MainNavigationPanel extends Panel<Void>{
+public class MainNavigationPanel extends Panel {
 	
 	private static final long serialVersionUID = 1L;
 	

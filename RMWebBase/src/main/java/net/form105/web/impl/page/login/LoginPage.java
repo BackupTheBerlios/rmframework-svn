@@ -34,7 +34,7 @@ public class LoginPage extends DefaultMainTemplate {
 		loginForm.add(createLoginButton("saveButton", "button.login"));
 
 		add(loginForm);
-		add(new Image<String>("loginLogo"));
+		add(new Image("loginLogo"));
 		add(new StyleSheetReference("styleSheet", new ResourceReference(LoginPage.class, "LoginPage.css")));
 
 		FeedbackPanel feedback = new FeedbackPanel("warning.input");
@@ -45,19 +45,19 @@ public class LoginPage extends DefaultMainTemplate {
 		return new ResourceReference(LoginPage.class, "LoginPage.css");
 	}
 
-	protected class LoginForm extends Form<Void> {
+	protected class LoginForm extends Form {
 
 		private static final long serialVersionUID = 1L;
 
 		public LoginForm(String name) {
-			super(name, new CompoundPropertyModel<Void>(user));
+			super(name, new CompoundPropertyModel(user));
 
-			RequiredTextField<String> personName = new RequiredTextField<String>("userId");
-			personName.setLabel(new Model<String>("usernameField"));
+			RequiredTextField personName = new RequiredTextField("userId");
+			personName.setLabel(new Model("usernameField"));
 			add(personName);
 
 			PasswordTextField firstName = new PasswordTextField("password");
-			firstName.setLabel(new Model<String>("passwordField"));
+			firstName.setLabel(new Model("passwordField"));
 			add(firstName);
 
 		}
@@ -78,8 +78,8 @@ public class LoginPage extends DefaultMainTemplate {
 	 *            The resource bundle key which holds the label of the button
 	 * @return The wicket button component
 	 */
-	public Button<String> createLoginButton(String id, String resource) {
-		Button<String> button = new Button<String>(id, new ResourceModel(resource)) {
+	public Button createLoginButton(String id, String resource) {
+		Button button = new Button(id, new ResourceModel(resource)) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

@@ -13,7 +13,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.ResourceModel;
 
-public class MainMenuListView extends ListView<INavigationItem> {
+public class MainMenuListView extends ListView {
 
 	private static final long serialVersionUID = 1L;
 	protected static Logger logger = Logger.getLogger(MainMenuListView.class);

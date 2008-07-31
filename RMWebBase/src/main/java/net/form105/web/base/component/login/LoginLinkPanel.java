@@ -10,7 +10,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.ResourceModel;
 
-public class LoginLinkPanel extends Panel<Object> {
+public class LoginLinkPanel extends Panel {
 	
 	public static Logger logger = Logger.getLogger(LoginLinkPanel.class);
 	
@@ -24,7 +24,7 @@ public class LoginLinkPanel extends Panel<Object> {
 	private void addLoginLink() {
 		ResourceModel rModel = new ResourceModel("menu.mainNav.login");
 		BookmarkablePageLink loginPageLink = new BookmarkablePageLink("loginItem", LoginPage.class);
-		loginPageLink.add(new Label<String>("loginLabel", rModel));
+		loginPageLink.add(new Label("loginLabel", rModel));
 		add(loginPageLink);
 	}
 	

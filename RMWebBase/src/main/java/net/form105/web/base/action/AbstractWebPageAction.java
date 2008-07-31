@@ -8,7 +8,7 @@ public abstract class AbstractWebPageAction {
 	
 	private ApplicationSession session;
 	
-	public AbstractWebPageAction(Page<?> page) {
+	public AbstractWebPageAction(Page page) {
 		session = (ApplicationSession) page.getSession();
 	}
 	

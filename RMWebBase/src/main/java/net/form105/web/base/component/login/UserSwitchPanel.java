@@ -5,7 +5,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 /**
  * @author heiko
  */
-public class UserSwitchPanel extends Panel<Void> {
+public class UserSwitchPanel extends Panel {
 	
 	private static final long serialVersionUID = 1L;
 

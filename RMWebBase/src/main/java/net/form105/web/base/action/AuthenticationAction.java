@@ -18,7 +18,7 @@ public class AuthenticationAction extends AbstractWebPageAction {
 	private String userId;
 	private String password;
 	
-	public AuthenticationAction(Page<?> page, String userId, String password) {
+	public AuthenticationAction(Page page, String userId, String password) {
 		super(page);
 		this.userId = userId;
 		this.password = password;

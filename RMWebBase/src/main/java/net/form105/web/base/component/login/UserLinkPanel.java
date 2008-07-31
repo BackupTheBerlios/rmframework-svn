@@ -10,7 +10,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 /**
  * @author hk
  */
-public class UserLinkPanel extends Panel<Void> {
+public class UserLinkPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,8 +21,8 @@ public class UserLinkPanel extends Panel<Void> {
 	
 	private void addUserLink() {
 		
-		add(new Label<String>("userLabel", "heiko.kundlacz@gmx.net"));
-		add(new Label<String>("logoutLabel", "logout"));
+		add(new Label("userLabel", "heiko.kundlacz@gmx.net"));
+		add(new Label("logoutLabel", "logout"));
 	}
 	
 	public boolean isVisible() {
