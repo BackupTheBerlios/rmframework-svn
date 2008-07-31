@@ -1,4 +1,4 @@
-package net.form105.web.impl.panel;
+package net.form105.web.impl.panel.roundBorder;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
