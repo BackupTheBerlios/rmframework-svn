@@ -1,4 +1,4 @@
-package net.form105.web.base.page.login;
+package net.form105.web.impl.page.login;
 
 import net.form105.web.base.action.AuthenticationAction;
 import net.form105.web.base.component.login.authorize.DefaultUser;

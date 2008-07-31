@@ -1,7 +1,7 @@
 package net.form105.web.base;
 
 import net.form105.web.base.model.authorize.Authentication;
-import net.form105.web.base.page.login.LoginPage;
+import net.form105.web.impl.page.login.LoginPage;
 
 import org.apache.wicket.Request;
 import org.apache.wicket.Response;
