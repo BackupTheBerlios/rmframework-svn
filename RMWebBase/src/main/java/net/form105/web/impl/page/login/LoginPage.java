@@ -35,7 +35,7 @@ public class LoginPage extends DefaultMainTemplate {
 
 		add(loginForm);
 		add(new Image("loginLogo"));
-		add(new StyleSheetReference("styleSheet", new ResourceReference(LoginPage.class, "LoginPage.css")));
+		add(new StyleSheetReference("styleSheetLoginPage", new ResourceReference(LoginPage.class, "LoginPage.css")));
 
 		FeedbackPanel feedback = new FeedbackPanel("warning.input");
 		add(feedback);
