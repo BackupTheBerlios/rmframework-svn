@@ -39,7 +39,6 @@ public class LoginPage extends DefaultMainTemplate {
 
 		FeedbackPanel feedback = new FeedbackPanel("warning.input");
 		add(feedback);
-
 	}
 
 	public final ResourceReference getMainStyle() {
