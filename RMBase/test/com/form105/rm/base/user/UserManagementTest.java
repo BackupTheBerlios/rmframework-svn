@@ -24,7 +24,7 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 
 	public static Logger logger = Logger.getLogger(UserManagementTest.class);
 	
-	@Test
+
 	public void addUser() {
 		// check if user exist
 		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
@@ -54,7 +54,7 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 		assertTrue(result.getStatus() == Status.FAIL);
 	}
 
-	@Test
+
 	public void getUsers() {
 		logger.info("Test: Getting user");
 		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
@@ -72,7 +72,7 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 		assertTrue(users.size() > 0);
 	}
 	
-	@Test
+
 	public void authenticateUser() {
 		
 		addUser();
@@ -93,7 +93,7 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 		
 	}
 	
-	@Test
+
 	public void deleteUser() {
 		logger.info("Test: Deleting user with id = 9999");
 		DeleteUserService service = new DeleteUserService();
@@ -106,6 +106,16 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 		result = doService(service);
 		assertTrue(result.getStatus() == Status.FAIL);
 		logger.info(result.getException());
+	}
+	
+	@Test 
+	public void testUser() {
+		addUser();
+		getUsers();
+		authenticateUser();
+		deleteUser();
+		
+		
 	}
 	
 	

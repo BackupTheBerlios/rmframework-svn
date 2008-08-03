@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
  */
 public class BaseMessage extends AbstractMessage {
     
-    private final static ResourceBundle bundle = ResourceBundle.getBundle("BaseMessage");
+    private final static ResourceBundle bundle = ResourceBundle.getBundle("i18n/BaseMessage");
 
     @Override
     public ResourceBundle getBundle() {
