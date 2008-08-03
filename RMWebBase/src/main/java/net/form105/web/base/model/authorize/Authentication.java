@@ -30,4 +30,11 @@ public class Authentication implements IAuthentication {
 		
 	}
 
+	@Override
+	public IProvidedUser getUser() {
+		return user;
+	}
+	
+	
+
 }

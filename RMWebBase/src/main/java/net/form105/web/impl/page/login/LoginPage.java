@@ -1,5 +1,9 @@
 package net.form105.web.impl.page.login;
 
+import net.form105.rm.base.model.user.User;
+import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.Status;
+import net.form105.web.base.HomePage;
 import net.form105.web.base.action.AuthenticationAction;
 import net.form105.web.base.component.login.authorize.DefaultUser;
 import net.form105.web.base.template.DefaultMainTemplate;
@@ -41,10 +45,6 @@ public class LoginPage extends DefaultMainTemplate {
 		add(feedback);
 	}
 
-	public final ResourceReference getMainStyle() {
-		return new ResourceReference(LoginPage.class, "LoginPage.css");
-	}
-
 	protected class LoginForm extends Form {
 
 		private static final long serialVersionUID = 1L;
@@ -64,7 +64,14 @@ public class LoginPage extends DefaultMainTemplate {
 
 		protected void onSubmit() {
 			AuthenticationAction action = new AuthenticationAction(this.getPage(), user.getUserId(), user.getPassword());
-			action.doAction();
+			IResult<User> result = action.doAction();
+			if (result.getStatus() == Status.SUCCESS) {
+				setResponsePage(HomePage.class);
+			} else {
+				setResponsePage(this.getPage().getClass());
+			}
+			
+			
 		}
 
 	}

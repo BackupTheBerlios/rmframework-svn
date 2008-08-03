@@ -1,12 +1,14 @@
 package net.form105.web.base.component.login.authorize;
 
+import java.io.Serializable;
+
 /**
  * An interface representing a user which is identified by an id. The label is a human readable name that can
  * be used in components. The interface is a placeholder which should wrapped around a real user object.
  * @author Heiko Kundlacz
  *
  */
-public interface IProvidedUser {
+public interface IProvidedUser extends Serializable {
 	
 	/**
 	 * A unique identification for a user

@@ -10,7 +10,7 @@ public class AllResourcesPage extends ResourceTemplate {
 	
 	public AllResourcesPage() {
 		super();
-		add(new StyleSheetReference("styleSheetResources", new ResourceReference(AllResourcesPage.class, "AllResourcesPage.css")));
+		//add(new StyleSheetReference("styleSheetResources", new ResourceReference(AllResourcesPage.class, "AllResourcesPage.css")));
 	}
 
 }
