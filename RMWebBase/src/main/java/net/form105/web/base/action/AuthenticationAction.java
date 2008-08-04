@@ -19,6 +19,8 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 	
 	public static Logger logger = Logger.getLogger(AuthenticationAction.class);
 	
+	private final String id = "authenticationAction";
+	
 	private String userId;
 	private String password;
 	
@@ -26,6 +28,10 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 		super(page);
 		this.userId = userId;
 		this.password = password;
+	}
+	
+	public String getId() {
+		return id;
 	}
 	
 	public IResult<User> doAction() {
@@ -40,7 +46,7 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 		IResult<User> queryResult = queryHandler.getResult();
 		
 		if (queryResult.getResultList().size() > 0) {
-			logger.info("Got user: "+getResult().getResultList().get(0).getEMail());
+			logger.info("Got user: "+queryResult.getResultList().get(0).getEMail());
 			User user = queryResult.getResultList().get(0);
 			IProvidedUser provUser = mapUser(user);
 			getSession().setAuthentication(new Authentication(provUser));

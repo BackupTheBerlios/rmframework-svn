@@ -6,7 +6,7 @@ import net.form105.web.base.component.login.authorize.IProvidedUser;
 
 public interface IAuthentication extends Serializable {
 	
-	public AuthenticationState isAuthenticated();
+	public boolean isAuthenticated();
 	
 	public IProvidedUser getUser();
 

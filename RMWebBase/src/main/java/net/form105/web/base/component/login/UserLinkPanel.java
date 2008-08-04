@@ -3,7 +3,6 @@ package net.form105.web.base.component.login;
 import net.form105.web.base.ApplicationSession;
 import net.form105.web.base.component.login.authorize.NoUser;
 import net.form105.web.base.model.authorize.Authentication;
-import net.form105.web.base.model.authorize.AuthenticationState;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.basic.Label;
@@ -30,8 +29,6 @@ public class UserLinkPanel extends Panel {
 		ApplicationSession session = (ApplicationSession) getSession();
 		String userLabel = session.getAuthentication().getUser().getLabel();
 		
-		logger.info("UserLinkPanel: "+userLabel);
-		
 		add(new Label("userLabel", userLabel));
 
 		
@@ -52,7 +49,7 @@ public class UserLinkPanel extends Panel {
 		if (session.getAuthentication() == null) {
 			return false;
 		}
-		return session.getAuthentication().isAuthenticated() == AuthenticationState.AUTHENTICATED;
+		return session.getAuthentication().isAuthenticated();
 	}
 
 }

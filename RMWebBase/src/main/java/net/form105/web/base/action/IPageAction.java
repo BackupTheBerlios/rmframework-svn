@@ -1,15 +1,23 @@
 package net.form105.web.base.action;
 
+import net.form105.rm.base.service.IResult;
+
 /**
  * An Action which acts on a WebPage
  * @author hk
  *
  */
-public interface IPageAction {
+public interface IPageAction<T> {
 	
 	/**
 	 * The action that will be executed
 	 */
-	public void doAction();
+	public IResult<T> doAction();
+	
+	/**
+	 * Each action has an id which will be used for future processing in the authentication
+	 * management
+	 */
+	public String getId();
 
 }

@@ -3,9 +3,6 @@ package net.form105.web.base;
 import net.form105.web.base.template.DefaultMainTemplate;
 
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.resources.StyleSheetReference;
-import org.apache.wicket.model.PropertyModel;
 
 /**
  * Homepage

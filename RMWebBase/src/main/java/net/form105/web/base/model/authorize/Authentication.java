@@ -20,14 +20,13 @@ public class Authentication implements IAuthentication {
 	}
 
 	@Override
-	public AuthenticationState isAuthenticated() {
+	public boolean isAuthenticated() {
 		
 		if (user instanceof NoUser) {
-			return AuthenticationState.NOTAUTHENTICATED;
+			return false;
+		} else {
+			return true;
 		}
-		
-		return AuthenticationState.AUTHENTICATED;
-		
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package net.form105.web.base;
 
+import net.form105.rm.base.lookup.ILookup;
 import net.form105.web.base.component.login.authorize.NoUser;
+import net.form105.web.base.lookup.UserLookupRegistry;
 import net.form105.web.base.model.authorize.Authentication;
 
 import org.apache.wicket.Request;
@@ -15,6 +17,7 @@ import org.apache.wicket.protocol.http.WebSession;
 public class ApplicationSession extends WebSession {
 	
 	Authentication authentication;
+	UserLookupRegistry lookup = new UserLookupRegistry();
 
 	private static final long serialVersionUID = 1L;
 	
@@ -37,5 +40,9 @@ public class ApplicationSession extends WebSession {
 	 */
 	public void setAuthentication(Authentication authorization) {
 		this.authentication = authorization;
+	}
+	
+	public ILookup getLookup() {
+		return lookup;
 	}
 }
