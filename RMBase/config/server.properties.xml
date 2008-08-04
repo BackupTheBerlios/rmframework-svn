@@ -6,4 +6,5 @@
     
     <!-- memory, db, dual -->
     <entry key="server.operation.mode">memory</entry>
+    <entry key="server.userManagement.initialize">true</entry>
 </properties>

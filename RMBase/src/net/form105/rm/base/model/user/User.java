@@ -22,8 +22,10 @@ public class User implements Serializable {
     private String eMail;
     private String password;
     private String shortName;
+    private boolean isAdmin = false;
     
-    @OneToMany
+
+	@OneToMany
     private Set<Group> groups = new HashSet<Group>();
     
     /**
@@ -154,4 +156,12 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 }

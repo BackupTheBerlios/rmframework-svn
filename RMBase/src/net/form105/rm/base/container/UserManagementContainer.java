@@ -42,16 +42,20 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 	 */
 	public void createDefaultUserEntries() {
 		XMLUserObjectDAO dao = (XMLUserObjectDAO) lookupContainer.getLookupRegistry().getContent(XMLUserObjectDAO.class);
-		logger.info("Creating default user: admin");
-		//if (dao.findAll().size() == 0)
-		//	return;
+		logger.info("Creating default users");
+		dao.save(createUser("1", "admin@kaiser-ag.ch", "Administrator", "admin", "admin", false));
+		dao.save(createUser("999999", "heiko.kundlacz@kaiser-ag.ch", "Kundlacz", "heiko.kundlacz", "heiko", false));
+	}
+	
+	public User createUser(String id, String email, String sirName, String shortName, String password, boolean isAdmin) {
 		User user = new User();
-		user.setId("1");
-		user.setEMail("heiko.kundlacz@gmx.net");
-		user.setSirName("Administrator");
-		user.setShortName("admin");
-		user.setPassword("admin");
-		dao.save(user);
+		user.setId(id);
+		user.setEMail(email);
+		user.setSirName(sirName);
+		user.setShortName(shortName);
+		user.setPassword(password);
+		user.setAdmin(isAdmin);
+		return user;
 	}
 
 }
