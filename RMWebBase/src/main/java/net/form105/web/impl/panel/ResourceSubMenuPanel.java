@@ -1,9 +1,10 @@
 package net.form105.web.impl.panel;
 
-import org.apache.wicket.Page;
-
 import net.form105.web.base.HomePage;
+import net.form105.web.base.component.subMenu.SubMenuPanel;
 import net.form105.web.impl.page.resources.AllResourcesPage;
+
+import org.apache.wicket.Page;
 
 public class ResourceSubMenuPanel extends SubMenuPanel {
 
