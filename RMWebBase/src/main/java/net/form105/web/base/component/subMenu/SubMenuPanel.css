@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+.white_rbroundbox { background: url(image/whitebox7x7.gif) repeat;}
+.white_roundBoxTop { background: url(image/corner_t.png) repeat-x; }
+.white_roundBoxTop div { background: url(image/corner_tl.png) no-repeat top left; }
+.white_roundBoxTop div div { background: url(image/corner_tr.png) no-repeat top right; }
+.white_roundBoxBottom { background: url(image/corner_b.png) repeat-x; }
+.white_roundBoxBottom div { background: url(image/corner_bl.png) no-repeat top left; }
+.white_roundBoxBottom div div { background: url(image/corner_br.png) no-repeat top right; }
+.white_roundBoxLeft { background: url(image/corner_l.png) repeat-y; }
+.white_roundBoxRight { background: url(image/corner_r.png) repeat-y right; }
+.white_roundBoxTop div, .white_roundBoxTop, .white_roundBoxBottom div, .white_roundBoxBottom { 
+	width: 100%; height: 7px; font-size: 1px; 
+}
+
+ul.subMenuList { list-style-type: none; }
+
+.subMenuList a { font-size: 1.2em; font-weight: bold; color: #0060BF;}
+
+.subMenuList a:link { text-decoration: none; }
+.subMenuList a:visited { text-decoration: none; }
+.subMenuList a:active { text-decoration: none; }
+.subMenuList a:hover { color: gray; text-decoration: underline; }
+
+#menuLinkActive {
+	list-style-image: url(image/linkSelector.png);
+}
