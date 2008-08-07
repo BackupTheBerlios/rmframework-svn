@@ -24,8 +24,8 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 	private String userId;
 	private String password;
 	
-	public AuthenticationAction(Page page, String userId, String password) {
-		super(page);
+	public AuthenticationAction(String userId, String password) {
+		super();
 		this.userId = userId;
 		this.password = password;
 	}
@@ -69,6 +69,7 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 		DefaultUser defaultUser = new DefaultUser();
 		defaultUser.setUserId(user.getShortName());
 		defaultUser.setLabel(user.getEMail());
+		defaultUser.setRoles(user.getRoles());
 		return defaultUser;
 	}
 	

@@ -1,6 +1,7 @@
 package net.form105.web.base.component.login.authorize;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * A user which represents a not authenticated user. It should be used if the authentication process
@@ -37,6 +38,15 @@ public class NoUser implements IProvidedUser, Serializable {
 
 	@Override
 	public void setUserId(String userId) {
+	}
+
+	@Override
+	public List<String> getRoles() {
+		return null;
+	}
+
+	@Override
+	public void setRoles(List<String> roles) {
 	}
 
 }

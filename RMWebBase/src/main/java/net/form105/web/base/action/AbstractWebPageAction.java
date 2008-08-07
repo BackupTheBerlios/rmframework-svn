@@ -4,14 +4,15 @@ import net.form105.rm.base.service.IResult;
 import net.form105.web.base.ApplicationSession;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.Session;
 
 public abstract class AbstractWebPageAction<T> implements IPageAction<T> {
 	
 	private ApplicationSession session;
 	private IResult<T> result = new DefaultActionResult<T>();
 	
-	public AbstractWebPageAction(Page page) {
-		session = (ApplicationSession) page.getSession();
+	public AbstractWebPageAction() {
+		session = (ApplicationSession) Session.get();
 	}
 	
 	public abstract IResult<T> doAction();

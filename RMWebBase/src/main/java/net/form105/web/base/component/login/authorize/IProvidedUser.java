@@ -1,6 +1,7 @@
 package net.form105.web.base.component.login.authorize;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * An interface representing a user which is identified by an id. The label is a human readable name that can
@@ -45,5 +46,17 @@ public interface IProvidedUser extends Serializable {
 	 * @param label
 	 */
 	public void setLabel(String label);
+	
+	/**
+	 * Getting the roles as a list
+	 * @return List of strings which contains the names of roles
+	 */
+	public List<String> getRoles();
+	
+	/**
+	 * Setting the roles the user is assigned to
+	 * @param roles
+	 */
+	public void setRoles(List<String> roles);
 
 }

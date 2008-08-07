@@ -71,7 +71,7 @@ public class LoginPage extends DefaultMainTemplate {
 		}
 
 		protected void onSubmit() {
-			AuthenticationAction action = new AuthenticationAction(this.getPage(), user.getUserId(), user.getPassword());
+			AuthenticationAction action = new AuthenticationAction(user.getUserId(), user.getPassword());
 			IResult<User> result = action.doAction();
 			if (result.getStatus() == Status.SUCCESS) {
 				setResponsePage(HomePage.class);

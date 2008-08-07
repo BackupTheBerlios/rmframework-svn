@@ -1,6 +1,7 @@
 package net.form105.web.base.component.login.authorize;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * If a user want to login this user is the model which can be used to authenticate against a backend system. 
@@ -14,6 +15,7 @@ public class DefaultUser implements IProvidedUser, Serializable {
 	private String userId;
 	private String password;
 	private String label;
+	private List<String> roles;
 	
 	public DefaultUser() {
 	}
@@ -58,5 +60,15 @@ public class DefaultUser implements IProvidedUser, Serializable {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}
+
+	@Override
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	@Override
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 }

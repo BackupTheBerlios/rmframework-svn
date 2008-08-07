@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+.pageableTable {
+	width: 100%;
+	border-collapse: collapse;
+	color: #333333;
+	border-bottom: solid #83c97e 2px;
+}
+
+.pageableTable tbody {
+	cursor: pointer;
+}
+
+.pageableTable a {
+	color: #0060BF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.odd {}
+
+.even {
+	background-color: #cde2ff;
+	cursor: pointer;
+}
+
+tr.headers {
+	text-align: left;
+	font-size: 1.05em;
+	color: #ffffff;
+	background-color: #83c97e;
+}
+
+.navigation a {
+	color: #0060BF;
+	font-weight: bold;
+}
+
+.navigation a,em {
+	font-size: 1.2em;
+	text-decoration: none;
+}
+
+.navigation a:hover {
+	color: #000
+}

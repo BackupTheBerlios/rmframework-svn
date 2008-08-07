@@ -10,7 +10,6 @@ public class ResourceTemplate extends DefaultMainTemplate implements IAuthentica
 	public static Logger logger = Logger.getLogger(ResourceTemplate.class);
 	
 	public ResourceTemplate() {
-		logger.info("ResourceTemplate class: "+ this);
 		add(new ResourceSubMenuPanel("panel.resourceSubNavigation", "menuItem", this.getClass()));	
 	}
 }
