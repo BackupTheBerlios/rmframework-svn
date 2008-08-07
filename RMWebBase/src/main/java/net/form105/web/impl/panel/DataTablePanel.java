@@ -32,7 +32,7 @@ public class DataTablePanel extends Panel {
 	 */
 	public DataTablePanel(String id, String tableId, ISortableDataProvider provider, List<IColumn> columns, int rowsPerPage) {
 		super(id);
-		add(new StyleSheetReference("dataTableStylesheet", new ResourceReference(DataTablePanel.class, "DataTable.css")));
+		add(new StyleSheetReference("dataTableStylesheet", new ResourceReference(DataTablePanel.class, "DataTablePanel.css")));
 		this.provider = provider;
 		this.tableId = tableId;
 		this.columns = columns;

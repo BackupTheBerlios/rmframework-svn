@@ -11,6 +11,7 @@ import net.form105.rm.base.service.IResult;
 import net.form105.web.base.IAuthenticatedPage;
 import net.form105.web.impl.page.template.ConfigurationTemplate;
 import net.form105.web.impl.panel.DataTablePanel;
+import net.form105.web.impl.panel.UserContributionPanel;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
@@ -33,6 +34,14 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 			provider = new UserDataProvider(createData());
 			
 			add(new DataTablePanel("panel.userTable", "userTable", provider, createColumns(), 20));
+			
+			User user = new User();
+			user.setId("9999");
+			user.setEMail("heiko.kundlacz@kaiser-ag.ch");
+			user.setFirstName("Heiko");
+			user.setSirName("Kundlacz");
+			user.setShortName("heikokundlacz");
+			add(new UserContributionPanel("panel.userContribution", user));
 			
 			
 	}
