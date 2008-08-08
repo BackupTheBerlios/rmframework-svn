@@ -1,10 +1,10 @@
 package net.form105.rm.server.selection;
 
-import java.util.Collection;
+import java.util.List;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.dao.IBasicDao;
-import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.selection.AbstractSelection;
 
 /**
@@ -21,8 +21,8 @@ public class FindAllDaoSelection<T> extends AbstractSelection<T> {
 	}
 
 	@Override
-	public Collection<T> select() {		
-		EntryLookupRegistry lookup = Agent.getLookup();
+	public List<T> select() {		
+		ILookup lookup = Agent.getLookup();
 		IBasicDao<T, Long> dao = (IBasicDao<T,Long>) lookup.getContent(daoClass);
 		return dao.findAll();
 	}

@@ -9,7 +9,7 @@ import net.form105.rm.base.ContainerConfiguration;
 import net.form105.rm.base.config.SimpleConfiguration;
 import net.form105.rm.base.container.GlobalLookupContainer;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
-import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.model.user.User;
 
 import org.apache.log4j.Logger;
@@ -53,7 +53,7 @@ public class GlobalLookupTest {
     	
         lookupContainer = Container.getContainer().getComponent(GlobalLookupContainer.class);
     	
-        EntryLookupRegistry lookup = lookupContainer.getLookupRegistry();
+        ILookup lookup = lookupContainer.getLookupRegistry();
         xmlFile = "users.xml";
         userDAO = new XMLUserObjectDAO(xmlFile);
         lookup.addEntry(XMLUserObjectDAO.class, userDAO);

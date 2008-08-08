@@ -6,7 +6,7 @@
 package net.form105.rm.base.dao;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -38,7 +38,7 @@ public class BasicMapDaoImpl<T, ID extends Serializable> implements IBasicDao<T,
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public Collection<T> findAll() {
+    public List<T> findAll() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

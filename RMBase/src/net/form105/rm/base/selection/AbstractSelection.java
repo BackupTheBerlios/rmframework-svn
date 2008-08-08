@@ -1,7 +1,7 @@
 package net.form105.rm.base.selection;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Abstract implementation of a selection
@@ -13,6 +13,6 @@ public abstract class AbstractSelection<T> implements ISelection<T>, Serializabl
 
 	private static final long serialVersionUID = 1L;
 
-	public abstract Collection<T> select();
+	public abstract List<T> select();
 
 }

@@ -1,10 +1,10 @@
 package net.form105.rm.base.query;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 public interface IQuery<T> extends Serializable {
 	
-	public Collection<T> execute();
+	public List<T> execute();
 
 }

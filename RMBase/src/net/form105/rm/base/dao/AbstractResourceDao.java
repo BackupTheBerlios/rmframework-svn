@@ -44,7 +44,7 @@ public abstract class AbstractResourceDao implements IBasicDao<Resource, Long> {
      * Delegate read access to the read Dao
      * @return
      */
-    public Collection<Resource> findAll() {
+    public List<Resource> findAll() {
         return readDao.findAll();
     }
 

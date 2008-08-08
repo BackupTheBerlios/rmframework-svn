@@ -6,6 +6,7 @@
 package net.form105.rm.base.container;
 
 import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.base.lookup.ILookup;
 
 /**
  *
@@ -13,7 +14,7 @@ import net.form105.rm.base.lookup.EntryLookupRegistry;
  */
 public class GlobalLookupContainer extends AbstractContainer {
     
-    EntryLookupRegistry registry;
+    ILookup registry;
     
     public GlobalLookupContainer() {
     	super();
@@ -27,7 +28,7 @@ public class GlobalLookupContainer extends AbstractContainer {
         
     }
     
-    public EntryLookupRegistry getLookupRegistry() {
+    public ILookup getLookupRegistry() {
         return registry;
     }
 

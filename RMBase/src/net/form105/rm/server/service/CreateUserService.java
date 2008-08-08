@@ -1,5 +1,7 @@
 package net.form105.rm.server.service;
 
+import java.util.List;
+
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.exception.RMException;
@@ -22,6 +24,7 @@ public class CreateUserService extends AbstractService {
 		public String shortName;
 		public String password;
 		public boolean isAdmin;
+		public List<String> roles;
     }
 
 	@Override
@@ -42,6 +45,7 @@ public class CreateUserService extends AbstractService {
 		user.setSirName(argument.name);
 		user.setPassword(argument.password);
 		user.setAdmin(argument.isAdmin);
+		user.setRoles(argument.roles);
 		
 		dao.save(user);
 	}

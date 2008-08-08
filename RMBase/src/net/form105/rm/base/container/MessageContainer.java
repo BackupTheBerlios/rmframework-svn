@@ -5,7 +5,7 @@
 
 package net.form105.rm.base.container;
 
-import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.server.i18n.ExceptionMessage;
 
 import org.picocontainer.Startable;
@@ -18,7 +18,7 @@ import org.picocontainer.Startable;
 //TODO: Create a ExceptionMessage which is the key for the lookup
 public class MessageContainer extends AbstractContainer implements Startable {
     
-    private EntryLookupRegistry lookup;
+    private ILookup lookup;
     private GlobalLookupContainer lookupContainer;
     
     public MessageContainer(GlobalLookupContainer lookupContainer) {

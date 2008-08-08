@@ -1,6 +1,5 @@
 package net.form105.rm.base.query;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 

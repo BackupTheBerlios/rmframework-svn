@@ -18,11 +18,11 @@ public class FilterQuery<T> implements IQuery<T> {
 	
 
 	private static final long serialVersionUID = 1L;
-	private Collection<IFilter> filterList = new ArrayList<IFilter>();
+	private List<IFilter> filterList = new ArrayList<IFilter>();
 	private ISelection<T> selection;
 	
 	
-	public FilterQuery(ISelection<T> selection, Collection<IFilter> filterList) {
+	public FilterQuery(ISelection<T> selection, List<IFilter> filterList) {
 		this.selection = selection;
 		this.filterList = filterList;
 	}
@@ -37,9 +37,9 @@ public class FilterQuery<T> implements IQuery<T> {
 	}
 	
 	@Override
-	public Collection<T> execute() {
+	public List<T> execute() {
 		List<T> tempList = new ArrayList<T>();
-		Collection<T> result = selection.select();
+		List<T> result = selection.select();
 		
 		if (filterList.size() == 0) {
 			return result;

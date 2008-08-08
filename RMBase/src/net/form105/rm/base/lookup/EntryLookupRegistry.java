@@ -18,16 +18,14 @@ import org.apache.log4j.Logger;
  * objects.
  * @author heiko
  */
-public class EntryLookupRegistry {
+public class EntryLookupRegistry implements ILookup {
     
     private Logger logger = Logger.getLogger(EntryLookupRegistry.class);
     private Map<Class<?>, IEntry> registry = new HashMap<Class<?>, IEntry>();
     
-    /**
-     * Add an object to the registry by its class
-     * @param clazz
-     * @param object
-     */
+    /* (non-Javadoc)
+	 * @see net.form105.rm.base.lookup.ILookup#addEntry(java.lang.Class, java.lang.Object)
+	 */
     public void addEntry(Class<?> clazz, Object object) {
         IEntry entry;
         if (registry.get(clazz) == null) {
@@ -41,11 +39,9 @@ public class EntryLookupRegistry {
         entry.addItem(object);
     }
     
-    /**
-     * Get an entry by its class. 
-     * @param clazz
-     * @return The entry which holds a list of objects
-     */
+    /* (non-Javadoc)
+	 * @see net.form105.rm.base.lookup.ILookup#getEntry(java.lang.Class)
+	 */
     public IEntry getEntry(Class<?> clazz) {
         if (registry.get(clazz) == null) {
             return createDefaultEntry();
@@ -54,6 +50,9 @@ public class EntryLookupRegistry {
         }
     }
     
+    /* (non-Javadoc)
+	 * @see net.form105.rm.base.lookup.ILookup#getEntryAsList(java.lang.Class)
+	 */
     public List<?> getEntryAsList(Class<?> clazz) {
     	IEntry entry = registry.get(clazz);
     	return entry.getItems();
@@ -63,11 +62,9 @@ public class EntryLookupRegistry {
         return new SimpleLookupEntry();
     }
     
-    /**
-     * Returns the first object of the entry which includes a list
-     * @param clazz
-     * @return
-     */
+    /* (non-Javadoc)
+	 * @see net.form105.rm.base.lookup.ILookup#getContent(java.lang.Class)
+	 */
     public Object getContent(Class<?> clazz) {
     	if (registry.get(clazz) == null) {
     		logger.error("No object is registered with class: "+clazz.getSimpleName());
@@ -78,10 +75,9 @@ public class EntryLookupRegistry {
     	}
     }
     
-    /**
-     * Removes an entry from the registry
-     * @param clazz
-     */
+    /* (non-Javadoc)
+	 * @see net.form105.rm.base.lookup.ILookup#removeEntry(java.lang.Class)
+	 */
     public void removeEntry(Class<?> clazz) {
     	registry.remove(clazz);
     }

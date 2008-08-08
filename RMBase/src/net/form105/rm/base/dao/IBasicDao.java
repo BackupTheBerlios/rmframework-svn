@@ -7,7 +7,7 @@
 package net.form105.rm.base.dao;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 
 
@@ -66,7 +66,7 @@ public interface IBasicDao<T, ID extends Serializable> {
 	 * 
 	 * @return
 	 */
-	public Collection<T> findAll();
+	public List<T> findAll();
 
 	/**
 	 * returns a java.util.List of the objects fitting the specified criterias

@@ -1,9 +1,12 @@
 package net.form105.rm.base.container;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.Container;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
-import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.model.user.User;
 
 import org.picocontainer.Startable;
@@ -23,7 +26,7 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 		
 		String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
 		
-		EntryLookupRegistry lookup = lookupContainer.getLookupRegistry();
+		ILookup lookup = lookupContainer.getLookupRegistry();
 		XMLUserObjectDAO usersDao = new XMLUserObjectDAO(configDir+USER_CONFIG_FILE);
 		lookup.addEntry(XMLUserObjectDAO.class, usersDao);
 		
@@ -43,11 +46,16 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 	public void createDefaultUserEntries() {
 		XMLUserObjectDAO dao = (XMLUserObjectDAO) lookupContainer.getLookupRegistry().getContent(XMLUserObjectDAO.class);
 		logger.info("Creating default users");
-		dao.save(createUser("1", "admin@kaiser-ag.ch", "Administrator", "admin", "admin", false));
-		dao.save(createUser("999999", "heiko.kundlacz@kaiser-ag.ch", "Kundlacz", "heiko.kundlacz", "heiko", false));
+		
+		ArrayList<String> roleList = new ArrayList<String>();
+		roleList.add("user");
+		dao.save(createUser("999999", "heiko.kundlacz@kaiser-ag.ch", "Kundlacz", "heiko.kundlacz", "heiko", false, roleList));
+		roleList.add("admin");
+		dao.save(createUser("1", "admin@kaiser-ag.ch", "Administrator", "admin", "admin", false, roleList));
+		
 	}
 	
-	public User createUser(String id, String email, String sirName, String shortName, String password, boolean isAdmin) {
+	public User createUser(String id, String email, String sirName, String shortName, String password, boolean isAdmin, List<String> roles) {
 		User user = new User();
 		user.setId(id);
 		user.setEMail(email);
@@ -55,6 +63,7 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 		user.setShortName(shortName);
 		user.setPassword(password);
 		user.setAdmin(isAdmin);
+		user.setRoles(roles);
 		return user;
 	}
 

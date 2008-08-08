@@ -9,7 +9,7 @@ package net.form105.rm.base;
 import net.form105.rm.base.config.SimpleConfiguration;
 import net.form105.rm.base.container.GlobalLookupContainer;
 import net.form105.rm.base.container.PropertiesContainer;
-import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.base.lookup.ILookup;
 
 /**
  * The main class which starts the agent and gives access to the 
@@ -46,7 +46,7 @@ public class Agent {
         return container.getProperty(key);
     }
 
-    public static EntryLookupRegistry getLookup() {
+    public static ILookup getLookup() {
         GlobalLookupContainer container = (GlobalLookupContainer) getContainer(GlobalLookupContainer.class);
         return container.getLookupRegistry();
     }

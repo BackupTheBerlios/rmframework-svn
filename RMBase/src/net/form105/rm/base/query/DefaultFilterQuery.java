@@ -25,7 +25,7 @@ public class DefaultFilterQuery<T> extends FilterQuery<T> {
 	}
 
 	@Override
-	public Collection<T> execute() {
+	public List<T> execute() {
 		return super.execute();
 	}
 

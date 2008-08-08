@@ -1,8 +1,11 @@
 package net.form105.rm.base.model.user;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,14 +19,14 @@ public class User implements Serializable {
 
     @Id
     private Long oid;
-    private String id;
-	private String firstName;
-    private String sirName;
-    private String eMail;
-    private String password;
-    private String shortName;
+    private String id = "";
+	private String firstName = "";
+    private String sirName = "";
+    private String eMail = "";
+    private String password = "";
+    private String shortName = "";
     private boolean isAdmin = false;
-    
+    private List<String> roles = new ArrayList<String>();
 
 	@OneToMany
     private Set<Group> groups = new HashSet<Group>();
@@ -164,4 +167,22 @@ public class User implements Serializable {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+	
+	/**
+	 * Getting the roles a user is assigned to
+	 * @return
+	 */
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * Setting the roles a user is assigned to
+	 * @param roles
+	 */
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+	
+	
 }

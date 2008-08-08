@@ -1,7 +1,7 @@
 package net.form105.rm.base.dao;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.form105.rm.base.exception.RMException;
@@ -50,7 +50,7 @@ public class ResourceDaoImpl extends AbstractResourceDao {
         
     }
     
-    public Collection<Resource> findAll() {
+    public List<Resource> findAll() {
         return readDao.findAll();
     }
 

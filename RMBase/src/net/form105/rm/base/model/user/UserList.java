@@ -1,7 +1,6 @@
 package net.form105.rm.base.model.user;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 

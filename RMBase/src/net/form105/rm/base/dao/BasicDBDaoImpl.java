@@ -72,7 +72,7 @@ public class BasicDBDaoImpl<T, ID extends Serializable> implements IBasicDao<T, 
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<T> findAll() {
+	public List<T> findAll() {
 		List<T> result = getSession().createCriteria(clazz).list();
 		return result;
 	}

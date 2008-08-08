@@ -1,11 +1,11 @@
 package net.form105.rm.base.query;
 
 import java.util.Collection;
+import java.util.List;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.dao.IBasicDao;
-import net.form105.rm.base.dao.XMLUserObjectDAO;
-import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.base.lookup.ILookup;
 
 /**
  * This is a common Query to access Daos that implement the IBasicDao interface. You get back all objects
@@ -25,10 +25,10 @@ public class FindAllDaoQuery<T> extends AbstractSimpleQuery<T> {
 	}
 	
 	@Override
-	public Collection<T> execute() {
-		EntryLookupRegistry lookup = Agent.getLookup();
+	public List<T> execute() {
+		ILookup lookup = Agent.getLookup();
 		IBasicDao<T, Long> dao = (IBasicDao<T,Long>) lookup.getContent(daoClass);
-		Collection<T> results = dao.findAll();
+		List<T> results = dao.findAll();
 		return results;
 	}
 

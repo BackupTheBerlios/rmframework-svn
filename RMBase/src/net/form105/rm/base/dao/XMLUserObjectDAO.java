@@ -4,12 +4,11 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.model.user.UserList;
@@ -50,8 +49,8 @@ public class XMLUserObjectDAO implements IBasicDao<User, String> {
 	}
 
 	@Override
-	public Collection<User> findAll() {
-		return userList.getUsersAsList();
+	public List<User> findAll() {
+		return new ArrayList<User>(userList.getUsersAsList());
 	}
 
 	@Override

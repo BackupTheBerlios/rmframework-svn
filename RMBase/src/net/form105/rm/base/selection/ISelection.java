@@ -1,6 +1,6 @@
 package net.form105.rm.base.selection;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * The selection is a List of objects by a generic type T. Usually the selections are used by queries. The result of a query is
@@ -15,6 +15,6 @@ public interface ISelection<T> {
 	 * The operation which returns a list of objects which are the selected objects.
 	 * @return
 	 */
-	public Collection<T> select();
+	public List<T> select();
 
 }

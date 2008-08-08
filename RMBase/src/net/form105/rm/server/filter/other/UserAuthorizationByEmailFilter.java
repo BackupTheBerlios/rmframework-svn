@@ -26,15 +26,11 @@ public class UserAuthorizationByEmailFilter<T extends User> implements IFilter<U
 	@Override
 	public boolean filter(User object) {
 		
-		logger.info("Running filter on user: "+object.getId());
-		
 		if (object.getPassword() == null) return false;
 		if (object.getEMail() == null) return false;
 		
 		boolean isEmail = object.getEMail().equals(email);
 		boolean isPasswd = object.getPassword().equals(passwd);
-		
-		
 		
 		if (isEmail && isPasswd) {
 			return true;
