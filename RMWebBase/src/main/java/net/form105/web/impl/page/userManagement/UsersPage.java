@@ -11,12 +11,15 @@ import net.form105.rm.base.service.IResult;
 import net.form105.web.base.IAuthenticatedPage;
 import net.form105.web.impl.page.template.ConfigurationTemplate;
 import net.form105.web.impl.panel.DataTablePanel;
+import net.form105.web.impl.panel.NoContributionPanel;
 import net.form105.web.impl.panel.UserContributionPanel;
 
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.Model;
 
@@ -26,6 +29,8 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 	
 	UserDataProvider provider;
 	
+	Panel contributionPanel;
+	
 	
 	public UsersPage() {
 		super();
@@ -33,7 +38,9 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 
 			provider = new UserDataProvider(createData());
 			
-			add(new DataTablePanel("panel.userTable", "userTable", provider, createColumns(), 20));
+			DataTablePanel tablePanel = new DataTablePanel("panel.userTable", "userTable", provider, createColumns(), 20);
+			
+			add(tablePanel);
 			
 			User user = new User();
 			user.setId("9999");
@@ -41,8 +48,11 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 			user.setFirstName("Heiko");
 			user.setSirName("Kundlacz");
 			user.setShortName("heikokundlacz");
-			add(new UserContributionPanel("panel.userContribution", user));
-			
+			//add(new UserContributionPanel("panel.userContribution", user));
+			contributionPanel = new NoContributionPanel("panel.noContribution");
+			contributionPanel.setOutputMarkupId(true);
+			add(contributionPanel);
+			tablePanel.setContext(contributionPanel);
 			
 	}
 	
@@ -66,6 +76,16 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 		list.add(new PropertyColumn(new Model("First Name"), "firstName"));
 		return list;
 		
+	}
+	
+	public void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject) {
+		logger.info("ajax request received");
+		User user = (User) modelObject;
+		UserContributionPanel panel = new UserContributionPanel("panel.noContribution", user);
+		panel.setOutputMarkupId(true);
+		contributionPanel.replaceWith(panel);
+		contributionPanel = panel;
+		target.addComponent(panel);
 	}
 	
 	

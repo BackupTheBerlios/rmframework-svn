@@ -9,10 +9,11 @@ import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 
-public class ClickableDataTable extends DefaultDataTable {
+public abstract class ClickableDataTable extends DefaultDataTable {
 	
 	public static Logger logger = Logger.getLogger(ClickableDataTable.class);
 
@@ -23,7 +24,6 @@ public class ClickableDataTable extends DefaultDataTable {
 	}
 
 	protected Item newRowItem(String id, int index, IModel model) {
-		logger.info("Itemmodel: "+model.getObject());
 		final Item item = super.newRowItem(id, index, model);
 		item.add(new AjaxEventBehavior("ondblclick") {
 
@@ -31,11 +31,14 @@ public class ClickableDataTable extends DefaultDataTable {
 
 			@Override
 			protected void onEvent(AjaxRequestTarget target) {
-				User user = (User) item.getModelObject();
+				Object modelObject = item.getModelObject();
+				doubleClickEvent(target, modelObject);
 			}
 			
 		});
 		return item;
 	}
+	
+	protected abstract void doubleClickEvent(AjaxRequestTarget target, Object modelObject);
 
 }
