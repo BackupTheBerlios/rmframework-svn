@@ -26,5 +26,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="i18n"/>
 	<classpathentry kind="lib" path="config"/>
+	<classpathentry kind="lib" path="lib/db4o-7.2.48.10988-java5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

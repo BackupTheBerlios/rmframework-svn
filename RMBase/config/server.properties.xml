@@ -7,4 +7,6 @@
     <!-- memory, db, dual -->
     <entry key="server.operation.mode">memory</entry>
     <entry key="server.userManagement.initialize">true</entry>
+    <entry key="server.db4o.defaultPath">/home/heiko/database.dbo</entry>
+    <entry key="server.db.mandateMode">true</entry>
 </properties>
