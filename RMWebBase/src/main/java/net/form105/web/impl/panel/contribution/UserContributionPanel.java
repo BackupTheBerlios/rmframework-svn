@@ -1,4 +1,4 @@
-package net.form105.web.impl.panel;
+package net.form105.web.impl.panel.contribution;
 
 import net.form105.rm.base.model.user.User;
 
@@ -28,7 +28,7 @@ public class UserContributionPanel extends Panel {
 		this.editable = editable;
 		this.user = user;
 		
-		add(new StyleSheetReference("contributionStylesheet", new ResourceReference(UserContributionPanel.class, "UserContributionPanel.css")));
+		add(new StyleSheetReference("contributionStylesheet", new ResourceReference(UserContributionPanel.class, "ContributionPanel.css")));
 		
 		LoginForm form = new LoginForm("userContributionForm");
 		form.add(createLoginButton("saveButton", "button.save"));

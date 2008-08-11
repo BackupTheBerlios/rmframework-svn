@@ -2,8 +2,8 @@ package net.form105.web.impl.panel;
 
 import java.util.List;
 
-import net.form105.rm.base.model.user.User;
-import net.form105.web.impl.page.userManagement.UsersPage;
+import net.form105.web.base.page.BasePage;
+import net.form105.web.base.type.AjaxEventType;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -14,17 +14,15 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 
-public class DataTablePanel extends Panel implements IContextPanel{
+public class DataTablePanel extends Panel {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private ISortableDataProvider provider;
 	private String tableId;
-	private List columns;
-	private DataTable table;
+	private List<IColumn> columns;
 	private int rowsPerPage;
 	private Label sampleLabel;
-	private Panel context;
 
 	/**
 	 * 
@@ -49,47 +47,24 @@ public class DataTablePanel extends Panel implements IContextPanel{
 		
 	}
 	
-	
+	/**
+	 * Creates a DataTable which overwrites a mouse event. The event is delegated to the page which sets a new 
+	 * panel for the context.
+	 * @return
+	 */
 	private DataTable createTable() {
-		ClickableDataTable dataTable = new ClickableDataTable(tableId, columns, provider, 10) {
+		ClickableDataTable dataTable = new ClickableDataTable(tableId, columns, provider, rowsPerPage) {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected void doubleClickEvent(AjaxRequestTarget target, Object modelObject) {
-				if (getContext() == null) {
-					return;
-				}
-				
-				
-				
-				logger.info("Creating contextPanel based on doubleClickEvent");
-				logger.info("Page: "+getPage());
-				
-				UsersPage page = (UsersPage) getPage();
-				page.ajaxRequestReceived(target, modelObject);
+				BasePage page = (BasePage) getPage();
+				page.ajaxRequestReceived(target, modelObject, AjaxEventType.DOUBLE_CLICK);
 			}
 			
 		};
 		return dataTable;
 	}
-
-
-	@Override
-	public Panel getContext() {
-		return context;
-	}
-
-
-	@Override
-	public void setContext(Panel contextPanel) {
-		this.context = contextPanel;
-	}
-	
-	
-	
-
-	
-	
 
 }

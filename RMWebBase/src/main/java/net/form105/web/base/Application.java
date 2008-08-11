@@ -25,21 +25,6 @@ public class Application extends AuthenticatedWebApplication {
 
 	}
 
-	/*protected void init() {
-		
-		getSecuritySettings().setAuthorizationStrategy(
-		
-		new SimplePageAuthorizationStrategy(IAuthenticatedPage.class, LoginPage.class) {
-			protected boolean isAuthorized() {
-				ApplicationSession session = (ApplicationSession) Session.get();
-				Authentication auth = session.getAuthentication();
-				return auth.isAuthenticated();
-			}
-		}
-		);
-		
-	}*/
-
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
