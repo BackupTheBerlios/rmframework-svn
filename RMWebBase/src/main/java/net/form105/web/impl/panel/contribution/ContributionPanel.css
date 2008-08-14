@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.contributionForm {
+	margin-left: 10px;
+}
+
 #mainContent {
 	width: 800px;
 	float: left;
@@ -7,5 +11,53 @@
 
 #bodySubPanel {
 	padding-top: 30px;
-	padding-left: 830px;
+	margin-left: 830px;
+	width: 300px
+}
+
+div.tab-row {
+	margin-top: -12px;
+	width: 100%;
+	background-color: #83c97e;
+	height: 2em;
+	margin-bottom: 30px;
+}
+
+.tab-row li {
+	float: left;
+	list-style-type: none;
+	width: 4em;
+	text-align: center;
+	border-top: 2px solid #83c97e;
+}
+
+.tab-row .selected {
+	background-color: white;
+}
+
+.tab-row ul {
+	line-height: 1.9em;
+	background-color: red;
+}
+
+.tab-row a {
+	font-weight: bold;
+	color: #0060BF;
+}
+
+.tab-row a:link {
+	text-decoration: none;
+}
+
+.tab-row a:visited {
+	text-decoration: none;
+}
+
+.tab-row a:active {
+	text-decoration: none;
+}
+
+.tab-row a:hover {
+	color: gray;
+	text-decoration: underline;
 }

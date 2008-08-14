@@ -28,8 +28,6 @@ public class UserContributionPanel extends Panel {
 		this.editable = editable;
 		this.user = user;
 		
-		add(new StyleSheetReference("contributionStylesheet", new ResourceReference(UserContributionPanel.class, "ContributionPanel.css")));
-		
 		LoginForm form = new LoginForm("userContributionForm");
 		form.add(createLoginButton("saveButton", "button.save"));
 		add(form);

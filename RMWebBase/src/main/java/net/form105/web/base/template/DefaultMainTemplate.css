@@ -19,6 +19,13 @@
 	margin-right: 30px;
 }
 
+#subNavigation {
+	width: 200px;
+	float: left;
+	margin-left: 50px;
+	padding-left: 10px;
+	}
+
 
 
 #logoutLabel { font-style: italic; font-size: 0.8em }
@@ -37,11 +44,7 @@
 .whiteBox_subMenu div { background: url(img/corner_tl.png) no-repeat top left; }
 .whiteBox_subMenu div div { background: url(img/corner_tr.png) no-repeat top right; }*/
 
-#subMenu {
-	width: 200px;
-	float: left;
-	margin-left: 50px;
-}
+
 
 .contentBox {
 	width: 800px;

@@ -3,11 +3,10 @@ package net.form105.web.base.component.subMenu;
 import org.apache.log4j.Logger;
 import org.apache.wicket.Page;
 import org.apache.wicket.ResourceReference;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.markup.repeater.RepeatingView;
 
-public class SubMenuPanel extends Panel {
+public class SubMenuPanel extends BorderedPanel {
 	
 	public static Logger logger = Logger.getLogger(SubMenuPanel.class);
 	

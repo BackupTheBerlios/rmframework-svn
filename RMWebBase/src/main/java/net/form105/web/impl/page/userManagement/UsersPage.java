@@ -13,7 +13,7 @@ import net.form105.web.base.type.AjaxEventType;
 import net.form105.web.impl.page.template.ConfigurationTemplate;
 import net.form105.web.impl.panel.DataTablePanel;
 import net.form105.web.impl.panel.contribution.NoContributionPanel;
-import net.form105.web.impl.panel.contribution.UserContributionPanel;
+import net.form105.web.impl.panel.contribution.TabbedUserContributionPanel;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -72,7 +72,8 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 	public void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, AjaxEventType type) {
 		if (type == AjaxEventType.DOUBLE_CLICK) {
 			User user = (User) modelObject;
-			UserContributionPanel panel = new UserContributionPanel("panel.noContribution", user);
+			//UserContributionPanel panel = new UserContributionPanel("panel.noContribution", user);
+			TabbedUserContributionPanel panel = new TabbedUserContributionPanel("panel.noContribution", user);
 			panel.setOutputMarkupId(true);
 			contributionPanel.replaceWith(panel);
 			contributionPanel = panel;
