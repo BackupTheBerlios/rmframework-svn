@@ -6,7 +6,11 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.model.user.User;
+import net.form105.rm.base.query.FindAllDaoQuery;
+import net.form105.rm.base.query.LocalQueryHandler;
+import net.form105.rm.base.service.IResult;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
@@ -30,6 +34,7 @@ public class UserDataProvider extends SortableDataProvider {
 	private List<User> input;
 	
 	public UserDataProvider(List<User> input) {
+		logger.info("Creating DataProvider for table");
 		this.input = input;
 		SortParam sortParam = new SortParam(SortColumnId.ID.name(), true);
 		sort(sortParam);
@@ -37,6 +42,8 @@ public class UserDataProvider extends SortableDataProvider {
 
 	@Override
 	public Iterator<User> iterator(int first, int count) {
+		
+		logger.info("iterator invoked");
 		
 		SortParam sortParam = getSort();
 		if (sortParam != null) {
@@ -53,6 +60,7 @@ public class UserDataProvider extends SortableDataProvider {
 
 	@Override
 	public IModel model(Object object) {
+		logger.info("model for object created");
 		return new Model((Serializable)object);
 	}
 
@@ -64,7 +72,21 @@ public class UserDataProvider extends SortableDataProvider {
 	@Override
 	public void detach() {
 		// TODO Auto-generated method stub
-
+		
+		//input = null;
+		
+//		LocalQueryHandler<User> queryHandler = new LocalQueryHandler<User>();
+//		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
+//		queryHandler.executeQuery(query);
+//		IResult<User> result = queryHandler.getResult();
+//		List<User> users = result.getResultList();
+//		input = users;
+//		
+//		SortParam sortParam = new SortParam(SortColumnId.ID.name(), true);
+//		sort(sortParam);
+//		for (int i = 0; i < input.size(); i++) {
+//			logger.info(users.get(i).getSirName());
+//		}
 	}
 	
 	/**

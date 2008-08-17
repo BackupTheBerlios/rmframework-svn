@@ -4,6 +4,10 @@
 	margin-left: 10px;
 }
 
+input[readonly] {
+	color: #555555;
+}
+
 #mainContent {
 	width: 800px;
 	float: left;
@@ -16,11 +20,11 @@
 }
 
 div.tab-row {
-	margin-top: -12px;
+
 	width: 100%;
-	background-color: #83c97e;
-	height: 2em;
-	margin-bottom: 30px;
+	
+
+
 }
 
 .tab-row li {
@@ -28,17 +32,24 @@ div.tab-row {
 	list-style-type: none;
 	width: 4em;
 	text-align: center;
-	border-top: 2px solid #83c97e;
+	
+}
+
+.tab-row ul {
+border-top: 2px solid #83c97e;
+border-bottom: 1px solid #83c97e;
+height: 1.3em;
+padding-top: 6px;
+margin-top: 0px;
 }
 
 .tab-row .selected {
 	background-color: white;
+border-top:1px solid grey;
+border-right:1px solid grey;
+border-left:1px solid grey;
 }
 
-.tab-row ul {
-	line-height: 1.9em;
-	background-color: red;
-}
 
 .tab-row a {
 	font-weight: bold;

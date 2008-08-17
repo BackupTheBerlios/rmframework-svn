@@ -12,6 +12,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDat
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 
 public abstract class ClickableDataTable extends DefaultDataTable {
 	
@@ -21,6 +22,16 @@ public abstract class ClickableDataTable extends DefaultDataTable {
 
 	public ClickableDataTable(String id, List<?> columns, ISortableDataProvider dataProvider, int rowsPerPage) {
 		super(id, columns, dataProvider, rowsPerPage);
+		LoadableDetachableModel model = new LoadableDetachableModel() {
+
+			@Override
+			protected Object load() {
+				logger.info("Loading object detachable");
+				return null;
+			}
+			
+		};
+		setModel(model);
 	}
 
 	protected Item newRowItem(String id, int index, IModel model) {

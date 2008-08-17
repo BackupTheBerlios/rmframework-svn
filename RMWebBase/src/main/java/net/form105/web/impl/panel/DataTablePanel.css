@@ -2,9 +2,11 @@
 
 .pageableTable {
 	width: 100%;
-	border-collapse: collapse;
+border-collapse: collapse;
 	color: #333333;
 	border-bottom: solid #83c97e 2px;
+        border-top: solid #83c97e 2px;
+
 }
 
 .pageableTable tbody {
@@ -19,16 +21,27 @@
 
 .odd {}
 
+
+
 .even {
 	background-color: #cde2ff;
 	cursor: pointer;
 }
 
-tr.headers {
+th {
+
+border-top: 1px solid grey;
+border-bottom: 1px solid grey;
+}
+
+tr.headers  {
 	text-align: left;
 	font-size: 1.05em;
-	color: #ffffff;
-	background-color: #83c97e;
+	color: grey;
+}
+
+.headers td {
+	background-color: red;
 }
 
 .navigation a {

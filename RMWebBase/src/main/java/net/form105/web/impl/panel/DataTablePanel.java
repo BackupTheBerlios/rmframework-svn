@@ -5,6 +5,7 @@ import java.util.List;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.AjaxEventType;
 
+import org.apache.log4j.Logger;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
@@ -13,10 +14,12 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDat
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
+import org.apache.wicket.model.LoadableDetachableModel;
 
 public class DataTablePanel extends Panel {
 	
 	private static final long serialVersionUID = 1L;
+	public static Logger logger = Logger.getLogger(DataTablePanel.class);
 	
 	private ISortableDataProvider provider;
 	private String tableId;
@@ -44,8 +47,8 @@ public class DataTablePanel extends Panel {
 		sampleLabel.setVisible(false);
 		add(sampleLabel);
 		add(createTable());
-		
 	}
+	
 	
 	/**
 	 * Creates a DataTable which overwrites a mouse event. The event is delegated to the page which sets a new 
@@ -63,7 +66,9 @@ public class DataTablePanel extends Panel {
 				page.ajaxRequestReceived(target, modelObject, AjaxEventType.DOUBLE_CLICK);
 			}
 			
+			
 		};
+		
 		return dataTable;
 	}
 
