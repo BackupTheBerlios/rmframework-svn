@@ -9,10 +9,10 @@ public class UserAuthorizationFilter<T extends User> implements IFilter<User> {
 	
 	private static final long serialVersionUID = 1L;
 	public static Logger logger = Logger.getLogger(UserAuthorizationFilter.class);
-	private String userId;
+	private Long userId;
 	private String passwd;
 	
-	public UserAuthorizationFilter(String userId, String passwd) {
+	public UserAuthorizationFilter(Long userId, String passwd) {
 		this.userId = userId;
 		this.passwd = passwd;
 	}
@@ -23,7 +23,6 @@ public class UserAuthorizationFilter<T extends User> implements IFilter<User> {
 		logger.info("Running filter on user: "+object.getId());
 		
 		if (object.getPassword() == null) return false;
-		if (object.getId() == null) return false;
 		
 		boolean isUser = object.getId().equals(userId);
 		boolean isPasswd = object.getPassword().equals(passwd);

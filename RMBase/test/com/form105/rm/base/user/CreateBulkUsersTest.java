@@ -43,7 +43,7 @@ public class CreateBulkUsersTest extends AbstractRemoteTest<User> {
 		ArrayList<String> roleList = new ArrayList<String>();
 		roleList.add("user");
 		for (int i = 1; i < 201; i++) {
-			User user = userContainer.createUser(String.valueOf(100000+i), "user"+i+"@kaiser-ag.ch", "sirname"+i, "shortname"+i, "1234", false, roleList);
+			User user = userContainer.createUser(100000L+i, "user"+i+"@kaiser-ag.ch", "sirname"+i, "shortname"+i, "1234", false, roleList);
 			addUser(user);
 		}
 	}

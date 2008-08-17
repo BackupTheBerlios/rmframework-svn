@@ -49,13 +49,13 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 		
 		ArrayList<String> roleList = new ArrayList<String>();
 		roleList.add("user");
-		dao.save(createUser("999999", "heiko.kundlacz@kaiser-ag.ch", "Kundlacz", "heiko.kundlacz", "heiko", false, roleList));
+		dao.save(createUser(9999L, "heiko.kundlacz@kaiser-ag.ch", "Kundlacz", "heiko.kundlacz", "heiko", false, roleList));
 		roleList.add("admin");
-		dao.save(createUser("1", "admin@kaiser-ag.ch", "Administrator", "admin", "admin", false, roleList));
+		dao.save(createUser(1L, "admin@kaiser-ag.ch", "Administrator", "admin", "admin", false, roleList));
 		
 	}
 	
-	public User createUser(String id, String email, String sirName, String shortName, String password, boolean isAdmin, List<String> roles) {
+	public User createUser(Long id, String email, String sirName, String shortName, String password, boolean isAdmin, List<String> roles) {
 		User user = new User();
 		user.setId(id);
 		user.setEMail(email);

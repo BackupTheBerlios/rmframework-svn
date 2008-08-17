@@ -12,17 +12,17 @@ import java.util.Map;
  */
 public class UserList {
 
-	private Map<String, User> users = new HashMap<String, User>();
+	private Map<Long, User> users = new HashMap<Long, User>();
 
-	public synchronized Map<String, User> getUsers() {
+	public synchronized Map<Long, User> getUsers() {
 		return users;
 	}
 
-	public synchronized void setUsers(Map<String, User> users) {
+	public synchronized void setUsers(Map<Long, User> users) {
 		this.users = users;
 	}
 
-	public synchronized void addUser(String key, User user) {
+	public synchronized void addUser(Long key, User user) {
 		users.put(key, user);
 	}
 	
@@ -34,7 +34,7 @@ public class UserList {
 		return users.values();
 	}
 	
-	public synchronized User getUserById(String id) {
+	public synchronized User getUserById(Long id) {
 		return users.get(id);
 	}
 

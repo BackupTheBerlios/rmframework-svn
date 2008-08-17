@@ -24,7 +24,7 @@ public class UserAuthorizationService extends AbstractService {
 	
 	public class ServiceArgument implements IArgument {
 		private static final long serialVersionUID = 1L;
-		public String userId;
+		public Long userId;
 		public String password;
     }
 

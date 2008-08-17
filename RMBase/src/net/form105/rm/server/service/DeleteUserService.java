@@ -15,7 +15,7 @@ public class DeleteUserService extends AbstractService {
 	
 	public class ServiceArgument implements IArgument {
 		private static final long serialVersionUID = 1L;
-		public String id;
+		public Long id;
     }
 
 	@Override
@@ -25,7 +25,7 @@ public class DeleteUserService extends AbstractService {
 		User existingUser = dao.findById(argument.id);
 		if (existingUser == null) {
 			BaseMessage message = new BaseMessage();
-			throw new RMException(message, "entry.notExist", new String[] {argument.id});
+			throw new RMException(message, "entry.notExist", new String[] {argument.id.toString()});
 		}
 		
 		// It would be better to have a dao method which takes an id as a parameter

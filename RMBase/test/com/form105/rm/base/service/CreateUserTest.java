@@ -18,7 +18,7 @@ public class CreateUserTest extends AbstractRemoteTest {
 		CreateUserService service = new CreateUserService();
 		CreateUserService.ServiceArgument arg = service.getArgument();
 		
-		arg.id = "1001";
+		arg.id = 1001L;
 		arg.email = "heiko.kundlacz@kaiser-ag.ch";
 		arg.firstName = "Heiko";
 		arg.name = "Kundlacz";

@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
  * @author HK
  *
  */
-public class XMLUserObjectDAO implements IBasicDao<User, String> {
+public class XMLUserObjectDAO implements IBasicDao<User, Long> {
 	
 	public static Logger logger = Logger.getLogger(XMLUserObjectDAO.class);
 	
@@ -54,7 +54,7 @@ public class XMLUserObjectDAO implements IBasicDao<User, String> {
 	}
 
 	@Override
-	public User findById(String id) {
+	public User findById(Long id) {
 		return userList.getUserById(id);
 	}
 
@@ -72,7 +72,7 @@ public class XMLUserObjectDAO implements IBasicDao<User, String> {
 
 	@Override
 	public void saveOrUpdate(User user) {
-		userList.addUser(user.getId().toString(), user);
+		userList.addUser(user.getId(), user);
 		write();
 	}
 

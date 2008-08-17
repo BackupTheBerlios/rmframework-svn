@@ -17,7 +17,7 @@ public class CreateUserService extends AbstractService {
 	
 	public class ServiceArgument implements IArgument {
 		private static final long serialVersionUID = 1L;
-		public String id;
+		public Long id;
 		public String email;
 		public String name;
 		public String firstName;
@@ -35,7 +35,7 @@ public class CreateUserService extends AbstractService {
 		User existingUser = dao.findById(argument.id);
 		if (existingUser != null) {
 			BaseMessage message = new BaseMessage();
-			throw new RMException(message, "entry.exist", new String[] {existingUser.getId()});
+			throw new RMException(message, "entry.exist", new String[] {existingUser.getId().toString()});
 		}
 		
 		User user = new User();

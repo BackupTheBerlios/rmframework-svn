@@ -17,9 +17,7 @@ import javax.persistence.OneToMany;
 @Entity(name = "SystemUser")
 public class User implements Serializable {
 
-    @Id
-    private Long oid;
-    private String id = "";
+    private Long id = -1L;
 	private String firstName = "";
     private String sirName = "";
     private String eMail = "";
@@ -63,28 +61,12 @@ public class User implements Serializable {
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
     }
-
-    /**
-     * Getting the id of the user
-     * @return
-     */
-    public Long getOid() {
-        return oid;
-    }
-
-    /**
-     * Setting the oid of the user. That's an internal id for hibernate
-     * @param id
-     */
-    public void setOid(Long oid) {
-        this.oid = oid;
-    }
     
     /**
      * Getting the id of the user.
      * @return
      */
-    public String getId() {
+    public Long getId() {
 		return id;
 	}
 
@@ -92,7 +74,7 @@ public class User implements Serializable {
      * Setting the id of the user
      * @param id
      */
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -182,6 +164,20 @@ public class User implements Serializable {
 	 */
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
+	}
+	
+	public User getCopy() {
+		User user = new User();
+		user.setId(getId());
+		user.setEMail(getEMail());
+		user.setAdmin(isAdmin());
+		user.setFirstName(getFirstName());
+		user.setGroups(getGroups());
+		user.setPassword(getPassword());
+		user.setRoles(getRoles());
+		user.setShortName(getShortName());
+		user.setSirName(getSirName());
+		return user;
 	}
 	
 	

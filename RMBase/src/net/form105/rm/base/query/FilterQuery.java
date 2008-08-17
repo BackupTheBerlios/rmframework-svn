@@ -18,16 +18,16 @@ public class FilterQuery<T> implements IQuery<T> {
 	
 
 	private static final long serialVersionUID = 1L;
-	private List<IFilter> filterList = new ArrayList<IFilter>();
+	private List<IFilter<T>> filterList = new ArrayList<IFilter<T>>();
 	private ISelection<T> selection;
 	
 	
-	public FilterQuery(ISelection<T> selection, List<IFilter> filterList) {
+	public FilterQuery(ISelection<T> selection, List<IFilter<T>> filterList) {
 		this.selection = selection;
 		this.filterList = filterList;
 	}
 	
-	public FilterQuery(ISelection<T> selection, IFilter filter) {
+	public FilterQuery(ISelection<T> selection, IFilter<T> filter) {
 		this.selection = selection;
 		filterList.add(filter);
 	}
@@ -66,7 +66,7 @@ public class FilterQuery<T> implements IQuery<T> {
 	 * Getting all filters that have been registered
 	 * @return
 	 */
-	protected Collection<IFilter> getFilters() {
+	protected Collection<IFilter<T>> getFilters() {
 		return filterList;
 	}
 

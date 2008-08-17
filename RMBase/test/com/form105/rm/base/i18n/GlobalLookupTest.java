@@ -42,7 +42,7 @@ public class GlobalLookupTest {
     	
     	user = new User();
         user.setEMail("heiko.kundlacz@gmx.net");
-        user.setId(String.valueOf(System.nanoTime()));
+        user.setId(System.nanoTime());
         user.setSirName("Kundlacz");
         user.setFirstName("Heiko");
     	
