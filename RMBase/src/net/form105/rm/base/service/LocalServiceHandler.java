@@ -49,7 +49,7 @@ public class LocalServiceHandler implements IServiceHandler {
 		return name;
 	}
 
-	public ServiceResult getResult() throws RemoteException {
+	public ServiceResult getResult() {
 		return result;
 	}
 
