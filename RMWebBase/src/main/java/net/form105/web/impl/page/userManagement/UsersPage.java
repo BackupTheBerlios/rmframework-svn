@@ -36,7 +36,7 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 		super();
 		add(new StyleSheetReference("styleSheetUsers", new ResourceReference(UsersPage.class, "UsersPage.css")));
 
-		provider = new UserDataProvider(createData());
+		provider = new UserDataProvider();
 
 		DataTablePanel tablePanel = new DataTablePanel("panel.userTable", "userTable", provider, createColumns(), 20);
 

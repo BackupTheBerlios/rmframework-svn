@@ -5,6 +5,9 @@ import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.FindByIdDaoQuery;
 import net.form105.rm.base.query.LocalQueryHandler;
 import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.LocalServiceHandler;
+import net.form105.rm.base.service.Status;
+import net.form105.rm.server.service.UpdateUserService;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
@@ -44,19 +47,14 @@ public class UserContributionPanel extends Panel {
 			protected Object load() {
 				// working with a copy of the model object
 				User backendUser = getUserById(selectedUser.getId());
-				
 				return backendUser.getCopy();
 			}
 			
 		};
 		
-		
 		LoginForm form = new LoginForm("userContributionForm", model);
 		form.add(createSaveButton("saveButton", "button.save"));
 		add(form);
-		
-		
-		
 		
 	}
 	
@@ -98,9 +96,23 @@ public class UserContributionPanel extends Panel {
 		}
 
 		protected void onSubmit() {
-			user = (User) getModelObject();
+			User user = (User) getModelObject();
 			
-			
+			LocalServiceHandler handler = new LocalServiceHandler();
+			UpdateUserService uService = new UpdateUserService();
+			UpdateUserService.ServiceArgument arg = uService.getArgument();
+			arg.id = user.getId();
+			arg.firstName = user.getFirstName();
+			arg.email = user.getEMail();
+			arg.isAdmin = user.isAdmin();
+			arg.name = user.getSirName();
+			arg.password = user.getPassword();
+			arg.shortName = user.getShortName();
+			handler.executeService(uService);
+			if (handler.getResult().getStatus() == Status.FAIL) {
+				// add message to a panel -> model window
+				
+			}
 		}
 		
 	}
