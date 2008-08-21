@@ -2,18 +2,19 @@ package net.form105.web.impl.panel;
 
 import java.util.List;
 
-import net.form105.rm.base.model.user.User;
-
 import org.apache.log4j.Logger;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
 
+/**
+ * A datatable which throws an double-click event when clicking on a row.
+ * @author hk
+ *
+ */
 public abstract class ClickableDataTable extends DefaultDataTable {
 	
 	public static Logger logger = Logger.getLogger(ClickableDataTable.class);
@@ -22,18 +23,10 @@ public abstract class ClickableDataTable extends DefaultDataTable {
 
 	public ClickableDataTable(String id, List<?> columns, ISortableDataProvider dataProvider, int rowsPerPage) {
 		super(id, columns, dataProvider, rowsPerPage);
-		LoadableDetachableModel model = new LoadableDetachableModel() {
-
-			@Override
-			protected Object load() {
-				logger.info("Loading object detachable");
-				return null;
-			}
-			
-		};
-		setModel(model);
+		
 	}
 
+	@Override
 	protected Item newRowItem(String id, int index, IModel model) {
 		final Item item = super.newRowItem(id, index, model);
 		item.add(new AjaxEventBehavior("ondblclick") {
