@@ -3,11 +3,7 @@ package net.form105.web.impl.page.userManagement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.model.user.User;
-import net.form105.rm.base.query.FindAllDaoQuery;
-import net.form105.rm.base.query.LocalQueryHandler;
-import net.form105.rm.base.service.IResult;
 import net.form105.web.base.IAuthenticatedPage;
 import net.form105.web.base.type.AjaxEventType;
 import net.form105.web.impl.page.template.ConfigurationTemplate;
@@ -28,19 +24,14 @@ import org.apache.wicket.model.Model;
 @AuthorizeInstantiation("admin")
 public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPage {
 
-	UserDataProvider provider;
-
 	Panel contributionPanel;
+
 
 	public UsersPage() {
 		super();
 		add(new StyleSheetReference("styleSheetUsers", new ResourceReference(UsersPage.class, "UsersPage.css")));
 
-		provider = new UserDataProvider();
-
-		DataTablePanel tablePanel = new DataTablePanel("panel.userTable", "userTable", provider, createColumns(), 20);
-
-		add(tablePanel);
+		add(new DataTablePanel("panel.userTable", "userTable", new UserDataProvider(), 20, createColumns(), true));
 
 		contributionPanel = new NoContributionPanel("panel.noContribution");
 		contributionPanel.setOutputMarkupId(true);
@@ -48,31 +39,9 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 
 	}
 
-	private List<User> createData() {
-		LocalQueryHandler<User> queryHandler = new LocalQueryHandler<User>();
-		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
-		queryHandler.executeQuery(query);
-		IResult<User> result = queryHandler.getResult();
-		List<User> users = result.getResultList();
-		return users;
-	}
-
-	private List<IColumn> createColumns() {
-
-		ArrayList<IColumn> list = new ArrayList<IColumn>();
-		list.add(new PropertyColumn(new Model("Id"), "id"));
-		list.add(new PropertyColumn(new Model("EMail"), UserDataProvider.SortColumnId.EMAIL.name(), "eMail"));
-		list.add(new PropertyColumn(new Model("Shortname"), UserDataProvider.SortColumnId.SHORTNAME.name(), "shortName"));
-		list.add(new PropertyColumn(new Model("Sir Name"), UserDataProvider.SortColumnId.SIRNAME.name(), "sirName"));
-		list.add(new PropertyColumn(new Model("First Name"), "firstName"));
-		return list;
-
-	}
-
 	public void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, AjaxEventType type) {
 		if (type == AjaxEventType.DOUBLE_CLICK) {
 			User user = (User) modelObject;
-			//UserContributionPanel panel = new UserContributionPanel("panel.noContribution", user);
 			TabbedUserContributionPanel panel = new TabbedUserContributionPanel("panel.noContribution", user);
 			panel.setOutputMarkupId(true);
 			contributionPanel.replaceWith(panel);
@@ -80,5 +49,17 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 			target.addComponent(panel);
 		}
 	}
+	
+	private List<IColumn> createColumns() {
+		List<IColumn> list = new ArrayList<IColumn>();
+		list.add(new PropertyColumn(new Model("Id"), "id"));
+		list.add(new PropertyColumn(new Model("EMail"), UserDataProvider.SortColumnId.EMAIL.name(), "eMail"));
+		list
+				.add(new PropertyColumn(new Model("Shortname"), UserDataProvider.SortColumnId.SHORTNAME.name(),
+						"shortName"));
+		list.add(new PropertyColumn(new Model("Sir Name"), UserDataProvider.SortColumnId.SIRNAME.name(), "sirName"));
+		list.add(new PropertyColumn(new Model("First Name"), "firstName"));
+		return list;
 
+	}
 }

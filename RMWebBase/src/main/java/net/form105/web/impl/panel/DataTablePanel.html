@@ -5,8 +5,12 @@
 	<link wicket:id="dataTableStylesheet" />
 </wicket:head>
 <wicket:panel>
-
-	<table class="pageableTable" wicket:id="userTable" />
-
+	<form wicket:id="tableSelectionForm">
+		<table class="pageableTable" wicket:id="userTable" >
+		
+		</table>
+		<input class="button" type="submit" wicket:id="testButton" />
+	</form>
 </wicket:panel>
+
 </html>

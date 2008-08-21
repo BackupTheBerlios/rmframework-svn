@@ -24,7 +24,7 @@ public class UserDataProvider extends SortableDataProvider {
 	public static Logger logger = Logger.getLogger(UserDataProvider.class);
 	public static String myString;
 
-	enum SortColumnId {
+	public enum SortColumnId {
 		ID, EMAIL, SIRNAME, SHORTNAME;
 	}
 
@@ -62,7 +62,8 @@ public class UserDataProvider extends SortableDataProvider {
 
 	@Override
 	public IModel model(Object object) {
-		return new Model((Serializable) object);
+		SelectionModel selectionModel = new SelectionModel((Serializable) object);
+		return selectionModel;
 	}
 
 	@Override
@@ -145,5 +146,44 @@ public class UserDataProvider extends SortableDataProvider {
 		
 		
 		return users;
+	}
+	
+	public class SelectionModel implements IModel, Serializable {
+
+		private static final long serialVersionUID = 1L;
+		private boolean selected;
+		private Object object;
+		
+		public SelectionModel(Serializable object) {
+			this.object = object;
+		}
+		
+
+		public boolean isSelected() {
+			return selected;
+		}
+
+		public void setSelected(boolean selected) {
+			this.selected = selected;
+		}
+
+
+		@Override
+		public Object getObject() {
+			return object;
+		}
+
+
+		@Override
+		public void setObject(Object object) {
+			this. object = object;
+			
+		}
+
+
+		@Override
+		public void detach() {
+		}
+		
 	}
 }

@@ -1,9 +1,16 @@
 package net.form105.web.impl.panel;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import net.form105.rm.base.model.user.User;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.AjaxEventType;
+import net.form105.web.impl.page.userManagement.UserDataProvider;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.ResourceReference;
@@ -11,49 +18,89 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
-import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 
 public class DataTablePanel extends Panel {
-	
+
 	private static final long serialVersionUID = 1L;
 	public static Logger logger = Logger.getLogger(DataTablePanel.class);
-	
+
 	private ISortableDataProvider provider;
 	private String tableId;
-	private List<IColumn> columns;
+	private List<IColumn> columns = new ArrayList<IColumn>();
 	private int rowsPerPage;
 	private Label sampleLabel;
 
+	private boolean selectable = false;
+
+	private final List<Object> selectedList = new ArrayList<Object>();
+
 	/**
 	 * 
-	 * @param id The panel id
-	 * @param tableId The tableId
-	 * @param provider The data provider for the table which includes the input data
-	 * @param columns The columns of the table provided by a list
-	 * @param rowsPerPage Amount of rows shown per page
+	 * @param id
+	 *            The panel id
+	 * @param tableId
+	 *            The tableId
+	 * @param provider
+	 *            The data provider for the table which includes the input data
+	 * @param columns
+	 *            The columns of the table provided by a list
+	 * @param rowsPerPage
+	 *            Amount of rows shown per page
 	 */
-	public DataTablePanel(String id, String tableId, ISortableDataProvider provider, List<IColumn> columns, int rowsPerPage) {
-		super(id);
-		logger.info("Create Datatable panel");
-		add(new StyleSheetReference("dataTableStylesheet", new ResourceReference(DataTablePanel.class, "DataTablePanel.css")));
+	public DataTablePanel(String panelId, String tableId, ISortableDataProvider provider, int rowsPerPage, List<IColumn> columns, boolean selectable) {
+		super(panelId);
+
 		this.provider = provider;
 		this.tableId = tableId;
-		this.columns = columns;
+		this.selectable = selectable;
 		this.rowsPerPage = rowsPerPage;
-		sampleLabel = new Label("sampleLabel", "sampleLabel1");
-		sampleLabel.setOutputMarkupPlaceholderTag(true);
-		sampleLabel.setVisible(false);
-		add(sampleLabel);
-		add(createTable());
+		this.columns = columns;
+		addCheckBoxColumn(columns);
+		
+		add(new StyleSheetReference("dataTableStylesheet", new ResourceReference(DataTablePanel.class,"DataTablePanel.css")));
+
+		
+		final DataTable table = createTable();
+
+		Form form = new Form("tableSelectionForm") {
+			protected void onSubmit() {
+
+				for (Object object : selectedList) {
+					logger.info(object);
+				}
+				// clear out the set, we no longer need the selection
+				selectedList.clear();
+
+			}
+		};
+		Button button = new Button("testButton", new Model("testButton")) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onSubmit() {
+
+				// super.onSubmit();
+				logger.info("button submitted");
+			}
+		};
+		form.add(button);
+		form.add(table);
+		add(form);
 	}
-	
-	
+
 	/**
-	 * Creates a DataTable which overwrites a mouse event. The event is delegated to the page which sets a new 
-	 * panel for the context.
+	 * Creates a DataTable which overwrites a mouse event. The event is
+	 * delegated to the page which sets a new panel for the context.
+	 * 
 	 * @return
 	 */
 	private DataTable createTable() {
@@ -63,14 +110,30 @@ public class DataTablePanel extends Panel {
 
 			@Override
 			protected void doubleClickEvent(AjaxRequestTarget target, Object modelObject) {
-				BasePage page = (BasePage) getPage();
-				page.ajaxRequestReceived(target, modelObject, AjaxEventType.DOUBLE_CLICK);
+				if (getPage() instanceof BasePage) {
+					BasePage page = (BasePage) getPage();
+					page.ajaxRequestReceived(target, modelObject, AjaxEventType.DOUBLE_CLICK);
+				}
 			}
-			
-			
 		};
-		
 		return dataTable;
+	}
+
+	private void addCheckBoxColumn(List<IColumn> columns) {
+		if (! selectable) {
+			return;
+		}
+		CheckBoxColumn checkBoxColumn = new CheckBoxColumn(new PropertyModel(this, "selectedList")) {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected Serializable getModelObjectToken(IModel model) {
+				return (Serializable) model.getObject();
+			}
+
+		};
+		columns.add(0, checkBoxColumn);
 	}
 
 }
