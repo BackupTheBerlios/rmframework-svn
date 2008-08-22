@@ -2,15 +2,10 @@ package net.form105.web.impl.panel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
-import net.form105.rm.base.model.user.User;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.AjaxEventType;
-import net.form105.web.impl.page.userManagement.UserDataProvider;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.ResourceReference;
@@ -18,14 +13,11 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.IFilteredColumn;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 
 public class DataTablePanel extends Panel {
@@ -37,7 +29,6 @@ public class DataTablePanel extends Panel {
 	private String tableId;
 	private List<IColumn> columns = new ArrayList<IColumn>();
 	private int rowsPerPage;
-	private Label sampleLabel;
 
 	private boolean selectable = false;
 
@@ -82,19 +73,10 @@ public class DataTablePanel extends Panel {
 
 			}
 		};
-		Button button = new Button("testButton", new Model("testButton")) {
-			private static final long serialVersionUID = 1L;
 
-			@Override
-			public void onSubmit() {
-
-				// super.onSubmit();
-				logger.info("button submitted");
-			}
-		};
-		form.add(button);
 		form.add(table);
 		add(form);
+		
 	}
 
 	/**
