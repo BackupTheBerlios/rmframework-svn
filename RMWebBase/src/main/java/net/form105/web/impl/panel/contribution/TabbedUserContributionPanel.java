@@ -14,11 +14,8 @@ public class TabbedUserContributionPanel extends AbstractContributionPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private User user;
-
 	public TabbedUserContributionPanel(String id, final User user) {
 		super(id);
-		this.user = user;
 
 		List<AbstractTab> tabs = new ArrayList<AbstractTab>();
 		tabs.add(new AbstractTab(new Model("Show")) {
