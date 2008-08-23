@@ -1,4 +1,4 @@
-package net.form105.web.impl.panel;
+package net.form105.web.base.model;
 
 import java.io.Serializable;
 import java.util.Collection;

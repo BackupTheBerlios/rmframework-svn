@@ -1,4 +1,4 @@
-package net.form105.web.impl.panel;
+package net.form105.web.base.component.table;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.ajax.AjaxRequestTarget;

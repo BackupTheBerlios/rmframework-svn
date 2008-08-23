@@ -5,9 +5,9 @@ import java.util.List;
 
 import net.form105.rm.base.model.user.User;
 import net.form105.web.base.IAuthenticatedPage;
+import net.form105.web.base.component.table.DataTablePanel;
 import net.form105.web.base.type.AjaxEventType;
 import net.form105.web.impl.page.template.ConfigurationTemplate;
-import net.form105.web.impl.panel.DataTablePanel;
 import net.form105.web.impl.panel.contribution.NoContributionPanel;
 import net.form105.web.impl.panel.contribution.TabbedUserContributionPanel;
 

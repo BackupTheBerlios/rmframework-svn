@@ -15,13 +15,15 @@ input[readonly] {
 
 #bodySubPanel {
 	padding-top: 30px;
-	margin-left: 830px;
-	width: 300px
+	width: 250px;
+float: right;
+margin-right: 20px;
+	
 }
 
 div.tab-row {
 
-	width: 100%;
+	
 	
 
 
@@ -71,4 +73,9 @@ border-left:1px solid grey;
 .tab-row a:hover {
 	color: gray;
 	text-decoration: underline;
+}
+
+/* if we use a round border avoid offset for IE */
+form.contributionForm {
+margin-bottom: 0px;
 }

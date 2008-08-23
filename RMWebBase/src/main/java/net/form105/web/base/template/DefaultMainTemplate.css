@@ -1,35 +1,42 @@
 @CHARSET "UTF-8";
 
+
+body {
+	width: 100%;
+	}
+
 #mainNavigation {
 	width: 100%;
 	text-align: right;
 	border-top: 2px solid #ff8a00;
-	font-size: 1.3em;
+	font-size: 1.1em;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	background-color: #eee;
+
 }
 
 #mainMenu {
-	margin-right: 30px;
 }
 
 #userSwitch { 
 	color: #0060BF;
-	margin-right: 30px;
+	margin-right: 10px;
+
 }
 
 #subNavigation {
-	width: 200px;
+	
 	float: left;
 	margin-left: 50px;
 	padding-left: 10px;
+	margin-right: 20px;
 	}
 
 
 
-#logoutLabel { font-style: italic; font-size: 0.8em }
-#userLabel { color: #409bff; font-weight: bold; font-size: 0.8em;}
+#logoutLabel { font-style: italic; font-size: 0.9em }
+#userLabel { color: #409bff; font-weight: bold; font-size: 0.9em;}
 
 #mainNavigation a { font-weight: bold; color: #0060BF; word-spacing: 15px;}
 
@@ -47,8 +54,8 @@
 
 
 .contentBox {
-	width: 800px;
-	margin-left: 300px;
+
+
 }
 
 .white_rbroundbox { background: url(image/whitebox7x7.png) repeat;}
@@ -69,7 +76,7 @@
 }
 
 #body {
-	clear: both;
+	
 	margin-top: 80px;
 }
 
