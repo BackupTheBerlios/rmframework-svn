@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.form105.rm.base.model.user.User;
 import net.form105.web.base.IAuthenticatedPage;
+import net.form105.web.base.component.border.BorderedPanel;
 import net.form105.web.base.component.table.DataTablePanel;
 import net.form105.web.base.type.AjaxEventType;
 import net.form105.web.impl.page.template.ConfigurationTemplate;
@@ -31,6 +32,11 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 	public UsersPage() {
 		super();
 		add(new StyleSheetReference("styleSheetUsers", new ResourceReference(UsersPage.class, "UsersPage.css")));
+		
+		BorderedPanel borderPanel = new BorderedPanel("panel.commandBorder");
+		add(borderPanel);
+		
+		//borderPanel.add(new CommandPanel)
 
 		add(new DataTablePanel("panel.userTable", "userTable", new UserDataProvider(), 20, createColumns(), true));
 

@@ -1,5 +1,7 @@
 package net.form105.web.base.component.subMenu;
 
+import net.form105.web.base.component.border.BorderedPanel;
+
 import org.apache.log4j.Logger;
 import org.apache.wicket.Page;
 import org.apache.wicket.ResourceReference;

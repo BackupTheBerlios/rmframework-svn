@@ -1,6 +1,6 @@
 package net.form105.web.impl.panel.contribution;
 
-import net.form105.web.base.component.subMenu.BorderedPanel;
+import net.form105.web.base.component.border.BorderedPanel;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;

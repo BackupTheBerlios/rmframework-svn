@@ -33,6 +33,8 @@ public class DataTablePanel extends Panel {
 	private boolean selectable = false;
 
 	private final List<Object> selectedList = new ArrayList<Object>();
+	
+	private Form form;
 
 	/**
 	 * 
@@ -57,12 +59,13 @@ public class DataTablePanel extends Panel {
 		this.columns = columns;
 		addCheckBoxColumn(columns);
 		
+		
 		add(new StyleSheetReference("dataTableStylesheet", new ResourceReference(DataTablePanel.class,"DataTablePanel.css")));
 
 		
 		final DataTable table = createTable();
 
-		Form form = new Form("tableSelectionForm") {
+		form = new Form("tableSelectionForm") {
 			protected void onSubmit() {
 
 				for (Object object : selectedList) {

@@ -1,4 +1,4 @@
-package net.form105.web.base.component.subMenu;
+package net.form105.web.base.component.border;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.panel.Panel;
