@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.form105.rm.base.model.user.User;
+import net.form105.web.base.action.ActionForm;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.AjaxEventType;
 
@@ -13,14 +15,13 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.IFilteredColumn;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 
-public class DataTablePanel extends Panel {
+public class DataTablePanel<T> extends Panel {
 
 	private static final long serialVersionUID = 1L;
 	public static Logger logger = Logger.getLogger(DataTablePanel.class);
@@ -32,9 +33,9 @@ public class DataTablePanel extends Panel {
 
 	private boolean selectable = false;
 
-	private final List<Object> selectedList = new ArrayList<Object>();
+	private final List<T> selectedList = new ArrayList<T>();
 	
-	private Form form;
+	private ActionForm<T> form;
 
 	/**
 	 * 
@@ -65,15 +66,19 @@ public class DataTablePanel extends Panel {
 		
 		final DataTable table = createTable();
 
-		form = new Form("tableSelectionForm") {
-			protected void onSubmit() {
+		form = new ActionForm<T>("tableSelectionForm") {
+			private static final long serialVersionUID = 1L;
 
-				for (Object object : selectedList) {
-					logger.info(object);
+			protected void onSubmit() {
+				if (getAction() != null) {
+					for (T object : selectedList) {
+						
+						getAction().setContext(object);
+						getAction().doAction();
+					}
 				}
 				// clear out the set, we no longer need the selection
 				selectedList.clear();
-
 			}
 		};
 
@@ -119,6 +124,10 @@ public class DataTablePanel extends Panel {
 
 		};
 		columns.add(0, checkBoxColumn);
+	}
+	
+	public ActionForm getActionForm() {
+		return form;
 	}
 
 }

@@ -5,9 +5,12 @@ import java.util.List;
 
 import net.form105.rm.base.model.user.User;
 import net.form105.web.base.IAuthenticatedPage;
+import net.form105.web.base.action.ActionSubmitLink;
 import net.form105.web.base.component.border.BorderedPanel;
+import net.form105.web.base.component.command.CommandPanel;
 import net.form105.web.base.component.table.DataTablePanel;
 import net.form105.web.base.type.AjaxEventType;
+import net.form105.web.impl.action.RemoveUserAction;
 import net.form105.web.impl.page.template.ConfigurationTemplate;
 import net.form105.web.impl.panel.contribution.NoContributionPanel;
 import net.form105.web.impl.panel.contribution.TabbedUserContributionPanel;
@@ -36,10 +39,12 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 		BorderedPanel borderPanel = new BorderedPanel("panel.commandBorder");
 		add(borderPanel);
 		
-		//borderPanel.add(new CommandPanel)
-
-		add(new DataTablePanel("panel.userTable", "userTable", new UserDataProvider(), 20, createColumns(), true));
-
+		DataTablePanel<User> dataTablePanel = new DataTablePanel("panel.userTable", "userTable", new UserDataProvider(), 20, createColumns(), true);
+		
+		CommandPanel panel = new CommandPanel("panel.command");
+		panel.add(new ActionSubmitLink(dataTablePanel.getActionForm(), new RemoveUserAction()));
+		borderPanel.add(new CommandPanel())
+		
 		contributionPanel = new NoContributionPanel("panel.noContribution");
 		contributionPanel.setOutputMarkupId(true);
 		add(contributionPanel);
