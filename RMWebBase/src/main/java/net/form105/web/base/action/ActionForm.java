@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.form.Form;
 
 public class ActionForm<T> extends Form {
 	
-	private IContextAction<T> action;
+	private AbstractFormAction action;
 
 	private static final long serialVersionUID = 1L;
 	
@@ -12,11 +12,11 @@ public class ActionForm<T> extends Form {
 		super(id);
 	}
 	
-	public void setAction(IContextAction<T> action) {
+	public void setAction(AbstractFormAction action) {
 		this.action = action;
 	}
 	
-	public IContextAction<T> getAction() {
+	public AbstractFormAction getAction() {
 		return action;
 	}
 	

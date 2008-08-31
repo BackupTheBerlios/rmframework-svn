@@ -4,10 +4,18 @@ import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.LocalServiceHandler;
 import net.form105.rm.server.service.DeleteUserService;
-import net.form105.web.base.action.IContextAction;
+import net.form105.web.base.action.AbstractFormAction;
 
-public class RemoveUserAction implements IContextAction<User> {
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.IModel;
+
+public class RemoveUserAction extends AbstractFormAction<User> {
 	
+	public RemoveUserAction(Form form, IModel model) {
+		super(form, model);
+	}
+
+	private static final long serialVersionUID = 1L;
 	private final String id = "REMOVE_USER_ACTION";
 	private User context;
 
@@ -28,7 +36,7 @@ public class RemoveUserAction implements IContextAction<User> {
 	}
 
 	@Override
-	public IResult<User> doAction() {
+	public IResult doAction() {
 		LocalServiceHandler<User> handler = new LocalServiceHandler<User>();
 		DeleteUserService service = new DeleteUserService();
 		DeleteUserService.ServiceArgument arg = service.getArgument();

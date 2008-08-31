@@ -14,6 +14,7 @@ import net.form105.web.base.model.authorize.Authentication;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Page;
+import org.apache.wicket.model.IModel;
 
 public class AuthenticationAction extends AbstractWebPageAction<User> {
 	
@@ -34,7 +35,7 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 		return id;
 	}
 	
-	public IResult<User> doAction() {
+	public IResult doAction() {
 		
 		LocalQueryHandler<User> queryHandler = new LocalQueryHandler<User>();
 		
@@ -72,6 +73,5 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 		defaultUser.setRoles(user.getRoles());
 		return defaultUser;
 	}
-	
 
 }

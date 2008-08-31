@@ -5,7 +5,15 @@
 	<link wicket:id="commandPanelStylesheet" />
 </wicket:head>
 <wicket:panel>
-	<a class="commandLink" href="#" wicket:id="commandLinks"></a>
+	<wicket:extend>
+		<ul>
+			<li wicket:id="commandLabels">
+				<a href="#" wicket:id="commandLink">
+					<span wicket:id="commandLabel"></span>
+				</a>
+			</li>
+		</ul>
+	</wicket:extend>
 </wicket:panel>
 
 </html>

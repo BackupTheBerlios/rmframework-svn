@@ -2,34 +2,45 @@ package net.form105.web.base.component.command;
 
 import java.util.List;
 
-import org.apache.wicket.ResourceReference;
-import org.apache.wicket.markup.html.form.SubmitLink;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.html.resources.StyleSheetReference;
-import org.apache.wicket.markup.repeater.RepeatingView;
+import net.form105.web.base.action.AbstractFormAction;
+import net.form105.web.base.action.IModelAction;
+import net.form105.web.base.component.border.BorderedPanel;
 
-public class CommandPanel extends Panel {
+import org.apache.log4j.Logger;
+import org.apache.wicket.ResourceReference;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.SubmitLink;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.resources.StyleSheetReference;
+
+public class CommandPanel<T> extends BorderedPanel {
 	
 	private static final long serialVersionUID = 1L;
-
-	private List<SubmitLink> linkList;
+	public static Logger logger = Logger.getLogger(CommandPanel.class);
 	
-	public CommandPanel(String id, List<SubmitLink> linkList) {
+	public CommandPanel(String id, List<IModelAction> linkList) {
 		super(id);
-		this.linkList = linkList;
 		
 		add(new StyleSheetReference("commandPanelStylesheet", new ResourceReference(CommandPanel.class,"CommandPanel.css")));
 		
-		
-		RepeatingView rView = new RepeatingView("commandLabels");
-		for (SubmitLink link : linkList) {
-			rView.add(link);
-		}
-		
-	}
-	
-	
-	
-	
+		ListView lView = new ListView("commandLabels", linkList) {
+			private static final long serialVersionUID = 1L;
 
+			@Override
+			protected void populateItem(ListItem item) {
+				IModelAction action = (IModelAction) item.getModelObject();
+				SubmitLink submitLink;
+				if (action instanceof AbstractFormAction) {
+					AbstractFormAction<T> formAction = (AbstractFormAction<T>) action;
+					submitLink = new SubmitLink("commandLink", formAction.getForm());
+					
+					Label label = new Label("commandLabel", formAction.getModel());
+					submitLink.add(label);
+					item.add(submitLink);
+				} 
+			}
+		};
+		add(lView);	
+	}
 }

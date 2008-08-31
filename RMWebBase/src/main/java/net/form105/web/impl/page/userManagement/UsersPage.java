@@ -5,8 +5,8 @@ import java.util.List;
 
 import net.form105.rm.base.model.user.User;
 import net.form105.web.base.IAuthenticatedPage;
-import net.form105.web.base.action.ActionSubmitLink;
-import net.form105.web.base.component.border.BorderedPanel;
+import net.form105.web.base.action.AbstractFormAction;
+import net.form105.web.base.action.IModelAction;
 import net.form105.web.base.component.command.CommandPanel;
 import net.form105.web.base.component.table.DataTablePanel;
 import net.form105.web.base.type.AjaxEventType;
@@ -24,6 +24,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.TextF
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 
 //TODO: implement IAuthenticatedPage
 @AuthorizeInstantiation("admin")
@@ -36,15 +37,15 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 		super();
 		add(new StyleSheetReference("styleSheetUsers", new ResourceReference(UsersPage.class, "UsersPage.css")));
 		
-		BorderedPanel borderPanel = new BorderedPanel("panel.commandBorder");
-		add(borderPanel);
+		DataTablePanel<User> dataTablePanel = new DataTablePanel<User>("panel.userTable", "userTable", new UserDataProvider(), 20, createColumns(), true);
+		add(dataTablePanel);
 		
-		DataTablePanel<User> dataTablePanel = new DataTablePanel("panel.userTable", "userTable", new UserDataProvider(), 20, createColumns(), true);
+		ArrayList<IModelAction> commandList = new ArrayList<IModelAction>();
+		commandList.add(new RemoveUserAction(dataTablePanel.getActionForm(), new ResourceModel("label.action.remove")));
+		CommandPanel commandPanel = new CommandPanel("panel.command", commandList);
 		
-		CommandPanel panel = new CommandPanel("panel.command");
-		panel.add(new ActionSubmitLink(dataTablePanel.getActionForm(), new RemoveUserAction()));
-		borderPanel.add(new CommandPanel())
 		
+		add(commandPanel);
 		contributionPanel = new NoContributionPanel("panel.noContribution");
 		contributionPanel.setOutputMarkupId(true);
 		add(contributionPanel);

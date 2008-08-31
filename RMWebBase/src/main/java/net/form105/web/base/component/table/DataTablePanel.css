@@ -9,6 +9,11 @@ border-collapse: collapse;
 
 }
 
+
+.pageableTable td, th {
+	padding-right: 30px;
+}
+
 .pageableTable tbody {
 	cursor: pointer;
 }

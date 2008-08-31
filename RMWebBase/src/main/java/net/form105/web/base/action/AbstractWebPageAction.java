@@ -6,7 +6,7 @@ import net.form105.web.base.ApplicationSession;
 import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 
-public abstract class AbstractWebPageAction<T> implements IPageAction<T> {
+public abstract class AbstractWebPageAction<T> implements IPageAction {
 	
 	private ApplicationSession session;
 	private IResult<T> result = new DefaultActionResult<T>();
@@ -21,7 +21,7 @@ public abstract class AbstractWebPageAction<T> implements IPageAction<T> {
 		return session;
 	}
 	
-	public IResult<T> getResult() {
+	public IResult getResult() {
 		return result;
 	}
 	

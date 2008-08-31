@@ -11,22 +11,18 @@ input[readonly] {
 #mainContent {
 	width: 800px;
 	float: left;
+	margin-right: 30px;
 }
 
 #bodySubPanel {
 	padding-top: 30px;
-	width: 250px;
-float: right;
-margin-right: 20px;
-	
+	/*width: 250px;*/
+	float: left;
+	margin-right: 20px;
 }
 
 div.tab-row {
-
 	
-	
-
-
 }
 
 .tab-row li {
@@ -34,24 +30,22 @@ div.tab-row {
 	list-style-type: none;
 	width: 4em;
 	text-align: center;
-	
 }
 
 .tab-row ul {
-border-top: 2px solid #83c97e;
-border-bottom: 1px solid #83c97e;
-height: 1.3em;
-padding-top: 6px;
-margin-top: 0px;
+	border-top: 2px solid #83c97e;
+	border-bottom: 1px solid #83c97e;
+	height: 1.3em;
+	padding-top: 6px;
+	margin-top: 0px;
 }
 
 .tab-row .selected {
 	background-color: white;
-border-top:1px solid grey;
-border-right:1px solid grey;
-border-left:1px solid grey;
+	border-top: 1px solid grey;
+	border-right: 1px solid grey;
+	border-left: 1px solid grey;
 }
-
 
 .tab-row a {
 	font-weight: bold;
@@ -77,5 +71,5 @@ border-left:1px solid grey;
 
 /* if we use a round border avoid offset for IE */
 form.contributionForm {
-margin-bottom: 0px;
+	margin-bottom: 0px;
 }
