@@ -7,11 +7,9 @@
 
 package net.form105.rm.base.service;
 
-import java.rmi.RemoteException;
-
 import org.apache.log4j.Logger;
 
-public class LocalServiceHandler implements IServiceHandler {
+public class LocalServiceHandler<T> implements IServiceHandler {
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,7 +17,7 @@ public class LocalServiceHandler implements IServiceHandler {
 
 	private final String name = "ServiceHandler";
 	private IService service;
-	private ServiceResult result = new ServiceResult();
+	private ServiceResult<T> result = new ServiceResult<T>();
 
 	public LocalServiceHandler() {
 		super();
@@ -49,7 +47,7 @@ public class LocalServiceHandler implements IServiceHandler {
 		return name;
 	}
 
-	public ServiceResult getResult() {
+	public ServiceResult<T> getResult() {
 		return result;
 	}
 
