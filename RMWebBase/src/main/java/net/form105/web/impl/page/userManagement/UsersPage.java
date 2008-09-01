@@ -9,7 +9,7 @@ import net.form105.web.base.action.AbstractFormAction;
 import net.form105.web.base.action.IModelAction;
 import net.form105.web.base.component.command.CommandPanel;
 import net.form105.web.base.component.table.DataTablePanel;
-import net.form105.web.base.type.AjaxEventType;
+import net.form105.web.base.type.EventType;
 import net.form105.web.impl.action.RemoveUserAction;
 import net.form105.web.impl.page.template.ConfigurationTemplate;
 import net.form105.web.impl.panel.contribution.NoContributionPanel;
@@ -52,15 +52,20 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 
 	}
 
-	public void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, AjaxEventType type) {
-		if (type == AjaxEventType.DOUBLE_CLICK) {
-			User user = (User) modelObject;
-			TabbedUserContributionPanel panel = new TabbedUserContributionPanel("panel.noContribution", user);
-			panel.setOutputMarkupId(true);
-			contributionPanel.replaceWith(panel);
-			contributionPanel = panel;
-			target.addComponent(panel);
+	public void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, EventType type) {
+		User user = null; 
+		if (type == EventType.CONTRIBUTION_EDIT_EVENT) {
+			user = (User) modelObject;
+			logger.info("Ajax event occured with user: "+user);
+		} else if (type == EventType.ADD_EVENT) {
+			user = new User();
 		}
+		
+		TabbedUserContributionPanel panel = new TabbedUserContributionPanel("panel.noContribution", user, type);
+		panel.setOutputMarkupId(true);
+		contributionPanel.replaceWith(panel);
+		contributionPanel = panel;
+		target.addComponent(panel);
 	}
 	
 	private List<IColumn> createColumns() {

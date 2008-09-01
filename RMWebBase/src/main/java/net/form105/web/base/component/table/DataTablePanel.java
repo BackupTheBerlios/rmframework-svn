@@ -7,7 +7,7 @@ import java.util.List;
 import net.form105.rm.base.model.user.User;
 import net.form105.web.base.action.ActionForm;
 import net.form105.web.base.page.BasePage;
-import net.form105.web.base.type.AjaxEventType;
+import net.form105.web.base.type.EventType;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.ResourceReference;
@@ -102,7 +102,7 @@ public class DataTablePanel<T> extends Panel {
 			protected void doubleClickEvent(AjaxRequestTarget target, Object modelObject) {
 				if (getPage() instanceof BasePage) {
 					BasePage page = (BasePage) getPage();
-					page.ajaxRequestReceived(target, modelObject, AjaxEventType.DOUBLE_CLICK);
+					page.ajaxRequestReceived(target, modelObject, EventType.CONTRIBUTION_EDIT_EVENT);
 				}
 			}
 		};

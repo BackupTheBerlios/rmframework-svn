@@ -8,6 +8,7 @@ import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.LocalServiceHandler;
 import net.form105.rm.base.service.Status;
 import net.form105.rm.server.service.UpdateUserService;
+import net.form105.web.base.type.EventType;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
@@ -23,23 +24,20 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.validation.validator.EmailAddressValidator;
 
 public class UserContributionPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
 	public static Logger logger = Logger.getLogger(UserContributionPanel.class);
+	
+	public EventType eventType;
 
-	private boolean editable;
-	private User user;
-
-	public UserContributionPanel(String id, final User selectedUser, boolean editable) {
+	public UserContributionPanel(String id, final User selectedUser, EventType eventType) {
 		super(id);
-		this.user = selectedUser;
-		this.editable = editable;
 		
-		logger.info(user);
+		this.eventType = eventType;
 
-		
 		IModel model = new LoadableDetachableModel() {
 			private static final long serialVersionUID = 1L;
 
@@ -64,8 +62,6 @@ public class UserContributionPanel extends Panel {
 		private static final long serialVersionUID = 1L;
 
 		public LoginForm(String name, IModel model) {
-			//super(name, new CompoundPropertyModel(oldUser));
-			
 			super(name, new CompoundPropertyModel(model));
 
 			TextField userId = new TextField("id");
@@ -76,6 +72,7 @@ public class UserContributionPanel extends Panel {
 
 			TextField email = new TextField("eMail");
 			email.setLabel(new Model("userEmail"));
+			email.add(EmailAddressValidator.getInstance());
 			email.add(addReadonlyAttribute());
 			add(email);
 
@@ -129,7 +126,7 @@ public class UserContributionPanel extends Panel {
 
 			@Override
 			public boolean isVisible() {
-				return editable;
+				return (eventType == EventType.CONTRIBUTION_EDIT_EVENT);
 			}
 		};
 		return button;
@@ -157,7 +154,8 @@ public class UserContributionPanel extends Panel {
 	}
 
 	public AttributeModifier addReadonlyAttribute() {
-		AttributeModifier attModifier = new AttributeModifier("readonly", !editable, new Model("readonly"));
+		boolean readonly = (eventType == EventType.CONTRIBUTION_SHOW_EVENT);
+		AttributeModifier attModifier = new AttributeModifier("readonly", readonly, new Model("readonly"));
 		return attModifier;
 	}
 	

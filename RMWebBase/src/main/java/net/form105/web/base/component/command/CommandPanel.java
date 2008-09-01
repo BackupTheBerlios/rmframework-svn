@@ -3,11 +3,17 @@ package net.form105.web.base.component.command;
 import java.util.List;
 
 import net.form105.web.base.action.AbstractFormAction;
+import net.form105.web.base.action.IAjaxLinkToPanelAction;
 import net.form105.web.base.action.IModelAction;
 import net.form105.web.base.component.border.BorderedPanel;
+import net.form105.web.base.page.BasePage;
+import net.form105.web.base.type.EventType;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.Page;
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -38,7 +44,22 @@ public class CommandPanel<T> extends BorderedPanel {
 					Label label = new Label("commandLabel", formAction.getModel());
 					submitLink.add(label);
 					item.add(submitLink);
-				} 
+				} else if (action instanceof IAjaxLinkToPanelAction) {
+					IAjaxLinkToPanelAction ajaxLinkAction = (IAjaxLinkToPanelAction) action;
+					AjaxLink ajaxLink = new AjaxLink("commandLink", ajaxLinkAction.getModel()) {
+
+						private static final long serialVersionUID = 1L;
+
+						@Override
+						public void onClick(AjaxRequestTarget target) {
+							Page page = getPage();
+							((BasePage) page).ajaxRequestReceived(target, null, EventType.ADD_EVENT);
+							
+						}
+						
+					};
+					
+				}
 			}
 		};
 		add(lView);	

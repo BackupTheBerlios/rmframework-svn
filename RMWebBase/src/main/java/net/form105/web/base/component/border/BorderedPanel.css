@@ -1,5 +1,10 @@
 @CHARSET "UTF-8";
 
+.white_roundBox {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	}
+
 .white_rbroundbox { background: url(image/whitebox7x7.gif) repeat;}
 .white_roundBoxTop { background: url(image/corner_t.png) repeat-x; }
 .white_roundBoxTop div { background: url(image/corner_tl.png) no-repeat top left; }

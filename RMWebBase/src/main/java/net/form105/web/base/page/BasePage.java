@@ -1,6 +1,6 @@
 package net.form105.web.base.page;
 
-import net.form105.web.base.type.AjaxEventType;
+import net.form105.web.base.type.EventType;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebPage;
@@ -14,6 +14,6 @@ public abstract class BasePage extends WebPage {
 	 * @param modelObject The object that an event is invoked on. E.g. the model object of a table row
 	 * @param type The type of event that has fired
 	 */
-	public abstract void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, AjaxEventType type);
+	public abstract void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, EventType type);
 
 }

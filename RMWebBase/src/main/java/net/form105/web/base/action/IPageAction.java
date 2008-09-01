@@ -25,5 +25,7 @@ public interface IPageAction extends Serializable {
 	 * The action that will be executed
 	 */
 	public IResult doAction();
+	
+	public IModel getModel();
 
 }

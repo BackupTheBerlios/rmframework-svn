@@ -74,4 +74,9 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 		return defaultUser;
 	}
 
+	@Override
+	public IModel getModel() {
+		return null;
+	}
+
 }

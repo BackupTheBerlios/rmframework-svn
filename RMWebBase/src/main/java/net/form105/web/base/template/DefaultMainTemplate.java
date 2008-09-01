@@ -2,7 +2,7 @@ package net.form105.web.base.template;
 
 import net.form105.web.base.component.mainNavigation.MainNavigationPanel;
 import net.form105.web.base.page.BasePage;
-import net.form105.web.base.type.AjaxEventType;
+import net.form105.web.base.type.EventType;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.ResourceReference;
@@ -45,7 +45,7 @@ public class DefaultMainTemplate extends BasePage {
 	}
 
 	@Override
-	public void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, AjaxEventType type) {
+	public void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, EventType type) {
 		// by default do nothing
 	}
 
