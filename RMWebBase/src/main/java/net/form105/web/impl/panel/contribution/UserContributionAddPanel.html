@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:wicket>
+
+<wicket:panel>
+	
+
+	<form class="contributionForm" wicket:id="userContributionAddForm">
+	<div class="contributionForm">
+
+	<table>
+
+		<tr>
+			<td><label class="contributionLabel" for="eMail"><wicket:message key="label.email" /></label></td>
+			<td><input class="contributionTextfield" type="text" wicket:id="eMail" id="eMail" value="" size="25" /></td>
+		</tr>
+		
+		<tr>
+			<td><label class="contributionLabel" for="sirName"><wicket:message key="label.sirName" /></label></td>
+			<td><input class="contributionTextfield" type="text" wicket:id="sirName" id="sirName" value="" size="25" /></td>
+		</tr>
+		
+		<tr>
+			<td><label class="contributionLabel" for="firstName"><wicket:message key="label.firstName" /></label></td>
+			<td><input class="contributionTextfield" type="text" wicket:id="firstName" id="firstName" value="" size="25" /></td>
+		</tr>
+		
+		<tr>
+			<td><label class="contributionLabel" for="shortName"><wicket:message key="label.shortName" /></label></td>
+			<td><input class="contributionTextfield" type="text" wicket:id="shortName" id="shortName" value="" size="25" /></td>
+		</tr>
+
+		
+		
+		<tr>
+			<td></td>
+			<td class="button"><input class="button" type="submit" wicket:id="submitButton" /></td>
+		</tr>
+	</table>
+
+
+	</div>
+	<!-- /loginForm -->
+	</form>
+
+</wicket:panel>
+</html>

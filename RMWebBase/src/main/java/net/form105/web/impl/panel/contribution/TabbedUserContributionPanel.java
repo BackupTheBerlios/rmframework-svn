@@ -37,10 +37,9 @@ public class TabbedUserContributionPanel extends AbstractContributionPanel {
 				}
 			});
 		} else {
-			User userToAdd = new User();
 			tabs.add(new AbstractTab(new Model("Add")) {
 				public Panel getPanel(String panelId) {
-					return new UserContributionPanel(panelId, user, EventType.ADD_EVENT);
+					return new UserContributionAddPanel(panelId, EventType.ADD_EVENT);
 				}
 			});
 		}
