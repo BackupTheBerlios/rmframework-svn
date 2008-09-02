@@ -42,8 +42,7 @@
 
 
 ul.commandList {
-	list-style: url(image/remove_10.png) square;
-	list-style-position: inside;
+	list-style-type: none;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	display: inline;
