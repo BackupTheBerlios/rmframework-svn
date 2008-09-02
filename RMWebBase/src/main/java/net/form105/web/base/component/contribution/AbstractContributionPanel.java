@@ -1,11 +1,11 @@
-package net.form105.web.impl.panel.contribution;
+package net.form105.web.base.component.contribution;
 
 import net.form105.web.base.component.border.BorderedPanel;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 
-public class AbstractContributionPanel extends BorderedPanel {
+public abstract class AbstractContributionPanel extends BorderedPanel {
 	
 	private static final long serialVersionUID = 1L;
 

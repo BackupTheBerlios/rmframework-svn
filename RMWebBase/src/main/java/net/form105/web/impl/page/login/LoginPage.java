@@ -80,7 +80,7 @@ public class LoginPage extends DefaultMainTemplate {
 				setResponsePage(this.getPage());
 				logger.info(this.getModel());
 				StringResourceModel rModel = new StringResourceModel("message.error.notAuthenticated", this.getPage(), this.getModel());
-				error(rModel.getString());
+				warn(rModel.getString());
 				
 				
 			}

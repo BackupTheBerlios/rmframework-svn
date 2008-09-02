@@ -58,6 +58,9 @@ public class CommandPanel<T> extends BorderedPanel {
 						}
 						
 					};
+					Label label = new Label("commandLabel", ajaxLinkAction.getModel());
+					ajaxLink.add(label);
+					item.add(ajaxLink);
 					
 				}
 			}

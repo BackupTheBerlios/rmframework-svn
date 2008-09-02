@@ -1,5 +1,7 @@
 package net.form105.web.impl.panel.contribution;
 
+import net.form105.web.base.component.contribution.AbstractContributionPanel;
+
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;

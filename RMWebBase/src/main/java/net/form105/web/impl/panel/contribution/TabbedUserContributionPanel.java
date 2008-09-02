@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.model.user.User;
+import net.form105.web.base.component.contribution.AbstractContributionPanel;
 import net.form105.web.base.type.EventType;
 
 import org.apache.wicket.extensions.ajax.markup.html.tabs.AjaxTabbedPanel;
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 
 public class TabbedUserContributionPanel extends AbstractContributionPanel {
 
@@ -21,7 +23,7 @@ public class TabbedUserContributionPanel extends AbstractContributionPanel {
 		List<AbstractTab> tabs = new ArrayList<AbstractTab>();
 
 		if (user != null) {
-			tabs.add(new AbstractTab(new Model("Show")) {
+			tabs.add(new AbstractTab(new ResourceModel("tab.label.show")) {
 				private static final long serialVersionUID = 1L;
 
 				public Panel getPanel(String panelId) {
@@ -29,7 +31,7 @@ public class TabbedUserContributionPanel extends AbstractContributionPanel {
 				}
 			});
 
-			tabs.add(new AbstractTab(new Model("Edit")) {
+			tabs.add(new AbstractTab(new ResourceModel("tab.label.edit")) {
 				private static final long serialVersionUID = 1L;
 
 				public Panel getPanel(String panelId) {
@@ -37,7 +39,7 @@ public class TabbedUserContributionPanel extends AbstractContributionPanel {
 				}
 			});
 		} else {
-			tabs.add(new AbstractTab(new Model("Add")) {
+			tabs.add(new AbstractTab(new ResourceModel("tab.label.add")) {
 				public Panel getPanel(String panelId) {
 					return new UserContributionAddPanel(panelId, EventType.ADD_EVENT);
 				}
@@ -45,6 +47,9 @@ public class TabbedUserContributionPanel extends AbstractContributionPanel {
 		}
 
 		add(new AjaxTabbedPanel("tabs", tabs));
+		
+		FeedbackPanel feedback = new FeedbackPanel("warning.input");
+		add(feedback);
 
 	}
 

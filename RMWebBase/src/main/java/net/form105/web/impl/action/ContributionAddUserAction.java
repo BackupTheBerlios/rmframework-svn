@@ -10,9 +10,11 @@ import org.apache.wicket.model.IModel;
 public class ContributionAddUserAction implements IAjaxLinkToPanelAction {
 	
 	private Page thisPage;
+	private IModel model;
 	
-	public ContributionAddUserAction(Page thisPage) {
+	public ContributionAddUserAction(Page thisPage, IModel model) {
 		this.thisPage = thisPage;
+		this.model = model;
 	}
 
 	@Override
@@ -29,8 +31,7 @@ public class ContributionAddUserAction implements IAjaxLinkToPanelAction {
 
 	@Override
 	public IModel getModel() {
-		// TODO Auto-generated method stub
-		return null;
+		return model;
 	}
 
 	

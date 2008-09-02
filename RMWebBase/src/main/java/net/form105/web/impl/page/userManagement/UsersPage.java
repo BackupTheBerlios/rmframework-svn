@@ -5,11 +5,11 @@ import java.util.List;
 
 import net.form105.rm.base.model.user.User;
 import net.form105.web.base.IAuthenticatedPage;
-import net.form105.web.base.action.AbstractFormAction;
 import net.form105.web.base.action.IModelAction;
 import net.form105.web.base.component.command.CommandPanel;
 import net.form105.web.base.component.table.DataTablePanel;
 import net.form105.web.base.type.EventType;
+import net.form105.web.impl.action.ContributionAddUserAction;
 import net.form105.web.impl.action.RemoveUserAction;
 import net.form105.web.impl.page.template.ConfigurationTemplate;
 import net.form105.web.impl.panel.contribution.NoContributionPanel;
@@ -42,6 +42,7 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 		
 		ArrayList<IModelAction> commandList = new ArrayList<IModelAction>();
 		commandList.add(new RemoveUserAction(dataTablePanel.getActionForm(), new ResourceModel("label.action.remove")));
+		commandList.add(new ContributionAddUserAction(UsersPage.this, new ResourceModel("label.action.add")));
 		CommandPanel commandPanel = new CommandPanel("panel.command", commandList);
 		
 		
@@ -58,7 +59,7 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 			user = (User) modelObject;
 			logger.info("Ajax event occured with user: "+user);
 		} else if (type == EventType.ADD_EVENT) {
-			user = new User();
+			//user = new User();
 		}
 		
 		TabbedUserContributionPanel panel = new TabbedUserContributionPanel("panel.noContribution", user, type);
@@ -72,9 +73,7 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 		List<IColumn> list = new ArrayList<IColumn>();
 		list.add(new PropertyColumn(new Model("Id"), "id"));
 		list.add(new TextFilteredPropertyColumn(new Model("EMail"), UserDataProvider.SortColumnId.EMAIL.name(), "eMail"));
-		list
-				.add(new PropertyColumn(new Model("Shortname"), UserDataProvider.SortColumnId.SHORTNAME.name(),
-						"shortName"));
+		list.add(new PropertyColumn(new Model("Shortname"), UserDataProvider.SortColumnId.SHORTNAME.name(),	"shortName"));
 		list.add(new PropertyColumn(new Model("Sir Name"), UserDataProvider.SortColumnId.SIRNAME.name(), "sirName"));
 		list.add(new PropertyColumn(new Model("First Name"), "firstName"));
 		return list;

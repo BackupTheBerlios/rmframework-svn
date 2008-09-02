@@ -1,7 +1,7 @@
-package net.form105.web.impl.panel.contribution;
+package net.form105.web.base.component.contribution;
 
-import net.form105.rm.base.model.user.User;
 import net.form105.web.base.type.EventType;
+import net.form105.web.impl.panel.contribution.UserContributionAddPanel;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.form.Button;

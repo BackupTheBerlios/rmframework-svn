@@ -5,6 +5,7 @@ import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.FindByIdDaoQuery;
 import net.form105.rm.base.query.LocalQueryHandler;
 import net.form105.rm.base.service.IResult;
+import net.form105.web.base.component.contribution.ContributionPanel;
 import net.form105.web.base.type.EventType;
 import net.form105.web.impl.form.EditUserForm;
 
