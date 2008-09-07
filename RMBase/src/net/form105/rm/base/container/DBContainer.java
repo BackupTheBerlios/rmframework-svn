@@ -8,6 +8,9 @@
 package net.form105.rm.base.container;
 
 
+import net.form105.rm.base.dao.db.IDbSelector;
+import net.form105.rm.base.dao.db.SingleDBSelector;
+
 import org.picocontainer.Disposable;
 import org.picocontainer.Startable;
 
@@ -18,18 +21,27 @@ public class DBContainer extends AbstractContainer implements Startable, Disposa
 	
 	private String DBO_FILE_PROPERTY = "server.db4o.defaultPath";
 	private ObjectContainer db;
+	private ModeContainer modeContainer;
+	private IDbSelector dbSelector;
 	
 	PropertiesContainer properties;
 	
-	public DBContainer(PropertiesContainer properties) {
+	public DBContainer(PropertiesContainer properties, ModeContainer mode) {
 		super();
 		this.properties = properties;
+		this.modeContainer = mode;
+		
+		if (modeContainer.getCurrentMode() == ModeContainer.Mode.DBSingle) {
+			dbSelector = new SingleDBSelector();
+		}
 	}
   
 
   public void start() {
 	  logger.info("Starting: DBContainer");
-      startDb4o();
+	  if (modeContainer.getCurrentMode() == ModeContainer.Mode.DBSingle) {
+		  // register dao with single database selector
+	  }
   }
 
   public void stop() {
@@ -47,6 +59,14 @@ public class DBContainer extends AbstractContainer implements Startable, Disposa
   
   public ObjectContainer getDb() {
 	  return db;
+  }
+  
+  /**
+   * The database selector which is configured at startup
+   * @return
+   */
+  public IDbSelector getDBSelector() {
+	  return dbSelector;
   }
   
 

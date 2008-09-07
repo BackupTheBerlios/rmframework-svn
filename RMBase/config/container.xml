@@ -2,6 +2,7 @@
 
 <container>
     <component-implementation class='net.form105.rm.base.container.BackgroundThreadContainer' />
+    <component-implementation class='net.form105.rm.base.container.ModeContainer' />
     <component-implementation class='net.form105.rm.base.container.DBContainer' />
     <component-implementation class='net.form105.rm.base.container.PropertiesContainer'/>
     <component-implementation class='net.form105.rm.base.container.RMIServerContainer'/>

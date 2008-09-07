@@ -5,6 +5,8 @@
 
 package net.form105.rm.base.model.parameter;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 
 import net.form105.rm.base.model.xml.IXmlConverter;
@@ -18,34 +20,35 @@ import org.dom4j.Element;
  */
 
 @Entity
-public class StringParameter extends AbstractParameter<String> implements IXmlLoadable<StringParameter> {
+public class FloatParameter extends AbstractParameter<BigDecimal> implements IXmlLoadable<FloatParameter> {
     
 	private static final long serialVersionUID = 1L;
-	private String parameterValue;
+	private BigDecimal parameterValue;
 
-    public String getParameterValue() {
+    public BigDecimal getParameterValue() {
         return parameterValue;
     }
 
     @Override
-    public void setParameterValue(String value) {
+    public void setParameterValue(BigDecimal value) {
         this.parameterValue = value;
     }
 
     @Override
     public String getValueAsString() {
-        return parameterValue;
+        return parameterValue.toEngineeringString();
     }
 
     public void fromDom(Element element) {
         String elementId = element.attributeValue("id");
         String value = element.attributeValue("value");
+        BigDecimal decimalValue = new BigDecimal(value);
         setElementId(elementId);
-        setParameterValue(value);
+        setParameterValue(decimalValue);
         
     }
 
-    public StringParameter load(IXmlConverter converter, Element element) {
+    public FloatParameter load(IXmlConverter converter, Element element) {
         converter.convert(this, element);
         return this;
     }

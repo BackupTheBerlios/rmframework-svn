@@ -25,14 +25,7 @@ public class CreateBulkUsersTest extends AbstractRemoteTest<User> {
 
 		CreateUserService service = new CreateUserService();
 		CreateUserService.ServiceArgument arg = service.getArgument();
-		arg.email = user.getEMail();
-		arg.firstName = user.getFirstName();
-		arg.name = user.getSirName();
-		arg.shortName = user.getShortName();
-		arg.id = user.getId();
-		arg.password = user.getPassword();
-		arg.isAdmin = user.isAdmin();
-		arg.roles = user.getRoles();
+		arg.user = user;
 		IResult<User> result = doService(service);
 		assertTrue(result.getStatus() == Status.SUCCESS);
 	}

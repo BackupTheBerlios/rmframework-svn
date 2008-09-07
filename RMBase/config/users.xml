@@ -36,7 +36,7 @@
      <void property="password"> 
       <string>admin</string> 
      </void> 
-     <void property="roles"> 
+     <void id="ArrayList0" property="roles"> 
       <void method="add"> 
        <string>user</string> 
       </void> 
@@ -2337,6 +2337,29 @@
      </void> 
      <void property="sirName"> 
       <string>sirname121</string> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="put"> 
+    <long>9999</long> 
+    <object class="net.form105.rm.base.model.user.User"> 
+     <void property="EMail"> 
+      <string>heiko.kundlacz@kaiser-ag.ch</string> 
+     </void> 
+     <void property="id"> 
+      <long>9999</long> 
+     </void> 
+     <void property="password"> 
+      <string>heiko</string> 
+     </void> 
+     <void property="roles"> 
+      <object idref="ArrayList0"/> 
+     </void> 
+     <void property="shortName"> 
+      <string>heiko.kundlacz</string> 
+     </void> 
+     <void property="sirName"> 
+      <string>Kundlacz</string> 
      </void> 
     </object> 
    </void> 

@@ -2,8 +2,8 @@
 
 <model  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://xml.form105.net/schema/model file:/home/heiko/development/projects/RMBase/config/model.xsd'>
        <resource id="sample" type="muster" name="sampleName">
-           <parameter id="sParameter" type="string" value="sParamValue" /> 
-           <parameter id="iParameter" type="int" value="iParamValue" />
+           <parameter id="sParameter" name="String Parameter" type="string" value="sParamValue" unit=""/> 
+           <parameter id="iParameter" name="Integer Parameter" type="int" value="iParamValue" unit=""/>
        </resource>
        
 </model>

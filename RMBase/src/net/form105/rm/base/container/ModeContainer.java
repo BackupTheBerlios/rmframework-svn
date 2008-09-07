@@ -11,22 +11,24 @@ import org.picocontainer.Startable;
 
 /**
  *
- * @author heiko
+ * @author hk
  */
 public class ModeContainer extends AbstractContainer implements Startable {
 
-    private ModeContainer.mode currentMode;
+	private PropertiesContainer propertiesContainer;
+    private ModeContainer.Mode currentMode;
     private final String MODE_KEY = "server.operation.mode";
     
-    public enum mode {
+    public enum Mode {
         
         MEMORY("memory"),
-        DB("db"),
+        DBSingle("db"),
+        DBMulti("dbmulti"),
         DUAL("dual");
         
         private String id;
         
-        private mode(String id) {
+        private Mode(String id) {
             this.id = id;
         }
         
@@ -34,20 +36,22 @@ public class ModeContainer extends AbstractContainer implements Startable {
     
     public ModeContainer(PropertiesContainer properties) {
     	super();
-        String modeName = Agent.getRMProperty(MODE_KEY);
-        setCurrentMode(mode.valueOf(modeName.toUpperCase()));
+    	this.propertiesContainer = properties;
+        
     }
     
-    public ModeContainer.mode getCurrentMode() {
+    public ModeContainer.Mode getCurrentMode() {
         return currentMode;
     }
     
-    public void setCurrentMode(ModeContainer.mode mode) {
+    public void setCurrentMode(ModeContainer.Mode mode) {
         this.currentMode = mode;
     }
 
     public void start() {
-        if (getCurrentMode() == mode.MEMORY) {
+    	String modeName = Agent.getRMProperty(MODE_KEY);
+        setCurrentMode(Mode.valueOf(modeName.toUpperCase()));
+        if (getCurrentMode() == Mode.MEMORY) {
             // register trainsient DAO to the Lookup
         }
     }

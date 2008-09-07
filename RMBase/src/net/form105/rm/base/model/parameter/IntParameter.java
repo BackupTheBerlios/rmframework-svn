@@ -14,13 +14,15 @@ import org.dom4j.Element;
 
 /**
  *
- * @author heiko
+ * @author hk
  */
 
 @Entity
-public class IntParameter extends AbstractParameter<Integer> implements IXmlLoadable {
+public class IntParameter extends AbstractParameter<Integer> implements IXmlLoadable<IntParameter> {
     
-    private Integer parameterValue;
+	private static final long serialVersionUID = 1L;
+	
+	private Integer parameterValue;
 
     public Integer getParameterValue() {
         return parameterValue;
@@ -47,8 +49,9 @@ public class IntParameter extends AbstractParameter<Integer> implements IXmlLoad
         
     }
 
-    public Object load(IXmlConverter converter, Element element) {
-        return null;
+    public IntParameter load(IXmlConverter converter, Element element) {
+    	converter.convert(this, element);
+        return this;
     }
     
 }
