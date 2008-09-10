@@ -57,9 +57,6 @@ public class UsersPage extends ConfigurationTemplate implements IAuthenticatedPa
 		User user = null; 
 		if (type == EventType.CONTRIBUTION_EDIT_EVENT) {
 			user = (User) modelObject;
-			logger.info("Ajax event occured with user: "+user);
-		} else if (type == EventType.ADD_EVENT) {
-			//user = new User();
 		}
 		
 		TabbedUserContributionPanel panel = new TabbedUserContributionPanel("panel.noContribution", user, type);

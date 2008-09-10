@@ -1,25 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns:wicket>
 
   <head>
     <title wicket:id="title">Default Main Application</title>
-    <link rel='stylesheet' type='text/css' href='main.css'/>
+    <!-- link rel='stylesheet' type='text/css' href='main.css'/ -->
+    <link href="css/custom/layout_3col.css" rel="stylesheet" type="text/css"/>
+    <!--[if lte IE 7]>
+ 		<link href="css/patches/patch_layout_3col.css" rel="stylesheet" type="text/css" />
+ 	<![endif]-->
     <link wicket:id="cssDefaultMainTemplate" />
   </head>
   
   <body>
-  <div id="window">
-
-	<div id="logoImage">
-   		<img src="img/kaiser-logo-249px.png"  alt="login image"></img>
-   </div>
-	
-    <div id="mainNavigation" wicket:id="panel.mainNavigation"/>
-
-    <div id="body">
-      <wicket:child />
-    </div>
-    </div>
   
+  
+  <div id="page_margins">
+  
+  	<div id="page">
+  	
+  		
+  	
+  		<div id="header">
+  			
+  			<div id="topnav" wicket:id="panel.mainNavigation">
+			</div>
+			<div id="logoImage">
+		   		<img src="img/kaiser-logo-249px.png"  alt="login image"></img>
+			</div>	
+  			
+  			<!-- OLD ENTRY div id="mainNavigation" wicket:id="panel.mainNavigation"/ -->
+  		</div><!-- /header -->
+  		
+  		<div id="nav">
+  		</div>
+  		
+  		<div id="main">
+		    <div id="body">
+		      <wicket:child />
+		    </div>
+		</div>
+		
+	</div><!-- /page -->
+  
+  </div><!-- /page_margins -->
   </body>
 </html>

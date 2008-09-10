@@ -30,6 +30,7 @@ public class WebListener extends WebConfiguration implements ServletContextListe
 		// in the pico container
 		String realPath = event.getServletContext().getRealPath("/");
 		super.setConfigurationPath(realPath + "WEB-INF" + File.separator + "config/");
+		super.setImportPath(realPath + "WEB-INF" + File.separator + "import/");
 		super.setConfiguration(new ContainerConfiguration(this));
 		
 		// Loading pico container

@@ -78,7 +78,6 @@ public class LoginPage extends DefaultMainTemplate {
 			} else {
 				// Gets the instance of this page. Shows the previously typed in user name again in the user name field. 
 				setResponsePage(this.getPage());
-				logger.info(this.getModel());
 				StringResourceModel rModel = new StringResourceModel("message.error.notAuthenticated", this.getPage(), this.getModel());
 				warn(rModel.getString());
 				

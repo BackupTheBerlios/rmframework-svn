@@ -39,7 +39,21 @@
         </excludes>
       </testResource>
     </testResources>
+    
+
+
+        
+
+    
+    
     <plugins>
+      <plugin>
+         <groupId>com.mathieucarbou.mojo</groupId>
+         <artifactId>maven-license-plugin</artifactId>
+         <configuration>
+         	<headerFile>src/main/java/etc/header.txt</headerFile>
+         </configuration>
+      </plugin>
       <plugin>
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>maven-jetty-plugin</artifactId>
