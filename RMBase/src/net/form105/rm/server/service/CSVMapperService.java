@@ -1,9 +1,10 @@
 package net.form105.rm.server.service;
 
+import net.form105.rm.base.command.CommandHandler;
+import net.form105.rm.base.command.ImportCommand;
+import net.form105.rm.base.model.Resource;
 import net.form105.rm.base.service.AbstractService;
 import net.form105.rm.base.service.IArgument;
-import net.form105.rm.server.mapping.CSVTemplateSequence;
-import net.form105.rm.server.mapping.ITemplateSequence;
 
 public class CSVMapperService extends AbstractService {
 	
@@ -12,13 +13,17 @@ public class CSVMapperService extends AbstractService {
 
 	public class ServiceArgument implements IArgument {
 		private static final long serialVersionUID = 1L;
-		public String file;
+		public String sourceFile;
+		public String templateFile;
 	}
 
 	@Override
 	public void execute() throws Exception {
-		ITemplateSequence reader = new CSVTemplateSequence(argument.file);
-		//reader.doImport();
+		
+		CommandHandler<Resource> cHandler = new CommandHandler<Resource>();
+		ImportCommand command = new ImportCommand(argument.sourceFile, argument.templateFile);
+		cHandler.execute(command);
+		
 	}
 
 	@Override

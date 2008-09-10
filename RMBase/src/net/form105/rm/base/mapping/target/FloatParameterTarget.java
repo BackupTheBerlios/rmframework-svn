@@ -6,12 +6,20 @@ import java.math.BigDecimal;
 
 import net.form105.rm.base.model.parameter.FloatParameter;
 
+import org.apache.log4j.Logger;
+
 public class FloatParameterTarget extends AbstractParameterTarget<FloatParameter> {
+	
+	public static Logger logger = Logger.getLogger(FloatParameterTarget.class);
 	
 	private FloatParameter sParameter;
 	
 	public void setValue(String value) {
-		sParameter.setParameterValue(new BigDecimal(value));
+		try {
+			sParameter.setParameterValue(new BigDecimal(value));
+		} catch (NumberFormatException nfe) {
+			logger.error("NumberFormatException occurred: Value is "+value);
+		}
 	}
 	
 	public FloatParameter getTargetObject() {

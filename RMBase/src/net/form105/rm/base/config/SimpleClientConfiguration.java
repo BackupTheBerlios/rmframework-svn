@@ -8,6 +8,11 @@ public class SimpleClientConfiguration implements IConfiguration {
 	public String getConfigurationPath() {
 		return "config/";
 	}
+	
+	@Override
+	public String getImportPath() {
+		return "import/";
+	}
 
 	@Override
 	public String getContainerFile() {
@@ -18,5 +23,7 @@ public class SimpleClientConfiguration implements IConfiguration {
 	public ConfigurationType getType() {
 		return ConfigurationType.SIMPLE;
 	}
+
+	
 
 }

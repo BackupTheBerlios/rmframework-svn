@@ -8,6 +8,6 @@ public interface ITemplateSequence {
 
 	public abstract String getId();
 
-	public abstract List<IField> getSequence();
+	public abstract List<IField> getSequenceAsList();
 
 }

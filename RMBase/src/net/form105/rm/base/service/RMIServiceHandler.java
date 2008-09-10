@@ -9,6 +9,9 @@ package net.form105.rm.base.service;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+
+import net.form105.rm.base.auth.AbstractIdentity;
+
 import org.apache.log4j.Logger;
 
 public class RMIServiceHandler extends UnicastRemoteObject implements
@@ -29,16 +32,19 @@ public class RMIServiceHandler extends UnicastRemoteObject implements
 	public void executeService(IService service) throws RemoteException {
 
 		try {
-
 			this.service = service;
 			service.execute();
 			result.setStatus(Status.SUCCESS);
 		} catch (Exception ex) {
 			result.setStatus(Status.FAIL);
 			result.setException(ex);
-			logger.error(ex);
+			logger.error(ex, ex);
 		}
 
+	}
+	
+	public void executeService(IService service, AbstractIdentity identity) throws RemoteException {
+		this.executeService(service);
 	}
 
 	/**

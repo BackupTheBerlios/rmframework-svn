@@ -14,54 +14,77 @@
 		</id>
 		<type>sparePart</type>
 		<name>Ersatzteil Förderanlage Lysbüchel</name>
-		<department>coopConveyingSystem</department>
+		<division>coopConveyingSystem</division>
 	</object>
 
-	<field class="net.form105.rm.base.mapping.target.IntegerParameterTarget" fromStringMethod="valueByString">
-		<id>position</id>
+	<field ordinal="1" class="net.form105.rm.base.mapping.target.IntegerParameterTarget">
+		<elementId>position</elementId>
 		<name>Position</name>
 	</field>
 	
-	<field class="net.form105.rm.base.mapping.target.StringParameterTarget" fromStringMethod="valueByString">
-		<id>articleNo</id>
+	<field ordinal="2" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>articleNo</elementId>
 		<name>Article Number</name>
 	</field>
 	
-	<field class="net.form105.rm.base.mapping.target.StringParameterTarget" fromStringMethod="valueByString">
-		<id>description</id>
+	<field ordinal="3" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>description</elementId>
 		<name>Article Description</name>
 	</field>
 	
-	<field class="net.form105.rm.base.mapping.target.StringParameterTarget" fromStringMethod="valueByString">
-		<id>supplier</id>
+	<field ordinal="4" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>supplier</elementId>
 		<name>Article Supplier</name>
 	</field>
 	
-	<field class="net.form105.rm.base.mapping.target.IntegerParameterTarget" fromStringMethod="valueByString">
-		<id>quantity</id>
+	<field ordinal="5" class="net.form105.rm.base.mapping.target.IntegerParameterTarget">
+		<elementId>quantity</elementId>
 		<type>integer</type>
 		<name>Quantity</name>
 	</field>
 	
-	<field class="net.form105.rm.base.mapping.target.IntegerParameterTarget" fromStringMethod="valueByString">
-		<id>suggestQuantity</id>
+	<field ordinal="6" class="net.form105.rm.base.mapping.target.IntegerParameterTarget">
+		<elementId>suggestQuantity</elementId>
 		<type>integer</type>
 		<name>Suggested Quantity</name>
 	</field>
 	
-	<field class="net.form105.rm.base.mapping.target.IntegerParameterTarget" fromStringMethod="valueByString">
-		<id>deliveryTime</id>
-		<type>integer</type>
+	<field ordinal="7" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>deliveryTime</elementId>
+		<type>string</type>
 		<name>Delivery Time (Week)</name>
 		<unit>week</unit>
 	</field>
 	
-	<field class="net.form105.rm.base.mapping.target.FloatParameterTarget" fromStringMethod="valueByString">
-		<id>pricePerPeace</id>
+	<field ordinal="8" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>pricePerPeace</elementId>
 		<name>Price per Unit</name>
 		<unit>currency</unit>
 		<locale>de_ch</locale>
 	</field>
+	
+	<field ordinal="9" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>priceTotal</elementId>
+		<name>Price Total</name>
+		<unit>currency</unit>
+		<locale>de_ch</locale>
+	</field>
+	
+	<field ordinal="10" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>priceNetto</elementId>
+		<name>Price Netto</name>
+		<unit>currency</unit>
+		<locale>de_ch</locale>
+	</field>
+	
+	<field ordinal="10" class="net.form105.rm.base.mapping.target.FloatParameterTarget">
+		<elementId>factor</elementId>
+		<name>Calculation Factor</name>
+		<unit>currency</unit>
+		<locale>de_ch</locale>
+	</field>
+	
+	
 	
 </mapping>
 

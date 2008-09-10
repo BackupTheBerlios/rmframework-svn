@@ -8,6 +8,11 @@ public class SimpleConfiguration implements IConfiguration {
 	public String getConfigurationPath() {
 		return "config/";
 	}
+	
+	@Override
+	public String getImportPath() {
+		return "import/";
+	}
 
 	@Override
 	public String getContainerFile() {

@@ -43,6 +43,14 @@ public class ContainerConfiguration {
 		return configuration.getConfigurationPath();
 	}
 	
+	/**
+	 * Getting the configuration the container is started with
+	 * @return The configuration
+	 */
+	public IConfiguration getConfiguration() {
+		return configuration;
+	}
+	
 	
 
 }

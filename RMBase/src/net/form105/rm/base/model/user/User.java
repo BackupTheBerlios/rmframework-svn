@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
@@ -17,12 +16,15 @@ import javax.persistence.OneToMany;
 @Entity(name = "SystemUser")
 public class User implements Serializable {
 
-    private Long id = -1L;
+	private static final long serialVersionUID = 1L;
+	
+	private Long id = -1L;
 	private String firstName = "";
     private String sirName = "";
     private String eMail = "";
     private String password = "";
     private String shortName = "";
+    private String mandate = "default";
     private boolean isAdmin = false;
     private List<String> roles = new ArrayList<String>();
 
@@ -142,6 +144,22 @@ public class User implements Serializable {
         this.password = password;
     }
     
+    /**
+     * The mandate to provide multitenant functionally
+	 * @return the mandate
+	 */
+	public String getMandate() {
+		return mandate;
+	}
+
+	/**
+	 * The mandate to provide multi tenant functionally
+	 * @param mandate the mandate to set
+	 */
+	public void setMandate(String mandate) {
+		this.mandate = mandate;
+	}
+    
     public boolean isAdmin() {
 		return isAdmin;
 	}
@@ -175,6 +193,7 @@ public class User implements Serializable {
 		user.setGroups(getGroups());
 		user.setPassword(getPassword());
 		user.setRoles(getRoles());
+		user.setMandate(getMandate());
 		user.setShortName(getShortName());
 		user.setSirName(getSirName());
 		return user;

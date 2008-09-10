@@ -15,5 +15,7 @@ import net.form105.rm.base.exception.RMException;
 public interface ICommand {
     
     public void execute() throws RMException;
+    
+    public String getId();
 
 }

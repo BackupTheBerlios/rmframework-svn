@@ -7,6 +7,8 @@
 
 package net.form105.rm.base.service;
 
+import net.form105.rm.base.auth.AbstractIdentity;
+
 import org.apache.log4j.Logger;
 
 public class LocalServiceHandler<T> implements IServiceHandler {
@@ -36,6 +38,10 @@ public class LocalServiceHandler<T> implements IServiceHandler {
 			logger.error(ex);
 		}
 
+	}
+	
+	public void executeService(IService service, AbstractIdentity identity) {
+		this.executeService(service);
 	}
 
 	/**

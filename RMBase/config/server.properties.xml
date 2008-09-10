@@ -9,4 +9,7 @@
     <entry key="server.userManagement.initialize">true</entry>
     <entry key="server.db4o.defaultPath">/home/heiko/database.dbo</entry>
     <entry key="server.db.mandateMode">true</entry>
+    
+    <!-- import section -->
+    <entry key="server.import.folder">/tmp/import</entry>
 </properties>

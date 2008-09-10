@@ -6,6 +6,7 @@ package net.form105.rm.base.container;
 
 import java.io.File;
 
+import net.form105.rm.base.auth.AbstractIdentity;
 import net.form105.rm.base.util.xml.XMLModelLoader;
 import net.form105.rm.server.command.LoadXmlModelCommand;
 
@@ -77,7 +78,10 @@ public class XMLModelLoaderContainer extends AbstractContainer implements Starta
     }
     
     private void loadModel() {
-    	LoadXmlModelCommand command = new LoadXmlModelCommand();
+    	AbstractIdentity identity = new AbstractIdentity(1L, "default") {
+    		
+    	};
+    	LoadXmlModelCommand command = new LoadXmlModelCommand(identity);
     	command.execute();
     }
     

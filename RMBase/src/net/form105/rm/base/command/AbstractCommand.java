@@ -7,24 +7,35 @@ package net.form105.rm.base.command;
 
 import java.util.List;
 
+import net.form105.rm.base.auth.AbstractIdentity;
 import net.form105.rm.base.exception.RMException;
 
 import org.apache.log4j.Logger;
 
 /**
  *
- * @author heiko
+ * @author hk
  */
 public abstract class AbstractCommand implements ICommand {
     
     protected static Logger logger = Logger.getLogger(AbstractCommand.class);
 
     private List<Exception> exceptions;
+    private AbstractIdentity identity;
+    
+    public AbstractCommand(AbstractIdentity identity) {
+    	this.identity = identity;
+    }
+    
+    public AbstractCommand() {
+    	
+    }
     
     public abstract void execute() throws RMException;
 
     public List<Exception> getExceptions() {
         return exceptions;
     }
+    
 
 }

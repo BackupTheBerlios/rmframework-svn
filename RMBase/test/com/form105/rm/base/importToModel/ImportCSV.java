@@ -14,10 +14,11 @@ public class ImportCSV extends AbstractRemoteTest<User> {
 	
 
 	@Test
-	public void createUsers() {
+	public void mapCSV() {
 		CSVMapperService service = new CSVMapperService();
 		CSVMapperService.ServiceArgument arg = service.getArgument();
-		arg.file = "import/mapping_example.xml";
+		arg.sourceFile = "test.csv";
+		arg.templateFile = "mapping_example.xml";
 		doService(service);
 	}
 }
