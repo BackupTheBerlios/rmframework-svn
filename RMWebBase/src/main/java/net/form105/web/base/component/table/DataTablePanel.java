@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.form105.rm.base.model.user.User;
 import net.form105.web.base.action.ActionForm;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.EventType;
@@ -15,7 +14,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.IModel;
@@ -34,23 +32,19 @@ public class DataTablePanel<T> extends Panel {
 	private boolean selectable = false;
 
 	private final List<T> selectedList = new ArrayList<T>();
-	
+
 	private ActionForm<T> form;
 
 	/**
 	 * 
-	 * @param id
-	 *            The panel id
-	 * @param tableId
-	 *            The tableId
-	 * @param provider
-	 *            The data provider for the table which includes the input data
-	 * @param columns
-	 *            The columns of the table provided by a list
-	 * @param rowsPerPage
-	 *            Amount of rows shown per page
+	 * @param id The panel id
+	 * @param tableId The tableId
+	 * @param provider The data provider for the table which includes the input data
+	 * @param columns The columns of the table provided by a list
+	 * @param rowsPerPage Amount of rows shown per page
 	 */
-	public DataTablePanel(String panelId, String tableId, ISortableDataProvider provider, int rowsPerPage, List<IColumn> columns, boolean selectable) {
+	public DataTablePanel(String panelId, String tableId, ISortableDataProvider provider, int rowsPerPage,
+			List<IColumn> columns, boolean selectable) {
 		super(panelId);
 
 		this.provider = provider;
@@ -59,11 +53,10 @@ public class DataTablePanel<T> extends Panel {
 		this.rowsPerPage = rowsPerPage;
 		this.columns = columns;
 		addCheckBoxColumn(columns);
-		
-		
-		add(new StyleSheetReference("dataTableStylesheet", new ResourceReference(DataTablePanel.class,"DataTablePanel.css")));
 
-		
+		add(new StyleSheetReference("dataTableStylesheet", new ResourceReference(DataTablePanel.class,
+				"DataTablePanel.css")));
+
 		final DataTable table = createTable();
 
 		form = new ActionForm<T>("tableSelectionForm") {
@@ -72,7 +65,6 @@ public class DataTablePanel<T> extends Panel {
 			protected void onSubmit() {
 				if (getAction() != null) {
 					for (T object : selectedList) {
-						
 						getAction().setContext(object);
 						getAction().doAction();
 					}
@@ -84,7 +76,7 @@ public class DataTablePanel<T> extends Panel {
 
 		form.add(table);
 		add(form);
-		
+
 	}
 
 	/**
@@ -110,7 +102,7 @@ public class DataTablePanel<T> extends Panel {
 	}
 
 	private void addCheckBoxColumn(List<IColumn> columns) {
-		if (! selectable) {
+		if (!selectable) {
 			return;
 		}
 		CheckBoxColumn checkBoxColumn = new CheckBoxColumn(new PropertyModel(this, "selectedList")) {
@@ -125,7 +117,7 @@ public class DataTablePanel<T> extends Panel {
 		};
 		columns.add(0, checkBoxColumn);
 	}
-	
+
 	public ActionForm getActionForm() {
 		return form;
 	}

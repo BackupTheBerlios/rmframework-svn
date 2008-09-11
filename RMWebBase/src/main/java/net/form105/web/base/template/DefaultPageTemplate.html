@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns:wicket>
+
+  <head>
+    <title wicket:id="title">Default Main Application</title>
+    <!-- link rel='stylesheet' type='text/css' href='main.css'/ -->
+    <link href="css/custom/layout_3col.css" rel="stylesheet" type="text/css"/>
+    <!--[if lte IE 7]>
+ 		<link href="css/patches/patch_layout_3col.css" rel="stylesheet" type="text/css" />
+ 	<![endif]-->
+    <link wicket:id="cssDefaultPageTemplate" />
+  </head>
+  
+  <body>
+  
+  
+  <div id="page_margins">
+  
+  	<div id="page">
+  	
+  		
+  	
+  		<div id="header">
+  			<div id="topnav" wicket:id="panel.mainNavigation" />
+			<div id="logoImage">
+		   		<img src="img/kaiser-logo-249px.png"  alt="login image"></img>
+			</div>	
+  		</div><!-- /header -->
+  		
+  		<div id="nav">
+  		</div>
+  		
+  		<div id="main">
+		      <wicket:child />
+		</div>
+		
+		<div id="footer">
+		</div>
+		
+	</div><!-- /page -->
+  
+  </div><!-- /page_margins -->
+  </body>
+</html>

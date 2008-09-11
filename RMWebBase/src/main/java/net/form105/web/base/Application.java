@@ -1,6 +1,5 @@
 package net.form105.web.base;
 
-import net.form105.web.base.model.authorize.Authentication;
 import net.form105.web.impl.page.login.LoginPage;
 
 import org.apache.wicket.Request;
@@ -8,7 +7,6 @@ import org.apache.wicket.Response;
 import org.apache.wicket.Session;
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
-import org.apache.wicket.authorization.strategies.page.SimplePageAuthorizationStrategy;
 import org.apache.wicket.markup.html.WebPage;
 
 /**

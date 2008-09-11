@@ -46,7 +46,7 @@
 	line-height: 2em;
 	}
 
-  #main {  }
+  #main { margin: 10px; }
 
   #footer {  }
 
@@ -61,10 +61,16 @@
   #col1 {  }
   #col1_content {  }
 
-  #col2 {  }
-  #col2_content {  }
 
-  #col3 {  }
+  #col2 { 
+  	width: 330px;
+   }
+  #col2_content { }
+
+  #col3 { 
+  	margin-left: 210px;
+  	margin-right: 340px;
+   }
   #col3_content {  }
 
 

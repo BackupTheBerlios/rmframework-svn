@@ -6,7 +6,7 @@ import net.form105.rm.base.service.Status;
 import net.form105.web.base.HomePage;
 import net.form105.web.base.action.AuthenticationAction;
 import net.form105.web.base.component.login.authorize.DefaultUser;
-import net.form105.web.base.template.DefaultMainTemplate;
+import net.form105.web.base.template.DefaultPageTemplate;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
@@ -31,7 +31,7 @@ import org.apache.wicket.model.StringResourceModel;
  * <code>IResult</code> which should include a state for success or fail of the authentication process.  
  * @author hk
  */
-public class LoginPage extends DefaultMainTemplate {
+public class LoginPage extends DefaultPageTemplate {
 
 	public static Logger logger = Logger.getLogger(LoginPage.class);
 

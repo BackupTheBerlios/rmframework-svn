@@ -25,10 +25,12 @@ public class SubMenuPanel extends BorderedPanel {
 	 */
 	public SubMenuPanel(String id, String menuId, Class<? extends Page> pageClass) {
 		super(id);
+		
+		add(new StyleSheetReference("cssSubMenuPanel", new ResourceReference(SubMenuPanel.class, "SubMenuPanel.css")));
 		this.pageClass = pageClass;
 		menu = new RepeatingView(menuId);
 		add(menu);
-		add(new StyleSheetReference("cssSubMenuPanel", new ResourceReference(SubMenuPanel.class, "SubMenuPanel.css")));
+		
 		
 	
 		

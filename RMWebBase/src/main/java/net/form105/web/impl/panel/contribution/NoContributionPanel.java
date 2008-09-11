@@ -19,5 +19,6 @@ public class NoContributionPanel extends Panel {
 	public NoContributionPanel(String id) {
 		super(id);
 		add(new StyleSheetReference("contributionStylesheet", new ResourceReference(AbstractContributionPanel.class, "ContributionPanel.css")));
+		setOutputMarkupId(true);
 	}
 }

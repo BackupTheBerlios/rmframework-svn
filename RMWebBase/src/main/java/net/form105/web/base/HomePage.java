@@ -1,13 +1,13 @@
 package net.form105.web.base;
 
-import net.form105.web.base.template.DefaultMainTemplate;
+import net.form105.web.base.template.DefaultPageTemplate;
 
 import org.apache.wicket.PageParameters;
 
 /**
  * Homepage
  */
-public class HomePage extends DefaultMainTemplate {
+public class HomePage extends DefaultPageTemplate {
 
 	private static final long serialVersionUID = 1L;
 

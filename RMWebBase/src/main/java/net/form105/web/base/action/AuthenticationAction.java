@@ -13,7 +13,6 @@ import net.form105.web.base.component.login.authorize.IProvidedUser;
 import net.form105.web.base.model.authorize.Authentication;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.Page;
 import org.apache.wicket.model.IModel;
 
 public class AuthenticationAction extends AbstractWebPageAction<User> {

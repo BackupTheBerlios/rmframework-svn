@@ -5,7 +5,6 @@ import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.LocalServiceHandler;
 import net.form105.rm.base.service.Status;
 import net.form105.rm.server.service.CreateUserService;
-import net.form105.rm.server.service.UpdateUserService;
 import net.form105.web.base.component.form.AbstractForm;
 import net.form105.web.base.type.EventType;
 import net.form105.web.impl.validator.EmailExistValidator;

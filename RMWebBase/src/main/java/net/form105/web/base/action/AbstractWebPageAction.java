@@ -3,7 +3,6 @@ package net.form105.web.base.action;
 import net.form105.rm.base.service.IResult;
 import net.form105.web.base.ApplicationSession;
 
-import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 
 public abstract class AbstractWebPageAction<T> implements IPageAction {

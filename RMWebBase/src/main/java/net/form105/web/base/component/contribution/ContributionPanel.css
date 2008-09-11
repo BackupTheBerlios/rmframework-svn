@@ -12,19 +12,6 @@ input[readonly] {
 	color: #555555;
 }
 
-#mainContent {
-	width: 800px;
-	float: left;
-	margin-right: 30px;
-}
-
-#bodySubPanel {
-	padding-top: 30px;
-	/*width: 250px;*/
-	float: left;
-	margin-right: 20px;
-}
-
 div.tab-row {
 	
 }

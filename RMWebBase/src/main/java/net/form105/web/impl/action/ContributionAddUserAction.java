@@ -2,7 +2,6 @@ package net.form105.web.impl.action;
 
 import net.form105.rm.base.service.IResult;
 import net.form105.web.base.action.IAjaxLinkToPanelAction;
-import net.form105.web.base.page.BasePage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.model.IModel;

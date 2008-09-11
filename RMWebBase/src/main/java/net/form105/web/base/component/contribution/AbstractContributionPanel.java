@@ -11,6 +11,6 @@ public abstract class AbstractContributionPanel extends BorderedPanel {
 
 	public AbstractContributionPanel(String id) {
 		super(id);
-		add(new StyleSheetReference("contributionStylesheet", new ResourceReference(AbstractContributionPanel.class, "ContributionPanel.css")));
+		//add(new StyleSheetReference("contributionStylesheet", new ResourceReference(AbstractContributionPanel.class, "ContributionPanel.css")));
 	}
 }

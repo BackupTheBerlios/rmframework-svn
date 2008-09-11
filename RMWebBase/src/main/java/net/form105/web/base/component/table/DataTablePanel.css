@@ -2,10 +2,10 @@
 
 .pageableTable {
 	width: 100%;
-border-collapse: collapse;
+	border-collapse: collapse;
 	color: #333333;
 	border-bottom: solid #83c97e 2px;
-        border-top: solid #83c97e 2px;
+    border-top: solid #83c97e 2px;
 
 }
 
@@ -34,9 +34,8 @@ border-collapse: collapse;
 }
 
 th {
-
-border-top: 1px solid grey;
-border-bottom: 1px solid grey;
+	border-top: 1px solid grey;
+	border-bottom: 1px solid grey;
 }
 
 tr.headers  {

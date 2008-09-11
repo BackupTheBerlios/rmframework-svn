@@ -1,52 +1,48 @@
 package net.form105.web.base.template;
 
-import net.form105.web.base.component.mainNavigation.MainNavigationPanel;
-import net.form105.web.base.page.BasePage;
+import net.form105.rm.base.model.user.User;
+import net.form105.web.base.component.subMenu.SubMenuPanel;
 import net.form105.web.base.type.EventType;
+import net.form105.web.impl.panel.contribution.TabbedUserContributionPanel;
 
-import org.apache.log4j.Logger;
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.resources.StyleSheetReference;
-import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.markup.html.panel.Panel;
 
-public class DefaultMainTemplate extends BasePage {
+/**
+ * According to the yaml specification this is the template for the main with css id #main.
+ * This template provide the menu and the context part which is declared in the subclassed 
+ * page implementation.
+ * 
+ * Id for menuPanel: panel.subNavigation
+ * @author hk
+ *
+ */
+public abstract class DefaultMainTemplate extends DefaultPageTemplate {
 	
-	public static Logger logger = Logger.getLogger(DefaultMainTemplate.class);
-
-	String pageTitle = "*** Please set title ***";
-
-	public DefaultMainTemplate() {
-		
-		add(new StyleSheetReference("cssDefaultMainTemplate", new ResourceReference(DefaultMainTemplate.class, "DefaultMainTemplate.css")));
-		
-		add(new Label("title", new PropertyModel(this, "pageTitle")));
-		add(new MainNavigationPanel("panel.mainNavigation"));
-		
+	private Panel menuPanel;
+	private Panel contextPanel;
+	
+	public DefaultMainTemplate(SubMenuPanel menuPanel, Panel contextPanel) {
+		this.menuPanel = menuPanel;
+		this.contextPanel = contextPanel;
+		add(menuPanel);
+		add(contextPanel);
 	}
-
-	/**
-	 * Sets the pageTitle
-	 * 
-	 * @return
-	 */
-	public String getPageTitle() {
-		return pageTitle;
+	
+	public Panel getContextPanel() {
+		return this.contextPanel;
 	}
-
-	/**
-	 * Getting the pageTitle
-	 * 
-	 * @param pageTitle
-	 */
-	public void setPageTitle(String pageTitle) {
-		this.pageTitle = pageTitle;
-	}
-
-	@Override
+	
 	public void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, EventType type) {
-		// by default do nothing
+		User user = null; 
+		if (type == EventType.CONTRIBUTION_EDIT_EVENT) {
+			user = (User) modelObject;
+		}
+		
+		TabbedUserContributionPanel panel = new TabbedUserContributionPanel("panel.contribution", user, type);
+		panel.setOutputMarkupId(true);
+		contextPanel.replaceWith(panel);
+		contextPanel = panel;
+		target.addComponent(panel);
 	}
-
 }

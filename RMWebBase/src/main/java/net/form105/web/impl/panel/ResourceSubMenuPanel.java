@@ -10,8 +10,8 @@ public class ResourceSubMenuPanel extends SubMenuPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	public ResourceSubMenuPanel(String id, String menuId, Class<? extends Page> currentPage) {
-		super(id, menuId, currentPage);
+	public ResourceSubMenuPanel(String id, String menuId, Class<? extends Page> pageClass) {
+		super(id, menuId, pageClass);
 		
 		addMenuEntry("menu.subNav.allResources", AllResourcesPage.class);
 		addMenuEntry("menu.subNav.specialResources", HomePage.class);
