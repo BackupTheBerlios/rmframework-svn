@@ -1,9 +1,10 @@
-package net.form105.rm.base.dao;
+package net.form105.rm.base.dao.resource;
 
 import java.util.List;
 
 import net.form105.rm.base.Container;
 import net.form105.rm.base.container.DBContainer;
+import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.model.Resource;
 
 import org.apache.log4j.Logger;
