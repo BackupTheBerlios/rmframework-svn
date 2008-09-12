@@ -12,7 +12,7 @@ import java.util.List;
 
 
 /**
- * @author hennebrueder
+ * @author hk
  * 
  */
 public interface IBasicDao<T, ID extends Serializable> {
@@ -25,6 +25,13 @@ public interface IBasicDao<T, ID extends Serializable> {
 	 * @return
 	 */
 	public T findById(ID id);
+	
+	/**
+	 * finds an object given by the elementId
+	 * @param elementId
+	 * @return
+	 */
+	public T findByElementId(String elementId);
 
 	/**
 	 * saves an object 

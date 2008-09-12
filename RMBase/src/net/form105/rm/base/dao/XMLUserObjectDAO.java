@@ -107,4 +107,9 @@ public class XMLUserObjectDAO implements IBasicDao<User, Long> {
 		}
 	}
 
+	@Override
+	public User findByElementId(String elementId) {
+		return null;
+	}
+
 }
