@@ -14,6 +14,22 @@ import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.mapping.DefaultMapperControl;
 import net.form105.rm.server.i18n.BaseMessage;
 
+/**
+ * Reads a csv file and generates a List of @see String. This list will be pushed to the MappingControl
+ * which handles the import of the data to the proper target object.
+ * 
+ * By default a delimiter is set to the tabulator char to separate the fields in the csv line.
+ * 
+ * The import folder where the csv is read from is defined by the server property <code>server.import.folder</code>
+ * 
+ * Its very important to be aware of the triggering function of this class. The contructor has a property which 
+ * sets the control class. By executing <code>importAll()</code> we push this class into the map method of the 
+ * MapperControl. The MapperControl itself uses the read method of the ISequenceReader to map the csv values 
+ * according to the template definition.
+ * 
+ * @author hk
+ *
+ */
 public class CSVReader implements ISequenceReader {
 
 	private String file;

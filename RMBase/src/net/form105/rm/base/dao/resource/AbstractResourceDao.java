@@ -1,53 +1,58 @@
 package net.form105.rm.base.dao.resource;
 
+import java.io.Serializable;
 import java.util.List;
 
 import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.model.Resource;
 
-public abstract class AbstractResourceDao implements IBasicDao<Resource, Long> {
+public abstract class AbstractResourceDao<T, ID extends Serializable> implements IBasicDao<T, ID> {
 
-	AbstractResourceDao transientDao;
-
-	/**
-	 * Use this constructor if we are in dual mode (transient and transactional)
-	 * @param readDao
-	 */
-	public AbstractResourceDao(AbstractResourceDao readDao) {
-		this.transientDao = readDao;
+	private IBasicDao<T, ID> transientDao;
+	
+	public AbstractResourceDao(IBasicDao<T, ID> transientDao) {
+		this.transientDao = transientDao;
 	}
 	
-	/**
-	 * Use this constructor if we are in transactional mode. Than this is also the transient dao
-	 * which means there isn't one.
-	 */
 	public AbstractResourceDao() {
-		this.transientDao = this;
+		
 	}
-
-	@Override
-	public abstract void delete(Resource object);
-
-	@Override
-	public abstract List<Resource> findAll();
-
-	@Override
-	public abstract Resource findById(Long id);
-
-	@Override
-	public abstract Resource merge(Resource object);
-
-	@Override
-	public abstract void save(Resource object);
-
-	@Override
-	public abstract void saveOrUpdate(Resource object);
-
-	@Override
-	public abstract void update(Resource object);
 	
-	public AbstractResourceDao getTransientDao() {
+	@Override
+	public abstract void delete(T object);
+
+	@Override
+	public abstract List<T> findAll();
+
+	@Override
+	public abstract T findById(ID id);
+
+	@Override
+	public abstract T merge(T object);
+
+	@Override
+	public abstract void save(T object);
+
+	@Override
+	public abstract void saveOrUpdate(T object);
+
+	@Override
+	public abstract void update(T object);
+	
+	public IBasicDao<T, ID> getTransientDao() {
 		return transientDao;
+	}
+	
+	public void setTransientDao(IBasicDao<T, ID> transientDao) {
+		this.transientDao = transientDao;
+	}
+	
+	public IBasicDao<T, ID> getReadDao() {
+		if (transientDao == null) {
+			return this; 
+		} else {
+			return transientDao;
+		}
 	}
 
 }

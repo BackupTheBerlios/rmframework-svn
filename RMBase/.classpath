@@ -26,6 +26,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="i18n"/>
 	<classpathentry kind="lib" path="config"/>
-	<classpathentry kind="lib" path="lib/db4o-7.2.48.10988-java5.jar"/>
+	<classpathentry kind="lib" path="lib/db4o-7.2.48.10988-java5.jar" sourcepath="/home/heiko/development/db4o-7.2/doc/api">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/heiko/development/db4o-7.2/doc/api/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,9 +1,9 @@
 <!DOCTYPE container PUBLIC "-//NanoContainer//DTD NanoContainer XML 1.0//EN" "http://nanocontainer.org/dtd/nanocontainer-xml-1_0.dtd">
 
 <container>
+
     <component-implementation class='net.form105.rm.base.container.BackgroundThreadContainer' />
     <component-implementation class='net.form105.rm.base.container.ModeContainer' />
-    <component-implementation class='net.form105.rm.base.container.DBContainer' />
     <component-implementation class='net.form105.rm.base.container.PropertiesContainer'/>
     <component-implementation class='net.form105.rm.base.container.RMIServerContainer'/>
     <component-implementation class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
@@ -11,6 +11,10 @@
     <component-implementation class='net.form105.rm.base.container.GlobalLookupContainer'/>
     <component-implementation class='net.form105.rm.base.container.UserManagementContainer'/>
     <component-implementation class='net.form105.rm.base.container.XMLModelLoaderContainer'/>
+    <component-implementation class='net.form105.rm.base.container.ModeContainer'/>
+    <component-implementation class='net.form105.rm.base.container.TransientContainer'/>
+    <component-implementation class='net.form105.rm.base.container.DBContainer' />
+    
 </container>
 
 
