@@ -11,33 +11,30 @@ import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.FindAllDaoQuery;
 import net.form105.rm.base.query.LocalQueryHandler;
 import net.form105.rm.base.service.IResult;
+import net.form105.web.base.model.provider.FilterDataProvider;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.model.IModel;
 
-public class UserDataProvider extends SortableDataProvider {
+public class UserDataProvider extends FilterDataProvider<User> {
 
 	private static final long serialVersionUID = 1L;
 	public static Logger logger = Logger.getLogger(UserDataProvider.class);
 	public static String myString;
+	
+	private List<User> input;
 
 	public enum SortColumnId {
 		ID, EMAIL, SIRNAME, SHORTNAME;
 	}
 
-	private List<User> input;
 
-	public UserDataProvider(List<User> input) {
-		logger.info("Creating DataProvider for table");
-		this.input = input;
+	public UserDataProvider() {
+		input = createInput();
 		SortParam sortParam = new SortParam(SortColumnId.ID.name(), true);
 		sort(sortParam);
-	}
-	
-	public UserDataProvider() {
-		input = getInput();
+		
 	}
 
 	@Override
@@ -56,7 +53,7 @@ public class UserDataProvider extends SortableDataProvider {
 		if (toIndex > input.size()) {
 			toIndex = input.size();
 		}
-		return input.subList(first, toIndex).listIterator();
+		return getInput().subList(first, toIndex).listIterator();
 	}
 
 	@Override
@@ -67,7 +64,7 @@ public class UserDataProvider extends SortableDataProvider {
 
 	@Override
 	public int size() {
-		return input.size();
+		return getInput().size();
 	}
 
 	/**
@@ -135,15 +132,16 @@ public class UserDataProvider extends SortableDataProvider {
 		}
 	}
 
-	private List<User> getInput() {
+	public List<User> getInput() {
+		return input;
+	}
+	
+	private List<User> createInput() {
 		LocalQueryHandler<User> queryHandler = new LocalQueryHandler<User>();
 		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
 		queryHandler.executeQuery(query);
 		IResult<User> result = queryHandler.getResult();
 		List<User> users = result.getResultList();
-		
-		
-		
 		return users;
 	}
 	

@@ -20,7 +20,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 public abstract class DefaultMainTemplate extends DefaultPageTemplate {
 	
 	private Panel menuPanel;
-	private Panel contextPanel;
+	protected Panel contextPanel;
 	
 	public DefaultMainTemplate(SubMenuPanel menuPanel, Panel contextPanel) {
 		this.menuPanel = menuPanel;
@@ -33,16 +33,6 @@ public abstract class DefaultMainTemplate extends DefaultPageTemplate {
 		return this.contextPanel;
 	}
 	
-	public void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, EventType type) {
-		User user = null; 
-		if (type == EventType.CONTRIBUTION_EDIT_EVENT) {
-			user = (User) modelObject;
-		}
-		
-		TabbedUserContributionPanel panel = new TabbedUserContributionPanel("panel.contribution", user, type);
-		panel.setOutputMarkupId(true);
-		contextPanel.replaceWith(panel);
-		contextPanel = panel;
-		target.addComponent(panel);
-	}
+	public abstract void ajaxRequestReceived(AjaxRequestTarget target, Object modelObject, EventType type);
+	
 }

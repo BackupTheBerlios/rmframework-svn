@@ -20,12 +20,6 @@
 #logoutLabel { font-style: italic; font-size: 0.9em }
 #userLabel { color: #409bff; font-weight: bold; font-size: 0.9em;}
 
-#topnav a { font-weight: bold; color: #0060BF; word-spacing: 15px;}
-#topnav a:link { text-decoration: none; }
-#topnav a:visited { text-decoration: none; }
-#topnav a:active { text-decoration: none; }
-#topnav a:hover { color: gray; text-decoration: underline; }
-
 #logoImage {
 	float: left;
 	margin-top: 10px;

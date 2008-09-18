@@ -64,7 +64,6 @@ public class UserContributionPanel extends ContributionPanel {
 		FindByIdDaoQuery<User> query = new FindByIdDaoQuery<User>(XMLUserObjectDAO.class, userId);
 		queryHandler.executeQuery(query);
 		IResult<User> result = queryHandler.getResult();
-		logger.info(result.getResultList().get(0));
 		return result.getResultList().get(0);
 	}
 

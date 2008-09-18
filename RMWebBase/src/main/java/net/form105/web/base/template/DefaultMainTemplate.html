@@ -6,15 +6,30 @@
         <wicket:extend>
         
         	<div id="col1">
-        		<div wicket:id="panel.subNavigation" />
+        		<div id="col1_content">
+        			<div wicket:id="panel.subNavigation" />
+        		</div>
         	</div>
         	
         	<div id="col2">
-				<div wicket:id="panel.contribution" />
+        		<div id="col2_content">
+					<div wicket:id="panel.contribution" />
+				</div>
 			</div>
         	
+        	
         	<div id="col3">
-				<wicket:child />
+        	
+        		<div id="headline">
+        			<div id="headline_content">
+        			<h5>UserManagement: Show the users and edit them. </h5></div>
+        		</div>
+        	
+        		<div id="col3_content">
+        			
+					<wicket:child />
+				</div>
+				<div id="ie_clearing"> </div>
 			</div>
 			
 			

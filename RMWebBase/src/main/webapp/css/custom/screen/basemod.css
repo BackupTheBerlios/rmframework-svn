@@ -45,6 +45,10 @@
 	text-align: right;
 	line-height: 2em;
 	}
+	
+  #nav {
+    background-color: #CDE2FF;
+  }
 
   #main { margin: 10px; }
 
@@ -59,19 +63,28 @@
   */
 
   #col1 {  }
-  #col1_content {  }
+  #col1_content { margin-top: 30px; }
 
 
   #col2 { 
   	width: 330px;
    }
-  #col2_content { }
+  #col2_content { margin-top: 30px; }
 
   #col3 { 
   	margin-left: 210px;
   	margin-right: 340px;
    }
-  #col3_content {  }
+   
+    /** background color for context panel
+      #col3 { 
+  	  margin-left: 210px;
+  	  margin-right: 0px;
+	  border-right: 340px solid #CDE2FF;
+    }*/
+   
+   
+  #col3_content { border: 2px solid #ddd; padding: 10px;}
 
 
  /*------------------------------------------------------------------------------------------------------*/
