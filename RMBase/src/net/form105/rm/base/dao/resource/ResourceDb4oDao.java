@@ -3,7 +3,7 @@ package net.form105.rm.base.dao.resource;
 import java.util.List;
 
 import net.form105.rm.base.Container;
-import net.form105.rm.base.container.DBContainer;
+import net.form105.rm.base.container.PersistenceModeContainer;
 import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.model.Resource;
 
@@ -31,7 +31,7 @@ public class ResourceDb4oDao extends AbstractResourceDao<Resource, Long> {
 		// should use Db4o.newConfiguration()
 		Db4o.configure().objectClass("net.form105.rm.base.model.Resource").cascadeOnDelete(true);
 		
-		DBContainer dbContainer = (DBContainer) Container.getContainer().getComponent(DBContainer.class);
+		PersistenceModeContainer dbContainer = (PersistenceModeContainer) Container.getContainer().getComponent(PersistenceModeContainer.class);
 		db = dbContainer.getDBSelector().getDbInstance();
 	}
 	

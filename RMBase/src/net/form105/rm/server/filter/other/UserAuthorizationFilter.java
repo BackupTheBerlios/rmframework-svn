@@ -1,7 +1,7 @@
 package net.form105.rm.server.filter.other;
 
+import net.form105.rm.base.filter.IFilter;
 import net.form105.rm.base.model.user.User;
-import net.form105.rm.base.query.filter.IFilter;
 
 import org.apache.log4j.Logger;
 

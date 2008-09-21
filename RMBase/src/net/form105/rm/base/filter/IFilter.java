@@ -1,4 +1,4 @@
-package net.form105.rm.base.query.filter;
+package net.form105.rm.base.filter;
 
 import java.io.Serializable;
 

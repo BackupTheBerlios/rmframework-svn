@@ -79,49 +79,13 @@ public class ModeContainer extends AbstractContainer implements Startable {
 		String modeName = propertiesContainer.getProperty(MODE_KEY);
 		setCurrentMode(Mode.valueOf(modeName.toUpperCase()));
 
-		switch (currentMode) {
-		case DUAL:
-			provideDualMode();
-			break;
-			
-		case DBSingle:
-			provideDbSingleMode();
-			
-		case MEMORY:
-			provideMemoryMode();
-			
-		default:
-			break;
-		}
+		
 	}
 
 	public void stop() {
-		lookup.removeEntry(AbstractResourceDao.class);
+		
 	}
 
-	/**
-	 * Register the db and map dao whereby the map dao is registered in the db dao as the 
-	 * transient dao
-	 */
-	private void provideDualMode() {
-		// register resource daos
-		ResourceMapDao resourceMapDao = new ResourceMapDao();
-		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao(resourceMapDao);
-		lookup.addEntry(AbstractResourceDao.class, resourceMapDao);
-		lookup.addEntry(AbstractResourceDao.class, resourceDbDao);
-	}
-
-	/**
-	 * In db single mode register the  
-	 */
-	private void provideDbSingleMode() {
-		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao();
-		lookup.addEntry(AbstractResourceDao.class, resourceDbDao);
-	}
 	
-	private void provideMemoryMode() {
-		ResourceMapDao resourceMapDao = new ResourceMapDao();
-		lookup.addEntry(AbstractResourceDao.class, resourceMapDao);
-	}
 
 }

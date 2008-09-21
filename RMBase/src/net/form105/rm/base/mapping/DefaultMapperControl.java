@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.form105.rm.base.command.CommandHandler;
 import net.form105.rm.base.mapping.reader.ISequenceReader;
 import net.form105.rm.base.model.ParameterizedElement;
+import net.form105.rm.base.model.Resource;
 import net.form105.rm.base.model.parameter.AbstractParameter;
+import net.form105.rm.server.command.SaveResourceCommand;
 import net.form105.rm.server.mapping.ITemplate;
 
 public class DefaultMapperControl {
@@ -43,6 +46,10 @@ public class DefaultMapperControl {
 				pElement.addParameter((AbstractParameter<?>) object);
 			}
 		}
+		CommandHandler<Resource> cHandler = new CommandHandler<Resource>();
+		SaveResourceCommand saveCommand = new SaveResourceCommand((Resource) pElement);
+		cHandler.execute(saveCommand);
+		
 	}
 	
 	
