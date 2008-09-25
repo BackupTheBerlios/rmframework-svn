@@ -1,6 +1,8 @@
 package net.form105.web.base.model.filter;
 
-public interface IValue<T, V> {
+import java.io.Serializable;
+
+public interface IValue<T, V> extends Serializable {
 	
 	public T getValue(V object);
 

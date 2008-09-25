@@ -1,5 +1,6 @@
 package net.form105.web.base.model.filter;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -19,21 +20,23 @@ import net.form105.rm.base.lookup.ILookup;
  * 
  * @param <T> The base object type the filters act on
  */
-public abstract class AbstractFilterSequence<T> {
+public abstract class AbstractFilterSequence<T> implements Serializable {
 
-	private Map<String, AbstractUIFilter<T>> filters = new HashMap<String, AbstractUIFilter<T>>();
+	private static final long serialVersionUID = 1L;
+
+	private Map<String, AbstractUIFilter<T,?>> filters = new HashMap<String, AbstractUIFilter<T,?>>();
 
 	private ILookup lookup;
 
-	public AbstractFilterSequence() {
-		lookup = Agent.getLookup();
+	public AbstractFilterSequence(ILookup lookup) {
+		this.lookup = lookup;
 	}
 
-	public void add(AbstractUIFilter<T> filter) {
+	public void add(AbstractUIFilter<T, ?> filter) {
 		filters.put(filter.getId(), filter);
 	}
 
-	public void remove(AbstractUIFilter<T> filter) {
+	public void remove(AbstractUIFilter<T, ?> filter) {
 		filters.remove(filter.getId());
 	}
 
@@ -41,20 +44,20 @@ public abstract class AbstractFilterSequence<T> {
 		filters.remove(id);
 	}
 
-	public Collection<AbstractUIFilter<T>> getFilterAsCollection() {
+	public Collection<AbstractUIFilter<T,?>> getFilterAsCollection() {
 		return filters.values();
 	}
 
-	public List<AbstractUIFilter<T>> getConfiguredFilters() {
-		List<AbstractUIFilter<T>> configuredFilterList = (List<AbstractUIFilter<T>>) lookup.getEntryAsList(this.getClass());
+	public List<AbstractUIFilter<T,?>> getConfiguredFilters() {
+		List<AbstractUIFilter<T,?>> configuredFilterList = (List<AbstractUIFilter<T,?>>) lookup.getEntryAsList(this.getClass());
 		return configuredFilterList;
 	}
 
-	public Map<String, AbstractUIFilter<T>> getFilters() {
+	public Map<String, AbstractUIFilter<T,?>> getFilters() {
 		return filters;
 	}
 
-	public void save(AbstractUIFilter<T> filter) {
+	public void save(AbstractUIFilter<T,?> filter) {
 		lookup.addEntry(this.getClass(), filter);
 	}
 

@@ -3,21 +3,19 @@ package net.form105.web.impl.action;
 import net.form105.rm.base.service.IResult;
 import net.form105.web.base.action.IAjaxLinkToPanelAction;
 
-import org.apache.wicket.Page;
 import org.apache.wicket.model.IModel;
 
 public class ContributionAddUserAction implements IAjaxLinkToPanelAction {
 	
-	private Page thisPage;
+	private static final long serialVersionUID = 1L;
 	private IModel model;
 	
-	public ContributionAddUserAction(Page thisPage, IModel model) {
-		this.thisPage = thisPage;
+	public ContributionAddUserAction(IModel model) {
 		this.model = model;
 	}
 
 	@Override
-	public IResult doAction() {
+	public IResult<?> doAction() {
 
 		return null;
 	}

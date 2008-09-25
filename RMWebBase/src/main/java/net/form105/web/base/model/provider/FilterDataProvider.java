@@ -43,13 +43,13 @@ public abstract class FilterDataProvider<T> extends SortableDataProvider {
 			return getInput();
 		}
 		
-		List<AbstractUIFilter<T>> confFilters = filters.getConfiguredFilters();
+		List<AbstractUIFilter<T,?>> confFilters = filters.getConfiguredFilters();
 		
 		ArrayList<T> filteredList = new ArrayList<T>();
 		
 		for (T object : getInput()) {
 			
-			for (AbstractUIFilter<T> filter : confFilters) {
+			for (AbstractUIFilter<T, ?> filter : confFilters) {
 				if (filter.filter(object)) {
 					filteredList.add(object);
 					break;

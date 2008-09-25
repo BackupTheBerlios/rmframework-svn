@@ -66,6 +66,7 @@ public class AddUserForm extends AbstractForm {
 		LocalServiceHandler<User> handler = new LocalServiceHandler<User>();
 		CreateUserService cService = new CreateUserService();
 		CreateUserService.ServiceArgument arg = cService.getArgument();
+		arg.user = user;
 		
 		user.setId(UniqueIdHelper.getId());
 		

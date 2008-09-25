@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+li.filterIcon {
+	list-style-image: url("image/filter.png");
+	list-style-type: none;
+	
+}
+
+#iconPanel {
+	text-align: right;
+	vertical-align: baseline;
+}

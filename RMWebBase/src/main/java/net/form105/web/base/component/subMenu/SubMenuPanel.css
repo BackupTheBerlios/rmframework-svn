@@ -7,12 +7,7 @@ ul.subMenuList {
 	margin-right: 30px;
 }
 
-.subMenuList a { font-size: 1.2em; font-weight: bold; color: #0060BF;}
 
-.subMenuList a:link { text-decoration: none; }
-.subMenuList a:visited { text-decoration: none; }
-.subMenuList a:active { text-decoration: none; }
-.subMenuList a:hover { color: gray; text-decoration: underline; }
 
 #menuLinkActive {
 	list-style-image: url(image/linkSelector.png);

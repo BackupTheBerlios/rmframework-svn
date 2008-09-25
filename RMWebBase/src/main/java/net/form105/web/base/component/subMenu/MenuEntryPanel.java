@@ -17,6 +17,7 @@ public class MenuEntryPanel extends Panel {
 		super(id);
 		
 		BookmarkablePageLink link = new BookmarkablePageLink("link", targetPage);
+		
 		if (targetPage == currentPage) {
 			setMarkupId("menuLinkActive");
 			setOutputMarkupId(true);
