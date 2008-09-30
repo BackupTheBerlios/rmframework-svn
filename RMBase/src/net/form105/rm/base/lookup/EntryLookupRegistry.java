@@ -5,6 +5,7 @@
 
 package net.form105.rm.base.lookup;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class EntryLookupRegistry implements ILookup {
             entry = registry.get(clazz);
             entry.addItem(object);
         }
-        entry.addItem(object);
+
     }
     
     /* (non-Javadoc)
@@ -55,6 +56,9 @@ public class EntryLookupRegistry implements ILookup {
 	 */
     public List<?> getEntryAsList(Class<?> clazz) {
     	IEntry entry = registry.get(clazz);
+    	if (entry == null) {
+    		return new ArrayList();
+    	}
     	return entry.getItems();
     }
     

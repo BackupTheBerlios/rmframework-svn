@@ -9,6 +9,8 @@ import com.db4o.ObjectContainer;
  */
 public interface IDbSelector {
 	
-	public ObjectContainer getDbInstance();
+	public ObjectContainer getObjectContainer();
+	
+	public ObjectContainer newObjectContainer();
 
 }

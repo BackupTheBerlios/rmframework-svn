@@ -18,6 +18,7 @@ import org.picocontainer.Startable;
  */
 public class BackgroundThreadContainer extends AbstractContainer implements IStartable, Startable {
 	
+	
 	public BackgroundThreadContainer() {
 		super();
 	}
@@ -28,13 +29,14 @@ public class BackgroundThreadContainer extends AbstractContainer implements ISta
 
     public void start() {
         logger.info("Start BackgroundThreadContainer");
-        thread = new Thread(bgThread);
-        thread.start();
+        synchronized (bgThread) {
+        	thread = new Thread(bgThread);
+            thread.start();
+		}
     }
 
     public void stop() {
-        thread.interrupt();
-
+        bgThread.stop();
     }
 
     public void initialize() {

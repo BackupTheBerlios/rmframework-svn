@@ -1,5 +1,7 @@
 package net.form105.rm.base.dao.db;
 
+import org.apache.log4j.Logger;
+
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectServer;
@@ -12,29 +14,42 @@ import com.db4o.ObjectServer;
  * 
  */
 public class SingleDBSelector implements IDbSelector {
+	
+	public static Logger logger = Logger.getLogger(SingleDBSelector.class);
+	
+	private final String USER = "db4o";
+	private final String PASSWD = "db4o";
+	private final String HOST = "localhost";
+	// 0xdb40 = 56128
+	private final int PORT = 0xdb40;
 
-	private ObjectContainer singleDb;
+	private ObjectContainer objectContainer;
 
 	public SingleDBSelector(String fileName) {
-		singleDb = Db4o.openFile(fileName);
+		// singleDb = Db4o.openFile(fileName);
 		startDBServer(fileName);
 	}
 
 	@Override
-	public ObjectContainer getDbInstance() {
-		return singleDb;
+	public ObjectContainer getObjectContainer() {
+		
+		if (objectContainer == null) {
+			objectContainer = newObjectContainer();
+		}
+		
+		return objectContainer;
+	}
+	
+	@Override
+	public ObjectContainer newObjectContainer() {
+		return Db4o.openClient(HOST, PORT, USER, PASSWD);
 	}
 
 	public void startDBServer(String fileName) {
-		ObjectServer server = Db4o.openServer(fileName, 11222);
-		server.grantAccess("heiko", "heiko");
-		try {
-			ObjectContainer client = Db4o.openClient("localhost", 11222, "heiko", "heiko");
-			// Do something with this client, or open more clients
-			client.close();
-		} finally {
-			server.close();
-		}
+		logger.info("Open db4o file: "+fileName);
+		ObjectServer server = Db4o.openServer(fileName, 0xdb40);
+		server.grantAccess(USER, PASSWD);
+		
 	}
 
 }

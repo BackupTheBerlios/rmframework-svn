@@ -29,6 +29,8 @@ public class CSVTemplate implements ITemplate {
 	private ITemplateSequence templateSequence;
 	private ParameterizedElement pElement;
 	
+	private String idPrefix;
+	
 	/**
 	 * Instantiates the template and takes a filename as a parameter. The path
 	 * to the template file is prepared from the import path of the application
@@ -78,7 +80,7 @@ public class CSVTemplate implements ITemplate {
 		Element rootElement = xmlDocument.getRootElement();
 		// resource or order
 		String baseType = rootElement.valueOf("/mapping/object/base");
-		String idPrefix = rootElement.valueOf("/mapping/object/id/prefix");
+		idPrefix = rootElement.valueOf("/mapping/object/id/prefix");
 		String type = rootElement.valueOf("/mapping/object/type");
 		String name = rootElement.valueOf("/mapping/object/name");
 		
@@ -88,13 +90,14 @@ public class CSVTemplate implements ITemplate {
 			
 		}
 		
-		pElement.setElementId(idPrefix+UniqueIdHelper.getId());
+		
 		pElement.setName(name);
 		pElement.setType(type);
 		return pElement;
 	}
 	
 	public ParameterizedElement getParameterizedElement() {
+		pElement.setElementId(idPrefix+"_"+UniqueIdHelper.getId());
 		return pElement;
 	}
 

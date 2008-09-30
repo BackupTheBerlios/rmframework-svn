@@ -32,7 +32,7 @@ public class ResourceDb4oDao extends AbstractResourceDao<Resource, Long> {
 		Db4o.configure().objectClass("net.form105.rm.base.model.Resource").cascadeOnDelete(true);
 		
 		PersistenceModeContainer dbContainer = (PersistenceModeContainer) Container.getContainer().getComponent(PersistenceModeContainer.class);
-		db = dbContainer.getDBSelector().getDbInstance();
+		db = dbContainer.getDBSelector().getObjectContainer();
 	}
 	
 	public ResourceDb4oDao() {
@@ -53,6 +53,10 @@ public class ResourceDb4oDao extends AbstractResourceDao<Resource, Long> {
 
 	@Override
 	public void save(Resource object) {
+		Resource resource = new Resource();
+		resource.setElementId("myId");
+		resource.setName("myname");
+		db.store(resource);
 		db.store(object);
 	}
 

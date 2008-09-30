@@ -15,7 +15,6 @@ import net.form105.rm.base.service.ServiceResult;
 import net.form105.rm.base.service.Status;
 
 import org.apache.log4j.Logger;
-import org.junit.Before;
 import org.junit.BeforeClass;
 
 public class AbstractRemoteTest<T> {

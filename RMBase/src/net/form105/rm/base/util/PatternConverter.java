@@ -1,5 +1,7 @@
 package net.form105.rm.base.util;
 
+import java.io.Serializable;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -11,9 +13,11 @@ import org.apache.log4j.Logger;
  * @author Heiko Kundlacz
  *
  */
-public class PatternConverter {
-    
-    private static final Logger logger = Logger.getLogger(PatternConverter.class);
+public class PatternConverter implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private static final Logger logger = Logger.getLogger(PatternConverter.class);
     
     public final String multipleChars = ".*";
     public final String singleChar = ".";

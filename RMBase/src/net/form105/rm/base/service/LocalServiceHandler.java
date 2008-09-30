@@ -35,7 +35,7 @@ public class LocalServiceHandler<T> implements IServiceHandler {
 		} catch (Exception ex) {
 			result.setStatus(Status.FAIL);
 			result.setException(ex);
-			logger.error(ex);
+			logger.error(ex, ex);
 		}
 
 	}
