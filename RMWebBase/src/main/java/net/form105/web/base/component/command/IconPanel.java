@@ -7,10 +7,10 @@ import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.EventType;
 import net.form105.web.impl.action.IconContributionAction;
 
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -24,7 +24,7 @@ public class IconPanel extends Panel {
 	public IconPanel(String id, List<IModelAction> linkList) {
 		super(id);
 		
-		ListView lView = new ListView("iconLabels", linkList) {
+		ListView lView = new ListView("iconLinks", linkList) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -48,14 +48,12 @@ public class IconPanel extends Panel {
 						};
 					};
 					
-					AttributeModifier attModifier = new AttributeModifier("class", true, new Model(contribAction.getClassAttributeValue()));
+					AttributeAppender attModifier = new AttributeAppender("class", true, new Model(contribAction.getClassAttributeValue()), " ");
 					item.add(attModifier);
 					
 					Label label = new Label("iconLabel", contribAction.getModel());
-					
 					ajaxLink.add(label);
 					item.add(ajaxLink);
-					
 				}
 				
 			}

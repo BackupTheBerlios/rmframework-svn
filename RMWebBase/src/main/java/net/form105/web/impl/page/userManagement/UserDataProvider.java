@@ -11,12 +11,19 @@ import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.FindAllDaoQuery;
 import net.form105.rm.base.query.LocalQueryHandler;
 import net.form105.rm.base.service.IResult;
+import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.provider.FilterDataProvider;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
 import org.apache.wicket.model.IModel;
 
+/**
+ * A data provider to show users in a table. The users will be loaded into input by the <code>createInput()</code>
+ * method. It extends a filtered provider as we want to add filters to the panel.
+ * @author heiko
+ *
+ */
 public class UserDataProvider extends FilterDataProvider<User> {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +37,8 @@ public class UserDataProvider extends FilterDataProvider<User> {
 	}
 
 
-	public UserDataProvider() {
+	public UserDataProvider(AbstractFilterSequence<User> filterSequence) {
+		super(filterSequence);
 		input = createInput();
 		SortParam sortParam = new SortParam(SortColumnId.ID.name(), true);
 		sort(sortParam);
@@ -39,8 +47,8 @@ public class UserDataProvider extends FilterDataProvider<User> {
 
 	@Override
 	public Iterator<User> iterator(int first, int count) {
-		
-		input = getInput();
+		logger.info("iterate over userDataProvider");
+		input = getFilteredInput();
 
 		SortParam sortParam = getSort();
 		if (sortParam != null) {

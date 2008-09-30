@@ -12,8 +12,8 @@ import net.form105.web.base.component.command.IconPanel;
 import net.form105.web.base.component.table.DataTablePanel;
 import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.filter.StringPatternFilter;
-import net.form105.web.base.model.filter.UserEmailValue;
-import net.form105.web.base.model.filter.UserFilterSequence;
+import net.form105.web.base.model.filter.TypeFilter;
+import net.form105.web.base.model.provider.FilterDataProvider;
 import net.form105.web.base.template.DefaultMainTemplate;
 import net.form105.web.base.type.EventType;
 import net.form105.web.impl.action.ContributionAddUserAction;
@@ -35,12 +35,20 @@ import org.apache.wicket.model.ResourceModel;
 //TODO: implement IAuthenticatedPage
 @AuthorizeInstantiation("admin")
 public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage {
+	
+	private AbstractFilterSequence<User> filterSequence;
+	
+	private FilterDataProvider<User> filterProvider;
 
 	public UsersPage() {
 		super(new ConfigurationSubMenuPanel("panel.subNavigation", "menuItem", UsersPage.class), new NoContributionPanel("panel.contribution"));
 		//add(new StyleSheetReference("styleSheetUsers", new ResourceReference(UsersPage.class, "UsersPage.css")));
 		
-		DataTablePanel<User> dataTablePanel = new DataTablePanel<User>("panel.userTable", "userTable", new UserDataProvider(), 20, createColumns(), true);
+		filterSequence = getFilterSequence();
+		
+		filterProvider = new UserDataProvider(filterSequence);
+		
+		DataTablePanel<User> dataTablePanel = new DataTablePanel<User>("panel.userTable", "userTable", filterProvider, 20, createColumns(), true);
 		add(dataTablePanel);
 		
 		ArrayList<IModelAction> commandList = new ArrayList<IModelAction>();
@@ -90,7 +98,7 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 			
 		case ADD_FILTER_EVENT:
 			logger.info("ADD_FILTER_EVENT occured");
-			FilterSelectionPanel<User> filterPanel = new FilterSelectionPanel<User>("panel.contribution", getFilterSequence());
+			FilterSelectionPanel<User> filterPanel = new FilterSelectionPanel<User>("panel.contribution", filterSequence, filterProvider);
 			filterPanel.setOutputMarkupId(true);
 			getContextPanel().replaceWith(filterPanel);
 			contextPanel = filterPanel;
@@ -104,7 +112,9 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 	public AbstractFilterSequence<User> getFilterSequence() {
 		ApplicationSession session = (ApplicationSession) getSession();
 		UserFilterSequence sequence = new UserFilterSequence(session.getLookup());
-		sequence.add(new StringPatternFilter<User>("USER_EMAIL_FILTER", new UserEmailValue<User>(), getString("filter.name.userEmail")));
+		sequence.add(new StringPatternFilter<User>("USER_EMAIL_FILTER", new UserEmailValue(), getString("filter.name.userEmail")));
+		sequence.add(new TypeFilter<User>("ROLE_TYPE_FILTER", new UserRoleValue(), getString("filter.name.userRole")));
+		
 		return sequence;
 	}
 	

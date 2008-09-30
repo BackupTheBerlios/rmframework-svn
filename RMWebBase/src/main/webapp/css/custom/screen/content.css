@@ -104,7 +104,7 @@
   a { color: #0060BF; text-decoration:none; font-weight: bold; }
   a:focus,
   a:hover,
-  a:active { background-color: #fee; color: #ff8a00; }
+  a:active { background-color: transparent; color: #ff8a00; }
   
   #topnav a { color: #0060BF; font-weight: bold; background:transparent; text-decoration:none; }
   #topnav a:focus,

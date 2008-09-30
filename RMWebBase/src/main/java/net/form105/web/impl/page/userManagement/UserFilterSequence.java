@@ -1,7 +1,8 @@
-package net.form105.web.base.model.filter;
+package net.form105.web.impl.page.userManagement;
 
 import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.model.user.User;
+import net.form105.web.base.model.filter.AbstractFilterSequence;
 
 public class UserFilterSequence extends AbstractFilterSequence<User> {
 	

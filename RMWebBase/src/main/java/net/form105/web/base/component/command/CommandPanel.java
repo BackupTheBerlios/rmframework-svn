@@ -53,11 +53,18 @@ public class CommandPanel<T> extends Panel {
 				SubmitLink submitLink;
 				if (action instanceof AbstractFormAction) {
 					AbstractFormAction<T> formAction = (AbstractFormAction<T>) action;
-					submitLink = new SubmitLink("commandLink", formAction.getForm());
+					submitLink = new SubmitLink("commandLink", formAction.getForm()) {
+						
+						public void onSubmit() {
+							setResponsePage(this.getPage());
+						}
+					};
+					
 					
 					Label label = new Label("commandLabel", formAction.getModel());
 					submitLink.add(label);
 					item.add(submitLink);
+					
 				} else if (action instanceof IAjaxLinkToPanelAction) {
 					IAjaxLinkToPanelAction ajaxLinkAction = (IAjaxLinkToPanelAction) action;
 					AjaxLink ajaxLink = new AjaxLink("commandLink", ajaxLinkAction.getModel()) {

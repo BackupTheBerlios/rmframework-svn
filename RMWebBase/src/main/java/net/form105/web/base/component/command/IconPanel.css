@@ -1,12 +1,19 @@
 @CHARSET "UTF-8";
 
-li.filterIcon {
-	list-style-image: url("image/filter.png");
-	list-style-type: none;
-	
+.iconPanel {
+	text-align: right;
 }
 
-#iconPanel {
-	text-align: right;
-	vertical-align: baseline;
+.filterIcon {
+	background-image: url("image/filter.png");
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+.iconLink a {
+	padding-left: 20px;
+}
+
+.commandHeader {
+	height: 1.6em;
 }

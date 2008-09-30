@@ -9,6 +9,7 @@ import org.apache.wicket.model.IModel;
 public class IconContributionAction implements IAjaxLinkToPanelAction {
 	
 	private static final long serialVersionUID = 1L;
+	private String id = "DEFAULT_ICON_CONTRIBUTION_ACTION";
 	private IModel labelModel;
 	private String classAttributeValue;
 	
@@ -24,14 +25,12 @@ public class IconContributionAction implements IAjaxLinkToPanelAction {
 
 	@Override
 	public IResult doAction() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
 	
 	public String getClassAttributeValue() {

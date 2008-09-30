@@ -6,16 +6,16 @@ import net.form105.rm.base.filter.IActivateFilter;
  * 
  * @author hk
  *
- * @param <T> The object type the filter is executed on
- * @param <V> The configuration type of the filter
+ * @param <I> The object type the filter is executed on
+ * @param <C> The configuration type of the filter
  */
-public abstract class AbstractUIFilter<T, V> implements IActivateFilter<T> {
+public abstract class AbstractUIFilter<I, C> implements IActivateFilter<I> {
 	
 	private static final long serialVersionUID = 1L;
 	private boolean activated;
 
 	@Override
-	public abstract boolean filter(T object);
+	public abstract boolean filter(I object);
 	
 	public boolean isActivated() {
 		return activated;
@@ -39,8 +39,10 @@ public abstract class AbstractUIFilter<T, V> implements IActivateFilter<T> {
 	 * list to filter objects in 
 	 * @return
 	 */
-	public abstract V getConfigParameter();
+	public abstract C getConfigParameter();
 	
-	public abstract void setConfigParameter(V object);
+	public abstract void setConfigParameter(C object);
+	
+	public abstract IValue<?,I> getValue();
 		
 }

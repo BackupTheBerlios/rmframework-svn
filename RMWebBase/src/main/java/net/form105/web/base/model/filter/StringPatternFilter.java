@@ -14,7 +14,7 @@ import net.form105.rm.base.util.PatternConverter;
  * which is a wrapper to provide an abstract value.
  * @param <V> Type of the input object that will be checked
  */
-public class StringPatternFilter<T> extends AbstractUIFilter<T, String> {
+public class StringPatternFilter<I> extends AbstractUIFilter<I, String> {
 	
 
 	private static final long serialVersionUID = 1L;
@@ -24,21 +24,21 @@ public class StringPatternFilter<T> extends AbstractUIFilter<T, String> {
 	private String configParameter;
 	private String name;
 	
-	private IValue<String, T> value;
+	private IValue<String, I> value;
 	
 	/**
 	 * Constructs the filter
 	 * @param pattern The pattern usually got by the user input
 	 * @param value A wrapper for the input object
 	 */
-	public StringPatternFilter(String id, IValue<String, T> value, String name) {
+	public StringPatternFilter(String id, IValue<String, I> value, String name) {
 		this.id = id;
 		this.value = value;
 		this.name = name;
 	}
 
 	@Override
-	public boolean filter(T object) {
+	public boolean filter(I object) {
 		
 		String sValue = value.getValue(object);
 		
@@ -62,14 +62,14 @@ public class StringPatternFilter<T> extends AbstractUIFilter<T, String> {
 	/**
 	 * @return the value
 	 */
-	public IValue<String, T> getValue() {
+	public IValue<String, I> getValue() {
 		return value;
 	}
 
 	/**
 	 * @param value the value to set
 	 */
-	public void setValue(IValue<String, T> value) {
+	public void setValue(IValue<String, I> value) {
 		this.value = value;
 	}
 

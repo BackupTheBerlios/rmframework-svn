@@ -2,11 +2,15 @@ package net.form105.web.impl.panel.filter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.TreeSet;
 
-import net.form105.rm.base.model.user.User;
 import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.filter.AbstractUIFilter;
+import net.form105.web.base.model.filter.IValue;
 import net.form105.web.base.model.filter.StringPatternFilter;
+import net.form105.web.base.model.filter.TypeFilter;
+import net.form105.web.base.model.provider.FilterDataProvider;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -26,9 +30,9 @@ import org.apache.wicket.model.ResourceModel;
  * a filter the panel shows the configurable filter that have been chosen.
  * @author heiko
  *
- * @param <T> The filter configuration class
+ * @param <T> The input class for the filter
  */
-public class FilterSelectionPanel<T> extends Panel {
+public class FilterSelectionPanel<I> extends Panel {
 	
 	public static Logger logger = Logger.getLogger(FilterSelectionPanel.class);
 
@@ -38,7 +42,10 @@ public class FilterSelectionPanel<T> extends Panel {
 	
 	private Panel filterPanel;
 	
-	public FilterSelectionPanel(String id, AbstractFilterSequence<T> filterSequence) {
+	
+	
+	
+	public FilterSelectionPanel(String id, final AbstractFilterSequence<I> filterSequence, final FilterDataProvider<I> provider) {
 		super(id);
 		
 		add(new Label("filterHeader", new ResourceModel("header.filter.label")));
@@ -54,10 +61,10 @@ public class FilterSelectionPanel<T> extends Panel {
 			}
 		};
 
-		Collection<AbstractUIFilter<T,?>> filterList = filterSequence.getFilterAsCollection();
+		Collection<AbstractUIFilter<I,?>> filterList = filterSequence.getFilterAsCollection();
 		
 		model = new Model();
-		final DropDownChoice choice = new DropDownChoice("filterChoice", model, new ArrayList<AbstractUIFilter<T,?>>(filterList), new FilterChoiceRenderer());
+		final DropDownChoice choice = new DropDownChoice("filterChoice", model, new ArrayList<AbstractUIFilter<I,?>>(filterList), new FilterChoiceRenderer());
 		form.add(choice);
 		
 		choice.add(new AjaxFormComponentUpdatingBehavior("onchange") {
@@ -67,12 +74,31 @@ public class FilterSelectionPanel<T> extends Panel {
 			public void onUpdate(AjaxRequestTarget target) {
 				logger.info(choice.getModelObject());
 				if (choice.getModelObject() instanceof StringPatternFilter) {
-					StringPatternFilter<String> selectedFilter = (StringPatternFilter<String>) choice.getModelObject();
-					RegExpressionFilterPanel<String> selectedFilterPanel = new RegExpressionFilterPanel<String>("panel.filterConfiguration", selectedFilter);
+					StringPatternFilter<I> sPatternFilter = (StringPatternFilter<I>) choice.getModelObject();
+					RegExpressionFilterPanel<I> selectedFilterPanel = new RegExpressionFilterPanel<I>("panel.filterConfiguration", sPatternFilter, filterSequence);
 					selectedFilterPanel.setOutputMarkupId(true);
 					filterPanel.replaceWith(selectedFilterPanel);
 					filterPanel = selectedFilterPanel;
 					target.addComponent(selectedFilterPanel);
+				} else if (choice.getModelObject() instanceof TypeFilter) {
+					TypeFilter<I> typeFilter = (TypeFilter<I>) choice.getModelObject();
+
+					TreeSet<String> typeSet = new TreeSet<String>();
+					IValue<List<String>, I> value = typeFilter.getValue();
+					List<I> input = provider.getInput();
+					for (I object : input) {
+						List<String> inputList = value.getValue(object);
+						for (String iS : inputList) {
+							typeSet.add(iS);
+						}
+						
+					}
+					
+					TypeFilterPanel<I> typeFilterPanel = new TypeFilterPanel<I>("panel.filterConfiguration", typeFilter, filterSequence, new ArrayList<String>(typeSet));
+					typeFilterPanel.setOutputMarkupId(true);
+					filterPanel.replaceWith(typeFilterPanel);
+					filterPanel = typeFilterPanel;
+					target.addComponent(typeFilterPanel);
 				}
 			}
 		});

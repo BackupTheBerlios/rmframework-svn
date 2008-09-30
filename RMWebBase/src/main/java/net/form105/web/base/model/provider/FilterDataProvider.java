@@ -10,6 +10,16 @@ import org.apache.wicket.model.IModel;
 import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.filter.AbstractUIFilter;
 
+/**
+ * The FilterDataProvider gives the feasibility to filter entities from a given input. This class
+ * must be derived to implement the important <code>getInput()</code> method which is used by the
+ * <code>getFilteredInput()</code> method. Each input object is traversed by the filters if any
+ * is registered. 
+ * Filters are registered at the {@link AbstractFilterSequence} respectively in the lookup registry.
+ * @author heiko
+ *
+ * @param <T>
+ */
 public abstract class FilterDataProvider<T> extends SortableDataProvider {
 	
 	private static final long serialVersionUID = 1L;
@@ -17,7 +27,9 @@ public abstract class FilterDataProvider<T> extends SortableDataProvider {
 	private AbstractFilterSequence<T> filters;
 
 	
-	public FilterDataProvider() {}
+	public FilterDataProvider(AbstractFilterSequence<T> filterSequence) {
+		this.filters = filterSequence;
+	}
 	
 	/**
 	 * Get filters represented by a FilterSequence
@@ -39,7 +51,7 @@ public abstract class FilterDataProvider<T> extends SortableDataProvider {
 	public List<T> getFilteredInput() {
 		
 		
-		if (filters.getConfiguredFilters().size() == 0) {
+		if ( filters == null || filters.getConfiguredFilters().size() == 0 ) {
 			return getInput();
 		}
 		
@@ -55,7 +67,6 @@ public abstract class FilterDataProvider<T> extends SortableDataProvider {
 					break;
 				}
 			}
-			
 		}
 		
 		return filteredList;

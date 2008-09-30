@@ -1,13 +1,12 @@
 package net.form105.web.impl.panel.filter;
 
-import net.form105.web.base.HomePage;
+import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.filter.StringPatternFilter;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.PageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.ResourceModel;
 
@@ -18,13 +17,9 @@ public class RegExpressionFilterPanel<T> extends AbstractFilterPanel<T, String> 
 
 	private static final long serialVersionUID = 1L;
 	
-	public RegExpressionFilterPanel(String id, StringPatternFilter<T> filter) {
-		super(id, filter);
-		
-		
+	public RegExpressionFilterPanel(String id, StringPatternFilter<T> filter, AbstractFilterSequence<T> filterSequence) {
+		super(id, filter, filterSequence);
 
-		//getForm().add(new Label("filterDescriptionForRegexFilter", new ResourceModel("label.description.filter.regExpression")));
-		
 		CompoundPropertyModel model = new CompoundPropertyModel(filter);
 		getForm().setModel(model);
 		
@@ -39,18 +34,15 @@ public class RegExpressionFilterPanel<T> extends AbstractFilterPanel<T, String> 
 		link.add(label);
 		getForm().add(link);
 		
-		//PageLink bLink = new PageLink("myId", HomePage.class);
-		//bLink.add(new Label("filterDescription", new ResourceModel("label.description.filter.regExpression")));
 		getForm().add(new Label("filterDescription", new ResourceModel("label.description.filter.regExpression")));
-		
-		
 	}
 
 
 	@Override
 	protected void onFormSubmit() {
 		StringPatternFilter<T> filter = (StringPatternFilter<T>) getForm().getModelObject();
-		logger.info(filter.getConfigParameter());
+		getFilterSequence().save(filter);
+		setResponsePage(getPage().getClass());
 		
 	}
 	
