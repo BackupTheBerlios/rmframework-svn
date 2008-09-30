@@ -21,12 +21,12 @@ import java.util.List;
 import net.form105.web.base.action.AbstractFormAction;
 import net.form105.web.base.action.IAjaxLinkToPanelAction;
 import net.form105.web.base.action.IModelAction;
+import net.form105.web.base.action.IPageAction;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.EventType;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Page;
-import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.basic.Label;
@@ -34,14 +34,13 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.html.resources.StyleSheetReference;
 
 public class CommandPanel<T> extends Panel {
 	
 	private static final long serialVersionUID = 1L;
 	public static Logger logger = Logger.getLogger(CommandPanel.class);
 	
-	public CommandPanel(String id, List<IModelAction> linkList) {
+	public CommandPanel(String id, List<IPageAction> linkList) {
 		super(id);
 		
 		ListView lView = new ListView("commandLabels", linkList) {
@@ -49,7 +48,7 @@ public class CommandPanel<T> extends Panel {
 
 			@Override
 			protected void populateItem(ListItem item) {
-				IModelAction action = (IModelAction) item.getModelObject();
+				IPageAction action = (IPageAction) item.getModelObject();
 				SubmitLink submitLink;
 				if (action instanceof AbstractFormAction) {
 					AbstractFormAction<T> formAction = (AbstractFormAction<T>) action;
@@ -61,13 +60,13 @@ public class CommandPanel<T> extends Panel {
 					};
 					
 					
-					Label label = new Label("commandLabel", formAction.getModel());
+					Label label = new Label("commandLabel", formAction.getName());
 					submitLink.add(label);
 					item.add(submitLink);
 					
 				} else if (action instanceof IAjaxLinkToPanelAction) {
 					IAjaxLinkToPanelAction ajaxLinkAction = (IAjaxLinkToPanelAction) action;
-					AjaxLink ajaxLink = new AjaxLink("commandLink", ajaxLinkAction.getModel()) {
+					AjaxLink ajaxLink = new AjaxLink("commandLink") {
 
 						private static final long serialVersionUID = 1L;
 
@@ -79,7 +78,7 @@ public class CommandPanel<T> extends Panel {
 						}
 						
 					};
-					Label label = new Label("commandLabel", ajaxLinkAction.getModel());
+					Label label = new Label("commandLabel", ajaxLinkAction.getName());
 					ajaxLink.add(label);
 					item.add(ajaxLink);
 					

@@ -11,8 +11,8 @@ import org.apache.wicket.model.IModel;
 
 public class RemoveUserAction extends AbstractFormAction<User> {
 	
-	public RemoveUserAction(Form form, IModel model) {
-		super(form, model);
+	public RemoveUserAction(Form form, String name) {
+		super(form, name);
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -44,6 +44,7 @@ public class RemoveUserAction extends AbstractFormAction<User> {
 		handler.executeService(service);
 		return handler.getResult();
 	}
+
 
 	
 

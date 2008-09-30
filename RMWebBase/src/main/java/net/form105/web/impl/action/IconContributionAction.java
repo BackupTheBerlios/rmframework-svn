@@ -10,18 +10,15 @@ public class IconContributionAction implements IAjaxLinkToPanelAction {
 	
 	private static final long serialVersionUID = 1L;
 	private String id = "DEFAULT_ICON_CONTRIBUTION_ACTION";
-	private IModel labelModel;
+	private String name;
 	private String classAttributeValue;
 	
-	public IconContributionAction(Page thisPage, IModel labelModel, String classAttributeValue) {
-		this.labelModel = labelModel;
+	public IconContributionAction(Page thisPage, String name, String classAttributeValue) {
+		this.name = name;
 		this.classAttributeValue = classAttributeValue;
 	}
 
-	@Override
-	public IModel getModel() {
-		return labelModel;
-	}
+
 
 	@Override
 	public IResult doAction() {
@@ -35,6 +32,13 @@ public class IconContributionAction implements IAjaxLinkToPanelAction {
 	
 	public String getClassAttributeValue() {
 		return classAttributeValue;
+	}
+
+
+
+	@Override
+	public String getName() {
+		return name;
 	}
 
 }

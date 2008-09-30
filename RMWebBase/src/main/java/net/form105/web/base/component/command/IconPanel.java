@@ -3,6 +3,7 @@ package net.form105.web.base.component.command;
 import java.util.List;
 
 import net.form105.web.base.action.IModelAction;
+import net.form105.web.base.action.IPageAction;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.EventType;
 import net.form105.web.impl.action.IconContributionAction;
@@ -21,7 +22,7 @@ public class IconPanel extends Panel {
 	
 	private static final long serialVersionUID = 1L;
 
-	public IconPanel(String id, List<IModelAction> linkList) {
+	public IconPanel(String id, List<IPageAction> linkList) {
 		super(id);
 		
 		ListView lView = new ListView("iconLinks", linkList) {
@@ -32,12 +33,12 @@ public class IconPanel extends Panel {
 			protected void populateItem(ListItem item) {
 				
 				
-				IModelAction action = (IModelAction) item.getModelObject();
+				IPageAction action = (IPageAction) item.getModelObject();
 				
 				if (action instanceof IconContributionAction) {
 					IconContributionAction contribAction = (IconContributionAction) action;
 					
-					AjaxLink ajaxLink = new AjaxLink("iconLink", contribAction.getModel()) {
+					AjaxLink ajaxLink = new AjaxLink("iconLink") {
 					
 						private static final long serialVersionUID = 1L;
 
@@ -51,7 +52,7 @@ public class IconPanel extends Panel {
 					AttributeAppender attModifier = new AttributeAppender("class", true, new Model(contribAction.getClassAttributeValue()), " ");
 					item.add(attModifier);
 					
-					Label label = new Label("iconLabel", contribAction.getModel());
+					Label label = new Label("iconLabel", contribAction.getName());
 					ajaxLink.add(label);
 					item.add(ajaxLink);
 				}

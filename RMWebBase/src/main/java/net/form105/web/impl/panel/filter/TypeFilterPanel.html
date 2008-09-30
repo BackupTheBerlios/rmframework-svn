@@ -7,7 +7,9 @@
 	
 		<div class="formInput">
 			<label class="filterLabel" for="typeField"><wicket:message key="label.typeField" /></label>
-			<input class="filterField" type="text" wicket:id="configParameter" id="typeField" value="" size="5" />
+			<p>
+			<select class="filterField" wicket:id="configParameter" id="typeField" multiple="multiple" />
+			</p>
 		</div>
 		
 		<div class="linkAsButton">

@@ -13,10 +13,11 @@ import net.form105.web.base.component.login.authorize.IProvidedUser;
 import net.form105.web.base.model.authorize.Authentication;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.model.IModel;
 
 public class AuthenticationAction extends AbstractWebPageAction<User> {
 	
+	private static final long serialVersionUID = 1L;
+
 	public static Logger logger = Logger.getLogger(AuthenticationAction.class);
 	
 	private final String id = "authenticationAction";
@@ -74,8 +75,8 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 	}
 
 	@Override
-	public IModel getModel() {
-		return null;
+	public String getName() {
+		return "";
 	}
 
 }

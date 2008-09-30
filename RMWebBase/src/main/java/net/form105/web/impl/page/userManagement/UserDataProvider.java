@@ -72,7 +72,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 
 	@Override
 	public int size() {
-		return getInput().size();
+		return getFilteredInput().size();
 	}
 
 	/**

@@ -27,6 +27,14 @@ public class TypeFilterPanel<I> extends AbstractFilterPanel<I, List<String>> {
 		
 		
 		ListMultipleChoice mChoice = new ListMultipleChoice("configParameter", inputList);
+		
+		int rowSize = 5;
+		
+		if (inputList.size() < 5 ) {
+			rowSize = inputList.size();
+		}
+		
+		mChoice.setMaxRows(rowSize);
 		getForm().add(mChoice);
 		
 		

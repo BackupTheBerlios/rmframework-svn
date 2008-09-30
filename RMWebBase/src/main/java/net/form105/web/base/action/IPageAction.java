@@ -26,6 +26,6 @@ public interface IPageAction extends Serializable {
 	 */
 	public IResult doAction();
 	
-	public IModel getModel();
+	public String getName();
 
 }

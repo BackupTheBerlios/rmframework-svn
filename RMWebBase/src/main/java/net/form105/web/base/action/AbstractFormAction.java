@@ -12,16 +12,16 @@ import org.apache.wicket.model.IModel;
  * @param <T> The context to act on by the doAction method. E.g. To delete a user the action must work
  * on a context which is the user.
  */
-public abstract class AbstractFormAction<T> implements IModelAction {
+public abstract class AbstractFormAction<T> implements IPageAction {
 
 	private static final long serialVersionUID = 1L;
 	private Form form;
-	private IModel model;
+	private String name;
 	private T context;
 	
-	public AbstractFormAction(Form form, IModel model) {
+	public AbstractFormAction(Form form, String name) {
 		this.form = form;
-		this.model = model;
+		this.name = name;
 		if (form instanceof ActionForm) {
 			ActionForm<T> actionForm = (ActionForm<T>) form;
 			actionForm.setAction(this);
@@ -29,8 +29,8 @@ public abstract class AbstractFormAction<T> implements IModelAction {
 	}
 
 	@Override
-	public IModel getModel() {
-		return model;
+	public String getName() {
+		return name;
 	}
 
 	@Override

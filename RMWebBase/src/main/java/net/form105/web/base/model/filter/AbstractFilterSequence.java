@@ -106,5 +106,10 @@ public abstract class AbstractFilterSequence<T> implements Serializable {
 		
 		lookup.addEntry(this.getClass(), filter);
 	}
+	
+	public String getConfiguredSizeAsString() {
+		StringBuffer sBuffer = new StringBuffer().append("(").append(getConfiguredFilters().size()).append(")");
+		return sBuffer.toString();
+	}
 
 }

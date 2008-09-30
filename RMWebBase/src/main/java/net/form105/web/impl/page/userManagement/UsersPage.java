@@ -7,6 +7,7 @@ import net.form105.rm.base.model.user.User;
 import net.form105.web.base.ApplicationSession;
 import net.form105.web.base.IAuthenticatedPage;
 import net.form105.web.base.action.IModelAction;
+import net.form105.web.base.action.IPageAction;
 import net.form105.web.base.component.command.CommandPanel;
 import net.form105.web.base.component.command.IconPanel;
 import net.form105.web.base.component.table.DataTablePanel;
@@ -51,14 +52,17 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 		DataTablePanel<User> dataTablePanel = new DataTablePanel<User>("panel.userTable", "userTable", filterProvider, 20, createColumns(), true);
 		add(dataTablePanel);
 		
-		ArrayList<IModelAction> commandList = new ArrayList<IModelAction>();
-		commandList.add(new RemoveUserAction(dataTablePanel.getActionForm(), new ResourceModel("label.action.remove")));
-		commandList.add(new ContributionAddUserAction(new ResourceModel("label.action.add")));
+		ArrayList<IPageAction> commandList = new ArrayList<IPageAction>();
+		
+		commandList.add(new RemoveUserAction(dataTablePanel.getActionForm(), getString("label.action.remove")));
+		commandList.add(new ContributionAddUserAction(getString("label.action.add")));
 		CommandPanel<User> commandPanel = new CommandPanel<User>("panel.command", commandList);
 		add(commandPanel);
 		
-		ArrayList<IModelAction> iconList = new ArrayList<IModelAction>();
-		iconList.add(new IconContributionAction(UsersPage.this, new ResourceModel("label.action.filter"), "filterIcon"));
+		String filterLabel = getString("label.action.filter")+filterSequence.getConfiguredSizeAsString();
+		
+		ArrayList<IPageAction> iconList = new ArrayList<IPageAction>();
+		iconList.add(new IconContributionAction(UsersPage.this, filterLabel, "filterIcon"));
 		
 		IconPanel iconPanel = new IconPanel("panel.icon", iconList);
 		add(iconPanel);
