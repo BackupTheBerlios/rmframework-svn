@@ -19,7 +19,7 @@ public class EditUserForm extends AbstractForm {
 
 	public EditUserForm(String name, IModel model, EventType eventType) {
 		super(name, new CompoundPropertyModel(model), eventType);
-
+		
 		TextField userId = new TextField("id");
 		userId.setLabel(new Model("userId"));
 		userId.add(new FocusOnLoadBehavior());
