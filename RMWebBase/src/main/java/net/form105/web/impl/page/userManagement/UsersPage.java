@@ -99,6 +99,7 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 			getContextPanel().replaceWith(addPanel);
 			contextPanel = addPanel;
 			target.addComponent(addPanel);
+			break;
 			
 		case ADD_FILTER_EVENT:
 			logger.info("ADD_FILTER_EVENT occured");
@@ -107,6 +108,7 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 			getContextPanel().replaceWith(filterPanel);
 			contextPanel = filterPanel;
 			target.addComponent(filterPanel);
+			break;
 
 		default:
 			break;

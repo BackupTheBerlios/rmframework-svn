@@ -1,6 +1,7 @@
 package net.form105.web.impl.panel.filter;
 
 import net.form105.web.base.model.filter.AbstractFilterSequence;
+import net.form105.web.base.model.filter.AbstractUIFilter;
 import net.form105.web.base.model.filter.StringPatternFilter;
 
 import org.apache.log4j.Logger;
@@ -19,10 +20,17 @@ public class RegExpressionFilterPanel<T> extends AbstractFilterPanel<T, String> 
 	
 	public RegExpressionFilterPanel(String id, StringPatternFilter<T> filter, AbstractFilterSequence<T> filterSequence) {
 		super(id, filter, filterSequence);
-
-		CompoundPropertyModel model = new CompoundPropertyModel(filter);
-		getForm().setModel(model);
 		
+		AbstractUIFilter<T, ?> savedFilter = filterSequence.getConfiguredFilter(filter.getId());
+		
+		CompoundPropertyModel model;
+		if (savedFilter != null) {
+			model = new CompoundPropertyModel(savedFilter);
+		} else {
+			model = new CompoundPropertyModel(filter);
+		}
+		
+		getForm().setModel(model);
 		
 		// id of TextField = wicket:id of html input tag
 		TextField regExpressionField = new TextField("configParameter");

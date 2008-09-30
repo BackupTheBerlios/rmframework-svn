@@ -76,6 +76,15 @@ public abstract class AbstractFilterSequence<T> implements Serializable {
 		List<AbstractUIFilter<T,?>> configuredFilterList = (List<AbstractUIFilter<T,?>>) lookup.getEntryAsList(this.getClass());
 		return configuredFilterList;
 	}
+	
+	public AbstractUIFilter<T,?> getConfiguredFilter(String id) {
+		for (AbstractUIFilter filter : getConfiguredFilters()) {
+			if (filter.getId().equals(id)) {
+				return filter;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Get the filters which are registered. Gets all filters which are available to the users choices.
