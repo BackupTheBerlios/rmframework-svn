@@ -2,6 +2,8 @@ package net.form105.web.base.model.filter;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * A TypeFilter takes a mount of config parameters and compares them with the input object.
  * If one of the config parameters matches the entry will be filtered
@@ -12,6 +14,8 @@ import java.util.List;
 public class TypeFilter<I> extends AbstractUIFilter<I, List<String>> {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public static Logger logger = Logger.getLogger(TypeFilter.class);
 	
 	private String id;
 	private String name;
@@ -30,7 +34,7 @@ public class TypeFilter<I> extends AbstractUIFilter<I, List<String>> {
 		List<String> input = value.getValue(object);
 		
 		for (String config : configParameter) {
-			if (input.equals(config)) { 
+			if (input.contains(config)) { 
 				return true; 
 			}
 		}
@@ -40,6 +44,16 @@ public class TypeFilter<I> extends AbstractUIFilter<I, List<String>> {
 
 	@Override
 	public List<String> getConfigParameter() {
+		
+		if (configParameter == null) return configParameter;
+		
+		StringBuffer sb = new StringBuffer();
+		for (String config : configParameter) {
+			sb.append(":");
+			sb.append(config);
+			
+		}
+		logger.info("config parameters-"+sb.toString());
 		return configParameter;
 	}
 
