@@ -1,0 +1,82 @@
+#subnav,#subnav ul {
+	/*background: #BCCDDB none repeat scroll 0 0;*/
+	cursor: pointer;
+	float: left;
+	font-weight: bold;
+	line-height: 1;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	/*display: block;*/
+}
+
+#subnav a {
+	text-decoration: none;
+}
+
+#subnav span.childMenuText {
+	display: block;
+	padding: 0.25em;
+	/*width: 14em;*/
+}
+
+#subnav a.childmenu span.childMenuText {
+	/*color: white;*/
+	/*cursor: pointer;*/
+}
+
+#subnav > li {
+	/*background: #fff none repeat scroll 0 0;
+	float: left;
+	padding: 0.5em;
+	width: auto;
+	border-bottom: 1px solid black;*/
+	width: 14em;
+}
+
+
+
+#subnav li ul {
+	font-weight: normal;
+	height: auto;
+	left: -999em;
+	margin: 0;
+	position: absolute;
+	border-width: 10px 1px 1px 1px;
+	border-color: #83C97E;
+	border-style: solid;
+	background-color: white;
+	display: block;
+	margin-left: 1.5em;
+}
+
+#subnav li li {
+	padding: 0.25em 1em 0.25em 0;
+}
+
+#subnav li ul ul {
+	margin: -1.75em 0 0 14em;
+}
+
+#subnav li:hover ul ul,#subnav li:hover ul ul ul,#subnav li.myhover ul ul,#subnav li.myhover ul ul ul
+	{
+	left: -999em;
+	background-color: white;
+}
+
+#subnav li:hover ul,#subnav li li:hover ul,#subnav li li li:hover ul,#subnav li.myhover ul,#subnav li li.myhover ul,#subnav li li li.myhover ul
+	{
+	left: auto;
+}
+
+#subnav li:hover,#subnav li.myhover {
+	background: white none repeat scroll 0 0;
+}
+
+#subnav li span.menu-has-submenu {
+	background-image: url(img/arrow_down_orange.png);
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
+}

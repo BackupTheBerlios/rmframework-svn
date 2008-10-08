@@ -167,12 +167,6 @@
     border-bottom: 1px #000 solid;
   }
   
-  #commandPanel {
-  	float: left;
-  }
-  
-  #commandPanel li { display: inline; margin-left: 0px; text-decoration: none; margin-right:1.2em;}
-  
   div.tab-row {
 	border-bottom: 1px solid #aaa;
 
@@ -228,7 +222,8 @@
 	 float: left;
 	 margin-right: 0.9em;
 	 }
-  
+	 
+	
   
 }
 
