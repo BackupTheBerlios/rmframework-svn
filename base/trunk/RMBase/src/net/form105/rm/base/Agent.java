@@ -50,4 +50,5 @@ public class Agent {
         GlobalLookupContainer container = (GlobalLookupContainer) getContainer(GlobalLookupContainer.class);
         return container.getLookupRegistry();
     }
+    
 }

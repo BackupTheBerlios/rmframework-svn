@@ -3,11 +3,10 @@
     <entry key="server.rmi.port">10099</entry>
     <entry key="server.model.name">model.xml</entry>
     
-    
     <!-- memory, db, dual -->
     <entry key="server.operation.mode">dual</entry>
     <entry key="server.userManagement.initialize">true</entry>
-    <entry key="server.db4o.defaultPath">/home/heiko/database.dbo</entry>
+    <entry key="server.db4o.defaultPath">db/database.dbo</entry>
     
     <!-- import section -->
     <entry key="server.import.folder">/tmp/import</entry>

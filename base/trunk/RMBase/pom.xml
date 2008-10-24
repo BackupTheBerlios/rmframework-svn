@@ -5,7 +5,6 @@
 	<artifactId>RMBase</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<description>RM Base Server</description>
-
 	<dependencies>
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -15,7 +14,12 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
+			<version>1.2.14</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.3.0</version>
 		</dependency>
 	</dependencies>
 </project>

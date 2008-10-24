@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rm:serverConfig xmlns:rm="http://xml.form105.net/schema/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.form105.net/schema/model ../src/main/resources/schema/serverConfig.xsd ">
+  <rm:inbound>
+    <rm:id>plc01</rm:id>
+    <rm:alias>input_server_plc_01</rm:alias>
+    <rm:host>192.168.1.141</rm:host>
+    <rm:port>50005</rm:port>
+    <rm:type>inbound</rm:type>
+    <rm:sizePendingQueue>2</rm:sizePendingQueue>
+  </rm:inbound>
+</rm:serverConfig>
