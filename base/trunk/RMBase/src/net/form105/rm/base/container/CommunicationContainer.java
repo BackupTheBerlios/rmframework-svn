@@ -15,23 +15,16 @@
  */
 package net.form105.rm.base.container;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Properties;
 
-import net.form105.rm.base.Container;
-import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.integration.PlcInputServer;
-import net.form105.rm.server.i18n.BaseMessage;
-import net.form105.xml.schema.model.ServerConfigDocument;
 import net.form105.xml.schema.model.ServerConfigDocument.ServerConfig.Inbound;
 
 import org.apache.log4j.Logger;
-import org.apache.xmlbeans.XmlException;
 
 /**
  * The communication container starts the basic communication and registers all network servers in the communication
- * handler.
+ * handler. The configuration is required which provides messageTemplates and the server configuration.
  * @author heiko
  *
  */
@@ -42,31 +35,22 @@ public class CommunicationContainer extends AbstractContainer {
 	private Properties properties;
 	private String configDir;
 	private final String serverConfigFilename = "serverConfig.xml";
-	private ServerConfigDocument configDocument;
+	private CommunicationConfigurationContainer configContainer;
+	
 	private Inbound[] inbounds;
 	
-	public CommunicationContainer(PropertiesContainer propContainer) {
+	
+	
+	
+	
+	public CommunicationContainer(PropertiesContainer propContainer, CommunicationConfigurationContainer configContainer) {
 		this.properties = propContainer.getProperties();
+		this.configContainer = configContainer;
 		
 	}
 	
 	
 	public void initialize() {
-		configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
-		// Loading serverConfig
-		String configFile = configDir + serverConfigFilename;
-		logger.info("Loading server config file: "+configFile);
-		
-		try {
-			configDocument = ServerConfigDocument.Factory.parse(new File(configDir+serverConfigFilename));
-		} catch (XmlException e) {
-			logger.error(e,e);
-		} catch (IOException ex) {
-			RMException rmEx = new RMException(new BaseMessage(), "exception.fileNotFound", new String[] {configFile}, ex);
-			throw rmEx;
-		}
-		
-		inbounds = configDocument.getServerConfig().getInboundArray();
 		
 	}
 	
@@ -88,7 +72,4 @@ public class CommunicationContainer extends AbstractContainer {
 	public void stop() {
 		
 	}
-	
-	
-
 }
