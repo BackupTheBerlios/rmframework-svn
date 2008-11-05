@@ -139,6 +139,7 @@ public class PlcInputServer implements Runnable {
 		try {
 			serverSocket = new ServerSocket(port, sizePendingQueue, InetAddress.getByName(serverHostname));
 		} catch (UnknownHostException uhEx) {
+			logger.error(uhEx, uhEx);
 			RMException rmEx = new RMException(new BaseMessage(), "exception.network.unknownHost", new String[] {serverHostname}, uhEx);
 			throw rmEx;
 		} catch (IOException ioEx) {

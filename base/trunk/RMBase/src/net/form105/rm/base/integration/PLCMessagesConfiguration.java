@@ -15,30 +15,21 @@
  */
 package net.form105.rm.base.integration;
 
-/**
- * Associates the content of a telegram with an integer.
- * @author heiko
- *
- */
-public enum DataType {
+import net.form105.xml.schema.model.PlcMessagesDocument;
+
+import org.apache.log4j.Logger;
+
+public class PLCMessagesConfiguration {
 	
-	BIT(1),
-	Byte(8),
-	WORD(16),
-	DWORD(32),
-	BYTE5(55),
-	BYTE6(56),
-	BYTE7(57);
+	public static Logger logger = Logger.getLogger(PLCMessagesConfiguration.class);
+	private PlcMessagesDocument document;
 	
-	private int value;
 	
-	private DataType(int value) {
-		this.value = value;
+	
+	public PLCMessagesConfiguration(PlcMessagesDocument document) {
+		this.document = document;
 	}
 	
-	public int getValue() {
-		return value;
-	}
 	
 
 }
