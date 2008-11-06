@@ -13,23 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.integration;
+package com.form105.rm.base.math;
+
+import java.math.BigInteger;
+
+import org.apache.log4j.Logger;
+import org.junit.Test;
 
 
-public interface IMessageTemplate<T> {
+public class BigIntegerTest {
 	
-	public String getId();
+	private static Logger logger = Logger.getLogger(BigIntegerTest.class);
 	
-	/**
-	 * Creating a hashcode for an object which is generated from the fields of the template
-	 * @return The hashcode
-	 */
-	public Integer getHashcode();
-	
-	/**
-	 * Getting the template configuration object
-	 * @return
-	 */
-	public T getConfiguration();
+	@Test
+	public void createBigInteger() {
+		
+		byte[] identIntSequence = new byte[8];
+		
+		identIntSequence[0] = 0;
+		identIntSequence[1] = 0;
+		identIntSequence[2] = 0;
+		identIntSequence[3] = 0;
+		identIntSequence[4] = 0;
+		identIntSequence[5] = 0;
+		identIntSequence[6] = 1;
+		identIntSequence[7] = 1;
+		
+		BigInteger bInt = new BigInteger(identIntSequence);
+		
+		logger.info(bInt);
+	}
 
 }

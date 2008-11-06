@@ -10,4 +10,6 @@
     
     <!-- import section -->
     <entry key="server.import.folder">/tmp/import</entry>
+    
+    <entry key="server.communication">on</entry>
 </properties>

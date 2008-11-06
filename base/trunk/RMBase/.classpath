@@ -26,7 +26,7 @@
 	<classpathentry kind="lib" path="lib/jta.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="lib/metadata-extractor-2.3.1.jar"/>
-	<classpathentry kind="lib" path="lib/picocontainer-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/picocontainer-2.6.jar" sourcepath="/home/heiko/development/libs/pico/picocontainer-2.6-sources.jar"/>
 	<classpathentry kind="lib" path="lib/postgresql-8.3-603.jdbc3.jar"/>
 	<classpathentry kind="lib" path="config"/>
 	<classpathentry kind="output" path="target/classes"/>

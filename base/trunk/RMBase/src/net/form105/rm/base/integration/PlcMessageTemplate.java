@@ -20,21 +20,24 @@ import java.math.BigInteger;
 import net.form105.xml.schema.model.PlcMessagesDocument.PlcMessages.PlcMessage;
 
 import org.apache.log4j.Logger;
+import org.apache.xmlbeans.XmlObject;
 
 /**
  * The message template consists of the generated hashcode an the xml configuration. Each message that
  * can be arrived should be defined in the xml configuration (usually config/plcMessages.xml). 
  * @author hk
  */
-public class PlcMessageTemplate implements IMessageTemplate {
+public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 
 	public static Logger logger = Logger.getLogger(PlcMessageTemplate.class);
 
+	private String id;
 	private PlcMessage messageData;
 	private int hashcode;
 
 	public PlcMessageTemplate(PlcMessage messageData) {
 		this.messageData = messageData;
+		this.id = messageData.getId();
 		createHashcode();
 	}
 
@@ -74,6 +77,17 @@ public class PlcMessageTemplate implements IMessageTemplate {
 		int hashcode = bInteger.hashCode();
 		logger.info("Hashcode of the dataSequence is: " + hashcode);
 		return hashcode;
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public XmlObject getConfiguration() {
+		// TODO Auto-generated method stub
+		return messageData;
 	}
 
 }

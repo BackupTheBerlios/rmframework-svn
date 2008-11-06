@@ -25,7 +25,7 @@ public class SendClientSocketTest extends AbstractClientSocket {
 
 	@Test
 	public void sendInteger1028() {
-		byte[] intBytes = new byte[2];
+		byte[] intBytes = new byte[132];
 		String s = "schwizeroergeli";
 
 		int valueInt = 1029;
@@ -33,7 +33,7 @@ public class SendClientSocketTest extends AbstractClientSocket {
 		intBytes[0] = (byte) ((valueInt >> 8) & 0xff);
 		intBytes[1] = (byte) ((valueInt >> 0) & 0xff);
 
-		Socket socket = open("192.168.1.141", 50005);
+		Socket socket = open("192.168.1.96", 50005);
 		DataOutputStream outStream;
 		try {
 			outStream = new DataOutputStream(socket.getOutputStream());

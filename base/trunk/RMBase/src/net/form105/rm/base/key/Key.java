@@ -13,23 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.integration;
+package net.form105.rm.base.key;
 
+import java.util.Observable;
+import java.util.Observer;
 
-public interface IMessageTemplate<T> {
-	
-	public String getId();
-	
-	/**
-	 * Creating a hashcode for an object which is generated from the fields of the template
-	 * @return The hashcode
-	 */
-	public Integer getHashcode();
-	
-	/**
-	 * Getting the template configuration object
-	 * @return
-	 */
-	public T getConfiguration();
+public class Key implements Observer{
+
+	@Override
+	public void update(Observable o, Object arg) {
+		
+		
+	}
 
 }

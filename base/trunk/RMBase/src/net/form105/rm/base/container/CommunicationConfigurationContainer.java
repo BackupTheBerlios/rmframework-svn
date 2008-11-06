@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 import net.form105.rm.base.Container;
 import net.form105.rm.base.exception.RMException;
+import net.form105.rm.base.integration.IMessageTemplate;
 import net.form105.rm.base.integration.PlcMessageTemplate;
 import net.form105.rm.server.i18n.BaseMessage;
 import net.form105.xml.schema.model.PlcMessagesDocument;
@@ -49,7 +50,7 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 	private String plcMessageConfigFile;
 	private PropertiesContainer propContainer;
 	
-	private HashMap<Integer, PlcMessageTemplate> templateRegistry = new HashMap<Integer, PlcMessageTemplate>(); 
+	private HashMap<Integer, IMessageTemplate> templateRegistry = new HashMap<Integer, IMessageTemplate>(); 
 
 	private boolean configured;
 
@@ -73,6 +74,9 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 		this.configured = configured;
 	}
 
+	/**
+	 * Loading the xml configuration for the plc message templates.
+	 */
 	public void initialize() {
 		
 		setConfigured(propContainer.getProperty("server.communication").equalsIgnoreCase("on"));
@@ -116,7 +120,7 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 	 * 
 	 * @return The document containing the configuration
 	 */
-	public PlcMessagesDocument readPlcMessageConfiguration() {
+	public void readPlcMessageConfiguration() {
 
 		try {
 			PlcMessagesDocument plcMessageConfigDocument = PlcMessagesDocument.Factory.parse(new File(
@@ -127,14 +131,29 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 				PlcMessageTemplate template = new PlcMessageTemplate(message);
 				templateRegistry.put(template.getHashcode(), template);
 			}
-			return plcMessageConfigDocument;
 		} catch (XmlException e) {
 			logger.error(e, e);
-			return null;
 		} catch (IOException ex) {
 			RMException rmEx = new RMException(new BaseMessage(), "exception.fileNotFound", new String[] { plcMessageConfigFile }, ex);
 			throw rmEx;
 		}
+	}
+	
+	/**
+	 * Adding a template to the plc message registry
+	 * @param template
+	 */
+	public void addTemplate(IMessageTemplate template) {
+		templateRegistry.put(template.getHashcode(), template);
+	}
+	
+	/**
+	 * Getting a template by its hashcode
+	 * @param hashcode The hashcode of the template
+	 * @return
+	 */
+	public IMessageTemplate getTemplate(Integer hashcode) {
+		return templateRegistry.get(hashcode);
 	}
 
 }

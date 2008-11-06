@@ -91,9 +91,7 @@ public class PlcInputServer implements Runnable {
 					
 					long start = System.currentTimeMillis();
 					
-//					for (int i = 0; i < completeByte.length; i++) {
-//						logger.info("# byte"+i+": "+new Integer(completeByte[i]));
-//					}
+
 					
 					byte[] ackByte = new byte[132];
 					System.arraycopy(completeByte, 0, ackByte, 0, 12);
