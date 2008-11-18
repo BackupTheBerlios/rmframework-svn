@@ -86,7 +86,6 @@ public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 
 	@Override
 	public XmlObject getConfiguration() {
-		// TODO Auto-generated method stub
 		return messageData;
 	}
 

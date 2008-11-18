@@ -5,7 +5,6 @@
 package net.form105.rm.base.model.xml;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import net.form105.rm.base.model.Resource;

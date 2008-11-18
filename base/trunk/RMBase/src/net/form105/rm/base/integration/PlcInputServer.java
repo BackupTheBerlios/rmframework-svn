@@ -146,6 +146,9 @@ public class PlcInputServer implements Runnable {
 		return serverSocket;
 	}
 	
+	/**
+	 * Starts a new thread for each input server
+	 */
 	public void connect() {
 		running = true;
 		String threadName = alias+":" +serverHostname+":"+port;
