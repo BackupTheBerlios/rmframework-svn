@@ -6,30 +6,36 @@ import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.filter.AbstractUIFilter;
 import net.form105.web.base.model.filter.TypeFilter;
 
+import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.form.ListMultipleChoice;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 
 public class TypeFilterPanel<I> extends AbstractFilterPanel<I, List<String>> {
+	
+	public static Logger logger = Logger.getLogger(TypeFilterPanel.class);
 	
 
 
 	public TypeFilterPanel(String id, TypeFilter<I> filter, AbstractFilterSequence<I> filterSequence, List<String> inputList) {
 		super(id, filter, filterSequence);
 
-		
-		CompoundPropertyModel model = new CompoundPropertyModel(filter);
+		// Using the saved filter if there is one configured before
+		AbstractUIFilter<I, ?> savedFilter = filterSequence.getConfiguredFilter(filter.getId());
+		CompoundPropertyModel model;
+		if (savedFilter != null) {
+			model = new CompoundPropertyModel(savedFilter);
+		} else {
+			model = new CompoundPropertyModel(filter);
+		}
 		getForm().setModel(model);
 		
-		
-		
 		ListMultipleChoice mChoice = new ListMultipleChoice("configParameter", inputList);
-		
 		int rowSize = 5;
-		
 		if (inputList.size() < 5 ) {
 			rowSize = inputList.size();
 		}
@@ -51,24 +57,26 @@ public class TypeFilterPanel<I> extends AbstractFilterPanel<I, List<String>> {
 	private static final long serialVersionUID = 1L;
 
 	protected void onFormSubmit() {
-		// TODO Auto-generated method stub
+		TypeFilter<I> filter = (TypeFilter<I>) getForm().getModelObject();
+		if (filter.getConfigParameter().size() == 0) return;
+		getFilterSequence().save(filter);
+		setResponsePage(getPage().getClass());
 		
 	}
 	
-	public class FilterChoiceRenderer implements IChoiceRenderer {
+	private class FilterChoiceRenderer implements IChoiceRenderer {
 
 		private static final long serialVersionUID = 1L;
 
 		@Override
 		public Object getDisplayValue(Object object) {
-			if (object instanceof AbstractUIFilter) {
-				return ((AbstractUIFilter) object).getName();
-			}
+			logger.info(object);
 			return object;
 		}
 
 		@Override
 		public String getIdValue(Object object, int index) {
+			logger.info(object+":"+index);
 			return "Object: "+object+" index: "+index;
 		}
 		

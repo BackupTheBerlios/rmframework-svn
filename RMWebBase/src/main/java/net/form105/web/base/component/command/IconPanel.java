@@ -2,7 +2,6 @@ package net.form105.web.base.component.command;
 
 import java.util.List;
 
-import net.form105.web.base.action.IModelAction;
 import net.form105.web.base.action.IPageAction;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.EventType;

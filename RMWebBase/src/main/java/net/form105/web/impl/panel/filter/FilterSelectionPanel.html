@@ -13,15 +13,19 @@
 			
 				<div class="contributionForm">
 					<p wicket:id="filterDescriptionForSelection" />
+		
 					<form wicket:id="filterForm">
-					
 						<select wicket:id="filterChoice" name=""></select>
+						<a href="#" wicket:id="iconLink">
+							<span class="iconLink" wicket:id="iconLabel"></span>
+						</a>
 					</form>
 			</div>
 			
-			<!-- This is an ajaxified panel -->
-			<div wicket:id="panel.filterConfiguration" />
+			<!-- This is an ajaxified panel. Dependend of the selection the filter configuration
+			panels will be shown. -->
 			
+			<div wicket:id="panel.filterConfiguration" />
 			<div class="messageBox" wicket:id="warning.input"/>
 		</div>
 		

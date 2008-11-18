@@ -21,6 +21,7 @@ public class RegExpressionFilterPanel<T> extends AbstractFilterPanel<T, String> 
 	public RegExpressionFilterPanel(String id, StringPatternFilter<T> filter, AbstractFilterSequence<T> filterSequence) {
 		super(id, filter, filterSequence);
 		
+		// Using the saved filter if there is one configured before
 		AbstractUIFilter<T, ?> savedFilter = filterSequence.getConfiguredFilter(filter.getId());
 		
 		CompoundPropertyModel model;
@@ -49,6 +50,10 @@ public class RegExpressionFilterPanel<T> extends AbstractFilterPanel<T, String> 
 	@Override
 	protected void onFormSubmit() {
 		StringPatternFilter<T> filter = (StringPatternFilter<T>) getForm().getModelObject();
+		logger.info(filter.getConfigParameter());
+		if (filter.getConfigParameter() == null) {
+			return;
+		}
 		getFilterSequence().save(filter);
 		setResponsePage(getPage().getClass());
 		

@@ -6,10 +6,10 @@ import java.util.List;
 import net.form105.rm.base.model.user.User;
 import net.form105.web.base.ApplicationSession;
 import net.form105.web.base.IAuthenticatedPage;
-import net.form105.web.base.action.IModelAction;
 import net.form105.web.base.action.IPageAction;
 import net.form105.web.base.component.command.CommandPanel;
 import net.form105.web.base.component.command.IconPanel;
+import net.form105.web.base.component.subMenu.ExampleMenuPanel;
 import net.form105.web.base.component.table.DataTablePanel;
 import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.filter.StringPatternFilter;
@@ -20,7 +20,6 @@ import net.form105.web.base.type.EventType;
 import net.form105.web.impl.action.ContributionAddUserAction;
 import net.form105.web.impl.action.IconContributionAction;
 import net.form105.web.impl.action.RemoveUserAction;
-import net.form105.web.impl.panel.ConfigurationSubMenuPanel;
 import net.form105.web.impl.panel.contribution.NoContributionPanel;
 import net.form105.web.impl.panel.contribution.TabbedUserContributionPanel;
 import net.form105.web.impl.panel.filter.FilterSelectionPanel;
@@ -31,7 +30,6 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.TextFilteredPropertyColumn;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.ResourceModel;
 
 //TODO: implement IAuthenticatedPage
 @AuthorizeInstantiation("admin")
@@ -42,8 +40,8 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 	private FilterDataProvider<User> filterProvider;
 
 	public UsersPage() {
-		super(new ConfigurationSubMenuPanel("panel.subNavigation", "menuItem", UsersPage.class), new NoContributionPanel("panel.contribution"));
-		//add(new StyleSheetReference("styleSheetUsers", new ResourceReference(UsersPage.class, "UsersPage.css")));
+		//super(new ConfigurationSubMenuPanel("panel.subNavigation", "menuItem", UsersPage.class), new NoContributionPanel("panel.contribution"));
+		super(new ExampleMenuPanel("panel.subNavigation"), new NoContributionPanel("panel.contribution"));
 		
 		filterSequence = getFilterSequence();
 		
@@ -103,7 +101,7 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 			
 		case ADD_FILTER_EVENT:
 			logger.info("ADD_FILTER_EVENT occured");
-			FilterSelectionPanel<User> filterPanel = new FilterSelectionPanel<User>("panel.contribution", filterSequence, filterProvider);
+			FilterSelectionPanel<User> filterPanel = new FilterSelectionPanel<User>("panel.contribution", filterSequence, filterProvider, UsersPage.this);
 			filterPanel.setOutputMarkupId(true);
 			getContextPanel().replaceWith(filterPanel);
 			contextPanel = filterPanel;

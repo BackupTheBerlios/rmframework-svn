@@ -5,20 +5,24 @@ import java.util.Collection;
 import java.util.List;
 import java.util.TreeSet;
 
+import net.form105.web.base.behaviour.IconAttributeAppender;
 import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.filter.AbstractUIFilter;
 import net.form105.web.base.model.filter.IValue;
 import net.form105.web.base.model.filter.StringPatternFilter;
 import net.form105.web.base.model.filter.TypeFilter;
 import net.form105.web.base.model.provider.FilterDataProvider;
+import net.form105.web.impl.action.ResetFilterAction;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
@@ -41,30 +45,51 @@ public class FilterSelectionPanel<I> extends Panel {
 	private Model model;
 	
 	private Panel filterPanel;
+	private final Page targetPage; 
 	
 	
 	
 	
-	public FilterSelectionPanel(String id, final AbstractFilterSequence<I> filterSequence, final FilterDataProvider<I> provider) {
+	public FilterSelectionPanel(String id, final AbstractFilterSequence<I> filterSequence, final FilterDataProvider<I> provider, Page page) {
 		super(id);
+		this.targetPage = page;
 		
 		add(new Label("filterHeader", new ResourceModel("header.filter.label")));
 		
 		add(new Label("filterDescriptionForSelection", new ResourceModel("label.description.filter.selection")));
 
 		Form form = new Form("filterForm") {
-
+			private static final long serialVersionUID = 1L;
+		};
+		add(form);
+		
+		// Creating action and Link
+		final ResetFilterAction action = new ResetFilterAction(getString("label.link.resetFilter"), page, filterSequence.getClass());
+		Link resetFilterLink = new Link("iconLink") {
 			private static final long serialVersionUID = 1L;
 
-			protected void onSubmit() {
-				logger.info("Form submitted");
+			@Override
+			public void onClick() {
+				action.doAction();
+				setResponsePage(targetPage.getClass());
 			}
+
+			public boolean isVisible()
+			{
+				return (filterSequence.getConfiguredFilters().size() > 0);
+			}
+			
 		};
+		resetFilterLink.add(new IconAttributeAppender("resetIcon"));
+	
+		Label label = new Label("iconLabel", action.getName());
+		resetFilterLink.add(label);
+		form.add(resetFilterLink);
 
 		Collection<AbstractUIFilter<I,?>> filterList = filterSequence.getFilterAsCollection();
 		
 		model = new Model();
-		final DropDownChoice choice = new DropDownChoice("filterChoice", model, new ArrayList<AbstractUIFilter<I,?>>(filterList), new FilterChoiceRenderer());
+		final DropDownChoice choice = new DropDownChoice("filterChoice", model, new ArrayList<AbstractUIFilter<I,?>>(filterList), new FilterChoiceRenderer(filterSequence));
 		form.add(choice);
 		
 		choice.add(new AjaxFormComponentUpdatingBehavior("onchange") {
@@ -103,7 +128,7 @@ public class FilterSelectionPanel<I> extends Panel {
 			}
 		});
 		
-		add(form);
+		
 		
 		filterPanel = new NoFilterPanel<Object>("panel.filterConfiguration");
 		filterPanel.setOutputMarkupId(true);
@@ -116,10 +141,19 @@ public class FilterSelectionPanel<I> extends Panel {
 	public class FilterChoiceRenderer implements IChoiceRenderer {
 
 		private static final long serialVersionUID = 1L;
+		private AbstractFilterSequence filterSequence;
+		
+		public FilterChoiceRenderer(AbstractFilterSequence filterSequence) {
+			this.filterSequence = filterSequence;
+		}
 
 		@Override
 		public Object getDisplayValue(Object object) {
 			if (object instanceof AbstractUIFilter) {
+				AbstractUIFilter filter = (AbstractUIFilter) object;
+				if (filterSequence.getConfiguredFilter(filter.getId()) != null) {
+					return filter.getName() + " (*)";
+				}
 				return ((AbstractUIFilter) object).getName();
 			}
 			return object;

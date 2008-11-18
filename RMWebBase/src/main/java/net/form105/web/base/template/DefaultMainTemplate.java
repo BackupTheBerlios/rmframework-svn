@@ -1,9 +1,7 @@
 package net.form105.web.base.template;
 
-import net.form105.rm.base.model.user.User;
 import net.form105.web.base.component.subMenu.SubMenuPanel;
 import net.form105.web.base.type.EventType;
-import net.form105.web.impl.panel.contribution.TabbedUserContributionPanel;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -19,11 +17,10 @@ import org.apache.wicket.markup.html.panel.Panel;
  */
 public abstract class DefaultMainTemplate extends DefaultPageTemplate {
 	
-	private Panel menuPanel;
+
 	protected Panel contextPanel;
 	
-	public DefaultMainTemplate(SubMenuPanel menuPanel, Panel contextPanel) {
-		this.menuPanel = menuPanel;
+	public DefaultMainTemplate(Panel menuPanel, Panel contextPanel) {
 		this.contextPanel = contextPanel;
 		add(menuPanel);
 		add(contextPanel);

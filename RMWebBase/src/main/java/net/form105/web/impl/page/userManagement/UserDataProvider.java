@@ -31,6 +31,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 	public static String myString;
 	
 	private List<User> input;
+	private List<User> filteredInput;
 
 	public enum SortColumnId {
 		ID, EMAIL, SIRNAME, SHORTNAME;
@@ -47,8 +48,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 
 	@Override
 	public Iterator<User> iterator(int first, int count) {
-		logger.info("iterate over userDataProvider");
-		input = getFilteredInput();
+		filteredInput = getFilteredInput();
 
 		SortParam sortParam = getSort();
 		if (sortParam != null) {
@@ -58,10 +58,10 @@ public class UserDataProvider extends FilterDataProvider<User> {
 		}
 
 		int toIndex = first + count;
-		if (toIndex > input.size()) {
-			toIndex = input.size();
+		if (toIndex > filteredInput.size()) {
+			toIndex = filteredInput.size();
 		}
-		return getInput().subList(first, toIndex).listIterator();
+		return filteredInput.subList(first, toIndex).listIterator();
 	}
 
 	@Override

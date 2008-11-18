@@ -1,16 +1,16 @@
 package net.form105.web.impl.page.resources;
 
-import org.apache.wicket.ajax.AjaxRequestTarget;
-
+import net.form105.web.base.component.subMenu.ExampleMenuPanel;
 import net.form105.web.base.template.DefaultMainTemplate;
 import net.form105.web.base.type.EventType;
-import net.form105.web.impl.panel.ResourceSubMenuPanel;
 import net.form105.web.impl.panel.contribution.NoContributionPanel;
+
+import org.apache.wicket.ajax.AjaxRequestTarget;
 
 public class AllResourcesPage extends DefaultMainTemplate {
 	
 	public AllResourcesPage() {
-		super(new ResourceSubMenuPanel("panel.subNavigation", "menuItem", AllResourcesPage.class), new NoContributionPanel("panel.contribution"));
+		super(new ExampleMenuPanel("panel.subNavigation"), new NoContributionPanel("panel.contribution"));
 		
 		//add(new StyleSheetReference("styleSheetResources", new ResourceReference(AllResourcesPage.class, "AllResourcesPage.css")));
 	}
