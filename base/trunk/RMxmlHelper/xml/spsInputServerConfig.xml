@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serverConfig  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' 
+	xsi:schemaLocation='http://xml.form105.net/schema/model 
+	file:src/main/resources/schema/serverConfig.xsd'>
+	
+	
+
+
+	<inbound id="spsServer01">
+		<alias></alias>
+		<hostname></hostname>
+		<ip>127.0.0.1</ip>
+		<port>12091</port>
+	</inbound>
+</serverConfig>

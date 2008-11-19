@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://xml.form105.net/schema/model"
+	elementFormDefault="qualified" xmlns:rm="http://xml.form105.net/schema/model">
+
+	<xsd:element name="plcMessages">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="plcMessage">
+					<xsd:complexType>
+						<xsd:sequence>
+						</xsd:sequence>
+						<xsd:attribute ref="rm:connectionType" use="required"/>
+					</xsd:complexType>
+				</xsd:element>
+				
+			</xsd:sequence>
+			
+		</xsd:complexType>
+	</xsd:element>
+	
+	
+	<xsd:attributeGroup name="connectionType"></xsd:attributeGroup>
+	
+	<xsd:attribute name="connectionType">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="inbound"></xsd:enumeration>
+				<xsd:enumeration value="outbound"></xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+	
+	<xsd:element name="id" type="xsd:string"></xsd:element>
+	<xsd:element name="name" type="xsd:string"></xsd:element>
+	<xsd:element name="type">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="0"></xsd:enumeration>
+				<xsd:enumeration value="1"></xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	
+	
+
+</xsd:schema>

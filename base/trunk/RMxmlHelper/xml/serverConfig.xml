@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rm:serverConfig xmlns:rm="http://xml.form105.net/schema/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.form105.net/schema/model ../src/main/resources/schema/serverConfig.xsd ">
+  <rm:inbound>
+    <rm:id>rm:id</rm:id>
+    <rm:alias>rm:alias</rm:alias>
+    <rm:host>localhost</rm:host>
+    <rm:port>0</rm:port>
+    <rm:type/>
+    <rm:validatorKey>kaiserValidator</rm:validatorKey>
+  </rm:inbound>
+</rm:serverConfig>

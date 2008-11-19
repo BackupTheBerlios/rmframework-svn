@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>RMxmlHelper</groupId>
+	<artifactId>RMxmlHelper</artifactId>
+	<name>Codehaus Maven repository</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>The xml helper project to integrate to RMBase and
+		provides xml mapper funktions</description>
+	<url>http://repository.codehaus.org/
+	</url>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>xmlbeans-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>xmlbeans</goal>
+						</goals>
+					</execution>
+				</executions>
+				<inherited>true</inherited>
+				<configuration>
+					<schemaDirectory>src/main/resources/schema</schemaDirectory>
+					<sourceGenerationDirectory>src/main/java</sourceGenerationDirectory>
+					<classGenerationDirectory>${project.build.directory}/generated-classes/xmlbeans</classGenerationDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.castor</groupId>
+			<artifactId>castor-xml</artifactId>
+			<version>1.3rc1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+	</dependencies>
+</project>

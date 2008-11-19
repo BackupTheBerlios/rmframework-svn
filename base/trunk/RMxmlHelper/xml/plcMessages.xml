@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plcMessages>
+	<message direction="inbound"><!-- inbound/outbound -->
+		<id>conveyRM120</id>
+		<id2></id2>
+		<name>Pos. 120 belegt</name>
+		<type>1</type><!-- 1=Steuerevent, 2=Acknowledge, 3=Errormeldung, 4=Statusmeldung -->
+		<sector>1</sector><!-- 1=Merker, 2=Eingang, 3=Ausgang, 4=Datenbaustein -->
+		<address db="3" byte="30" bit="0">
+		</address>
+		<dataType>8</dataType><!-- 1=bit, 8=byte, 16=word, 32=dword -->
+	</message>
+</plcMessages>

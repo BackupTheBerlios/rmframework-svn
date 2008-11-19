@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://xml.form105.net/schema/model"
+	elementFormDefault="qualified" xmlns:rm="http://xml.form105.net/schema/model">
+
+	<xsd:element name="serverConfig">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="inbound" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="id" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+							<xsd:element name="alias" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+							<xsd:element name="host" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+							<xsd:element name="port" maxOccurs="1" minOccurs="1" type="xsd:int"></xsd:element>
+							<xsd:element name="type" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+							<xsd:element name="sizePendingQueue" maxOccurs="1" minOccurs="0" type="xsd:int"></xsd:element>
+							<xsd:element name="validatorKey" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>
