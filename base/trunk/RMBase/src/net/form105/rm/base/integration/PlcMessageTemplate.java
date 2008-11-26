@@ -39,6 +39,8 @@ public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 		this.messageData = messageData;
 		this.id = messageData.getId();
 		createHashcode();
+		logger.info("MessageData:"+messageData.getDataType());
+		logger.info("MessageData:"+messageData.getDataType().intValue());
 	}
 
 	/**
@@ -71,7 +73,7 @@ public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 		identIntSequence[3] = (byte) ((integerByteAddress >> 8) & 0xff);
 		identIntSequence[2] = (byte) ((integerByteAddress >> 0) & 0xff);
 		identIntSequence[1] = (new Integer(messageData.getAddress().getBit())).byteValue();
-		identIntSequence[0] = messageData.getDataType(); // datatype
+		identIntSequence[0] = (byte) messageData.getDataType().intValue(); // datatype
 
 		BigInteger bInteger = new BigInteger(identIntSequence);
 		int hashcode = bInteger.hashCode();
@@ -87,6 +89,12 @@ public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 	@Override
 	public XmlObject getConfiguration() {
 		return messageData;
+	}
+	
+	public void getConverter() {
+		logger.info(messageData.getDataType());
+		
+		
 	}
 
 }

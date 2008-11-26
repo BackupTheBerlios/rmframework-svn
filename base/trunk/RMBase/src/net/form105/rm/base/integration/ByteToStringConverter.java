@@ -15,21 +15,15 @@
  */
 package net.form105.rm.base.integration;
 
-import net.form105.xml.schema.model.PlcMessagesDocument;
+import net.form105.rm.base.integration.converter.IConverter;
 
-import org.apache.log4j.Logger;
+public class ByteToStringConverter implements IConverter<Byte, String> {
 
-public class PLCMessagesConfiguration {
-	
-	public static Logger logger = Logger.getLogger(PLCMessagesConfiguration.class);
-	private PlcMessagesDocument document;
-	
-	
-	
-	public PLCMessagesConfiguration(PlcMessagesDocument document) {
-		this.document = document;
+	@Override
+	public String convert(Byte inboundObject) {
+		return null;
 	}
 	
-	
+
 
 }

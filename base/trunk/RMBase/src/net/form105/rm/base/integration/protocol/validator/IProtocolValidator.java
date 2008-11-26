@@ -13,8 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.integration;
+package net.form105.rm.base.integration.protocol.validator;
 
-public class PlcMessageObject {
+import net.form105.rm.base.exception.RMException;
+
+public interface IProtocolValidator {
+	
+	/**
+	 * Validates the header and returns true if the byte stream can be accepted by the server
+	 * @param header
+	 * @return
+	 */
+	public boolean isValid(byte[] header);
+	
+	/**
+	 * Get the length of the header we expect
+	 * @return
+	 */
+	public int getHeaderLength();
+	
+	public int getPacketId();
 
 }

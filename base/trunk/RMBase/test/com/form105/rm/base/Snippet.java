@@ -25,7 +25,7 @@ import org.junit.Test;
 
 public class Snippet {
 	
-	@Test
+	
 	public void run() {
 		DOMReader reader = new DOMReader();
 		
@@ -40,6 +40,58 @@ public class Snippet {
 		
 		
 		
+	}
+	
+	@Test
+	public void testReference() {
+		String s = "heiko";
+		int i = 0;
+		MyClass myClass = new MyClass(s, i);
+		System.out.println(myClass.getS() +":"+ myClass.getI());
+		
+		s = "heikoNew";
+		i= 1;
+		System.out.println(myClass.getS() +":"+ myClass.getI());
+		
+	}
+	
+	public class MyClass {
+		
+		public String s;
+		/**
+		 * @return the s
+		 */
+		public String getS() {
+			return s;
+		}
+
+		/**
+		 * @param s the s to set
+		 */
+		public void setS(String s) {
+			this.s = s;
+		}
+
+		/**
+		 * @return the i
+		 */
+		public int getI() {
+			return i;
+		}
+
+		/**
+		 * @param i the i to set
+		 */
+		public void setI(int i) {
+			this.i = i;
+		}
+
+		public int i;
+		
+		public MyClass(String s, int i) {
+			this.s = s;
+			this.i = i;
+		}
 	}
 
 }

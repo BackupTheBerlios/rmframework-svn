@@ -19,13 +19,14 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import net.form105.rm.base.Container;
 import net.form105.rm.base.exception.RMException;
+import net.form105.rm.base.integration.protocol.validator.IProtocolValidator;
 import net.form105.rm.server.i18n.BaseMessage;
 import net.form105.xml.schema.model.ServerConfigDocument.ServerConfig.Inbound;
 
@@ -36,9 +37,9 @@ import org.apache.log4j.Logger;
  * @author heiko
  *
  */
-public class PlcInputServer implements Runnable {
+public class PlcInboundServer implements Runnable {
 	
-	public static Logger logger = Logger.getLogger(PlcInputServer.class);
+	public static Logger logger = Logger.getLogger(PlcInboundServer.class);
 	
 	private String id;
 	private String alias;
@@ -53,8 +54,10 @@ public class PlcInputServer implements Runnable {
 	
 	private Thread thread;
 	
+	private IProtocolValidator validator; 
 	
-	public PlcInputServer(Inbound inboundConfig) {
+	
+	public PlcInboundServer(Inbound inboundConfig) {
 		this.id = inboundConfig.getId();
 		this.alias = inboundConfig.getAlias();
 		this.port = inboundConfig.getPort();
@@ -62,6 +65,7 @@ public class PlcInputServer implements Runnable {
 		//ip address or hostname of the server / localhost
 		this.serverHostname = inboundConfig.getHost();
 		this.sizePendingQueue = inboundConfig.getSizePendingQueue();
+		this.validator = (IProtocolValidator) Container.getFactoryContainer().getComponent(inboundConfig.getValidatorKey());
 	}
 	
 	public void initialize() {
@@ -74,11 +78,15 @@ public class PlcInputServer implements Runnable {
 	public void run() {
 		while(running) {
 			try {
+				logger.info("Server Socket is bound: "+serverSocket.isBound());
+				logger.info("Server Socket buffer size: "+serverSocket.getReceiveBufferSize());
 				Socket socket = serverSocket.accept();
 				connected = true;
 				DataInputStream inputStream = new DataInputStream(socket.getInputStream());
 				DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
 				//dataStream.skip(dataStream.available());
+				
+				logger.info("Server Socket is bound: "+serverSocket.isBound());
 				while (connected) {
 					
 					
@@ -87,37 +95,27 @@ public class PlcInputServer implements Runnable {
 					inputStream.readFully(completeByte);
 					logByteStream("input byte stream received: " , completeByte);
 					
-					logger.info("got new package !!");
-					
 					long start = System.currentTimeMillis();
-					
 
+					boolean headerIsValid = validator.isValid(completeByte);
 					
-					byte[] ackByte = new byte[132];
-					System.arraycopy(completeByte, 0, ackByte, 0, 12);
-					ackByte[0] = (byte) ((2 >> 8) & 0xff);
-					ackByte[1] = (byte) ((2 >> 0) & 0xff);
+					if (headerIsValid) {
+						// create the packetContent
+						int contentLength = 132 - validator.getHeaderLength();
+						byte[] contentPacket = new byte[contentLength];
+						System.arraycopy(completeByte, validator.getHeaderLength() - 1, contentPacket, 0, contentLength);
+						
+						// send acknowledgement
+						
+						// create a message object
+						
+						
+					}
 					
-					logByteStream("quittierung: ", ackByte);
 					
-					outputStream.write(ackByte);
-					outputStream.flush();
-					
-					byte[] idArray = new byte[6];
-					idArray[0] = completeByte[13];
-					idArray[1] = completeByte[15];
-					idArray[2] = completeByte[16];
-					idArray[3] = completeByte[17];
-					idArray[4] = completeByte[18];
-					idArray[5] = completeByte[19];
-					BigInteger bigInt = new BigInteger(idArray);
-					logger.info(bigInt.hashCode());
 					
 					long elapsed = System.currentTimeMillis() - start;
 					logger.info("time elapsed: "+elapsed);
-					
-					
-					
 				}
 				
 			} catch (EOFException eofEx) {
@@ -141,6 +139,7 @@ public class PlcInputServer implements Runnable {
 			RMException rmEx = new RMException(new BaseMessage(), "exception.network.unknownHost", new String[] {serverHostname}, uhEx);
 			throw rmEx;
 		} catch (IOException ioEx) {
+			logger.error("Error connecting to socket on "+serverHostname+":"+port);
 			logger.error(ioEx, ioEx);
 		}
 		return serverSocket;
@@ -176,7 +175,4 @@ public class PlcInputServer implements Runnable {
 		}
 	}
 	
-	
-	
-
 }

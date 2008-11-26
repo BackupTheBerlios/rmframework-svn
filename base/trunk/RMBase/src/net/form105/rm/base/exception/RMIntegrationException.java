@@ -13,10 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.integration;
+package net.form105.rm.base.exception;
 
-public interface IOConnector {
+import net.form105.rm.server.i18n.IMessage;
+
+public class RMIntegrationException extends RMException {
+
+	private static final long serialVersionUID = 1L;
 	
-	public IMessageObject parseInput();
+	public RMIntegrationException(IMessage message, String key, String[] params) {
+		super(message, key, params);
+	}
+	
+	public RMIntegrationException(IMessage message, String key, String[] params, Throwable cause) {
+    	super(message.getMessage(key, params), cause);
+    }
 
 }

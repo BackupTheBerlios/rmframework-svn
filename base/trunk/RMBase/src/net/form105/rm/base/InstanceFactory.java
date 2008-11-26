@@ -26,26 +26,23 @@ import org.picocontainer.behaviors.Caching;
  * The PicoContainer is a IoC Container which resolves its dependencies
  * automatically and instantiates each required class to fullfill the
  * instantiation parameters.
- * The factoryContainer is a container to fetch instances by a class name.
  * @author heiko
  */
-public class Container {
+public class InstanceFactory {
 
-    private Logger logger = Logger.getLogger(Container.class);
-    private static Container instance;
+    private Logger logger = Logger.getLogger(InstanceFactory.class);
+    private static InstanceFactory instance;
     private static DefaultPicoContainer container;
-    private static DefaultPicoContainer factoryContainer;
     
     private ContainerConfiguration configuration;
 
     static {
-        instance = new Container();
+        instance = new InstanceFactory();
         instance.initialize();
     }
 
     public void initialize() {
-        container = new DefaultPicoContainer(new Caching());
-        factoryContainer = new DefaultPicoContainer();
+        container = new DefaultPicoContainer();
         
     }
 
@@ -57,18 +54,9 @@ public class Container {
         return container;
     }
     
-    /**
-     * Static method to get a pico container singleton which returns an instance of a class
-     * @return
-     */
-    public static PicoContainer getFactoryContainer() {
-    	return factoryContainer;
-    }
-    
-    public static Container getInstance() {
+    public static InstanceFactory getInstance() {
     	return instance;
     }
-    
 
     /**
      * Building the pico container based on the nano container. To create a pico container a configuration must be available
@@ -87,25 +75,16 @@ public class Container {
         for (Element element : classElements) {
             
             try {
-            	if (element.attribute("factory") == null) {
                 String className = element.attributeValue("class");
                 logger.info("Loading class for container: "+className);
                 Class containerClass = Class.forName(className);
                 container.addComponent(containerClass);
-            	} else {
-            		String className = element.attributeValue("class");
-            		String key = element.attributeValue("key");
-                    logger.info("Loading class for factory container: "+className);
-                    Class containerClass = Class.forName(className);
-                    factoryContainer.addComponent(key, containerClass);
-            	}
                 
             } catch (ClassNotFoundException ex) {
                 logger.error(ex, ex);
             }
         }
         container.start();
-        
     }
     
     /**
@@ -118,7 +97,6 @@ public class Container {
     
     public void unload() {
     	container.stop();
-    	factoryContainer.stop();
     }
     
     

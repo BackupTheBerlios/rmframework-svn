@@ -13,6 +13,9 @@
     <component-implementation class='net.form105.rm.base.container.ModeContainer'/>
     <component-implementation class='net.form105.rm.base.container.PersistenceModeContainer' />
     <component-implementation class='net.form105.rm.base.container.CommunicationContainer' />
+    <component-implementation class='net.form105.rm.base.container.CommunicationConfigurationContainer' />
+    
+    <component-implementation factory="true" key="kaiserValidator" class='net.form105.rm.base.integration.protocol.validator.KaiserValidator' />
     
 </container>
 
