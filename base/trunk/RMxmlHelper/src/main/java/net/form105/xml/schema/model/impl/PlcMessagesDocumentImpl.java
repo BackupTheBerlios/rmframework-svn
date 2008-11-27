@@ -559,7 +559,7 @@ public class PlcMessagesDocumentImpl extends org.apache.xmlbeans.impl.values.Xml
             /**
              * Gets the "dataType" element
              */
-            public byte getDataType()
+            public net.form105.xml.schema.model.DataTypeDocument.DataType.Enum getDataType()
             {
                 synchronized (monitor())
                 {
@@ -568,22 +568,22 @@ public class PlcMessagesDocumentImpl extends org.apache.xmlbeans.impl.values.Xml
                     target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(DATATYPE$10, 0);
                     if (target == null)
                     {
-                      return 0;
+                      return null;
                     }
-                    return target.getByteValue();
+                    return (net.form105.xml.schema.model.DataTypeDocument.DataType.Enum)target.getEnumValue();
                 }
             }
             
             /**
              * Gets (as xml) the "dataType" element
              */
-            public org.apache.xmlbeans.XmlByte xgetDataType()
+            public net.form105.xml.schema.model.DataTypeDocument.DataType xgetDataType()
             {
                 synchronized (monitor())
                 {
                     check_orphaned();
-                    org.apache.xmlbeans.XmlByte target = null;
-                    target = (org.apache.xmlbeans.XmlByte)get_store().find_element_user(DATATYPE$10, 0);
+                    net.form105.xml.schema.model.DataTypeDocument.DataType target = null;
+                    target = (net.form105.xml.schema.model.DataTypeDocument.DataType)get_store().find_element_user(DATATYPE$10, 0);
                     return target;
                 }
             }
@@ -591,7 +591,7 @@ public class PlcMessagesDocumentImpl extends org.apache.xmlbeans.impl.values.Xml
             /**
              * Sets the "dataType" element
              */
-            public void setDataType(byte dataType)
+            public void setDataType(net.form105.xml.schema.model.DataTypeDocument.DataType.Enum dataType)
             {
                 synchronized (monitor())
                 {
@@ -602,23 +602,23 @@ public class PlcMessagesDocumentImpl extends org.apache.xmlbeans.impl.values.Xml
                     {
                       target = (org.apache.xmlbeans.SimpleValue)get_store().add_element_user(DATATYPE$10);
                     }
-                    target.setByteValue(dataType);
+                    target.setEnumValue(dataType);
                 }
             }
             
             /**
              * Sets (as xml) the "dataType" element
              */
-            public void xsetDataType(org.apache.xmlbeans.XmlByte dataType)
+            public void xsetDataType(net.form105.xml.schema.model.DataTypeDocument.DataType dataType)
             {
                 synchronized (monitor())
                 {
                     check_orphaned();
-                    org.apache.xmlbeans.XmlByte target = null;
-                    target = (org.apache.xmlbeans.XmlByte)get_store().find_element_user(DATATYPE$10, 0);
+                    net.form105.xml.schema.model.DataTypeDocument.DataType target = null;
+                    target = (net.form105.xml.schema.model.DataTypeDocument.DataType)get_store().find_element_user(DATATYPE$10, 0);
                     if (target == null)
                     {
-                      target = (org.apache.xmlbeans.XmlByte)get_store().add_element_user(DATATYPE$10);
+                      target = (net.form105.xml.schema.model.DataTypeDocument.DataType)get_store().add_element_user(DATATYPE$10);
                     }
                     target.set(dataType);
                 }

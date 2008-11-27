@@ -17,27 +17,113 @@ package net.form105.xml.schema.model;
 public interface DataTypeDocument extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(DataTypeDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("datatypeffefdoctype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(DataTypeDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("datatypeffefdoctype");
     
     /**
      * Gets the "dataType" element
      */
-    byte getDataType();
+    net.form105.xml.schema.model.DataTypeDocument.DataType.Enum getDataType();
     
     /**
      * Gets (as xml) the "dataType" element
      */
-    org.apache.xmlbeans.XmlByte xgetDataType();
+    net.form105.xml.schema.model.DataTypeDocument.DataType xgetDataType();
     
     /**
      * Sets the "dataType" element
      */
-    void setDataType(byte dataType);
+    void setDataType(net.form105.xml.schema.model.DataTypeDocument.DataType.Enum dataType);
     
     /**
      * Sets (as xml) the "dataType" element
      */
-    void xsetDataType(org.apache.xmlbeans.XmlByte dataType);
+    void xsetDataType(net.form105.xml.schema.model.DataTypeDocument.DataType dataType);
+    
+    /**
+     * An XML dataType(@http://xml.form105.net/schema/model).
+     *
+     * This is an atomic type that is a restriction of net.form105.xml.schema.model.DataTypeDocument$DataType.
+     */
+    public interface DataType extends org.apache.xmlbeans.XmlString
+    {
+        public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
+            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(DataType.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("datatype6d4felemtype");
+        
+        org.apache.xmlbeans.StringEnumAbstractBase enumValue();
+        void set(org.apache.xmlbeans.StringEnumAbstractBase e);
+        
+        static final Enum INT = Enum.forString("int");
+        static final Enum STRING = Enum.forString("string");
+        
+        static final int INT_INT = Enum.INT_INT;
+        static final int INT_STRING = Enum.INT_STRING;
+        
+        /**
+         * Enumeration value class for net.form105.xml.schema.model.DataTypeDocument$DataType.
+         * These enum values can be used as follows:
+         * <pre>
+         * enum.toString(); // returns the string value of the enum
+         * enum.intValue(); // returns an int value, useful for switches
+         * // e.g., case Enum.INT_INT
+         * Enum.forString(s); // returns the enum value for a string
+         * Enum.forInt(i); // returns the enum value for an int
+         * </pre>
+         * Enumeration objects are immutable singleton objects that
+         * can be compared using == object equality. They have no
+         * public constructor. See the constants defined within this
+         * class for all the valid values.
+         */
+        static final class Enum extends org.apache.xmlbeans.StringEnumAbstractBase
+        {
+            /**
+             * Returns the enum value for a string, or null if none.
+             */
+            public static Enum forString(java.lang.String s)
+                { return (Enum)table.forString(s); }
+            /**
+             * Returns the enum value corresponding to an int, or null if none.
+             */
+            public static Enum forInt(int i)
+                { return (Enum)table.forInt(i); }
+            
+            private Enum(java.lang.String s, int i)
+                { super(s, i); }
+            
+            static final int INT_INT = 1;
+            static final int INT_STRING = 2;
+            
+            public static final org.apache.xmlbeans.StringEnumAbstractBase.Table table =
+                new org.apache.xmlbeans.StringEnumAbstractBase.Table
+            (
+                new Enum[]
+                {
+                    new Enum("int", INT_INT),
+                    new Enum("string", INT_STRING),
+                }
+            );
+            private static final long serialVersionUID = 1L;
+            private java.lang.Object readResolve() { return forInt(intValue()); } 
+        }
+        
+        /**
+         * A factory class with static methods for creating instances
+         * of this type.
+         */
+        
+        public static final class Factory
+        {
+            public static net.form105.xml.schema.model.DataTypeDocument.DataType newValue(java.lang.Object obj) {
+              return (net.form105.xml.schema.model.DataTypeDocument.DataType) type.newValue( obj ); }
+            
+            public static net.form105.xml.schema.model.DataTypeDocument.DataType newInstance() {
+              return (net.form105.xml.schema.model.DataTypeDocument.DataType) org.apache.xmlbeans.XmlBeans.getContextTypeLoader().newInstance( type, null ); }
+            
+            public static net.form105.xml.schema.model.DataTypeDocument.DataType newInstance(org.apache.xmlbeans.XmlOptions options) {
+              return (net.form105.xml.schema.model.DataTypeDocument.DataType) org.apache.xmlbeans.XmlBeans.getContextTypeLoader().newInstance( type, options ); }
+            
+            private Factory() { } // No instance of this class allowed
+        }
+    }
     
     /**
      * A factory class with static methods for creating instances

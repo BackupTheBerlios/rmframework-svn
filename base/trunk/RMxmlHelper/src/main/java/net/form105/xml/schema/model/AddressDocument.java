@@ -17,7 +17,7 @@ package net.form105.xml.schema.model;
 public interface AddressDocument extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(AddressDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("address24cddoctype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(AddressDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("address24cddoctype");
     
     /**
      * Gets the "address" element
@@ -42,7 +42,7 @@ public interface AddressDocument extends org.apache.xmlbeans.XmlObject
     public interface Address extends org.apache.xmlbeans.XmlObject
     {
         public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Address.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("addressb52delemtype");
+            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Address.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("addressb52delemtype");
         
         /**
          * Gets the "db" attribute
@@ -142,7 +142,7 @@ public interface AddressDocument extends org.apache.xmlbeans.XmlObject
         public interface Byte extends org.apache.xmlbeans.XmlInt
         {
             public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-                org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Byte.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("byte1855attrtype");
+                org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Byte.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("byte1855attrtype");
             
             /**
              * A factory class with static methods for creating instances

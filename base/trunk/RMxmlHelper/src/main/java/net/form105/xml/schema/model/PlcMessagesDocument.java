@@ -17,7 +17,7 @@ package net.form105.xml.schema.model;
 public interface PlcMessagesDocument extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(PlcMessagesDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("plcmessagesfa2cdoctype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(PlcMessagesDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("plcmessagesfa2cdoctype");
     
     /**
      * Gets the "plcMessages" element
@@ -42,7 +42,7 @@ public interface PlcMessagesDocument extends org.apache.xmlbeans.XmlObject
     public interface PlcMessages extends org.apache.xmlbeans.XmlObject
     {
         public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(PlcMessages.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("plcmessages952belemtype");
+            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(PlcMessages.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("plcmessages952belemtype");
         
         /**
          * Gets array of all "plcMessage" elements
@@ -92,7 +92,7 @@ public interface PlcMessagesDocument extends org.apache.xmlbeans.XmlObject
         public interface PlcMessage extends org.apache.xmlbeans.XmlObject
         {
             public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-                org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(PlcMessage.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("plcmessage23e7elemtype");
+                org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(PlcMessage.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("plcmessage23e7elemtype");
             
             /**
              * Gets the "id" element
@@ -192,22 +192,22 @@ public interface PlcMessagesDocument extends org.apache.xmlbeans.XmlObject
             /**
              * Gets the "dataType" element
              */
-            byte getDataType();
+            net.form105.xml.schema.model.DataTypeDocument.DataType.Enum getDataType();
             
             /**
              * Gets (as xml) the "dataType" element
              */
-            org.apache.xmlbeans.XmlByte xgetDataType();
+            net.form105.xml.schema.model.DataTypeDocument.DataType xgetDataType();
             
             /**
              * Sets the "dataType" element
              */
-            void setDataType(byte dataType);
+            void setDataType(net.form105.xml.schema.model.DataTypeDocument.DataType.Enum dataType);
             
             /**
              * Sets (as xml) the "dataType" element
              */
-            void xsetDataType(org.apache.xmlbeans.XmlByte dataType);
+            void xsetDataType(net.form105.xml.schema.model.DataTypeDocument.DataType dataType);
             
             /**
              * Gets the "connectionType" attribute

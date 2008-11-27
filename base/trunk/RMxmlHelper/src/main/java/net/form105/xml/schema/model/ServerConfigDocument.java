@@ -17,7 +17,7 @@ package net.form105.xml.schema.model;
 public interface ServerConfigDocument extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ServerConfigDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("serverconfigd150doctype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ServerConfigDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("serverconfigd150doctype");
     
     /**
      * Gets the "serverConfig" element
@@ -42,7 +42,7 @@ public interface ServerConfigDocument extends org.apache.xmlbeans.XmlObject
     public interface ServerConfig extends org.apache.xmlbeans.XmlObject
     {
         public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ServerConfig.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("serverconfig86afelemtype");
+            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ServerConfig.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("serverconfig86afelemtype");
         
         /**
          * Gets array of all "inbound" elements
@@ -92,7 +92,7 @@ public interface ServerConfigDocument extends org.apache.xmlbeans.XmlObject
         public interface Inbound extends org.apache.xmlbeans.XmlObject
         {
             public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-                org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Inbound.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s71368727AC9676869D86B9F0D0BBC822").resolveHandle("inboundb154elemtype");
+                org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Inbound.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("inboundb154elemtype");
             
             /**
              * Gets the "id" element

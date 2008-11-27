@@ -27,7 +27,7 @@ public class DataTypeDocumentImpl extends org.apache.xmlbeans.impl.values.XmlCom
     /**
      * Gets the "dataType" element
      */
-    public byte getDataType()
+    public net.form105.xml.schema.model.DataTypeDocument.DataType.Enum getDataType()
     {
         synchronized (monitor())
         {
@@ -36,22 +36,22 @@ public class DataTypeDocumentImpl extends org.apache.xmlbeans.impl.values.XmlCom
             target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(DATATYPE$0, 0);
             if (target == null)
             {
-                return 0;
+                return null;
             }
-            return target.getByteValue();
+            return (net.form105.xml.schema.model.DataTypeDocument.DataType.Enum)target.getEnumValue();
         }
     }
     
     /**
      * Gets (as xml) the "dataType" element
      */
-    public org.apache.xmlbeans.XmlByte xgetDataType()
+    public net.form105.xml.schema.model.DataTypeDocument.DataType xgetDataType()
     {
         synchronized (monitor())
         {
             check_orphaned();
-            org.apache.xmlbeans.XmlByte target = null;
-            target = (org.apache.xmlbeans.XmlByte)get_store().find_element_user(DATATYPE$0, 0);
+            net.form105.xml.schema.model.DataTypeDocument.DataType target = null;
+            target = (net.form105.xml.schema.model.DataTypeDocument.DataType)get_store().find_element_user(DATATYPE$0, 0);
             return target;
         }
     }
@@ -59,7 +59,7 @@ public class DataTypeDocumentImpl extends org.apache.xmlbeans.impl.values.XmlCom
     /**
      * Sets the "dataType" element
      */
-    public void setDataType(byte dataType)
+    public void setDataType(net.form105.xml.schema.model.DataTypeDocument.DataType.Enum dataType)
     {
         synchronized (monitor())
         {
@@ -70,25 +70,43 @@ public class DataTypeDocumentImpl extends org.apache.xmlbeans.impl.values.XmlCom
             {
                 target = (org.apache.xmlbeans.SimpleValue)get_store().add_element_user(DATATYPE$0);
             }
-            target.setByteValue(dataType);
+            target.setEnumValue(dataType);
         }
     }
     
     /**
      * Sets (as xml) the "dataType" element
      */
-    public void xsetDataType(org.apache.xmlbeans.XmlByte dataType)
+    public void xsetDataType(net.form105.xml.schema.model.DataTypeDocument.DataType dataType)
     {
         synchronized (monitor())
         {
             check_orphaned();
-            org.apache.xmlbeans.XmlByte target = null;
-            target = (org.apache.xmlbeans.XmlByte)get_store().find_element_user(DATATYPE$0, 0);
+            net.form105.xml.schema.model.DataTypeDocument.DataType target = null;
+            target = (net.form105.xml.schema.model.DataTypeDocument.DataType)get_store().find_element_user(DATATYPE$0, 0);
             if (target == null)
             {
-                target = (org.apache.xmlbeans.XmlByte)get_store().add_element_user(DATATYPE$0);
+                target = (net.form105.xml.schema.model.DataTypeDocument.DataType)get_store().add_element_user(DATATYPE$0);
             }
             target.set(dataType);
+        }
+    }
+    /**
+     * An XML dataType(@http://xml.form105.net/schema/model).
+     *
+     * This is an atomic type that is a restriction of net.form105.xml.schema.model.DataTypeDocument$DataType.
+     */
+    public static class DataTypeImpl extends org.apache.xmlbeans.impl.values.JavaStringEnumerationHolderEx implements net.form105.xml.schema.model.DataTypeDocument.DataType
+    {
+        
+        public DataTypeImpl(org.apache.xmlbeans.SchemaType sType)
+        {
+            super(sType, false);
+        }
+        
+        protected DataTypeImpl(org.apache.xmlbeans.SchemaType sType, boolean b)
+        {
+            super(sType, b);
         }
     }
 }
