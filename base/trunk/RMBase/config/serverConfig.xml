@@ -7,6 +7,6 @@
     <rm:port>50005</rm:port>
     <rm:type>inbound</rm:type>
     <rm:sizePendingQueue>2</rm:sizePendingQueue>
-    <rm:validatorKey>kaiserValidator</rm:validatorKey>
+    <rm:validatorKey>net.form105.rm.base.integration.protocol.validator.KaiserValidator</rm:validatorKey>
   </rm:inbound>
 </rm:serverConfig>
