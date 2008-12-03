@@ -17,7 +17,7 @@ package net.form105.xml.schema.model;
 public interface SectorDocument extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(SectorDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("sector2a91doctype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(SectorDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("sector2a91doctype");
     
     /**
      * Gets the "sector" element
@@ -47,7 +47,7 @@ public interface SectorDocument extends org.apache.xmlbeans.XmlObject
     public interface Sector extends org.apache.xmlbeans.XmlInt
     {
         public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Sector.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("sector77cfelemtype");
+            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Sector.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("sector77cfelemtype");
         
         /**
          * A factory class with static methods for creating instances

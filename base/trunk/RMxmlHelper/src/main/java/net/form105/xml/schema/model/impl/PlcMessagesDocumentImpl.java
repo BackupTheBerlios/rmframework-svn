@@ -228,8 +228,8 @@ public class PlcMessagesDocumentImpl extends org.apache.xmlbeans.impl.values.Xml
                 new javax.xml.namespace.QName("http://xml.form105.net/schema/model", "sector");
             private static final javax.xml.namespace.QName ADDRESS$8 = 
                 new javax.xml.namespace.QName("http://xml.form105.net/schema/model", "address");
-            private static final javax.xml.namespace.QName DATATYPE$10 = 
-                new javax.xml.namespace.QName("http://xml.form105.net/schema/model", "dataType");
+            private static final javax.xml.namespace.QName DATACONVERTER$10 = 
+                new javax.xml.namespace.QName("http://xml.form105.net/schema/model", "dataConverter");
             private static final javax.xml.namespace.QName CONNECTIONTYPE$12 = 
                 new javax.xml.namespace.QName("http://xml.form105.net/schema/model", "connectionType");
             
@@ -557,70 +557,70 @@ public class PlcMessagesDocumentImpl extends org.apache.xmlbeans.impl.values.Xml
             }
             
             /**
-             * Gets the "dataType" element
+             * Gets the "dataConverter" element
              */
-            public net.form105.xml.schema.model.DataTypeDocument.DataType.Enum getDataType()
+            public java.lang.String getDataConverter()
             {
                 synchronized (monitor())
                 {
                     check_orphaned();
                     org.apache.xmlbeans.SimpleValue target = null;
-                    target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(DATATYPE$10, 0);
+                    target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(DATACONVERTER$10, 0);
                     if (target == null)
                     {
                       return null;
                     }
-                    return (net.form105.xml.schema.model.DataTypeDocument.DataType.Enum)target.getEnumValue();
+                    return target.getStringValue();
                 }
             }
             
             /**
-             * Gets (as xml) the "dataType" element
+             * Gets (as xml) the "dataConverter" element
              */
-            public net.form105.xml.schema.model.DataTypeDocument.DataType xgetDataType()
+            public org.apache.xmlbeans.XmlString xgetDataConverter()
             {
                 synchronized (monitor())
                 {
                     check_orphaned();
-                    net.form105.xml.schema.model.DataTypeDocument.DataType target = null;
-                    target = (net.form105.xml.schema.model.DataTypeDocument.DataType)get_store().find_element_user(DATATYPE$10, 0);
+                    org.apache.xmlbeans.XmlString target = null;
+                    target = (org.apache.xmlbeans.XmlString)get_store().find_element_user(DATACONVERTER$10, 0);
                     return target;
                 }
             }
             
             /**
-             * Sets the "dataType" element
+             * Sets the "dataConverter" element
              */
-            public void setDataType(net.form105.xml.schema.model.DataTypeDocument.DataType.Enum dataType)
+            public void setDataConverter(java.lang.String dataConverter)
             {
                 synchronized (monitor())
                 {
                     check_orphaned();
                     org.apache.xmlbeans.SimpleValue target = null;
-                    target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(DATATYPE$10, 0);
+                    target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(DATACONVERTER$10, 0);
                     if (target == null)
                     {
-                      target = (org.apache.xmlbeans.SimpleValue)get_store().add_element_user(DATATYPE$10);
+                      target = (org.apache.xmlbeans.SimpleValue)get_store().add_element_user(DATACONVERTER$10);
                     }
-                    target.setEnumValue(dataType);
+                    target.setStringValue(dataConverter);
                 }
             }
             
             /**
-             * Sets (as xml) the "dataType" element
+             * Sets (as xml) the "dataConverter" element
              */
-            public void xsetDataType(net.form105.xml.schema.model.DataTypeDocument.DataType dataType)
+            public void xsetDataConverter(org.apache.xmlbeans.XmlString dataConverter)
             {
                 synchronized (monitor())
                 {
                     check_orphaned();
-                    net.form105.xml.schema.model.DataTypeDocument.DataType target = null;
-                    target = (net.form105.xml.schema.model.DataTypeDocument.DataType)get_store().find_element_user(DATATYPE$10, 0);
+                    org.apache.xmlbeans.XmlString target = null;
+                    target = (org.apache.xmlbeans.XmlString)get_store().find_element_user(DATACONVERTER$10, 0);
                     if (target == null)
                     {
-                      target = (net.form105.xml.schema.model.DataTypeDocument.DataType)get_store().add_element_user(DATATYPE$10);
+                      target = (org.apache.xmlbeans.XmlString)get_store().add_element_user(DATACONVERTER$10);
                     }
-                    target.set(dataType);
+                    target.set(dataConverter);
                 }
             }
             

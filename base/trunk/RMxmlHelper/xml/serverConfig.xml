@@ -7,5 +7,7 @@
     <rm:port>0</rm:port>
     <rm:type/>
     <rm:validatorKey>kaiserValidator</rm:validatorKey>
+    <rm:packetSize>132</rm:packetSize>
+    <rm:contentIdentifier>kaiserContentIdentifier</rm:contentIdentifier>
   </rm:inbound>
 </rm:serverConfig>

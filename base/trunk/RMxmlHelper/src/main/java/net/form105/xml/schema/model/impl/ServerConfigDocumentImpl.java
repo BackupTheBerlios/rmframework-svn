@@ -232,6 +232,10 @@ public class ServerConfigDocumentImpl extends org.apache.xmlbeans.impl.values.Xm
                 new javax.xml.namespace.QName("http://xml.form105.net/schema/model", "sizePendingQueue");
             private static final javax.xml.namespace.QName VALIDATORKEY$12 = 
                 new javax.xml.namespace.QName("http://xml.form105.net/schema/model", "validatorKey");
+            private static final javax.xml.namespace.QName PACKETSIZE$14 = 
+                new javax.xml.namespace.QName("http://xml.form105.net/schema/model", "packetSize");
+            private static final javax.xml.namespace.QName CONTENTIDENTIFIER$16 = 
+                new javax.xml.namespace.QName("http://xml.form105.net/schema/model", "contentIdentifier");
             
             
             /**
@@ -731,6 +735,142 @@ public class ServerConfigDocumentImpl extends org.apache.xmlbeans.impl.values.Xm
                       target = (org.apache.xmlbeans.XmlString)get_store().add_element_user(VALIDATORKEY$12);
                     }
                     target.set(validatorKey);
+                }
+            }
+            
+            /**
+             * Gets the "packetSize" element
+             */
+            public int getPacketSize()
+            {
+                synchronized (monitor())
+                {
+                    check_orphaned();
+                    org.apache.xmlbeans.SimpleValue target = null;
+                    target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(PACKETSIZE$14, 0);
+                    if (target == null)
+                    {
+                      return 0;
+                    }
+                    return target.getIntValue();
+                }
+            }
+            
+            /**
+             * Gets (as xml) the "packetSize" element
+             */
+            public org.apache.xmlbeans.XmlInt xgetPacketSize()
+            {
+                synchronized (monitor())
+                {
+                    check_orphaned();
+                    org.apache.xmlbeans.XmlInt target = null;
+                    target = (org.apache.xmlbeans.XmlInt)get_store().find_element_user(PACKETSIZE$14, 0);
+                    return target;
+                }
+            }
+            
+            /**
+             * Sets the "packetSize" element
+             */
+            public void setPacketSize(int packetSize)
+            {
+                synchronized (monitor())
+                {
+                    check_orphaned();
+                    org.apache.xmlbeans.SimpleValue target = null;
+                    target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(PACKETSIZE$14, 0);
+                    if (target == null)
+                    {
+                      target = (org.apache.xmlbeans.SimpleValue)get_store().add_element_user(PACKETSIZE$14);
+                    }
+                    target.setIntValue(packetSize);
+                }
+            }
+            
+            /**
+             * Sets (as xml) the "packetSize" element
+             */
+            public void xsetPacketSize(org.apache.xmlbeans.XmlInt packetSize)
+            {
+                synchronized (monitor())
+                {
+                    check_orphaned();
+                    org.apache.xmlbeans.XmlInt target = null;
+                    target = (org.apache.xmlbeans.XmlInt)get_store().find_element_user(PACKETSIZE$14, 0);
+                    if (target == null)
+                    {
+                      target = (org.apache.xmlbeans.XmlInt)get_store().add_element_user(PACKETSIZE$14);
+                    }
+                    target.set(packetSize);
+                }
+            }
+            
+            /**
+             * Gets the "contentIdentifier" element
+             */
+            public java.lang.String getContentIdentifier()
+            {
+                synchronized (monitor())
+                {
+                    check_orphaned();
+                    org.apache.xmlbeans.SimpleValue target = null;
+                    target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(CONTENTIDENTIFIER$16, 0);
+                    if (target == null)
+                    {
+                      return null;
+                    }
+                    return target.getStringValue();
+                }
+            }
+            
+            /**
+             * Gets (as xml) the "contentIdentifier" element
+             */
+            public org.apache.xmlbeans.XmlString xgetContentIdentifier()
+            {
+                synchronized (monitor())
+                {
+                    check_orphaned();
+                    org.apache.xmlbeans.XmlString target = null;
+                    target = (org.apache.xmlbeans.XmlString)get_store().find_element_user(CONTENTIDENTIFIER$16, 0);
+                    return target;
+                }
+            }
+            
+            /**
+             * Sets the "contentIdentifier" element
+             */
+            public void setContentIdentifier(java.lang.String contentIdentifier)
+            {
+                synchronized (monitor())
+                {
+                    check_orphaned();
+                    org.apache.xmlbeans.SimpleValue target = null;
+                    target = (org.apache.xmlbeans.SimpleValue)get_store().find_element_user(CONTENTIDENTIFIER$16, 0);
+                    if (target == null)
+                    {
+                      target = (org.apache.xmlbeans.SimpleValue)get_store().add_element_user(CONTENTIDENTIFIER$16);
+                    }
+                    target.setStringValue(contentIdentifier);
+                }
+            }
+            
+            /**
+             * Sets (as xml) the "contentIdentifier" element
+             */
+            public void xsetContentIdentifier(org.apache.xmlbeans.XmlString contentIdentifier)
+            {
+                synchronized (monitor())
+                {
+                    check_orphaned();
+                    org.apache.xmlbeans.XmlString target = null;
+                    target = (org.apache.xmlbeans.XmlString)get_store().find_element_user(CONTENTIDENTIFIER$16, 0);
+                    if (target == null)
+                    {
+                      target = (org.apache.xmlbeans.XmlString)get_store().add_element_user(CONTENTIDENTIFIER$16);
+                    }
+                    target.set(contentIdentifier);
                 }
             }
         }

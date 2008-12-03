@@ -15,7 +15,8 @@
 							<xsd:element ref="rm:type" />
 							<xsd:element ref="rm:sector" />
 							<xsd:element ref="rm:address" />
-							<xsd:element ref="rm:dataType" />
+							<xsd:element name="dataConverter" type="xsd:string" />
+
 						</xsd:sequence>
 						<xsd:attribute ref="rm:connectionType" use="required"/>
 					</xsd:complexType>
@@ -93,14 +94,6 @@
 		</xsd:complexType>	
 	</xsd:element>
 	
-	<xsd:element name="dataType">
-		<xsd:simpleType>
-			<xsd:restriction base="xsd:string">
-				<xsd:enumeration value="int" />
-				<xsd:enumeration value="string" />
-			</xsd:restriction>
-		</xsd:simpleType>
-	</xsd:element>
 
 	
 

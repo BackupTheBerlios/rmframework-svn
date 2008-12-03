@@ -17,7 +17,7 @@ package net.form105.xml.schema.model;
 public interface ServerConfigDocument extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ServerConfigDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("serverconfigd150doctype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ServerConfigDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("serverconfigd150doctype");
     
     /**
      * Gets the "serverConfig" element
@@ -42,7 +42,7 @@ public interface ServerConfigDocument extends org.apache.xmlbeans.XmlObject
     public interface ServerConfig extends org.apache.xmlbeans.XmlObject
     {
         public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ServerConfig.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("serverconfig86afelemtype");
+            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ServerConfig.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("serverconfig86afelemtype");
         
         /**
          * Gets array of all "inbound" elements
@@ -92,7 +92,7 @@ public interface ServerConfigDocument extends org.apache.xmlbeans.XmlObject
         public interface Inbound extends org.apache.xmlbeans.XmlObject
         {
             public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-                org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Inbound.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.sB18905F8CF4D75292408F4E3C86C0D61").resolveHandle("inboundb154elemtype");
+                org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Inbound.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("inboundb154elemtype");
             
             /**
              * Gets the "id" element
@@ -243,6 +243,46 @@ public interface ServerConfigDocument extends org.apache.xmlbeans.XmlObject
              * Sets (as xml) the "validatorKey" element
              */
             void xsetValidatorKey(org.apache.xmlbeans.XmlString validatorKey);
+            
+            /**
+             * Gets the "packetSize" element
+             */
+            int getPacketSize();
+            
+            /**
+             * Gets (as xml) the "packetSize" element
+             */
+            org.apache.xmlbeans.XmlInt xgetPacketSize();
+            
+            /**
+             * Sets the "packetSize" element
+             */
+            void setPacketSize(int packetSize);
+            
+            /**
+             * Sets (as xml) the "packetSize" element
+             */
+            void xsetPacketSize(org.apache.xmlbeans.XmlInt packetSize);
+            
+            /**
+             * Gets the "contentIdentifier" element
+             */
+            java.lang.String getContentIdentifier();
+            
+            /**
+             * Gets (as xml) the "contentIdentifier" element
+             */
+            org.apache.xmlbeans.XmlString xgetContentIdentifier();
+            
+            /**
+             * Sets the "contentIdentifier" element
+             */
+            void setContentIdentifier(java.lang.String contentIdentifier);
+            
+            /**
+             * Sets (as xml) the "contentIdentifier" element
+             */
+            void xsetContentIdentifier(org.apache.xmlbeans.XmlString contentIdentifier);
             
             /**
              * A factory class with static methods for creating instances
