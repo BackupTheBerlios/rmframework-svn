@@ -17,6 +17,8 @@ package net.form105.rm.base.integration;
 
 import java.math.BigInteger;
 
+import net.form105.rm.base.Container;
+import net.form105.rm.base.integration.converter.IConverter;
 import net.form105.xml.schema.model.PlcMessagesDocument.PlcMessages.PlcMessage;
 
 import org.apache.log4j.Logger;
@@ -39,9 +41,14 @@ public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 		this.messageData = messageData;
 		this.id = messageData.getId();
 		createHashcode();
-		logger.info("MessageData:"+messageData.getDataType());
-		logger.info("MessageData:"+messageData.getDataType().intValue());
 	}
+
+	@Override
+	public int hashCode() {
+		return createHashcode();
+	}
+
+
 
 	/**
 	 * 
@@ -62,18 +69,17 @@ public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 
 	private int createHashcode() {
 
-		byte[] identIntSequence = new byte[8];
+		byte[] identIntSequence = new byte[7];
 
-		identIntSequence[7] = (new Integer(messageData.getType())).byteValue();
-		identIntSequence[6] = (new Integer(messageData.getSector())).byteValue();
-		identIntSequence[5] = 0; // reserve
-		identIntSequence[4] = (new Integer(messageData.getAddress().getDb())).byteValue(); // baustein
+		identIntSequence[6] = (new Integer(messageData.getType())).byteValue();
+		identIntSequence[5] = (new Integer(messageData.getSector())).byteValue();
+		identIntSequence[4] = 0; // reserve
+		identIntSequence[3] = (new Integer(messageData.getAddress().getDb())).byteValue(); // baustein
 
 		Integer integerByteAddress = messageData.getAddress().getByte();
-		identIntSequence[3] = (byte) ((integerByteAddress >> 8) & 0xff);
-		identIntSequence[2] = (byte) ((integerByteAddress >> 0) & 0xff);
-		identIntSequence[1] = (new Integer(messageData.getAddress().getBit())).byteValue();
-		identIntSequence[0] = (byte) messageData.getDataType().intValue(); // datatype
+		identIntSequence[2] = (byte) ((integerByteAddress >> 8) & 0xff);
+		identIntSequence[1] = (byte) ((integerByteAddress >> 0) & 0xff);
+		identIntSequence[0] = (new Integer(messageData.getAddress().getBit())).byteValue();
 
 		BigInteger bInteger = new BigInteger(identIntSequence);
 		int hashcode = bInteger.hashCode();
@@ -91,9 +97,10 @@ public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 		return messageData;
 	}
 	
-	public void getConverter() {
-		logger.info(messageData.getDataType());
-		
+	public IConverter getConverter() {
+		String byteConverter = messageData.getDataConverter();
+		IConverter converter = (IConverter) Container.getFactoryContainer().getComponent(byteConverter);
+		return converter;
 		
 	}
 

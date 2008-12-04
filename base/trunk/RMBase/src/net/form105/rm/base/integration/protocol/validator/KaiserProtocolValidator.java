@@ -32,9 +32,9 @@ import org.apache.log4j.Logger;
  * @author hk
  *
  */
-public class KaiserValidator implements IProtocolValidator {
+public class KaiserProtocolValidator implements IProtocolValidator {
 	
-	public static Logger logger = Logger.getLogger(KaiserValidator.class);
+	public static Logger logger = Logger.getLogger(KaiserProtocolValidator.class);
 	
 	private int packetId;
 

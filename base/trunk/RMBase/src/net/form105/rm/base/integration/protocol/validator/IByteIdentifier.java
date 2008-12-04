@@ -13,17 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.integration;
+package net.form105.rm.base.integration.protocol.validator;
 
-import net.form105.rm.base.integration.converter.IConverter;
-
-public class ByteToStringConverter implements IConverter<Byte, String> {
-
-	@Override
-	public String convert(Byte inboundObject) {
-		return null;
-	}
+/**
+ * Identifies the content by creating a hashcode of the byte header. The byte header should match the registered template
+ * hashcode. The header is the raw byte packet of the content.
+ * @author heiko
+ *
+ */
+public interface IByteIdentifier {
 	
-
+	/**
+	 * Get a hashcode from a given byte stream
+	 * @param contentHeader
+	 * @return
+	 */
+	public int getHashCode(byte[] contentHeader);
 
 }

@@ -6,8 +6,8 @@
 		<rm:name>Pos. 120 belegt</rm:name>
 		<rm:type>1</rm:type><!-- 1=Steuerevent, 2=Acknowledge, 3=Errormeldung, 4=Statusmeldung -->
 		<rm:sector>1</rm:sector><!-- 1=Merker, 2=Eingang, 3=Ausgang, 4=Datenbaustein -->
-		<rm:address db="3" byte="30" bit="0">
-		</rm:address>
-		<rm:dataType>string</rm:dataType>
+		<rm:address db="3" byte="30" bit="0" />
+		<rm:dataConverter>kaiserByteToIntegerConverter</rm:dataConverter>
+		<rm:stream></rm:stream>
 	</rm:plcMessage>
 </rm:plcMessages>

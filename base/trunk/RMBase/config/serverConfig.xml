@@ -7,6 +7,9 @@
     <rm:port>50005</rm:port>
     <rm:type>inbound</rm:type>
     <rm:sizePendingQueue>2</rm:sizePendingQueue>
-    <rm:validatorKey>net.form105.rm.base.integration.protocol.validator.KaiserValidator</rm:validatorKey>
+    <!-- this is the key used for pico container -->
+    <rm:validatorKey>kaiserValidator</rm:validatorKey>
+    <rm:packetSize>132</rm:packetSize>
+    <rm:contentIdentifier>kaiserContentIdentifier</rm:contentIdentifier>
   </rm:inbound>
 </rm:serverConfig>
