@@ -19,7 +19,7 @@ import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.filterchain.IoFilterAdapter;
 import org.apache.mina.core.session.IoSession;
 
-public class KaiserValidationFilter extends IoFilterAdapter {
+public class PlcValidationFilter extends IoFilterAdapter {
     
     public boolean isValid(IoBuffer buffer) {
         
