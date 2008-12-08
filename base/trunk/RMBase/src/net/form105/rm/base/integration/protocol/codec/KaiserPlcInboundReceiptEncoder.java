@@ -13,21 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.integration.protocol.validator;
+package net.form105.rm.base.integration.protocol.codec;
 
-/**
- * Identifies the content by creating a hashcode of the byte header. The byte header should match the registered template
- * hashcode. The header is the raw byte packet of the content.
- * @author heiko
- *
- */
-public interface IByteIdentifier {
-	
-	/**
-	 * Get a hashcode from a given byte stream
-	 * @param contentHeader
-	 * @return
-	 */
-	public int getHashCode(byte[] contentHeader);
+import org.apache.mina.core.session.IoSession;
+import org.apache.mina.filter.codec.ProtocolEncoder;
+import org.apache.mina.filter.codec.ProtocolEncoderOutput;
+
+public class KaiserPlcInboundReceiptEncoder implements ProtocolEncoder {
+
+    @Override
+    public void dispose(IoSession session) throws Exception {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void encode(IoSession session, Object message, ProtocolEncoderOutput out) throws Exception {
+        // Create Receipt for the plc
+        
+
+    }
 
 }

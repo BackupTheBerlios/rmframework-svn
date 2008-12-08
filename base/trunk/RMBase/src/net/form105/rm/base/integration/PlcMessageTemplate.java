@@ -17,8 +17,6 @@ package net.form105.rm.base.integration;
 
 import java.math.BigInteger;
 
-import net.form105.rm.base.Container;
-import net.form105.rm.base.integration.converter.IConverter;
 import net.form105.xml.schema.model.PlcMessagesDocument.PlcMessages.PlcMessage;
 
 import org.apache.log4j.Logger;
@@ -95,13 +93,6 @@ public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 	@Override
 	public XmlObject getConfiguration() {
 		return messageData;
-	}
-	
-	public IConverter getConverter() {
-		String byteConverter = messageData.getDataConverter();
-		IConverter converter = (IConverter) Container.getFactoryContainer().getComponent(byteConverter);
-		return converter;
-		
 	}
 
 }

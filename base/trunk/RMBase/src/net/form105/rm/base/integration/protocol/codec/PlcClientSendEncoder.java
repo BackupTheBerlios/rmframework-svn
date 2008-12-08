@@ -13,25 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.integration.protocol.validator;
+package net.form105.rm.base.integration.protocol.codec;
 
-import net.form105.rm.base.exception.RMException;
+import org.apache.mina.core.session.IoSession;
+import org.apache.mina.filter.codec.ProtocolEncoder;
+import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 
-public interface IProtocolValidator {
-	
-	/**
-	 * Validates the header and returns true if the byte stream can be accepted by the server
-	 * @param header
-	 * @return
-	 */
-	public boolean isValid(byte[] header);
-	
-	/**
-	 * Get the length of the header we expect
-	 * @return
-	 */
-	public int getHeaderLength();
-	
-	public int getPacketId();
+public class PlcClientSendEncoder implements ProtocolEncoder {
+
+    @Override
+    public void dispose(IoSession session) throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void encode(IoSession session, Object message, ProtocolEncoderOutput out) throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
 
 }

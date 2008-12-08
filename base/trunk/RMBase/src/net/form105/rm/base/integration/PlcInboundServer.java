@@ -15,172 +15,73 @@
  */
 package net.form105.rm.base.integration;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.EOFException;
 import java.io.IOException;
-import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.SocketAddress;
 
-import net.form105.rm.base.Container;
-import net.form105.rm.base.exception.RMException;
-import net.form105.rm.base.integration.protocol.validator.IByteIdentifier;
-import net.form105.rm.base.integration.protocol.validator.IProtocolValidator;
-import net.form105.rm.server.i18n.BaseMessage;
 import net.form105.xml.schema.model.ServerConfigDocument.ServerConfig.Inbound;
 
-import org.apache.log4j.Logger;
+import org.apache.mina.core.service.IoAcceptor;
+import org.apache.mina.filter.logging.LoggingFilter;
+import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 
-/**
- * The serverInetAddress is the address of the local host (usually).
- * 
- * @author heiko
- * 
- */
-public class PlcInboundServer implements Runnable {
+public class PlcInboundServer {
+    
+    private String id;
+    private String alias;
+    private int port;
+    private String type;
+    private String serverHostname;
+    private int sizePendingQueue;
+    private int packetSize;
 
-	public static Logger logger = Logger.getLogger(PlcInboundServer.class);
+    private boolean running = false;
+    private boolean connected = false;
+    private ServerSocket serverSocket;
 
-	private String id;
-	private String alias;
-	private int port;
-	private String type;
-	private String serverHostname;
-	private int sizePendingQueue;
-	private int packetSize;
+    private Thread thread;
 
-	private IByteIdentifier contentIdentifier;
+    
+    private IoAcceptor acceptor;
 
-	private boolean running = false;
-	private boolean connected = false;
-	private ServerSocket serverSocket;
+    public PlcInboundServer(Inbound inboundConfig) {
+            this.id = inboundConfig.getId();
+            this.alias = inboundConfig.getAlias();
+            this.port = inboundConfig.getPort();
+            this.type = inboundConfig.getType();
+            this.packetSize = inboundConfig.getPacketSize();
+            // ip address or hostname of the server / localhost
+            this.serverHostname = inboundConfig.getHost();
+            this.sizePendingQueue = inboundConfig.getSizePendingQueue();
+    }
+    
+    public void initialize() {
+        
+        IoAcceptor acceptor = new NioSocketAcceptor();
+        
+        
+        SocketAddress socketAddress = new InetSocketAddress(port);
+        
+        acceptor.getFilterChain().addLast( "logger", new LoggingFilter() );
 
-	private Thread thread;
+        
+        try {
+            acceptor.bind(socketAddress);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-	private IProtocolValidator validator;
-
-	public PlcInboundServer(Inbound inboundConfig) {
-		this.id = inboundConfig.getId();
-		this.alias = inboundConfig.getAlias();
-		this.port = inboundConfig.getPort();
-		this.type = inboundConfig.getType();
-		this.packetSize = inboundConfig.getPacketSize();
-		// ip address or hostname of the server / localhost
-		this.serverHostname = inboundConfig.getHost();
-		this.sizePendingQueue = inboundConfig.getSizePendingQueue();
-		this.validator = (IProtocolValidator) Container.getFactoryContainer().getComponent(inboundConfig.getValidatorKey());
-		this.contentIdentifier = (IByteIdentifier) Container.getFactoryContainer().getComponent(inboundConfig.getContentIdentifier());
-	}
-
-	public void initialize() {
-		serverSocket = createSocket();
-
-	}
-
-	@Override
-	public void run() {
-		while (running) {
-			try {
-				logger.info("Server Socket is bound: " + serverSocket.isBound());
-				logger.info("Server Socket buffer size: " + serverSocket.getReceiveBufferSize());
-				Socket socket = serverSocket.accept();
-				connected = true;
-				DataInputStream inputStream = new DataInputStream(socket.getInputStream());
-				DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-				// dataStream.skip(dataStream.available());
-
-				logger.info("Server Socket is bound: " + serverSocket.isBound());
-				while (connected) {
-
-					byte[] completeByte = new byte[packetSize];
-
-					inputStream.readFully(completeByte);
-					logByteStream("input byte stream received: ", completeByte);
-
-					long start = System.currentTimeMillis();
-
-					boolean headerIsValid = validator.isValid(completeByte);
-
-					if (headerIsValid) {
-						// create the packetContent
-						int contentLength = packetSize - validator.getHeaderLength();
-						byte[] contentPacket = new byte[contentLength];
-						System.arraycopy(completeByte, validator.getHeaderLength() - 1, contentPacket, 0, contentLength);
-
-						// send acknowledgement
-
-						// check if a template exist and if so, create a message
-						// and put it on the messageQueue
-						// the hashcode of the contentHeader must match the
-						// template hashCode
-						
-						// Create a message and send it to the message controller
-						
-						
-
-					}
-
-					long elapsed = System.currentTimeMillis() - start;
-					logger.info("time elapsed: " + elapsed);
-				}
-
-			} catch (EOFException eofEx) {
-				// connection closed by the client
-				logger.error(eofEx, eofEx);
-
-			} catch (IOException ioe) {
-				logger.error(ioe, ioe);
-			}
-		}
-
-	}
-
-	private ServerSocket createSocket() {
-		ServerSocket serverSocket = null;
-		try {
-			serverSocket = new ServerSocket(port, sizePendingQueue, InetAddress.getByName(serverHostname));
-		} catch (UnknownHostException uhEx) {
-			logger.error(uhEx, uhEx);
-			RMException rmEx = new RMException(new BaseMessage(), "exception.network.unknownHost",
-					new String[] { serverHostname }, uhEx);
-			throw rmEx;
-		} catch (IOException ioEx) {
-			logger.error("Error connecting to socket on " + serverHostname + ":" + port);
-			logger.error(ioEx, ioEx);
-		}
-		return serverSocket;
-	}
-
-	/**
-	 * Starts a new thread for each input server
-	 */
-	public void connect() {
-		running = true;
-		String threadName = alias + ":" + serverHostname + ":" + port;
-		logger.info("Starting thread for inbound server :" + threadName);
-		thread = new Thread(this, threadName);
-		thread.start();
-	}
-
-	/**
-	 * Helper to log a byte stream
-	 * 
-	 * @param byteArray
-	 */
-	protected void logByteStream(String label, byte[] byteArray) {
-		if (true) {
-			StringBuilder telegramString = new StringBuilder("");
-			for (int i = 0; i < byteArray.length; i++) {
-				if ((i % 12) == 0) {
-					telegramString.append("/ ");
-				}
-				telegramString.append(byteArray[i]);
-				telegramString.append(" ");
-			}
-			logger.info(label + telegramString);
-		}
-	}
+        
+    }
+    
+    public void connect() {
+        
+        try {
+            acceptor.bind(new InetSocketAddress(port));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
