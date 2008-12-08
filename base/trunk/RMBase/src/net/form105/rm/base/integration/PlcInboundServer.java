@@ -27,56 +27,55 @@ import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 
 public class PlcInboundServer {
-    
+
     private String id;
+
     private String alias;
+
     private int port;
+
     private String type;
+
     private String serverHostname;
+
     private int sizePendingQueue;
+
     private int packetSize;
 
     private boolean running = false;
+
     private boolean connected = false;
+
     private ServerSocket serverSocket;
 
     private Thread thread;
 
-    
     private IoAcceptor acceptor;
 
     public PlcInboundServer(Inbound inboundConfig) {
-            this.id = inboundConfig.getId();
-            this.alias = inboundConfig.getAlias();
-            this.port = inboundConfig.getPort();
-            this.type = inboundConfig.getType();
-            this.packetSize = inboundConfig.getPacketSize();
-            // ip address or hostname of the server / localhost
-            this.serverHostname = inboundConfig.getHost();
-            this.sizePendingQueue = inboundConfig.getSizePendingQueue();
+        this.id = inboundConfig.getId();
+        this.alias = inboundConfig.getAlias();
+        this.port = inboundConfig.getPort();
+        this.type = inboundConfig.getType();
+        this.packetSize = inboundConfig.getPacketSize();
+        // ip address or hostname of the server / localhost
+        this.serverHostname = inboundConfig.getHost();
+        this.sizePendingQueue = inboundConfig.getSizePendingQueue();
     }
-    
+
     public void initialize() {
-        
+
         IoAcceptor acceptor = new NioSocketAcceptor();
+        acceptor.getFilterChain().addLast("logger", new LoggingFilter());
         
-        
-        SocketAddress socketAddress = new InetSocketAddress(port);
-        
-        acceptor.getFilterChain().addLast( "logger", new LoggingFilter() );
+        acceptor.setHandler(new )
 
-        
-        try {
-            acceptor.bind(socketAddress);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        connect();
 
-        
     }
-    
+
     public void connect() {
-        
+
         try {
             acceptor.bind(new InetSocketAddress(port));
         } catch (IOException e) {
