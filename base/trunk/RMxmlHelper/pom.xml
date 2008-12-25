@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>RMxmlHelper</groupId>
 	<artifactId>RMxmlHelper</artifactId>
-	<name>Codehaus Maven repository</name>
+	<name>RMXmlHelper</name>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>The xml helper project to integrate to RMBase and
 		provides xml mapper funktions</description>
@@ -35,11 +35,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.14</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.castor</groupId>
-			<artifactId>castor-xml</artifactId>
-			<version>1.3rc1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlbeans</groupId>
