@@ -3,6 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>RMBase</groupId>
+	<name>RMBase</name>
 	<artifactId>RMBase</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<description>RM Base Server</description>
