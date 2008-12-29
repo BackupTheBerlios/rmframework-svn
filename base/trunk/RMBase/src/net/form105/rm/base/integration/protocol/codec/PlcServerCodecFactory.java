@@ -31,9 +31,14 @@ public class PlcServerCodecFactory implements ProtocolCodecFactory {
     private ProtocolEncoder encoder;
     private ProtocolDecoder decoder;
     
-    public PlcServerCodecFactory() {
-            decoder = new KaiserPlcInboundDecoder();
+    public PlcServerCodecFactory(boolean header, boolean content) {
+        if (header) {
+            decoder = new KaiserPlcInboundHeaderDecoder();
             encoder = new KaiserPlcInboundReceiptEncoder();
+        } else if(content) {
+            decoder = new KaiserPlcInboundContentHeaderDecoder();
+            encoder = new KaiserPlcInboundReceiptEncoder();
+        }
     }
     
 

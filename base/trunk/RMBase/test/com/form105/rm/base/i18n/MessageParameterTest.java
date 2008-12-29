@@ -6,7 +6,7 @@
 package com.form105.rm.base.i18n;
 
 import net.form105.rm.base.Container;
-import net.form105.rm.base.container.GlobalLookupContainer;
+import net.form105.rm.base.container.LookupContainer;
 import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.server.i18n.ExceptionMessage;
 
@@ -54,8 +54,8 @@ public class MessageParameterTest {
     @Test
     public void replaceStringByParameter() {
         PicoContainer container = Container.getContainer();
-        GlobalLookupContainer lookupContainer = (GlobalLookupContainer) container.getComponent(GlobalLookupContainer.class);
-        ILookup lookup = lookupContainer.getLookupRegistry();
+        LookupContainer lookupContainer = (LookupContainer) container.getComponent(LookupContainer.class);
+        ILookup lookup = lookupContainer.getGlobalLookup();
         ExceptionMessage message = (ExceptionMessage) lookup.getContent(ExceptionMessage.class);
         String result = message.getMessage(ExceptionMessage.rm_exception_lookup_emptyEntryList, new String[] {"replacement", "test"});
         logger.info(result);

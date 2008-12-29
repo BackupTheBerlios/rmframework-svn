@@ -60,10 +60,10 @@ public class ModeContainer extends AbstractContainer implements Startable {
 
 	}
 
-	public ModeContainer(PropertiesContainer properties, GlobalLookupContainer lookupContainer) {
+	public ModeContainer(PropertiesContainer properties, LookupContainer lookupContainer) {
 		super();
 		this.propertiesContainer = properties;
-		lookup = lookupContainer.getLookupRegistry();
+		lookup = lookupContainer.getGlobalLookup();
 
 	}
 

@@ -15,59 +15,126 @@
  */
 package net.form105.rm.base.integration.decoder;
 
+import org.apache.log4j.Logger;
+
 public class KaiserPlcPacketHeader {
     
-    private int packageType;
+    public static Logger logger = Logger.getLogger(KaiserPlcPacketHeader.class);
+
+    private PackageType packageType;
+
     private int packageNo;
-    private int packageSource;
-    private int packageSink;
+
+    private PackageSourceSink packageSource;
+
+    private PackageSourceSink packageSink;
+
+    public enum PackageType {
+        NONE(-1), EVENT(1), AKNOWLEDGE(2), ERROR(3), STATUS(4);
+
+        private int intType;
+
+        private PackageType(int intType) {
+            this.intType = intType;
+        }
+
+        public int getType() {
+            return intType;
+        }
+
+    }
+
+    public enum PackageSourceSink {
+        NONE(-1), SPS1(1), SPS2(2), SPS3(3), SPS4(4), PCO1(101), PCO2(102);
+
+        int sourceSink;
+
+        private PackageSourceSink(int sourceSink) {
+            this.sourceSink = sourceSink;
+        }
+
+        public int getType() {
+            return sourceSink;
+        }
+
+    }
+
     /**
      * @return the packageType
      */
-    public int getPackageType() {
+    public PackageType getPackageType() {
         return packageType;
     }
+
     /**
      * @param packageType the packageType to set
      */
-    public void setPackageType(int packageType) {
-        this.packageType = packageType;
+    public void setPackageType(int packageTypeValue) {
+        packageType = getPackageType(packageTypeValue);
     }
+
     /**
      * @return the packageNo
      */
     public int getPackageNo() {
         return packageNo;
     }
+
     /**
      * @param packageNo the packageNo to set
      */
     public void setPackageNo(int packageNo) {
         this.packageNo = packageNo;
     }
+
     /**
      * @return the packageSource
      */
-    public int getPackageSource() {
+    public PackageSourceSink getPackageSource() {
         return packageSource;
     }
+
     /**
      * @param packageSource the packageSource to set
      */
-    public void setPackageSource(int packageSource) {
-        this.packageSource = packageSource;
+    public void setPackageSource(int packageSourceValue) {
+        packageSource = getPackageSourceSink(packageSourceValue);
     }
+
     /**
      * @return the packageSink
      */
-    public int getPackageSink() {
+    public PackageSourceSink getPackageSink() {
         return packageSink;
     }
+
     /**
      * @param packageSink the packageSink to set
      */
-    public void setPackageSink(int packageSink) {
-        this.packageSink = packageSink;
+    public void setPackageSink(int packageSourceSinkValue) {
+        this.packageSink = getPackageSourceSink(packageSourceSinkValue);
+    }
+
+    public PackageType getPackageType(int type) {
+        for (PackageType packType : PackageType.values()) {
+            if (packType.getType() == type)
+                return packType;
+        }
+        return PackageType.NONE;
+    }
+
+    public PackageSourceSink getPackageSourceSink(int type) {
+        for (PackageSourceSink source : PackageSourceSink.values()) {
+            if (source.getType() == type)
+                return source;
+        }
+        return PackageSourceSink.NONE;
+    }
+
+    public boolean isValid() {
+        logger.debug("Check validation: "+packageSource +":"+packageSink+":"+packageType);
+        return !(packageSource.equals(PackageSourceSink.NONE) || packageSink.equals(PackageSourceSink.NONE)
+                || packageType.equals(PackageType.NONE));
     }
 
 }

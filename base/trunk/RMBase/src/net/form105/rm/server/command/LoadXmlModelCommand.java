@@ -13,7 +13,6 @@ import net.form105.rm.base.auth.AbstractIdentity;
 import net.form105.rm.base.command.AbstractCommand;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.model.Resource;
-import net.form105.rm.base.model.xml.ResourceXMLConverter;
 import net.form105.rm.base.util.xml.XMLModelLoader;
 
 import org.dom4j.Element;
@@ -57,7 +56,7 @@ public class LoadXmlModelCommand extends AbstractCommand {
         logger.info("Loading resources ..."+elements.size());
         for (Element element : elements) {
             Resource resource = new Resource();
-            resource.load(new ResourceXMLConverter(), element);
+            //resource.load(new ResourceXMLConverter(), element);
             resources.add(resource);
         }
     }

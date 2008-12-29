@@ -27,6 +27,7 @@ import net.form105.rm.base.model.IXmlObjectLoadable;
 @DiscriminatorColumn(name = "parameter_type", discriminatorType=DiscriminatorType.STRING)
 public abstract class AbstractParameter<T> extends AgentObject implements IParameter, IXmlObjectLoadable<IParameter>, Serializable {
     
+    private static final long serialVersionUID = 1L;
     @Id 
     private Long id;
     private String elementId;

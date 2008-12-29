@@ -22,12 +22,11 @@ import java.util.HashMap;
 import net.form105.rm.base.Container;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.integration.IMessageTemplate;
-import net.form105.rm.base.integration.PlcMessageTemplate;
 import net.form105.rm.server.i18n.BaseMessage;
-import net.form105.xml.schema.model.PlcMessagesDocument;
+import net.form105.xml.schema.model.ComElementsDocument;
 import net.form105.xml.schema.model.ServerConfigDocument;
-import net.form105.xml.schema.model.PlcMessagesDocument.PlcMessages;
-import net.form105.xml.schema.model.PlcMessagesDocument.PlcMessages.PlcMessage;
+import net.form105.xml.schema.model.ComElementsDocument.ComElements;
+import net.form105.xml.schema.model.ComElementsDocument.ComElements.Key;
 
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlException;
@@ -45,10 +44,12 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 
 	private String configDir;
 	private final String serverConfigFilename = "serverConfig.xml";
-	private static String plcConfigFileName = "plcMessages.xml";
+	private static String plcConfigFileName = "plc.xml";
 	private ServerConfigDocument serverConfigDocument;
 	private String plcMessageConfigFile;
 	private PropertiesContainer propContainer;
+	
+	
 	
 	private HashMap<Integer, IMessageTemplate> templateRegistry = new HashMap<Integer, IMessageTemplate>(); 
 
@@ -125,14 +126,23 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 	public void readPlcMessageConfiguration() {
 
 		try {
-			PlcMessagesDocument plcMessageConfigDocument = PlcMessagesDocument.Factory.parse(new File(
+		    
+		    ComElementsDocument comElementsDocument = ComElementsDocument.Factory.parse(new File(plcMessageConfigFile));
+		    ComElements elements = comElementsDocument.getComElements();
+		    
+		    
+		    
+		    for (Key key : elements.getKeyArray()) {
+		        logger.info(key.getK1()+":"+key.getK2());
+		    }
+			/*PlcMessagesDocument plcMessageConfigDocument = PlcMessagesDocument.Factory.parse(new File(
 					plcMessageConfigFile));
 			PlcMessages messages = plcMessageConfigDocument.getPlcMessages();
 
 			for (PlcMessage message : messages.getPlcMessageArray()) {
 				PlcMessageTemplate template = new PlcMessageTemplate(message);
 				templateRegistry.put(template.getHashcode(), template);
-			}
+			}*/
 		} catch (XmlException e) {
 			logger.error(e, e);
 		} catch (IOException ex) {

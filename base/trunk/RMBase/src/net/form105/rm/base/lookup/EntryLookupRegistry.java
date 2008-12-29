@@ -13,22 +13,22 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 /**
- * A lookup registry that is based on enties. Add an object by its class
+ * A lookup registry that is based on entities. Add an object by its class
  * and it will wrapped in an @see IEntry. The entry works as a group because
  * some objects can be placed in an entry. This allows access to a list of
  * objects.
  * @author heiko
  */
-public class EntryLookupRegistry implements ILookup {
+public class EntryLookupRegistry<T> implements ILookup<T> {
     
     private Logger logger = Logger.getLogger(EntryLookupRegistry.class);
-    private Map<Class<?>, IEntry> registry = new HashMap<Class<?>, IEntry>();
+    private Map<Class<?>, IEntry<T>> registry = new HashMap<Class<?>, IEntry<T>>();
     
     /* (non-Javadoc)
 	 * @see net.form105.rm.base.lookup.ILookup#addEntry(java.lang.Class, java.lang.Object)
 	 */
-    public void addEntry(Class<?> clazz, Object object) {
-        IEntry entry;
+    public void addEntry(Class<?> clazz, T object) {
+        IEntry<T> entry;
         if (registry.get(clazz) == null) {
             entry = createDefaultEntry();
             entry.addItem(object);
@@ -43,7 +43,7 @@ public class EntryLookupRegistry implements ILookup {
     /* (non-Javadoc)
 	 * @see net.form105.rm.base.lookup.ILookup#getEntry(java.lang.Class)
 	 */
-    public IEntry getEntry(Class<?> clazz) {
+    public IEntry<T> getEntry(Class<?> clazz) {
         if (registry.get(clazz) == null) {
             return createDefaultEntry();
         } else {
@@ -55,26 +55,26 @@ public class EntryLookupRegistry implements ILookup {
 	 * @see net.form105.rm.base.lookup.ILookup#getEntryAsList(java.lang.Class)
 	 */
     public List<?> getEntryAsList(Class<?> clazz) {
-    	IEntry entry = registry.get(clazz);
+    	IEntry<T> entry = registry.get(clazz);
     	if (entry == null) {
-    		return new ArrayList();
+    		return new ArrayList<T>();
     	}
     	return entry.getItems();
     }
     
-    public IEntry createDefaultEntry() {
+    public IEntry<T> createDefaultEntry() {
         return new SimpleLookupEntry();
     }
     
     /* (non-Javadoc)
 	 * @see net.form105.rm.base.lookup.ILookup#getContent(java.lang.Class)
 	 */
-    public Object getContent(Class<?> clazz) {
+    public T getContent(Class<?> clazz) {
     	if (registry.get(clazz) == null) {
     		logger.error("No object is registered with class: "+clazz.getSimpleName());
     		return null;
     	} else {
-    		Object object = registry.get(clazz).getFirstItem();
+    		T object = registry.get(clazz).getFirstItem();
     		return object;
     	}
     }

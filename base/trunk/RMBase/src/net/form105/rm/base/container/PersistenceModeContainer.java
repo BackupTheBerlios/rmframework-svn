@@ -33,13 +33,13 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 
 	private String DBO_FILE_PROPERTY = "server.db4o.defaultPath";
 	private ModeContainer modeContainer;
-	private GlobalLookupContainer lookupContainer;
+	private LookupContainer lookupContainer;
 	private IDbSelector dbSelector;
 
 	PropertiesContainer properties;
 
 	public PersistenceModeContainer(PropertiesContainer properties, ModeContainer mode,
-			GlobalLookupContainer lookupContainer) {
+			LookupContainer lookupContainer) {
 		super();
 		this.properties = properties;
 		this.modeContainer = mode;
@@ -110,8 +110,8 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 		// register resource daos
 		ResourceMapDao resourceMapDao = new ResourceMapDao();
 		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao(resourceMapDao);
-		lookupContainer.getLookupRegistry().addEntry(AbstractResourceDao.class, resourceMapDao);
-		lookupContainer.getLookupRegistry().addEntry(AbstractResourceDao.class, resourceDbDao);
+		lookupContainer.getDaoLookup().addEntry(AbstractResourceDao.class, resourceMapDao);
+		lookupContainer.getDaoLookup().addEntry(AbstractResourceDao.class, resourceDbDao);
 	}
 
 	/**
@@ -119,12 +119,12 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 	 */
 	private void provideDbSingleMode() {
 		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao();
-		lookupContainer.getLookupRegistry().addEntry(AbstractResourceDao.class, resourceDbDao);
+		lookupContainer.getDaoLookup().addEntry(AbstractResourceDao.class, resourceDbDao);
 	}
 
 	private void provideMemoryMode() {
 		ResourceMapDao resourceMapDao = new ResourceMapDao();
-		lookupContainer.getLookupRegistry().addEntry(AbstractResourceDao.class, resourceMapDao);
+		lookupContainer.getDaoLookup().addEntry(AbstractResourceDao.class, resourceMapDao);
 	}
 
 }

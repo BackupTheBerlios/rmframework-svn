@@ -19,16 +19,16 @@ import org.picocontainer.Startable;
 public class MessageContainer extends AbstractContainer implements Startable {
     
     private ILookup lookup;
-    private GlobalLookupContainer lookupContainer;
+    private LookupContainer lookupContainer;
     
-    public MessageContainer(GlobalLookupContainer lookupContainer) {
+    public MessageContainer(LookupContainer lookupContainer) {
     	super();
         this.lookupContainer = lookupContainer;
     }
 
     public void start() {
         logger.info("Starting: MessageContainer");
-        lookup = lookupContainer.getLookupRegistry();
+        lookup = lookupContainer.getGlobalLookup();
         ExceptionMessage exMessage = new ExceptionMessage();
         lookup.addEntry(exMessage.getClass(), exMessage);
     }

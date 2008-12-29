@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import net.form105.rm.base.dao.IBasicDao;
-import net.form105.rm.base.model.Resource;
 
 public abstract class AbstractResourceDao<T, ID extends Serializable> implements IBasicDao<T, ID> {
 

@@ -13,10 +13,10 @@ import org.picocontainer.Startable;
 
 public class UserManagementContainer extends AbstractContainer implements Startable {
 
-	private GlobalLookupContainer lookupContainer;
+	private LookupContainer lookupContainer;
 	private final String USER_CONFIG_FILE = "users.xml";
 
-	public UserManagementContainer(GlobalLookupContainer lookupContainer) {
+	public UserManagementContainer(LookupContainer lookupContainer) {
 		super();
 		this.lookupContainer = lookupContainer;
 	}
@@ -26,7 +26,7 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 		
 		String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
 		
-		ILookup lookup = lookupContainer.getLookupRegistry();
+		ILookup lookup = lookupContainer.getGlobalLookup();
 		XMLUserObjectDAO usersDao = new XMLUserObjectDAO(configDir+USER_CONFIG_FILE);
 		lookup.addEntry(XMLUserObjectDAO.class, usersDao);
 		
@@ -37,14 +37,14 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 
 	@Override
 	public void stop() {
-		lookupContainer.getLookupRegistry().removeEntry(XMLUserObjectDAO.class);
+		lookupContainer.getGlobalLookup().removeEntry(XMLUserObjectDAO.class);
 	}
 
 	/**
 	 * Creates default users if there aren't any
 	 */
 	public void createDefaultUserEntries() {
-		XMLUserObjectDAO dao = (XMLUserObjectDAO) lookupContainer.getLookupRegistry().getContent(XMLUserObjectDAO.class);
+		XMLUserObjectDAO dao = (XMLUserObjectDAO) lookupContainer.getGlobalLookup().getContent(XMLUserObjectDAO.class);
 		logger.info("Creating default users");
 		
 		ArrayList<String> roleList = new ArrayList<String>();

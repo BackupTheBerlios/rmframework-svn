@@ -16,17 +16,27 @@
 package net.form105.rm.base.integration;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.net.SocketAddress;
 
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
+
+import net.form105.rm.base.integration.protocol.codec.PlcServerCodecFactory;
+import net.form105.rm.base.integration.protocol.codec.ProtocolDecoderType;
+import net.form105.rm.base.integration.protocol.codec.ProtocolEncoderType;
 import net.form105.xml.schema.model.ServerConfigDocument.ServerConfig.Inbound;
 
+import org.apache.log4j.Logger;
 import org.apache.mina.core.service.IoAcceptor;
+import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 
 public class PlcInboundServer {
+    
+    public static Logger logger = Logger.getLogger(PlcInboundServer.class);
 
     private String id;
 
@@ -65,12 +75,21 @@ public class PlcInboundServer {
 
     public void initialize() {
 
-        IoAcceptor acceptor = new NioSocketAcceptor();
+        acceptor = new NioSocketAcceptor();
         acceptor.getFilterChain().addLast("logger", new LoggingFilter());
+        acceptor.getFilterChain().addLast("header", new ProtocolCodecFilter(new PlcServerCodecFactory(true, false)));
+        ProtocolCodecFilter contentFilter = new ProtocolCodecFilter(ProtocolEncoderType.KaiserContentDecoder.getCoder(), ProtocolDecoderType.KaiserContentDecoder.getCoder());
+        acceptor.getFilterChain().addLast("content", contentFilter);
         
-        acceptor.setHandler(new )
-
+        acceptor.setHandler(new PlcIoHandler());
         connect();
+        logger.info("PlcInboundServer is listening on port: "+port);
+        
+//        IoServiceManager serviceManager = new IoServiceManager( acceptor );
+//
+//        MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
+//        ObjectName name = new ObjectName("mina.example.http.server:type=IoServiceManager");
+//        mbs.registerMBean(acceptor, name);
 
     }
 

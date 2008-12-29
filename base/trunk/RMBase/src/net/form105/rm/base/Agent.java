@@ -7,7 +7,7 @@
 package net.form105.rm.base;
 
 import net.form105.rm.base.config.SimpleConfiguration;
-import net.form105.rm.base.container.GlobalLookupContainer;
+import net.form105.rm.base.container.LookupContainer;
 import net.form105.rm.base.container.PropertiesContainer;
 import net.form105.rm.base.lookup.ILookup;
 
@@ -47,8 +47,8 @@ public class Agent {
     }
 
     public static ILookup getLookup() {
-        GlobalLookupContainer container = (GlobalLookupContainer) getContainer(GlobalLookupContainer.class);
-        return container.getLookupRegistry();
+        LookupContainer container = (LookupContainer) getContainer(LookupContainer.class);
+        return container.getGlobalLookup();
     }
     
 }

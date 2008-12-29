@@ -23,9 +23,11 @@ import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.CumulativeProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 
-public class KaiserPlcInboundDecoder extends CumulativeProtocolDecoder {
+public class KaiserPlcInboundHeaderDecoder extends CumulativeProtocolDecoder {
     
-    public static Logger logger = Logger.getLogger(KaiserPlcInboundDecoder.class);
+    public static Logger logger = Logger.getLogger(KaiserPlcInboundHeaderDecoder.class);
+    
+    private int savedPackageNo = 0;
 
     @Override
     protected boolean doDecode(IoSession session, IoBuffer in, ProtocolDecoderOutput out) throws Exception {
@@ -39,19 +41,27 @@ public class KaiserPlcInboundDecoder extends CumulativeProtocolDecoder {
            packetHeader.setPackageSource(in.get() << 8 | in.get());
            packetHeader.setPackageSink(in.get() << 8 | in.get());
            
-           out.write(packetHeader);
-           
-           return true;
+           if (packetHeader.isValid()) {
 
+               sendReceipt(session, in);
+           } else {
+               logger.warn("Got wrong packet header ... closing/clearing session!");
+               session.close();
+               return false;
+           }
+           
+           out.write(in);
+           return true;
         } else {
             return false;
         }
     }
     
-    public void sendReceipt(IoBuffer in) {
-        logger.info(in.remaining());
+    public void sendReceipt(IoSession session, IoBuffer in) {
+        byte[] bytes = in.array();
+        byte[] aknowledge = new byte[12];
+        System.arraycopy(bytes, 0, aknowledge, 0, 12);
+        session.write(aknowledge);
     }
-    
-    
 
 }

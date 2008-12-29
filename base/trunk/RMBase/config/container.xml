@@ -7,18 +7,13 @@
     <component-implementation class='net.form105.rm.base.container.RMIServerContainer'/>
     <component-implementation class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
     <component-implementation class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
-    <component-implementation class='net.form105.rm.base.container.GlobalLookupContainer'/>
+    <component-implementation class='net.form105.rm.base.container.LookupContainer'/>
     <component-implementation class='net.form105.rm.base.container.UserManagementContainer'/>
     <component-implementation class='net.form105.rm.base.container.XMLModelLoaderContainer'/>
     <component-implementation class='net.form105.rm.base.container.ModeContainer'/>
     <component-implementation class='net.form105.rm.base.container.PersistenceModeContainer' />
     <component-implementation class='net.form105.rm.base.container.CommunicationContainer' />
     <component-implementation class='net.form105.rm.base.container.CommunicationConfigurationContainer' />
-    
-    <component-implementation factory="true" key="kaiserValidator" class='net.form105.rm.base.integration.protocol.validator.KaiserValidator' />
-    <component-implementation factory="true" key="kaiserByteToStringConverter" class='net.form105.rm.base.integration.converter.ByteToStringConverter' />
-    <component-implementation factory="true" key="kaiserBbyteToIntegerConverter" class='net.form105.rm.base.integration.converter.ByteToIntegerConverter' />
-    <component-implementation factory="true" key="kaiserContentIdentifier" class='net.form105.rm.base.integration.protocol.KaiserContentIdentifier' />
     
 </container>
 

@@ -15,25 +15,29 @@ import net.form105.rm.base.lookup.ILookup;
  *
  * @author heiko
  */
-public class GlobalLookupContainer extends AbstractContainer {
+public class LookupContainer extends AbstractContainer {
     
-    ILookup registry;
-    EntryLookupRegistry<IBasicDao<?, ?>> daoRegistry = new EntryLookupRegistry<IBasicDao<?, ? extends Serializable>>();
+    private ILookup<?> globalRegistry;
+    private EntryLookupRegistry<IBasicDao<?,?>> daoRegistry = new EntryLookupRegistry<IBasicDao<?,?>>();
     
-    public GlobalLookupContainer() {
+    public LookupContainer() {
     	super();
     }
     
     public void start() {
-        registry = new EntryLookupRegistry();
+        globalRegistry = new EntryLookupRegistry();
     }
 
     public void stop() {
         
     }
     
-    public ILookup getLookupRegistry() {
-        return registry;
+    public ILookup<?> getGlobalLookup() {
+        return globalRegistry;
+    }
+    
+    public ILookup<IBasicDao<?,?>> getDaoLookup() {
+        return daoRegistry;
     }
 
 }

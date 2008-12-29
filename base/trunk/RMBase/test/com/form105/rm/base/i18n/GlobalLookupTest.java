@@ -7,7 +7,7 @@ import java.util.List;
 import net.form105.rm.base.Container;
 import net.form105.rm.base.ContainerConfiguration;
 import net.form105.rm.base.config.SimpleConfiguration;
-import net.form105.rm.base.container.GlobalLookupContainer;
+import net.form105.rm.base.container.LookupContainer;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.model.user.User;
@@ -29,7 +29,7 @@ public class GlobalLookupTest {
 	
 	private String xmlFile;
 	private XMLUserObjectDAO userDAO;
-	private GlobalLookupContainer lookupContainer;
+	private LookupContainer lookupContainer;
 	private User user;
 
 	@Before
@@ -51,9 +51,9 @@ public class GlobalLookupTest {
     	
     	Container.getInstance().load(containerConfig);
     	
-        lookupContainer = Container.getContainer().getComponent(GlobalLookupContainer.class);
+        lookupContainer = Container.getContainer().getComponent(LookupContainer.class);
     	
-        ILookup lookup = lookupContainer.getLookupRegistry();
+        ILookup lookup = lookupContainer.getGlobalLookup();
         xmlFile = "users.xml";
         userDAO = new XMLUserObjectDAO(xmlFile);
         lookup.addEntry(XMLUserObjectDAO.class, userDAO);

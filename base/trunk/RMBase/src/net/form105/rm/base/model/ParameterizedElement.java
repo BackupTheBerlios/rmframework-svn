@@ -18,7 +18,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
+import org.apache.xmlbeans.XmlObject;
+
 import net.form105.rm.base.model.parameter.AbstractParameter;
+import net.form105.xml.schema.model.ResourceDocument;
 
 
 @Entity
