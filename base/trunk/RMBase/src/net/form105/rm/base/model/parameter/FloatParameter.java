@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 
-import net.form105.rm.base.model.xml.IXmlConverter;
-import net.form105.rm.base.model.xml.IXmlLoadable;
+import net.form105.rm.base.model.IXmlObjectLoadable;
+import net.form105.xml.schema.model.ParameterDocument.Parameter;
 
-import org.dom4j.Element;
+import org.apache.xmlbeans.XmlObject;
 
 /**
  *
@@ -20,7 +20,7 @@ import org.dom4j.Element;
  */
 
 @Entity
-public class FloatParameter extends AbstractParameter<BigDecimal> implements IXmlLoadable<FloatParameter> {
+public class FloatParameter extends AbstractParameter<BigDecimal> implements IXmlObjectLoadable<IParameter> {
     
 	private static final long serialVersionUID = 1L;
 	private BigDecimal parameterValue;
@@ -39,18 +39,16 @@ public class FloatParameter extends AbstractParameter<BigDecimal> implements IXm
         return parameterValue.toEngineeringString();
     }
 
-    public void fromDom(Element element) {
-        String elementId = element.attributeValue("id");
-        String value = element.attributeValue("value");
-        BigDecimal decimalValue = new BigDecimal(value);
-        setElementId(elementId);
-        setParameterValue(decimalValue);
-        
+    @Override
+    public IParameter loadFromXml(XmlObject xmlObject) {
+            Parameter parameter = (Parameter) xmlObject;
+            this.setElementId(parameter.getId());
+            this.setName(parameter.getName());
+            BigDecimal floatValue = new BigDecimal(parameter.getValue());
+            this.setParameterValue(floatValue);
+            return this;
     }
 
-    public FloatParameter load(IXmlConverter converter, Element element) {
-        converter.convert(this, element);
-        return this;
-    }
+    
     
 }

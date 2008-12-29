@@ -7,10 +7,10 @@ package net.form105.rm.base.model.parameter;
 
 import javax.persistence.Entity;
 
-import net.form105.rm.base.model.xml.IXmlConverter;
-import net.form105.rm.base.model.xml.IXmlLoadable;
+import net.form105.rm.base.model.IXmlObjectLoadable;
+import net.form105.xml.schema.model.ParameterDocument.Parameter;
 
-import org.dom4j.Element;
+import org.apache.xmlbeans.XmlObject;
 
 /**
  *
@@ -18,11 +18,11 @@ import org.dom4j.Element;
  */
 
 @Entity
-public class IntParameter extends AbstractParameter<Integer> implements IXmlLoadable<IntParameter> {
-    
-	private static final long serialVersionUID = 1L;
-	
-	private Integer parameterValue;
+public class IntParameter extends AbstractParameter<Integer> implements IXmlObjectLoadable<IParameter> {
+
+    private static final long serialVersionUID = 1L;
+
+    private Integer parameterValue;
 
     public Integer getParameterValue() {
         return parameterValue;
@@ -38,20 +38,14 @@ public class IntParameter extends AbstractParameter<Integer> implements IXmlLoad
         return parameterValue.toString();
     }
 
-    public void fromDom(Element element) {
-        String elementId = element.attributeValue("id");
-        String stringValue = element.attributeValue("value");
-        
-        Integer value = Integer.parseInt(stringValue);
-        
-        setElementId(elementId);
-        setParameterValue(value);
-        
-    }
-
-    public IntParameter load(IXmlConverter converter, Element element) {
-    	converter.convert(this, element);
+    @Override
+    public IParameter loadFromXml(XmlObject xmlObject) {
+        Parameter parameter = (Parameter) xmlObject;
+        this.setElementId(parameter.getId());
+        this.setName(parameter.getName());
+        Integer intValue = new Integer(parameter.getValue());
+        this.setParameterValue(intValue);
         return this;
     }
-    
+
 }

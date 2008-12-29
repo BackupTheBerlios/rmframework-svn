@@ -7,10 +7,9 @@ package net.form105.rm.base.model.parameter;
 
 import javax.persistence.Entity;
 
-import net.form105.rm.base.model.xml.IXmlConverter;
-import net.form105.rm.base.model.xml.IXmlLoadable;
+import net.form105.xml.schema.model.ParameterDocument.Parameter;
 
-import org.dom4j.Element;
+import org.apache.xmlbeans.XmlObject;
 
 /**
  *
@@ -18,10 +17,11 @@ import org.dom4j.Element;
  */
 
 @Entity
-public class StringParameter extends AbstractParameter<String> implements IXmlLoadable<StringParameter> {
-    
-	private static final long serialVersionUID = 1L;
-	private String parameterValue;
+public class StringParameter extends AbstractParameter<String> {
+
+    private static final long serialVersionUID = 1L;
+
+    private String parameterValue;
 
     public String getParameterValue() {
         return parameterValue;
@@ -37,17 +37,12 @@ public class StringParameter extends AbstractParameter<String> implements IXmlLo
         return parameterValue;
     }
 
-    public void fromDom(Element element) {
-        String elementId = element.attributeValue("id");
-        String value = element.attributeValue("value");
-        setElementId(elementId);
-        setParameterValue(value);
-        
-    }
-
-    public StringParameter load(IXmlConverter converter, Element element) {
-        converter.convert(this, element);
+    public IParameter loadFromXml(XmlObject xmlObject) {
+        Parameter parameter = (Parameter) xmlObject;
+        this.setElementId(parameter.getId());
+        this.setName(parameter.getName());
+        this.setParameterValue(parameter.getValue());
         return this;
     }
-    
+
 }

@@ -14,6 +14,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import net.form105.rm.base.model.AgentObject;
+import net.form105.rm.base.model.IXmlObjectLoadable;
 
 
 /**
@@ -24,7 +25,7 @@ import net.form105.rm.base.model.AgentObject;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "parameter_type", discriminatorType=DiscriminatorType.STRING)
-public abstract class AbstractParameter<T> extends AgentObject implements IParameter, Serializable {
+public abstract class AbstractParameter<T> extends AgentObject implements IParameter, IXmlObjectLoadable<IParameter>, Serializable {
     
     @Id 
     private Long id;
