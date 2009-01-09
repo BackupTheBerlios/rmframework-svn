@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.form105.net/schema/model"
+	elementFormDefault="qualified" xmlns="http://xml.form105.net/schema/model">
+
+	<xsd:element name="ComElements">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Key" minOccurs="1" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ref="Telegrams" maxOccurs="1" />
+							<xsd:element ref="Notifications" maxOccurs="1" />
+						</xsd:sequence>
+						<xsd:attribute name="k1" type="xsd:string" />
+						<xsd:attribute name="k2" type="xsd:string" />
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Command">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Value">
+					<xsd:complexType>
+						<xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="SetValueBy">
+					<xsd:complexType>
+						<xsd:attribute name="id" type="xsd:string"></xsd:attribute>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="Value" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Telegrams">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Command" />
+			</xsd:sequence>
+			<xsd:attribute name="stream" type="xsd:string" />
+			<xsd:attribute name="type" type="xsd:string" />
+			<xsd:attribute name="address" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="Notifications">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Command" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>
