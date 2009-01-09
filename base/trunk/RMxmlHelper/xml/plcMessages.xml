@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plcMessages xmlns:rm="http://xml.form105.net/schema/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.form105.net/schema/model ../src/main/resources/schema/serverConfig.xsd ">
-	<message direction="inbound"><!-- inbound/outbound -->
+	<message direction="inbound">dddd<!-- inbound/outbound -->
 		<id>conveyRM120</id>
 		<id2></id2>
 		<name>Pos. 120 belegt</name>
