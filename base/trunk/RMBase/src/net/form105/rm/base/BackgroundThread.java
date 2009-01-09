@@ -11,27 +11,27 @@ import org.apache.log4j.Logger;
 
 public class BackgroundThread implements Runnable {
 
-	private static Logger logger = Logger.getLogger(BackgroundThread.class);
-	private boolean running = false;
+    private static Logger logger = Logger.getLogger(BackgroundThread.class);
 
-	public void run() {
-		running = true;
-		while (running) {
-			try {
-				Thread.sleep(Long.MAX_VALUE);
-			} catch (InterruptedException ex) {
-				logger.error("Thread interrupted. ", ex);
-			}
-		}
-		logger.info("Main thread stopped ...");
+    private boolean running = false;
 
-	}
+    public void run() {
+        running = true;
+        while (running) {
+            try {
+                Thread.sleep(Long.MAX_VALUE);
+            } catch (InterruptedException ex) {
+                logger.error("Thread interrupted. ", ex);
+            }
+        }
+        logger.info("Main thread stopped ...");
 
-	public void stop() {
-			running = false;
-			this.notify();
-		
+    }
 
-	}
+    public void stop() {
+        running = false;
+        this.notify();
+
+    }
 
 }
