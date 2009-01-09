@@ -14,6 +14,7 @@ package net.form105.xml.schema.model.impl;
  */
 public class ConnectionTypeAttributeImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.ConnectionTypeAttribute
 {
+    private static final long serialVersionUID = 1L;
     
     public ConnectionTypeAttributeImpl(org.apache.xmlbeans.SchemaType sType)
     {
@@ -122,6 +123,7 @@ public class ConnectionTypeAttributeImpl extends org.apache.xmlbeans.impl.values
      */
     public static class ConnectionTypeImpl extends org.apache.xmlbeans.impl.values.JavaStringEnumerationHolderEx implements net.form105.xml.schema.model.ConnectionTypeAttribute.ConnectionType
     {
+        private static final long serialVersionUID = 1L;
         
         public ConnectionTypeImpl(org.apache.xmlbeans.SchemaType sType)
         {

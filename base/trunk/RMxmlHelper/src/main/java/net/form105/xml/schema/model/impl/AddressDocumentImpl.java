@@ -14,6 +14,7 @@ package net.form105.xml.schema.model.impl;
  */
 public class AddressDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.AddressDocument
 {
+    private static final long serialVersionUID = 1L;
     
     public AddressDocumentImpl(org.apache.xmlbeans.SchemaType sType)
     {
@@ -80,6 +81,7 @@ public class AddressDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComp
      */
     public static class AddressImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.AddressDocument.Address
     {
+        private static final long serialVersionUID = 1L;
         
         public AddressImpl(org.apache.xmlbeans.SchemaType sType)
         {
@@ -376,6 +378,7 @@ public class AddressDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComp
          */
         public static class ByteImpl extends org.apache.xmlbeans.impl.values.JavaIntHolderEx implements net.form105.xml.schema.model.AddressDocument.Address.Byte
         {
+            private static final long serialVersionUID = 1L;
             
             public ByteImpl(org.apache.xmlbeans.SchemaType sType)
             {

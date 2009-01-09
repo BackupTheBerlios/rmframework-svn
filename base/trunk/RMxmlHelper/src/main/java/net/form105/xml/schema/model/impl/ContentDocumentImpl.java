@@ -14,6 +14,7 @@ package net.form105.xml.schema.model.impl;
  */
 public class ContentDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.ContentDocument
 {
+    private static final long serialVersionUID = 1L;
     
     public ContentDocumentImpl(org.apache.xmlbeans.SchemaType sType)
     {
@@ -80,6 +81,7 @@ public class ContentDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComp
      */
     public static class ContentImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.ContentDocument.Content
     {
+        private static final long serialVersionUID = 1L;
         
         public ContentImpl(org.apache.xmlbeans.SchemaType sType)
         {

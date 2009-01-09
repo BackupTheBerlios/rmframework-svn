@@ -17,7 +17,7 @@ package net.form105.xml.schema.model;
 public interface ConnectionTypeAttribute extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ConnectionTypeAttribute.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("connectiontypedd95attrtypetype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ConnectionTypeAttribute.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s55A5F5159C541FB7D2E54DB704983109").resolveHandle("connectiontypedd95attrtypetype");
     
     /**
      * Gets the "connectionType" attribute
@@ -57,7 +57,7 @@ public interface ConnectionTypeAttribute extends org.apache.xmlbeans.XmlObject
     public interface ConnectionType extends org.apache.xmlbeans.XmlString
     {
         public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ConnectionType.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("connectiontype124dattrtype");
+            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ConnectionType.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s55A5F5159C541FB7D2E54DB704983109").resolveHandle("connectiontype124dattrtype");
         
         org.apache.xmlbeans.StringEnumAbstractBase enumValue();
         void set(org.apache.xmlbeans.StringEnumAbstractBase e);

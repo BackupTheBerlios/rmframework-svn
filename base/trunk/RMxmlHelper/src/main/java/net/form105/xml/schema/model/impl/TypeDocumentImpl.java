@@ -14,6 +14,7 @@ package net.form105.xml.schema.model.impl;
  */
 public class TypeDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.TypeDocument
 {
+    private static final long serialVersionUID = 1L;
     
     public TypeDocumentImpl(org.apache.xmlbeans.SchemaType sType)
     {
@@ -98,6 +99,7 @@ public class TypeDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComplex
      */
     public static class TypeImpl extends org.apache.xmlbeans.impl.values.JavaIntHolderEx implements net.form105.xml.schema.model.TypeDocument.Type
     {
+        private static final long serialVersionUID = 1L;
         
         public TypeImpl(org.apache.xmlbeans.SchemaType sType)
         {

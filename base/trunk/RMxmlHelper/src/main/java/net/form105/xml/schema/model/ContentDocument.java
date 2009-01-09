@@ -17,7 +17,7 @@ package net.form105.xml.schema.model;
 public interface ContentDocument extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ContentDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("content9ed2doctype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(ContentDocument.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s55A5F5159C541FB7D2E54DB704983109").resolveHandle("content9ed2doctype");
     
     /**
      * Gets the "content" element
@@ -42,7 +42,7 @@ public interface ContentDocument extends org.apache.xmlbeans.XmlObject
     public interface Content extends org.apache.xmlbeans.XmlObject
     {
         public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Content.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("contenta6f7elemtype");
+            org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Content.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s55A5F5159C541FB7D2E54DB704983109").resolveHandle("contenta6f7elemtype");
         
         /**
          * A factory class with static methods for creating instances

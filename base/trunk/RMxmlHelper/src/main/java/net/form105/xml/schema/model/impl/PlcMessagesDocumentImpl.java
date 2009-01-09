@@ -14,6 +14,7 @@ package net.form105.xml.schema.model.impl;
  */
 public class PlcMessagesDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.PlcMessagesDocument
 {
+    private static final long serialVersionUID = 1L;
     
     public PlcMessagesDocumentImpl(org.apache.xmlbeans.SchemaType sType)
     {
@@ -80,6 +81,7 @@ public class PlcMessagesDocumentImpl extends org.apache.xmlbeans.impl.values.Xml
      */
     public static class PlcMessagesImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.PlcMessagesDocument.PlcMessages
     {
+        private static final long serialVersionUID = 1L;
         
         public PlcMessagesImpl(org.apache.xmlbeans.SchemaType sType)
         {
@@ -212,6 +214,7 @@ public class PlcMessagesDocumentImpl extends org.apache.xmlbeans.impl.values.Xml
          */
         public static class PlcMessageImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.PlcMessagesDocument.PlcMessages.PlcMessage
         {
+            private static final long serialVersionUID = 1L;
             
             public PlcMessageImpl(org.apache.xmlbeans.SchemaType sType)
             {

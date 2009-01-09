@@ -14,6 +14,7 @@ package net.form105.xml.schema.model.impl;
  */
 public class ServerConfigDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.ServerConfigDocument
 {
+    private static final long serialVersionUID = 1L;
     
     public ServerConfigDocumentImpl(org.apache.xmlbeans.SchemaType sType)
     {
@@ -80,6 +81,7 @@ public class ServerConfigDocumentImpl extends org.apache.xmlbeans.impl.values.Xm
      */
     public static class ServerConfigImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.ServerConfigDocument.ServerConfig
     {
+        private static final long serialVersionUID = 1L;
         
         public ServerConfigImpl(org.apache.xmlbeans.SchemaType sType)
         {
@@ -212,6 +214,7 @@ public class ServerConfigDocumentImpl extends org.apache.xmlbeans.impl.values.Xm
          */
         public static class InboundImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.ServerConfigDocument.ServerConfig.Inbound
         {
+            private static final long serialVersionUID = 1L;
             
             public InboundImpl(org.apache.xmlbeans.SchemaType sType)
             {

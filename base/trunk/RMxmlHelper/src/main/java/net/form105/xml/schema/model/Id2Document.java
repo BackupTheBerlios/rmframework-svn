@@ -17,7 +17,7 @@ package net.form105.xml.schema.model;
 public interface Id2Document extends org.apache.xmlbeans.XmlObject
 {
     public static final org.apache.xmlbeans.SchemaType type = (org.apache.xmlbeans.SchemaType)
-        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Id2Document.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s7B2EC6A221F085D2759F2185DC801946").resolveHandle("id26550doctype");
+        org.apache.xmlbeans.XmlBeans.typeSystemForClassLoader(Id2Document.class.getClassLoader(), "schemaorg_apache_xmlbeans.system.s55A5F5159C541FB7D2E54DB704983109").resolveHandle("id26550doctype");
     
     /**
      * Gets the "id2" element

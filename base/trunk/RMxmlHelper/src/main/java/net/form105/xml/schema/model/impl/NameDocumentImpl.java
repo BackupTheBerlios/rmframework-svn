@@ -14,6 +14,7 @@ package net.form105.xml.schema.model.impl;
  */
 public class NameDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.NameDocument
 {
+    private static final long serialVersionUID = 1L;
     
     public NameDocumentImpl(org.apache.xmlbeans.SchemaType sType)
     {

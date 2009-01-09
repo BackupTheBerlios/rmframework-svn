@@ -14,6 +14,7 @@ package net.form105.xml.schema.model.impl;
  */
 public class SectorDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.SectorDocument
 {
+    private static final long serialVersionUID = 1L;
     
     public SectorDocumentImpl(org.apache.xmlbeans.SchemaType sType)
     {
@@ -98,6 +99,7 @@ public class SectorDocumentImpl extends org.apache.xmlbeans.impl.values.XmlCompl
      */
     public static class SectorImpl extends org.apache.xmlbeans.impl.values.JavaIntHolderEx implements net.form105.xml.schema.model.SectorDocument.Sector
     {
+        private static final long serialVersionUID = 1L;
         
         public SectorImpl(org.apache.xmlbeans.SchemaType sType)
         {

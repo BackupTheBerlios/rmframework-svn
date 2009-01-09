@@ -14,6 +14,7 @@ package net.form105.xml.schema.model.impl;
  */
 public class IdDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComplexContentImpl implements net.form105.xml.schema.model.IdDocument
 {
+    private static final long serialVersionUID = 1L;
     
     public IdDocumentImpl(org.apache.xmlbeans.SchemaType sType)
     {
