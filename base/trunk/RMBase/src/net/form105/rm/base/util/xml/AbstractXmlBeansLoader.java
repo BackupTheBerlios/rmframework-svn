@@ -15,14 +15,11 @@
  */
 package net.form105.rm.base.util.xml;
 
-import net.form105.rm.base.Container;
+import org.apache.xmlbeans.XmlObject;
 
-public class XmlBeansLoader {
+public abstract class AbstractXmlBeansLoader<T extends XmlObject> {
     
-    String configDir;
+    public T parse()
     
-    public XmlBeansLoader() {
-        configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
-    }
 
 }
