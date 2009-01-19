@@ -113,7 +113,7 @@ public abstract class AbstractFilterSequence<T> implements Serializable {
 			lookup.getEntry(this.getClass()).removeItem(tempItem);
 		}
 		
-		lookup.addEntry(this.getClass(), filter);
+		lookup.addContentObject(this.getClass(), filter);
 	}
 	
 	public String getConfiguredSizeAsString() {
