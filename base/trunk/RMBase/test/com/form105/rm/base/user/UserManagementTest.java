@@ -11,7 +11,7 @@ import net.form105.rm.base.query.FindAllDaoQuery;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.Status;
 import net.form105.rm.server.filter.other.UserAuthorizationFilter;
-import net.form105.rm.server.selection.FindAllDaoSelection;
+import net.form105.rm.server.selection.UserSelection;
 import net.form105.rm.server.service.CreateUserService;
 import net.form105.rm.server.service.DeleteUserService;
 
@@ -80,14 +80,14 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 		addUser();
 		
 		UserAuthorizationFilter<User> filter = new UserAuthorizationFilter<User>(9999L, "12345");
-		DefaultFilterQuery<User> query = new DefaultFilterQuery(new FindAllDaoSelection(XMLUserObjectDAO.class), filter);
+		DefaultFilterQuery<User> query = new DefaultFilterQuery<User>(new UserSelection(), filter);
 		IResult<User> result = doQuery(query);
 		logger.info("Test: Authenticate user, found #"+result.getResultList().size());
 		assertTrue(result.getResultList().size() > 0);
 		
 		// Try to authenticate with a wrong password
 		filter = new UserAuthorizationFilter<User>(9999L, "11111");
-		query = new DefaultFilterQuery(new FindAllDaoSelection(XMLUserObjectDAO.class), filter);
+		query = new DefaultFilterQuery<User>(new UserSelection(), filter);
 		result = doQuery(query);
 		assertTrue(result.getResultList().size() == 0);
 		
