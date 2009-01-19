@@ -5,10 +5,7 @@
 	<xsd:element name="model">
 		<xsd:complexType>
 			<xsd:sequence>
-
-
-
-				<xsd:element name="Resource">
+				<xsd:element name="Resource" minOccurs="0" maxOccurs="unbounded">
 					<xsd:complexType>
 						<xsd:sequence>
 							<xsd:element ref="Parameter" minOccurs="0" maxOccurs="unbounded"></xsd:element>
@@ -16,9 +13,7 @@
 						<xsd:attributeGroup ref="defaultModelAttributes"></xsd:attributeGroup>
 					</xsd:complexType>
 				</xsd:element>
-
 			</xsd:sequence>
-
 		</xsd:complexType>
 	</xsd:element>
 
