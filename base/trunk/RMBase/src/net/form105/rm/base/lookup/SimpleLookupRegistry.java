@@ -35,7 +35,13 @@ public class SimpleLookupRegistry<T> implements ILookup<T> {
 
     @Override
     public <I> void addContentObject(Class<I> clazz, T object) {
-        IEntry<T> entry = registry.get(clazz);
+        IEntry<T> entry;
+        if (registry.get(clazz) == null) {
+            entry = createDefaultEntry();
+            registry.put(clazz, entry);
+        } else {
+            entry = registry.get(clazz);
+        }
         entry.addItem(object);
     }
 
@@ -68,6 +74,11 @@ public class SimpleLookupRegistry<T> implements ILookup<T> {
     @Override
     public <I> void removeEntry(Class<I> clazz) {
         registry.remove(clazz);
+    }
+    
+    private IEntry<T> createDefaultEntry() {
+        SimpleLookupEntry<T> entry = new SimpleLookupEntry<T>();
+        return entry;
     }
 
 }

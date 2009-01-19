@@ -19,7 +19,7 @@ import net.form105.rm.base.model.AgentObject;
 public class LookupContainer extends AbstractContainer {
     
     private ILookup<?> globalRegistry;
-    private SimpleLookupRegistry<AbstractAgentObjectDao<?>> daoRegistry = new SimpleLookupRegistry<AbstractAgentObjectDao<?>>();
+    private SimpleLookupRegistry<AbstractAgentObjectDao<?>> daoRegistry;
     
     public LookupContainer() {
     	super();
@@ -27,6 +27,7 @@ public class LookupContainer extends AbstractContainer {
     
     public void start() {
         globalRegistry = new SimpleLookupRegistry<Object>();
+        daoRegistry = new SimpleLookupRegistry<AbstractAgentObjectDao<?>>();
     }
 
     public void stop() {
