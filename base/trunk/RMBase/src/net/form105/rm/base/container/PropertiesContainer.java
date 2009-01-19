@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 import net.form105.rm.base.Container;
+import net.form105.rm.base.exception.PropertyNotFoundException;
+import net.form105.rm.server.i18n.BaseI18NMessage;
 
 import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
@@ -80,6 +82,11 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
     }
 
     public String getProperty(String key) {
+        
+        Object value = properties.get(key);
+        if (value == null) {
+            throw new PropertyNotFoundException(new BaseI18NMessage(), "property.notFound", new String[] {key});
+        }
         return (String) properties.get(key);
     }
 

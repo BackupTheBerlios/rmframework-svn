@@ -15,17 +15,17 @@
  */
 package net.form105.rm.base.exception;
 
-import net.form105.rm.server.i18n.IMessage;
+import net.form105.rm.server.i18n.I18nMessage;
 
 public class RMIntegrationException extends RMException {
 
 	private static final long serialVersionUID = 1L;
 	
-	public RMIntegrationException(IMessage message, String key, String[] params) {
+	public RMIntegrationException(I18nMessage message, String key, String[] params) {
 		super(message, key, params);
 	}
 	
-	public RMIntegrationException(IMessage message, String key, String[] params, Throwable cause) {
+	public RMIntegrationException(I18nMessage message, String key, String[] params, Throwable cause) {
     	super(message.getMessage(key, params), cause);
     }
 

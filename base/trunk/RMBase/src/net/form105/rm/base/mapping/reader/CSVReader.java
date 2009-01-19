@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.mapping.DefaultMapperControl;
-import net.form105.rm.server.i18n.BaseMessage;
+import net.form105.rm.server.i18n.BaseI18NMessage;
 
 /**
  * Reads a csv file and generates a List of @see String. This list will be pushed to the MappingControl
@@ -90,7 +90,7 @@ public class CSVReader implements ISequenceReader {
 			readCSV();
 		} catch (FileNotFoundException e) {
 			String[] parameters = new String[] {file};
-			throw new RMException(new BaseMessage(), "exception.fileNotFound", parameters );
+			throw new RMException(new BaseI18NMessage(), "exception.fileNotFound", parameters );
 		}
 		
 		String line;

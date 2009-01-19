@@ -7,12 +7,10 @@
 
 package net.form105.rm.base.container;
 
-import net.form105.rm.base.dao.db.IDbSelector;
-import net.form105.rm.base.dao.db.SingleDBSelector;
-import net.form105.rm.base.dao.resource.AbstractResourceDao;
 import net.form105.rm.base.dao.resource.ResourceDb4oDao;
 import net.form105.rm.base.dao.resource.ResourceMapDao;
 import net.form105.rm.base.helper.ExceptionHelper;
+import net.form105.rm.base.model.Resource;
 
 import org.picocontainer.Disposable;
 import org.picocontainer.Startable;
@@ -34,16 +32,17 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 	private String DBO_FILE_PROPERTY = "server.db4o.defaultPath";
 	private ModeContainer modeContainer;
 	private LookupContainer lookupContainer;
-	private IDbSelector dbSelector;
 
-	PropertiesContainer properties;
+	private PropertiesContainer properties;
+	private Db4oContainer db4oContainer;
 
 	public PersistenceModeContainer(PropertiesContainer properties, ModeContainer mode,
-			LookupContainer lookupContainer) {
+			LookupContainer lookupContainer, Db4oContainer db4oContainer) {
 		super();
 		this.properties = properties;
 		this.modeContainer = mode;
 		this.lookupContainer = lookupContainer;
+		this.db4oContainer = db4oContainer;
 
 	}
 
@@ -56,13 +55,11 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 		switch (modeContainer.getCurrentMode()) {
 		case DBSingle:
 			dboFile = properties.getProperty(DBO_FILE_PROPERTY);
-			dbSelector = new SingleDBSelector(dboFile);
 			provideDbSingleMode();
 			break;
 
 		case DUAL:
 			dboFile = properties.getProperty(DBO_FILE_PROPERTY);
-			dbSelector = new SingleDBSelector(dboFile);
 			provideDualMode();
 			break;
 
@@ -83,17 +80,10 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 
 	}
 
-	/**
-	 * The database selector which is configured at startup
-	 * 
-	 * @return
-	 */
-	public IDbSelector getDBSelector() {
-		return dbSelector;
-	}
+	
 
 	public boolean supported() {
-		return modeContainer.getCurrentMode().getDbSupport();
+		return modeContainer.getCurrentMode().hasDbSupport();
 	}
 
 	public void validate() {
@@ -109,9 +99,9 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 	private void provideDualMode() {
 		// register resource daos
 		ResourceMapDao resourceMapDao = new ResourceMapDao();
-		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao(resourceMapDao);
-		lookupContainer.getDaoLookup().addEntry(AbstractResourceDao.class, resourceMapDao);
-		lookupContainer.getDaoLookup().addEntry(AbstractResourceDao.class, resourceDbDao);
+		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao(resourceMapDao, db4oContainer.getDb4oContainer());
+		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceMapDao);
+		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceDbDao);
 	}
 
 	/**
@@ -119,12 +109,12 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 	 */
 	private void provideDbSingleMode() {
 		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao();
-		lookupContainer.getDaoLookup().addEntry(AbstractResourceDao.class, resourceDbDao);
+		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceDbDao);
 	}
 
 	private void provideMemoryMode() {
 		ResourceMapDao resourceMapDao = new ResourceMapDao();
-		lookupContainer.getDaoLookup().addEntry(AbstractResourceDao.class, resourceMapDao);
+		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceMapDao);
 	}
 
 }

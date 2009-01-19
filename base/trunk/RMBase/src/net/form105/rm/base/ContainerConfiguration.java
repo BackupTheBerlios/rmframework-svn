@@ -51,6 +51,12 @@ public class ContainerConfiguration {
 		return configuration;
 	}
 	
+	public String getImportDirectory() {
+	    return configuration.getImportPath();
+	}
+	
+	
+	
 	
 
 }

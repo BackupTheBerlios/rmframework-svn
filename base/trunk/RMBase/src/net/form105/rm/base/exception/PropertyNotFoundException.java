@@ -1,20 +1,23 @@
 package net.form105.rm.base.exception;
 
-public class PropertyNotFoundException extends Exception {
+import net.form105.rm.server.i18n.I18nMessage;
 
-	/**
-     * Creates a new instance of <code>PropertyNotFoundException</code> without detail message.
-     */
-    public PropertyNotFoundException() {
+
+
+/**
+ * An exception to use if a system or local property can't be found
+ * @author heiko
+ *
+ */
+public class PropertyNotFoundException extends RMException {
+
+    private static final long serialVersionUID = 1L;
+
+    
+    public PropertyNotFoundException(I18nMessage message, String key, String[] params) {
+        super(message, key, params);
+        
     }
     
-    
-    /**
-     * Constructs an instance of <code>PropertyNotFoundException</code> with the specified detail message.
-     * @param msg the detail message.
-     */
-    public PropertyNotFoundException(String msg) {
-        super(msg);
-    }
 	
 }

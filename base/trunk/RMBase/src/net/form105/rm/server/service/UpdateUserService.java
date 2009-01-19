@@ -8,7 +8,7 @@ import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.AbstractService;
 import net.form105.rm.base.service.IArgument;
-import net.form105.rm.server.i18n.BaseMessage;
+import net.form105.rm.server.i18n.BaseI18NMessage;
 
 public class UpdateUserService extends AbstractService {
 
@@ -29,7 +29,7 @@ public class UpdateUserService extends AbstractService {
 
 	@Override
 	public void execute() throws Exception {
-		XMLUserObjectDAO dao = (XMLUserObjectDAO) Agent.getLookup().getContent(XMLUserObjectDAO.class);
+		XMLUserObjectDAO dao = (XMLUserObjectDAO) Agent.getDaoLookup().getFirstContentObject(User.class);
 		
 		// check if user exists already
 		User existingUser = dao.findById(argument.id);

@@ -7,13 +7,13 @@ import java.util.ResourceBundle;
  * information messages that should be internationalized are base messages.
  * @author heiko
  */
-public class BaseMessage extends AbstractMessage {
+public class BaseI18NMessage extends AbstractMessage {
     
     private final static ResourceBundle bundle = ResourceBundle.getBundle("i18n/BaseMessage");
 
     @Override
     public ResourceBundle getBundle() {
-        return BaseMessage.bundle;
+        return BaseI18NMessage.bundle;
     }
     
     

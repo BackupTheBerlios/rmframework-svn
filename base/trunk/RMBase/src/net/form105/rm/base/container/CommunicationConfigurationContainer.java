@@ -22,7 +22,7 @@ import java.util.HashMap;
 import net.form105.rm.base.Container;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.integration.IMessageTemplate;
-import net.form105.rm.server.i18n.BaseMessage;
+import net.form105.rm.server.i18n.BaseI18NMessage;
 import net.form105.xml.schema.model.ComElementsDocument;
 import net.form105.xml.schema.model.ServerConfigDocument;
 import net.form105.xml.schema.model.ComElementsDocument.ComElements;
@@ -96,7 +96,7 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 		} catch (XmlException e) {
 			logger.error(e, e);
 		} catch (IOException ex) {
-			RMException rmEx = new RMException(new BaseMessage(), "exception.fileNotFound",
+			RMException rmEx = new RMException(new BaseI18NMessage(), "exception.fileNotFound",
 					new String[] { configFile }, ex);
 			throw rmEx;
 		}
@@ -146,7 +146,7 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 		} catch (XmlException e) {
 			logger.error(e, e);
 		} catch (IOException ex) {
-			RMException rmEx = new RMException(new BaseMessage(), "exception.fileNotFound", new String[] { plcMessageConfigFile }, ex);
+			RMException rmEx = new RMException(new BaseI18NMessage(), "exception.fileNotFound", new String[] { plcMessageConfigFile }, ex);
 			throw rmEx;
 		}
 	}

@@ -18,38 +18,46 @@ package net.form105.rm.base.util.xml;
 import net.form105.rm.base.Container;
 import net.form105.xml.schema.model.ModelDocument;
 
+import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlException;
-import org.apache.xmlbeans.XmlObject;
 
 /**
  * Parses an xml file and returns an xmlBean document object
  * @author heiko
  *
  */
-public class XmlBeansModelLoader extends AbstractXmlBeansLoader<ModelDocument>{
+public class XmlBeansModelLoader extends AbstractXmlBeansLoader<ModelDocument> {
+    
+    public static Logger logger = Logger.getLogger(XmlBeansModelLoader.class);
 
     private String importDir;
     private String fileName;
     
     public XmlBeansModelLoader() {
         this.importDir = Container.getInstance().getConfiguration().getImportDirectory();
+        fileName = "model.xml";
     }
     
     public XmlBeansModelLoader(String fileName) {
         this.fileName = fileName;
     }
     
-    public ModelDocument parse(XmlObject xmlObject) {
+    public ModelDocument parse(String fileName) {
         
         ModelDocument document = null;
         
         try {
             document = ModelDocument.Factory.parse(importDir+fileName);
         } catch (XmlException e) {
-            e.printStackTrace();
+            logger.error(e, e);
         }
         
         return document;
+    }
+    
+    @Override
+    public ModelDocument parse() {
+        return parse(this.fileName);
     }
 
 }

@@ -16,7 +16,7 @@
 package net.form105.rm.base.helper;
 
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.server.i18n.BaseMessage;
+import net.form105.rm.server.i18n.BaseI18NMessage;
 
 public class ExceptionHelper {
 	
@@ -24,7 +24,7 @@ public class ExceptionHelper {
 		if (parameter == null) {
 			parameter = new String[] {};
 		}
-		BaseMessage message = new BaseMessage();
+		BaseI18NMessage message = new BaseI18NMessage();
 		RMException rmEx = new RMException(message, resourceKey, new String[]{});
 		return rmEx;
 	}

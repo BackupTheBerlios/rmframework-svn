@@ -5,9 +5,6 @@
 
 package net.form105.rm.base.container;
 
-import net.form105.rm.base.dao.resource.AbstractResourceDao;
-import net.form105.rm.base.dao.resource.ResourceDb4oDao;
-import net.form105.rm.base.dao.resource.ResourceMapDao;
 import net.form105.rm.base.lookup.ILookup;
 
 import org.picocontainer.Startable;
@@ -46,7 +43,7 @@ public class ModeContainer extends AbstractContainer implements Startable {
 			this.hasDBSupport = hasDBSupport;
 		}
 
-		public boolean getDbSupport() {
+		public boolean hasDbSupport() {
 			return hasDBSupport;
 		}
 

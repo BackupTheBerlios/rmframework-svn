@@ -2,19 +2,16 @@ package net.form105.rm.base.dao.resource;
 
 import java.util.List;
 
-import net.form105.rm.base.Container;
-import net.form105.rm.base.container.PersistenceModeContainer;
-import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.model.Resource;
 
 import org.apache.log4j.Logger;
 
-import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
+import com.db4o.foundation.NotSupportedException;
 import com.db4o.query.Predicate;
 
-public class ResourceDb4oDao extends AbstractResourceDao<Resource, Long> {
+public class ResourceDb4oDao extends AbstractAgentObjectDao<Resource> {
 	
 	public static Logger logger = Logger.getLogger(ResourceDb4oDao.class);
 	
@@ -25,14 +22,10 @@ public class ResourceDb4oDao extends AbstractResourceDao<Resource, Long> {
 	 * for fast access. 
 	 * @param transientDao
 	 */
-	public ResourceDb4oDao(IBasicDao<Resource, Long> transientDao) {
+	public ResourceDb4oDao(AbstractAgentObjectDao<Resource> transientDao, ObjectContainer objectContainer) {
 		super(transientDao);
+		db = objectContainer;
 		
-		// should use Db4o.newConfiguration()
-		Db4o.configure().objectClass("net.form105.rm.base.model.Resource").cascadeOnDelete(true);
-		
-		PersistenceModeContainer dbContainer = (PersistenceModeContainer) Container.getContainer().getComponent(PersistenceModeContainer.class);
-		db = dbContainer.getDBSelector().getObjectContainer();
 	}
 	
 	public ResourceDb4oDao() {
@@ -53,10 +46,6 @@ public class ResourceDb4oDao extends AbstractResourceDao<Resource, Long> {
 
 	@Override
 	public void save(Resource object) {
-		Resource resource = new Resource();
-		resource.setElementId("myId");
-		resource.setName("myname");
-		db.store(resource);
 		db.store(object);
 	}
 
@@ -78,13 +67,7 @@ public class ResourceDb4oDao extends AbstractResourceDao<Resource, Long> {
 
 	@Override
 	public Resource findById(final Long id) {
-		List<Resource> results = db.query(new Predicate<Resource>() {
-			private static final long serialVersionUID = 1L;
-			public boolean match(Resource resource){
-		        return resource.getOid() == id;
-		    }
-		});
-		return results.get(0);
+	    throw new NotSupportedException();
 	}
 
 	@Override

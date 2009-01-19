@@ -11,9 +11,9 @@ import java.util.List;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.auth.AbstractIdentity;
 import net.form105.rm.base.command.AbstractCommand;
+import net.form105.rm.base.container.LookupContainer;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.model.Resource;
-import net.form105.rm.base.util.xml.XMLModelLoader;
 
 import org.dom4j.Element;
 
@@ -43,9 +43,8 @@ public class LoadXmlModelCommand extends AbstractCommand {
 
     @Override
     public void execute() throws RMException {
-        XMLModelLoader loader = new XMLModelLoader(model, path);
-        Element rootElement = loader.getRootElement();
-        loadResources(rootElement);
+        LookupContainer container = (LookupContainer) Agent.getContainer(LookupContainer.class);
+        container.getDaoLookup();
     }
     
     private void loadResources(Element parentElement) {

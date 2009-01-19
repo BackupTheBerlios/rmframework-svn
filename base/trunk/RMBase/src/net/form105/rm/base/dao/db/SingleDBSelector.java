@@ -45,11 +45,10 @@ public class SingleDBSelector implements IDbSelector {
 		return Db4o.openClient(HOST, PORT, USER, PASSWD);
 	}
 
-	public void startDBServer(String fileName) {
+	private void startDBServer(String fileName) {
 		logger.info("Open db4o file: "+fileName);
 		ObjectServer server = Db4o.openServer(fileName, 0xdb40);
 		server.grantAccess(USER, PASSWD);
-		
 	}
 
 }

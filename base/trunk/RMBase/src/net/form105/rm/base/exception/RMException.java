@@ -6,7 +6,7 @@
  */
 package net.form105.rm.base.exception;
 
-import net.form105.rm.server.i18n.IMessage;
+import net.form105.rm.server.i18n.I18nMessage;
 
 
 public class RMException extends RuntimeException {
@@ -21,11 +21,11 @@ public class RMException extends RuntimeException {
         super(defaultMessage, cause);
     }
     
-    public RMException(IMessage message, String key, String[] params, Throwable cause) {
+    public RMException(I18nMessage message, String key, String[] params, Throwable cause) {
     	super(message.getMessage(key, params), cause);
     }
     
-    public RMException(IMessage message, String key, String[] params) {
+    public RMException(I18nMessage message, String key, String[] params) {
     	super(message.getMessage(key, params));
     }
 }

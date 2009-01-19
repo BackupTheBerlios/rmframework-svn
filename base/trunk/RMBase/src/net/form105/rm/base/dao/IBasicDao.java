@@ -9,13 +9,15 @@ package net.form105.rm.base.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import net.form105.rm.base.model.AgentObject;
+
 
 
 /**
  * @author hk
  * 
  */
-public interface IBasicDao<T, ID extends Serializable> {
+public interface IBasicDao<T extends AgentObject> {
 
 	/**
 	 * finds an object given by the id, returns null when the object was not
@@ -24,7 +26,7 @@ public interface IBasicDao<T, ID extends Serializable> {
 	 * @param id
 	 * @return
 	 */
-	public T findById(ID id);
+	public T findById(Long id);
 	
 	/**
 	 * finds an object given by the elementId

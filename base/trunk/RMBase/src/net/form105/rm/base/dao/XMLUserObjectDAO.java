@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.model.user.UserList;
 
@@ -28,7 +29,7 @@ import org.apache.log4j.Logger;
  * @author HK
  *
  */
-public class XMLUserObjectDAO implements IBasicDao<User, Long> {
+public class XMLUserObjectDAO extends AbstractAgentObjectDao<User> {
 	
 	public static Logger logger = Logger.getLogger(XMLUserObjectDAO.class);
 	

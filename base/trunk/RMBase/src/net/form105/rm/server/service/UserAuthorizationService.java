@@ -30,7 +30,7 @@ public class UserAuthorizationService extends AbstractService {
 
 	@Override
 	public void execute() throws Exception {
-		XMLUserObjectDAO dao = (XMLUserObjectDAO) Agent.getLookup().getContent(XMLUserObjectDAO.class);
+		XMLUserObjectDAO dao = (XMLUserObjectDAO) Agent.getDaoLookup().getFirstContentObject(User.class);
 		User user = dao.findById(argument.userId);
 		List<User> resultList = new ArrayList<User>();
 		

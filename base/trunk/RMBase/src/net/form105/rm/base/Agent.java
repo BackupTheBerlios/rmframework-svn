@@ -9,7 +9,9 @@ package net.form105.rm.base;
 import net.form105.rm.base.config.SimpleConfiguration;
 import net.form105.rm.base.container.LookupContainer;
 import net.form105.rm.base.container.PropertiesContainer;
+import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
 import net.form105.rm.base.lookup.ILookup;
+import net.form105.rm.base.model.AgentObject;
 
 /**
  * The main class which starts the agent and gives access to the 
@@ -40,13 +42,22 @@ public class Agent {
             return container;
         }
     }
+    
+    /**
+     * Getting the dao lookup
+     * @return
+     */
+    public static ILookup<AbstractAgentObjectDao<? extends AgentObject>> getDaoLookup() {
+        LookupContainer container = (LookupContainer) Container.getContainer().getComponent(LookupContainer.class);
+        return container.getDaoLookup();
+    }
 
     public static String getRMProperty(String key) {
         PropertiesContainer container = (PropertiesContainer) getContainer(PropertiesContainer.class);
         return container.getProperty(key);
     }
 
-    public static ILookup getLookup() {
+    public static ILookup<?> getLookup() {
         LookupContainer container = (LookupContainer) getContainer(LookupContainer.class);
         return container.getGlobalLookup();
     }

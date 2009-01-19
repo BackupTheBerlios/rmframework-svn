@@ -7,6 +7,7 @@ package net.form105.rm.base.model;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,16 +19,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
-import org.apache.xmlbeans.XmlObject;
-
 import net.form105.rm.base.model.parameter.AbstractParameter;
-import net.form105.xml.schema.model.ResourceDocument;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ParameterizedElement extends AgentObject implements java.io.Serializable {
     
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long oid;

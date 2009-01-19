@@ -9,44 +9,52 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import net.form105.rm.base.model.AgentObject;
+
 /**
  * Represents a user which has some user data associated. 
  * @author heiko
  */
 @Entity(name = "SystemUser")
-public class User implements Serializable {
+public class User extends AgentObject implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	private Long id = -1L;
-	private String firstName = "";
+    private static final long serialVersionUID = 1L;
+    private Long id = -1L;
+
+    private String firstName = "";
+
     private String sirName = "";
+
     private String eMail = "";
+
     private String password = "";
+
     private String shortName = "";
+
     private String mandate = "default";
+
     private boolean isAdmin = false;
+
     private List<String> roles = new ArrayList<String>();
 
-	@OneToMany
+    @OneToMany
     private Set<Group> groups = new HashSet<Group>();
-    
+
     /**
      * Getting the shortname of a user. Normally used for an administrator or a default user
      * @return
      */
     public String getShortName() {
-		return shortName;
-	}
+        return shortName;
+    }
 
     /**
      * Setting a shortname for the given user. Normally used for an administrator or a default user
      * @param shortName
      */
-	public void setShortName(String shortName) {
-		this.shortName = shortName;
-	}
-
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
 
     /**
      * Getting the assigned groups of a user
@@ -63,22 +71,22 @@ public class User implements Serializable {
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
     }
-    
+
     /**
      * Getting the id of the user.
      * @return
      */
     public Long getId() {
-		return id;
-	}
+        return id;
+    }
 
     /**
      * Setting the id of the user
      * @param id
      */
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * Setting the name of the user
@@ -143,61 +151,60 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     /**
      * The mandate to provide multitenant functionally
-	 * @return the mandate
-	 */
-	public String getMandate() {
-		return mandate;
-	}
+     * @return the mandate
+     */
+    public String getMandate() {
+        return mandate;
+    }
 
-	/**
-	 * The mandate to provide multi tenant functionally
-	 * @param mandate the mandate to set
-	 */
-	public void setMandate(String mandate) {
-		this.mandate = mandate;
-	}
-    
+    /**
+     * The mandate to provide multi tenant functionally
+     * @param mandate the mandate to set
+     */
+    public void setMandate(String mandate) {
+        this.mandate = mandate;
+    }
+
     public boolean isAdmin() {
-		return isAdmin;
-	}
+        return isAdmin;
+    }
 
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-	
-	/**
-	 * Getting the roles a user is assigned to
-	 * @return
-	 */
-	public List<String> getRoles() {
-		return roles;
-	}
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
-	/**
-	 * Setting the roles a user is assigned to
-	 * @param roles
-	 */
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
-	
-	public User getCopy() {
-		User user = new User();
-		user.setId(getId());
-		user.setEMail(getEMail());
-		user.setAdmin(isAdmin());
-		user.setFirstName(getFirstName());
-		user.setGroups(getGroups());
-		user.setPassword(getPassword());
-		user.setRoles(getRoles());
-		user.setMandate(getMandate());
-		user.setShortName(getShortName());
-		user.setSirName(getSirName());
-		return user;
-	}
-	
-	
+    /**
+     * Getting the roles a user is assigned to
+     * @return
+     */
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    /**
+     * Setting the roles a user is assigned to
+     * @param roles
+     */
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public User getCopy() {
+        User user = new User();
+        user.setId(getId());
+        user.setEMail(getEMail());
+        user.setAdmin(isAdmin());
+        user.setFirstName(getFirstName());
+        user.setGroups(getGroups());
+        user.setPassword(getPassword());
+        user.setRoles(getRoles());
+        user.setMandate(getMandate());
+        user.setShortName(getShortName());
+        user.setSirName(getSirName());
+        return user;
+    }
+
 }

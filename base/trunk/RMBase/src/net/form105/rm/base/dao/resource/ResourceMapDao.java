@@ -10,12 +10,14 @@ import net.form105.rm.base.model.Resource;
 
 import org.apache.log4j.Logger;
 
+import com.db4o.foundation.NotSupportedException;
+
 /**
  * The dao which is used as the map in transient mode or dual mode.
  * @author hk
  *
  */
-public class ResourceMapDao extends AbstractResourceDao<Resource, Long> {
+public class ResourceMapDao extends AbstractAgentObjectDao<Resource> {
 	
 	public static Logger logger = Logger.getLogger(ResourceMapDao.class);
 	
@@ -34,10 +36,7 @@ public class ResourceMapDao extends AbstractResourceDao<Resource, Long> {
 
 	@Override
 	public Resource findById(Long id) {
-		for (Resource resource : resourceMap.values()) {
-			if (resource.getOid() == id) return resource;
-		}
-		return null;
+	    throw new NotSupportedException();
 	}
 
 	@Override

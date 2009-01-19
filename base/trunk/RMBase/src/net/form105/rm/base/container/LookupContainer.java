@@ -1,15 +1,16 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * LookupContainer.java
+ * 
+ * Copyright (c) 2009, form105 Heiko Kundlacz
+ * Licensed under the GNU GPL Version 3. For full terms see the file license.txt
  */
 
 package net.form105.rm.base.container;
 
-import java.io.Serializable;
-
-import net.form105.rm.base.dao.IBasicDao;
-import net.form105.rm.base.lookup.EntryLookupRegistry;
+import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
 import net.form105.rm.base.lookup.ILookup;
+import net.form105.rm.base.lookup.SimpleLookupRegistry;
+import net.form105.rm.base.model.AgentObject;
 
 /**
  *
@@ -18,14 +19,14 @@ import net.form105.rm.base.lookup.ILookup;
 public class LookupContainer extends AbstractContainer {
     
     private ILookup<?> globalRegistry;
-    private EntryLookupRegistry<IBasicDao<?,?>> daoRegistry = new EntryLookupRegistry<IBasicDao<?,?>>();
+    private SimpleLookupRegistry<AbstractAgentObjectDao<?>> daoRegistry = new SimpleLookupRegistry<AbstractAgentObjectDao<?>>();
     
     public LookupContainer() {
     	super();
     }
     
     public void start() {
-        globalRegistry = new EntryLookupRegistry();
+        globalRegistry = new SimpleLookupRegistry<Object>();
     }
 
     public void stop() {
@@ -36,7 +37,7 @@ public class LookupContainer extends AbstractContainer {
         return globalRegistry;
     }
     
-    public ILookup<IBasicDao<?,?>> getDaoLookup() {
+    public <T> ILookup<AbstractAgentObjectDao<? extends AgentObject>> getDaoLookup() {
         return daoRegistry;
     }
 

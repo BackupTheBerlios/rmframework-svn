@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  *
  * @author heiko
  */
-public abstract class AbstractMessage implements IMessage {
+public abstract class AbstractMessage implements I18nMessage {
 
     public static Logger logger = Logger.getLogger(AbstractMessage.class);
 
