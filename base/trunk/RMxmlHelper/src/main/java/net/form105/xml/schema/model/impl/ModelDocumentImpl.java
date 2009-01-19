@@ -93,43 +93,97 @@ public class ModelDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComple
         
         
         /**
-         * Gets the "Resource" element
+         * Gets array of all "Resource" elements
          */
-        public net.form105.xml.schema.model.ModelDocument.Model.Resource getResource()
+        public net.form105.xml.schema.model.ModelDocument.Model.Resource[] getResourceArray()
+        {
+            synchronized (monitor())
+            {
+                check_orphaned();
+                java.util.List targetList = new java.util.ArrayList();
+                get_store().find_all_element_users(RESOURCE$0, targetList);
+                net.form105.xml.schema.model.ModelDocument.Model.Resource[] result = new net.form105.xml.schema.model.ModelDocument.Model.Resource[targetList.size()];
+                targetList.toArray(result);
+                return result;
+            }
+        }
+        
+        /**
+         * Gets ith "Resource" element
+         */
+        public net.form105.xml.schema.model.ModelDocument.Model.Resource getResourceArray(int i)
         {
             synchronized (monitor())
             {
                 check_orphaned();
                 net.form105.xml.schema.model.ModelDocument.Model.Resource target = null;
-                target = (net.form105.xml.schema.model.ModelDocument.Model.Resource)get_store().find_element_user(RESOURCE$0, 0);
+                target = (net.form105.xml.schema.model.ModelDocument.Model.Resource)get_store().find_element_user(RESOURCE$0, i);
                 if (target == null)
                 {
-                    return null;
+                    throw new IndexOutOfBoundsException();
                 }
                 return target;
             }
         }
         
         /**
-         * Sets the "Resource" element
+         * Returns number of "Resource" element
          */
-        public void setResource(net.form105.xml.schema.model.ModelDocument.Model.Resource resource)
+        public int sizeOfResourceArray()
+        {
+            synchronized (monitor())
+            {
+                check_orphaned();
+                return get_store().count_elements(RESOURCE$0);
+            }
+        }
+        
+        /**
+         * Sets array of all "Resource" element
+         */
+        public void setResourceArray(net.form105.xml.schema.model.ModelDocument.Model.Resource[] resourceArray)
+        {
+            synchronized (monitor())
+            {
+                check_orphaned();
+                arraySetterHelper(resourceArray, RESOURCE$0);
+            }
+        }
+        
+        /**
+         * Sets ith "Resource" element
+         */
+        public void setResourceArray(int i, net.form105.xml.schema.model.ModelDocument.Model.Resource resource)
         {
             synchronized (monitor())
             {
                 check_orphaned();
                 net.form105.xml.schema.model.ModelDocument.Model.Resource target = null;
-                target = (net.form105.xml.schema.model.ModelDocument.Model.Resource)get_store().find_element_user(RESOURCE$0, 0);
+                target = (net.form105.xml.schema.model.ModelDocument.Model.Resource)get_store().find_element_user(RESOURCE$0, i);
                 if (target == null)
                 {
-                    target = (net.form105.xml.schema.model.ModelDocument.Model.Resource)get_store().add_element_user(RESOURCE$0);
+                    throw new IndexOutOfBoundsException();
                 }
                 target.set(resource);
             }
         }
         
         /**
-         * Appends and returns a new empty "Resource" element
+         * Inserts and returns a new empty value (as xml) as the ith "Resource" element
+         */
+        public net.form105.xml.schema.model.ModelDocument.Model.Resource insertNewResource(int i)
+        {
+            synchronized (monitor())
+            {
+                check_orphaned();
+                net.form105.xml.schema.model.ModelDocument.Model.Resource target = null;
+                target = (net.form105.xml.schema.model.ModelDocument.Model.Resource)get_store().insert_element_user(RESOURCE$0, i);
+                return target;
+            }
+        }
+        
+        /**
+         * Appends and returns a new empty value (as xml) as the last "Resource" element
          */
         public net.form105.xml.schema.model.ModelDocument.Model.Resource addNewResource()
         {
@@ -139,6 +193,18 @@ public class ModelDocumentImpl extends org.apache.xmlbeans.impl.values.XmlComple
                 net.form105.xml.schema.model.ModelDocument.Model.Resource target = null;
                 target = (net.form105.xml.schema.model.ModelDocument.Model.Resource)get_store().add_element_user(RESOURCE$0);
                 return target;
+            }
+        }
+        
+        /**
+         * Removes the ith "Resource" element
+         */
+        public void removeResource(int i)
+        {
+            synchronized (monitor())
+            {
+                check_orphaned();
+                get_store().remove_element(RESOURCE$0, i);
             }
         }
         /**
