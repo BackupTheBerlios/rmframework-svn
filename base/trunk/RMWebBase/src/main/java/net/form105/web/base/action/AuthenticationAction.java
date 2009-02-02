@@ -7,7 +7,7 @@ import net.form105.rm.base.query.LocalQueryHandler;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.Status;
 import net.form105.rm.server.filter.other.UserAuthorizationByEmailFilter;
-import net.form105.rm.server.selection.FindAllDaoSelection;
+import net.form105.rm.server.selection.UserSelection;
 import net.form105.web.base.component.login.authorize.DefaultUser;
 import net.form105.web.base.component.login.authorize.IProvidedUser;
 import net.form105.web.base.model.authorize.Authentication;
@@ -40,7 +40,7 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 		LocalQueryHandler<User> queryHandler = new LocalQueryHandler<User>();
 		
 		UserAuthorizationByEmailFilter<User> filter = new UserAuthorizationByEmailFilter<User>(userId, password);
-		DefaultFilterQuery<User> query = new DefaultFilterQuery<User>(new FindAllDaoSelection(XMLUserObjectDAO.class), filter);
+		DefaultFilterQuery<User> query = new DefaultFilterQuery<User>(new UserSelection(), filter);
 		queryHandler.executeQuery(query);
 		//setResult(queryHandler.getResult());
 		
