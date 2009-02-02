@@ -20,6 +20,10 @@ public class DefaultFilterQuery<T> extends FilterQuery<T> {
 	public DefaultFilterQuery(ISelection<T> selection, List<IFilter<T>> filterList) {
 		super(selection, filterList);
 	}
+	
+	public DefaultFilterQuery(ISelection<T> selection) {
+	    super(selection);
+	}
 
 	public DefaultFilterQuery(ISelection<T> selection, IFilter<T> filter) {
 		super(selection, filter);

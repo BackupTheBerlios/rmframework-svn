@@ -19,27 +19,27 @@ import org.apache.log4j.Logger;
  * @author hk
  */
 public class CommandHandler<T> extends AbstractCommandHandler<T> {
-	
-	public static Logger logger = Logger.getLogger(CommandHandler.class);
 
-	@Override
-	public void execute(List<ICommand> commands) {
-		
-		try {
+    public static Logger logger = Logger.getLogger(CommandHandler.class);
 
-			for (ICommand command : commands) {
-				logger.info("Executing command: "+command.getId());
-				command.execute();
-			}
-			getResult().setStatus(Status.SUCCESS);
-		} catch (Exception ex) {
-			BaseI18NMessage message = new BaseI18NMessage();
-			RMException rmEx = new RMException(message, "exception.command.default", new String[]{}, ex);
-			getResult().setStatus(Status.FAIL);
-			getResult().setException(rmEx);
-			throw rmEx;
-		}
-		
-	}
+    @Override
+    public void execute(List<ICommand> commands) {
+
+        try {
+
+            for (ICommand command : commands) {
+                logger.info("Executing command: " + command.getId());
+                command.execute();
+            }
+            getResult().setStatus(Status.SUCCESS);
+        } catch (Exception ex) {
+            BaseI18NMessage message = new BaseI18NMessage();
+            RMException rmEx = new RMException(message, "exception.command.default", new String[] {}, ex);
+            getResult().setStatus(Status.FAIL);
+            getResult().setException(rmEx);
+            throw rmEx;
+        }
+
+    }
 
 }

@@ -23,5 +23,10 @@ public class SimpleConfiguration implements IConfiguration {
 	public ConfigurationType getType() {
 		return ConfigurationType.SIMPLE;
 	}
+	
+	@Override
+	public String getModelPath() {
+	    return "model/";
+	}
 
 }

@@ -5,39 +5,18 @@
 
 package net.form105.rm.base.model;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
-
 import net.form105.rm.base.model.parameter.AbstractParameter;
 
-
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class ParameterizedElement extends AgentObject implements java.io.Serializable {
     
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long oid;
-    
-    private String elementId;
     private String type;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="parameter_id")
-    @MapKey(name="elementId")
     private Map<String, AbstractParameter> parameterMap = new HashMap<String, AbstractParameter>();
 
     public Map<String, AbstractParameter> getParameterMap() {
@@ -47,27 +26,9 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
     public void setParameterMap(HashMap<String, AbstractParameter> parameterSet) {
         this.parameterMap = parameterSet;
     }
-
-    public long getOid() {
-        return oid;
-    }
-
-    public void setOid(long oid) {
-        this.oid = oid;
-    }
     
     public void addParameter(AbstractParameter parameter) {
         parameterMap.put(parameter.getElementId(), parameter);
-    }
-    
-    @Override
-    public String getElementId() {
-        return elementId;
-    }
-    
-    @Override
-    public void setElementId(String elementId) {
-        this.elementId = elementId;
     }
 
     public String getType() {
@@ -76,6 +37,10 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
 
     public void setType(String type) {
         this.type = type;
+    }
+    
+    public Collection<AbstractParameter> getParameters() {
+        return parameterMap.values();
     }
     
 }

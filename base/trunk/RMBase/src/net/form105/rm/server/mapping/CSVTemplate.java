@@ -4,11 +4,11 @@ import java.util.List;
 
 import net.form105.rm.base.Container;
 import net.form105.rm.base.ContainerConfiguration;
-import net.form105.rm.base.helper.FileHelper;
 import net.form105.rm.base.helper.UniqueIdHelper;
 import net.form105.rm.base.mapping.IField;
 import net.form105.rm.base.model.ParameterizedElement;
 import net.form105.rm.base.model.Resource;
+import net.form105.rm.base.util.helper.FileHelper;
 import net.form105.rm.base.util.xml.XMLLoader;
 
 import org.dom4j.Document;

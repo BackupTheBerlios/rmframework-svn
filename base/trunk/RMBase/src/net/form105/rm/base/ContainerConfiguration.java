@@ -55,6 +55,10 @@ public class ContainerConfiguration {
 	    return configuration.getImportPath();
 	}
 	
+	public String getModelDirectory() {
+	    return configuration.getModelPath();
+	}
+	
 	
 	
 	

@@ -7,10 +7,12 @@
 
 package net.form105.rm.base.container;
 
+import net.form105.rm.base.command.CommandHandler;
 import net.form105.rm.base.dao.resource.ResourceDb4oDao;
 import net.form105.rm.base.dao.resource.ResourceMapDao;
 import net.form105.rm.base.helper.ExceptionHelper;
 import net.form105.rm.base.model.Resource;
+import net.form105.rm.server.command.LoadXmlModelCommand;
 
 import org.picocontainer.Disposable;
 import org.picocontainer.Startable;
@@ -102,6 +104,7 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao(resourceMapDao, db4oContainer.getDb4oContainer());
 		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceMapDao);
 		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceDbDao);
+		// in dual mode we have to load all core objects to the cached maps
 	}
 
 	/**
@@ -115,6 +118,10 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 	private void provideMemoryMode() {
 		ResourceMapDao resourceMapDao = new ResourceMapDao();
 		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceMapDao);
+		// in memory mode we load all the core objects to the maps 
+		LoadXmlModelCommand loadCommand = new LoadXmlModelCommand();
+		CommandHandler cHandler = new CommandHandler();
+		cHandler.execute(loadCommand);
 	}
 
 }

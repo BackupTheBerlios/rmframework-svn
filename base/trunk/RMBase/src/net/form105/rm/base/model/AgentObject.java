@@ -9,17 +9,19 @@ public class AgentObject implements Serializable {
     private String elementId;
 
     public String getName () {
-        return null;
+        return name;
     }
 
     public void setName (String name) {
+        this.name = name;
     }
 
     public String getElementId () {
-        return null;
+        return elementId;
     }
 
     public void setElementId (String elementId) {
+        this.elementId = elementId;
     }
 
 }

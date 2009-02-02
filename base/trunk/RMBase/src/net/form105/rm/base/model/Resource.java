@@ -5,23 +5,25 @@
 
 package net.form105.rm.base.model;
 
-import javax.persistence.Entity;
-
-import net.form105.rm.base.helper.UniqueIdHelper;
 import net.form105.rm.base.model.parameter.AbstractParameter;
+import net.form105.rm.base.model.parameter.BooleanParameter;
+import net.form105.rm.base.model.parameter.FloatParameter;
+import net.form105.rm.base.model.parameter.IntParameter;
 import net.form105.rm.base.model.parameter.StringParameter;
 import net.form105.xml.schema.model.ResourceDocument;
 import net.form105.xml.schema.model.ParameterDocument.Parameter;
 
+import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlObject;
 
-@Entity
+
 public class Resource extends ParameterizedElement implements IXmlObjectLoadable<Resource> {
+    
+    public static Logger logger = Logger.getLogger(Resource.class);
 
     private static final long serialVersionUID = 1L;
 
     public Resource() {
-        setOid(UniqueIdHelper.getId());
     }
 
     /**
@@ -34,32 +36,31 @@ public class Resource extends ParameterizedElement implements IXmlObjectLoadable
      * @return
      */
     public Resource loadFromXml(XmlObject xmlObject) {
-        ResourceDocument document = (ResourceDocument) xmlObject;
-        String id = document.getResource().getId();
-        String name = document.getResource().getName();
-        Parameter[] xmlParameters = document.getResource().getParameterArray();
+        ResourceDocument.Resource xmlResource = (ResourceDocument.Resource) xmlObject;
+
+        setElementId(xmlResource.getId());
+        setName(xmlResource.getName());
+        Parameter[] xmlParameters = xmlResource.getParameterArray();
         for (Parameter xmlParameter : xmlParameters) {
-
             AbstractParameter<?> parameter = null;
-
             switch (xmlParameter.getType().intValue()) {
             case 1:
                 parameter = new StringParameter();
-
-                if (parameter != null) {
-                    parameter.loadFromXml(xmlParameter);
-                    this.addParameter(parameter);
-                }
+            case 2:
+                parameter = new IntParameter();
+            case 3:
+                parameter = new FloatParameter();
+            case 4:
+                parameter = new BooleanParameter();
+            }
+            
+            if (parameter != null) {
+                parameter.loadFromXml(xmlParameter);
+                this.addParameter(parameter);
             }
         }
 
         return this;
-    }
-
-    private void delegateXmlObject(XmlObject[] objects) {
-        for (XmlObject object : objects) {
-
-        }
     }
 
 }

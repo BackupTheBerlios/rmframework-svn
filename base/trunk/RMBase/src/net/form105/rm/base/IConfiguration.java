@@ -10,7 +10,17 @@ public interface IConfiguration {
 	 */
 	public abstract String getConfigurationPath();
 	
+	/**
+	 * The path where the import folder resides
+	 * @return The import folder
+	 */
 	public abstract String getImportPath();
+	
+	/**
+	 * The path where the server models reside.
+	 * @return The model folder
+	 */
+	public abstract String getModelPath();
 	
 	/**
 	 * The name of the file where the containers are defined in. From this file the pico containers

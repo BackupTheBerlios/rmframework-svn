@@ -4,36 +4,35 @@
     <Parameter Id="i18nKey" Name="International Name" Type="String" Value="resource.bcr.name"/>
     <Parameter Id="serial" Name="Serial Number" Type="Integer" Value="34453334534" />
     <Parameter Id="price" Name="Price" Type="Float" Value="1.23" />
-    <Parameter Id="active" Name="Activation Status" Type="Boolean" Value="false" />
+    <Parameter Id="active" Name="Activation Status" Value="false" />
   </Resource>
   
   <Resource Id="bcr02" Name="Barcodereader 02" Type="Barcodereader" >
     <Parameter Id="i18nKey" Name="International Name" Type="String" Value="resource.bcr.name"/>
     <Parameter Id="serial" Name="Serial Number" Type="Integer" Value="34453334535" />
     <Parameter Id="price" Name="Price" Type="Float" Value="1.23" />
-    <Parameter Id="active" Name="Activation Status" Type="Boolean" Value="false" />
+    <Parameter Id="active" Name="Activation Status" Value="false" />
   </Resource>
   
   <Resource Id="bcr03" Name="Barcodereader 03" Type="Barcodereader" >
     <Parameter Id="i18nKey" Name="International Name" Type="String" Value="resource.bcr.name"/>
     <Parameter Id="serial" Name="Serial Number" Type="Integer" Value="34453334536" />
     <Parameter Id="price" Name="Price" Type="Float" Value="1.23" />
-    <Parameter Id="active" Name="Activation Status" Type="Boolean" Value="false" />
+    <Parameter Id="active" Name="Activation Status" Value="false" />
   </Resource>
   
   <Resource Id="bcr04" Name="Barcodereader 04" Type="Barcodereader" >
     <Parameter Id="i18nKey" Name="International Name" Type="String" Value="resource.bcr.name"/>
     <Parameter Id="serial" Name="Serial Number" Type="Integer" Value="34453334537" />
     <Parameter Id="price" Name="Price" Type="Float" Value="1.23" />
-    <Parameter Id="active" Name="Activation Status" Type="Boolean" Value="false" />
+    <Parameter Id="active" Name="Activation Status" Value="false" />
   </Resource>
   
   <Resource Id="bcr05" Name="Barcodereader 05" Type="Barcodereader" >
     <Parameter Id="i18nKey" Name="International Name" Type="String" Value="resource.bcr.name"/>
     <Parameter Id="serial" Name="Serial Number" Type="Integer" Value="34453334538" />
     <Parameter Id="price" Name="Price" Type="Float" Value="1.23" />
-    <Parameter Id="active" Name="Activation Status" Type="Boolean" Value="false" />
+    <Parameter Id="active" Name="Activation Status" Value="false" />
   </Resource>
   
 </Model>
-

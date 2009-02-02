@@ -6,8 +6,6 @@ package net.form105.rm.base.container;
 
 import java.io.File;
 
-import net.form105.rm.base.auth.AbstractIdentity;
-import net.form105.rm.base.util.xml.XMLModelLoader;
 import net.form105.rm.server.command.LoadXmlModelCommand;
 
 import org.dom4j.Document;
@@ -22,12 +20,14 @@ import org.picocontainer.Startable;
  * @author Heiko Kundlacz
  */
 public class XMLModelLoaderContainer extends AbstractContainer implements Startable {
-    
-    PropertiesContainer propContainer;
+
+    private PropertiesContainer propContainer;
+    private PersistenceModeContainer persistenceModeContainer;
+
     Document document;
 
-    public XMLModelLoaderContainer(PropertiesContainer propContainer) {
-    	super();
+    public XMLModelLoaderContainer(PropertiesContainer propContainer, PersistenceModeContainer persistenceModeContainer) {
+        super();
         this.propContainer = propContainer;
     }
 
@@ -46,21 +46,21 @@ public class XMLModelLoaderContainer extends AbstractContainer implements Starta
             logger.error("Can't parse document: config/"+fileName);
             logger.error(ex, ex);
         }*/
-    	
-    	loadModel();
-        
+
+        loadModel();
+
     }
 
     public void stop() {
-        
+
     }
-    
+
     public Document parse(File file) throws DocumentException {
         SAXReader reader = new SAXReader();
         Document document = reader.read(file);
         return document;
     }
-    
+
     /**
      * Getting the xml document
      * @return The document
@@ -68,7 +68,7 @@ public class XMLModelLoaderContainer extends AbstractContainer implements Starta
     public Document getDocument() {
         return document;
     }
-    
+
     /**
      * Getting the root element of the xml model implementation
      * @return
@@ -76,13 +76,12 @@ public class XMLModelLoaderContainer extends AbstractContainer implements Starta
     public Element getRootElement() {
         return document.getRootElement();
     }
-    
+
     private void loadModel() {
-    	AbstractIdentity identity = new AbstractIdentity(1L, "default") {
-    		
-    	};
-    	LoadXmlModelCommand command = new LoadXmlModelCommand(identity);
-    	command.execute();
+        //AbstractIdentity identity = new AbstractIdentity(1L, "default") {
+        //};
+        LoadXmlModelCommand command = new LoadXmlModelCommand();
+        command.execute();
     }
-    
+
 }

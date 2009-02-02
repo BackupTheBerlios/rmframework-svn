@@ -11,17 +11,17 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface IResult<T> extends Serializable {
-	
-	public Exception getException();
-	
-	public void setException(Exception ex);
+
+    public Exception getException();
+
+    public void setException(Exception ex);
 
     public Status getStatus();
-    
+
     public void setStatus(Status status);
-    
+
     public List<T> getResultList();
-    
+
     public void setResultList(List<T> resultList);
 
 }
