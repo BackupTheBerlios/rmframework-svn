@@ -7,13 +7,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>The xml helper project to integrate to RMBase and
 		provides xml mapper funktions</description>
-	<url>http://repository.codehaus.org/
-	</url>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>xmlbeans-maven-plugin</artifactId>
+				<version>2.3.2</version>
 				<executions>
 					<execution>
 						<goals>
@@ -21,11 +20,11 @@
 						</goals>
 					</execution>
 				</executions>
-				<inherited>true</inherited>
 				<configuration>
 					<schemaDirectory>src/main/resources/schema</schemaDirectory>
 					<sourceGenerationDirectory>src/main/java</sourceGenerationDirectory>
-					<classGenerationDirectory>${project.build.directory}/generated-classes/xmlbeans</classGenerationDirectory>
+					<classGenerationDirectory>target/generated-classes/xmlbeans
+					</classGenerationDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -36,15 +35,13 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.14</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.xmlbeans</groupId>
 			<artifactId>xmlbeans</artifactId>
-			<version>2.3.0</version>
+			<version>2.4.0</version>
 		</dependency>
-		<dependency>
-			<groupId>xmlbeans</groupId>
-			<artifactId>xmlbeans</artifactId>
-			<version>2.3.0</version>
-		</dependency>
+
+
 	</dependencies>
 </project>

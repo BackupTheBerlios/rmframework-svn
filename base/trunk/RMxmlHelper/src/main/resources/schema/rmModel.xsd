@@ -2,25 +2,28 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.form105.net/schema/model"
 	elementFormDefault="qualified" xmlns="http://xml.form105.net/schema/model">
 
-	<xsd:element name="model">
+	<xsd:element name="Model">
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element name="Resource" minOccurs="1" maxOccurs="unbounded">
-					<xsd:complexType>
-						<xsd:sequence>
-							<xsd:element ref="Parameter" minOccurs="0" maxOccurs="unbounded"></xsd:element>
-						</xsd:sequence>
-						<xsd:attributeGroup ref="defaultModelAttributes"></xsd:attributeGroup>
-					</xsd:complexType>
-				</xsd:element>
+				<xsd:element ref="Resource" minOccurs="1" maxOccurs="unbounded" />
 			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="Resource">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="Parameter" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+			</xsd:sequence>
+			<xsd:attributeGroup ref="defaultModelAttributes"></xsd:attributeGroup>
+			<xsd:attribute name="Type" type="xsd:string" use="required" />
 		</xsd:complexType>
 	</xsd:element>
 
 	<xsd:element name="Parameter">
 		<xsd:complexType>
 			<xsd:attributeGroup ref="defaultModelAttributes" />
-			<xsd:attribute name="type">
+			<xsd:attribute name="Type">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">
 						<xsd:enumeration value="String" />
@@ -35,8 +38,8 @@
 	</xsd:element>
 
 	<xsd:attributeGroup name="defaultModelAttributes">
-		<xsd:attribute name="id" type="xsd:string" />
-		<xsd:attribute name="name" type="xsd:string" />
+		<xsd:attribute name="Id" type="xsd:string" use="required" />
+		<xsd:attribute name="Name" type="xsd:string" use="required" />
 	</xsd:attributeGroup>
 
 
