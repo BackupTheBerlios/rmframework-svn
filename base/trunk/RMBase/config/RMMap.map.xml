@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map project-version="2.0">
+	<property name="defaultPackage" value="net.form105.rm.cayenne.model"/>
+	<db-entity name="Resource">
+		<db-attribute name="ID" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="100"/>
+		<db-attribute name="NAME" type="VARCHAR" length="200"/>
+		<db-attribute name="TYPE" type="VARCHAR" length="100"/>
+	</db-entity>
+	<obj-entity name="Resource" className="net.form105.rm.cayenne.model.Resource" dbEntityName="Resource">
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+		<obj-attribute name="type" type="java.lang.String" db-attribute-path="TYPE"/>
+	</obj-entity>
+</data-map>
