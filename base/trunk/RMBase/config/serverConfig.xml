@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rm:serverConfig xmlns:rm="http://xml.form105.net/schema/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.form105.net/schema/model ../src/main/resources/schema/serverConfig.xsd ">
-  <rm:inbound>
-    <rm:id>plc01</rm:id>
-    <rm:alias>input_server_plc_01</rm:alias>
-    <rm:host>192.168.1.30</rm:host>
-    <rm:port>50005</rm:port>
-    <rm:type>inbound</rm:type>
-    <rm:sizePendingQueue>2</rm:sizePendingQueue>
+
+<connectionPool xmlns="http://xml.form105.net/schema/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.form105.net/schema/model ../../RMxmlHelper/src/main/resources/schema/serverConfig.xsd ">
+
+  <inbound>
+    <id>plc01</id>
+    <alias>input_server_plc_01</alias>
+    <host>192.168.1.30</host>
+    <port>50005</port>
+    <type>inbound</type>
+    <sizePendingQueue>2</sizePendingQueue>
     <!-- this is the key used for pico container -->
-    <rm:validatorKey>kaiserValidator</rm:validatorKey>
-    <rm:packetSize>132</rm:packetSize>
-    <rm:contentIdentifier>kaiserContentIdentifier</rm:contentIdentifier>
-  </rm:inbound>
-</rm:serverConfig>
+    <validatorKey>kaiserValidator</validatorKey>
+    <packetSize>132</packetSize>
+    <contentIdentifier>kaiserContentIdentifier</contentIdentifier>
+  </inbound>
+  <outbound>
+  	<id>jdbcFileMaker</id>
+  	<alias>fmJdbc01</alias>
+  	<host>localhost</host>
+  	<port>todo</port>
+  	<type>jdbc</type>
+  	<parameters>
+  		<parameter key="tablespace">myTablespace</parameter>
+  	</parameters>
+  </outbound>
+</connectionPool>

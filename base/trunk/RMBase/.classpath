@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="lib/picocontainer-2.6.jar" sourcepath="/home/heiko/development/libs/pico/picocontainer-2.6-sources.jar"/>
 	<classpathentry kind="lib" path="config"/>
 	<classpathentry kind="lib" path="lib/db4o-7.4.71.12224-java5.jar" sourcepath="/home/heiko/development/db4o-7.4/src/db4ojdk5/core/src"/>
+	<classpathentry kind="lib" path="lib/sljc.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
