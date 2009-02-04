@@ -16,7 +16,7 @@
 				<xsd:element ref="Parameter" minOccurs="0" maxOccurs="unbounded"></xsd:element>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="defaultModelAttributes"></xsd:attributeGroup>
-			<xsd:attribute name="Type" type="xsd:string" use="required" />
+			<xsd:attribute name="Type" type="xsd:string"  use="required" />
 		</xsd:complexType>
 	</xsd:element>
 
