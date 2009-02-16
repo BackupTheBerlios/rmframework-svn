@@ -80,5 +80,4 @@ public class ResourceDb4oDao extends AbstractAgentObjectDao<Resource> {
 		});
 		return results.get(0);
 	}
-
 }

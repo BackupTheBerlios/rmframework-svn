@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<domains project-version="3.0">
+<domain name="RMDomain">
+	<map name="RMDomainMap" location="RMDomainMap.map.xml"/>
+
+	<node name="RMDomainNode"
+		 datasource="RMDomainNode.driver.xml"
+		 factory="org.apache.cayenne.conf.DriverDataSourceFactory">
+			<map-ref name="RMDomainMap"/>
+	 </node>
+</domain>
+</domains>

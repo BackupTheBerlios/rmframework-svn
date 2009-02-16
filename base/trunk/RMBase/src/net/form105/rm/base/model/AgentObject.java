@@ -2,7 +2,11 @@ package net.form105.rm.base.model;
 
 import java.io.Serializable; 
 
+import com.form105.rm.base.db.mapping.MappingTable;
+
 public class AgentObject implements Serializable {
+	
+	private Double objectId;
 
     private String name;
 
@@ -22,6 +26,14 @@ public class AgentObject implements Serializable {
 
     public void setElementId (String elementId) {
         this.elementId = elementId;
+    }
+    
+    public void setObjectId(Double objectId) {
+    	this.objectId = objectId;
+    }
+    
+    public Double getObjectId() {
+    	return objectId;
     }
 
 }

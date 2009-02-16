@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<domains project-version="2.0">
+<domains project-version="3.0">
 <domain name="PACE">
-	<map name="PACEMap" location="PACEMap.map.xml"/>
+	<map name="RMMap" location="RMMap.map.xml"/>
 
-	<node name="PACENode"
-		 datasource="PACENode.driver.xml"
+	<node name="RMNode"
+		 datasource="RMNode.driver.xml"
 		 factory="org.apache.cayenne.conf.DriverDataSourceFactory">
-			<map-ref name="PACEMap"/>
+			<map-ref name="RMMap"/>
 	 </node>
 </domain>
 </domains>

@@ -25,6 +25,12 @@ public class Resource extends ParameterizedElement implements IXmlObjectLoadable
 
     public Resource() {
     }
+    
+    public Resource(String elementId, String name, String type) {
+    	setElementId(elementId);
+    	setName(name);
+    	setType(type);
+    }
 
     /**
      * 

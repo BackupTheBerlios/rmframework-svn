@@ -46,10 +46,16 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.4.2</version>
 		</dependency>
-		<dependency>
+		<!--   dependency>
 			<groupId>org.apache.cayenne</groupId>
 			<artifactId>cayenne</artifactId>
 			<version>2.0.4</version>
+		</dependency -->
+		
+		<dependency>
+			<groupId>org.apache.cayenne</groupId>
+			<artifactId>cayenne-server</artifactId>
+			<version>3.0M5</version>
 		</dependency>
 
 		<!--  dependency>

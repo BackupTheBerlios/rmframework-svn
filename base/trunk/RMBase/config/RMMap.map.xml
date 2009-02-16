@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map project-version="3.0">
+	<property name="defaultPackage" value="net.form105.rm.server.model"/>
+	<db-entity name="ParameterElement">
+		<db-attribute name="elementId" type="VARCHAR" length="50"/>
+		<db-attribute name="elementName" type="VARCHAR" length="200"/>
+		<db-attribute name="elementType" type="VARCHAR" length="200"/>
+		<db-attribute name="elementValue" type="VARCHAR" length="50"/>
+		<db-attribute name="objectId" type="DOUBLE" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="parent" type="DOUBLE" length="200"/>
+	</db-entity>
+	<db-entity name="ParameterizedElement">
+		<db-attribute name="objectId" type="DOUBLE" isPrimaryKey="true" isGenerated="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="ResourceElement">
+		<db-attribute name="elementId" type="VARCHAR" length="100"/>
+		<db-attribute name="elementName" type="VARCHAR" length="200"/>
+		<db-attribute name="elementType" type="VARCHAR" length="100"/>
+		<db-attribute name="objectId" type="DOUBLE" isPrimaryKey="true" isGenerated="true" isMandatory="true"/>
+	</db-entity>
+	<obj-entity name="ParameterizedElement" className="net.form105.rm.server.model.ParameterizedElement" dbEntityName="ParameterizedElement">
+	</obj-entity>
+	<obj-entity name="ResourceElement" className="net.form105.rm.server.model.ResourceElement" dbEntityName="ResourceElement">
+		<obj-attribute name="elementName" type="java.lang.String" db-attribute-path="elementName"/>
+		<obj-attribute name="elementType" type="java.lang.String" db-attribute-path="elementType"/>
+	</obj-entity>
+	<db-relationship name="untitledRel" source="ParameterElement" target="ResourceElement" toMany="false">
+		<db-attribute-pair source="parent" target="elementId"/>
+	</db-relationship>
+	<db-relationship name="parameters" source="ResourceElement" target="ParameterElement" toMany="true">
+		<db-attribute-pair source="elementId" target="parent"/>
+	</db-relationship>
+</data-map>
