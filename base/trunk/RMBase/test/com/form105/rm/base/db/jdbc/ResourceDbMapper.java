@@ -15,13 +15,7 @@
  */
 package com.form105.rm.base.db.jdbc;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.form105.rm.base.db.mapping.AbstractDBEntity;
-import com.form105.rm.base.db.mapping.DBColumn;
-import com.form105.rm.base.db.mapping.DBTable;
 import com.form105.rm.base.db.mapping.MappingColumn;
 import com.form105.rm.base.db.mapping.MappingTable;
 
@@ -37,9 +31,30 @@ public class ResourceDbMapper extends AbstractDBEntity {
 	@MappingColumn(fieldName="elementType", fieldType="VARCHAR")
 	private String elementType;
 	
-	
-	
-	
+	public String getElementId() {
+		return elementId;
+	}
+
+	public void setElementId(String elementId) {
+		this.elementId = elementId;
+	}
+
+	public String getElementName() {
+		return elementName;
+	}
+
+	public void setElementName(String elementName) {
+		this.elementName = elementName;
+	}
+
+	public String getElementType() {
+		return elementType;
+	}
+
+	public void setElementType(String elementType) {
+		this.elementType = elementType;
+	}
+
 	
 	
 }

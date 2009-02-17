@@ -19,15 +19,20 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.form105.rm.base.db.mapping.converter.IResultSetConverter;
+import com.form105.rm.base.db.mapping.converter.ResultSetConverterFactory;
+
 public abstract class AbstractDBEntity {
 	
+	private List<DBColumn> colList;
+	
 	public List<DBColumn> getColumns() {
-		List<DBColumn> colList = new ArrayList<DBColumn>();
+		colList = new ArrayList<DBColumn>();
 		Field[] fields = this.getClass().getFields();
 		for (Field field : fields) {
 			MappingColumn mCol = field.getAnnotation(MappingColumn.class);
 			if (mCol != null) {
-				DBColumn col = new DBColumn(getTable(), mCol.fieldName());
+				DBColumn col = new DBColumn(getTable(), mCol.fieldName(), field.getName());
 				colList.add(col);
 			}
 		}
@@ -43,5 +48,21 @@ public abstract class AbstractDBEntity {
 	public boolean isValid() {
 		return true;
 	}
+	
+	protected IResultSetConverter<?> getConverter(String fieldType) {
+		DBFieldType type = DBFieldType.valueOf(fieldType);
+		return ResultSetConverterFactory.getConverter(type);
+	}
 
+	public void getQuery() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("select ");
+		for (DBColumn col : colList) {
+			sb.append(col.getColumnName());
+			sb.append(',');
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		sb.append(" from ");
+		sb.append(getTable().getTableName());
+	}
 }

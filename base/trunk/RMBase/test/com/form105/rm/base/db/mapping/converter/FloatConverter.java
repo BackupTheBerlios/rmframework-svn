@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, form105 Heiko Kundlacz
+ * Copyright (c) 2009, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,10 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.mapping.type;
+package com.form105.rm.base.db.mapping.converter;
 
-public class VarCharType {
-	
-	
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+/**
+ * Converts a field of a {@link ResultSet} which is a float to a {@link BigDecimal}
+ * @author heikok
+ */
+public class FloatConverter implements IResultSetConverter<BigDecimal>{
+
+	@Override
+	public BigDecimal convert(ResultSet rs, String columnName) throws SQLException {
+		BigDecimal decimal = rs.getBigDecimal(columnName);
+		return decimal;
+	}
 }

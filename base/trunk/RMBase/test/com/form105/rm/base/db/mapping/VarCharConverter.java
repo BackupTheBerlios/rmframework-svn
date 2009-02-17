@@ -15,12 +15,10 @@
  */
 package com.form105.rm.base.db.mapping;
 
-public class DBTypeFactory {
+import java.sql.ResultSet;
+
+public class VarCharConverter {
 	
-	public DBTypeFactory() {
-		
-	}
-	
-	
+
 
 }
