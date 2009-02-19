@@ -13,14 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.jdbc;
+package net.form105.rm.base.db;
 
-import com.form105.rm.base.db.mapping.AbstractDBEntity;
-import com.form105.rm.base.db.mapping.MappingColumn;
-import com.form105.rm.base.db.mapping.MappingTable;
 
 @MappingTable(tableName="resourceElement")
-public class ResourceDbMapper extends AbstractDBEntity {
+public class ResourceDbEntity extends AbstractDBEntity {
 	
 	@MappingColumn(fieldName="elementId", fieldType="VARCHAR")
 	private String elementId;

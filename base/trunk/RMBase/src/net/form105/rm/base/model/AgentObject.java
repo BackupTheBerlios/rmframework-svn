@@ -2,7 +2,8 @@ package net.form105.rm.base.model;
 
 import java.io.Serializable; 
 
-import com.form105.rm.base.db.mapping.MappingTable;
+import net.form105.rm.base.db.MappingTable;
+
 
 public class AgentObject implements Serializable {
 	

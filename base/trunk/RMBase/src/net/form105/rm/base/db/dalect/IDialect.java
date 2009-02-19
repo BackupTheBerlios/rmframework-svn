@@ -13,12 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.mapping;
+package net.form105.rm.base.db.dalect;
 
-import java.sql.ResultSet;
+import net.form105.rm.base.db.AbstractDBEntity;
 
-public class VarCharConverter {
-	
+public interface IDialect {
 
+	/**
+	 * Create the field part of the select statement which is created of the columns
+	 * of the entity object
+	 * @param entity
+	 * @return
+	 */
+	public abstract String getFieldPart(AbstractDBEntity entity);
+
+	public abstract String getTablePart(AbstractDBEntity entity);
+
+	public abstract String getSelectCommand();
+
+	public abstract String getFromCommand();
+
+	public abstract char getBlank();
+
+	public abstract String concatenateSelectStatement(AbstractDBEntity entity);
 
 }

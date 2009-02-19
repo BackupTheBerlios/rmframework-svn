@@ -20,10 +20,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.form105.rm.base.db.AbstractDBEntity;
+
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import com.form105.rm.base.db.mapping.AbstractDBEntity;
 
 public class DBHandler {
 	

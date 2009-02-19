@@ -13,48 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.jdbc;
+package net.form105.rm.base.db.converter;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-import net.form105.rm.base.model.Resource;
+public interface IResultSetConverter<R> {
 
-public class ResourceDBAccess {
+	public R convert(ResultSet rs, String columnName) throws SQLException;
 	
-
-	
-	private enum FieldMapping {
-		NAME("name", "elementName");
-		
-		String attribute;
-		String dbField;
-		
-		FieldMapping(String attribute, String dbField) {
-			this.attribute = attribute;
-			this.dbField = dbField;
-		}
-		
-		public String getAttribute() {
-			return attribute;
-		}
-		
-		public String getDbField() {
-			return dbField;
-		}
-	}
-	
-
-	
-	
-	public void getName() {
-		
-	}
-	
-	public void mapResult(ResultSet rs) {
-	
-	}
-
 }

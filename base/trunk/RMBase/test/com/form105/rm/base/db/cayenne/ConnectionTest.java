@@ -17,6 +17,7 @@ package com.form105.rm.base.db.cayenne;
 
 import java.util.List;
 
+import net.form105.rm.base.db.MappingTable;
 import net.form105.rm.base.model.Resource;
 import net.form105.rm.server.model.ResourceElement;
 
@@ -26,7 +27,6 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.form105.rm.base.db.mapping.MappingTable;
 
 public class ConnectionTest {
 

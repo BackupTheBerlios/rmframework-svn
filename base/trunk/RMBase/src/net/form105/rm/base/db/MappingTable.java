@@ -13,11 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.jdbc;
+package net.form105.rm.base.db;
 
-public class DBTableData {
-	public String tableName;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-	public DBTableData() {
-	}
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MappingTable {
+	
+	public String tableName();
+
 }

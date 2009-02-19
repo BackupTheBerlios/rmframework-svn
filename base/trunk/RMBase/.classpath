@@ -6,25 +6,13 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RMxmlHelper"/>
-	<classpathentry kind="lib" path="lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="lib/asm-attrs.jar"/>
-	<classpathentry kind="lib" path="lib/asm.jar"/>
-	<classpathentry kind="lib" path="lib/c3p0-0.9.1.jar"/>
-	<classpathentry kind="lib" path="lib/cglib-2.1.3.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging-1.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/derbyclient.jar"/>
 	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="lib/ejb3-persistence.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-annotations.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate-commons-annotations.jar"/>
-	<classpathentry kind="lib" path="lib/hibernate3.jar"/>
-	<classpathentry kind="lib" path="lib/jaxen-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/joda-time-1.5.2.jar"/>
-	<classpathentry kind="lib" path="lib/jta.jar"/>
-	<classpathentry kind="lib" path="lib/metadata-extractor-2.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/picocontainer-2.6.jar" sourcepath="/home/heiko/development/libs/pico/picocontainer-2.6-sources.jar"/>
 	<classpathentry kind="lib" path="config"/>
 	<classpathentry kind="lib" path="lib/db4o-7.4.71.12224-java5.jar" sourcepath="/home/heiko/development/db4o-7.4/src/db4ojdk5/core/src"/>
 	<classpathentry kind="lib" path="lib/sljc.jar"/>
+	<classpathentry kind="lib" path="lib/metadata-extractor-2.3.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

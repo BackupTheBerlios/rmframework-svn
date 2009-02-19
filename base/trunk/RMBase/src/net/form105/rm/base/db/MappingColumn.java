@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, form105 Heiko Kundlacz
+ * Copyright (c) 2009, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,10 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.mapping;
+package net.form105.rm.base.db;
 
-public @interface MappingTable {
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MappingColumn {
 	
-	public String tableName();
+	public String fieldName();
+	public String fieldType();
 
 }

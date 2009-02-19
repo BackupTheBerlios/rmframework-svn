@@ -13,35 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.mapping.converter;
+package net.form105.rm.base.db;
 
-import com.form105.rm.base.db.mapping.DBFieldType;
-
-public class ResultSetConverterFactory {
+public class DBTable {
 	
-	private static ResultSetConverterFactory instance;
+	private String tableName;
 	
-	static {
-		instance = new ResultSetConverterFactory();
+	public String getTableName() {
+		return tableName;
 	}
-	
-	
-	public static IResultSetConverter<?> getConverter(DBFieldType type) {
-		
-		switch (type) {
-		case DOUBLE:
-			return new DoubleConverter();
-		case VARCHAR:
-			return new VarCharConverter();
-		case FLOAT:
-			return new FloatConverter();
 
-		default:
-			return null;
-		}
-		
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
 	}
-	
-	
+
+	public DBTable(String tableName) {
+		this.tableName = tableName;
+	}
 
 }

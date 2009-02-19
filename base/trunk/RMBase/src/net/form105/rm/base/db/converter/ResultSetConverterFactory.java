@@ -13,12 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.mapping;
+package net.form105.rm.base.db.converter;
 
-public enum DBFieldType {
+import net.form105.rm.base.db.DBFieldType;
+
+public class ResultSetConverterFactory {
 	
-	VARCHAR,
-	DOUBLE,
-	FLOAT;
+	private static ResultSetConverterFactory instance;
+	
+	static {
+		instance = new ResultSetConverterFactory();
+	}
+	
+	
+	public static IResultSetConverter<?> getConverter(DBFieldType type) {
+		
+		switch (type) {
+		case DOUBLE:
+			return new DoubleConverter();
+		case VARCHAR:
+			return new VarCharConverter();
+		case FLOAT:
+			return new FloatConverter();
+
+		default:
+			return null;
+		}
+		
+	}
+	
+	
 
 }

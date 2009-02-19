@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.mapping;
+package net.form105.rm.base.db;
 
 import java.sql.ResultSet;
 
-import com.form105.rm.base.db.mapping.converter.IResultSetConverter;
+import net.form105.rm.base.db.converter.IResultSetConverter;
+import net.form105.rm.base.db.converter.ResultSetConverterFactory;
+
 
 /**
  * Represents a column of a database. It consists of a name and a table where it is
@@ -30,13 +32,17 @@ public class DBColumn {
 	
 	private String columnName;
 	private DBTable dbTable;
-	private IResultSetConverter<?> converter;
 	private String targetField;
+	private String fieldType;
+	IResultSetConverter<?> converter;
 
-	public DBColumn(DBTable dbTable, String columnName, String fieldName) {
+	public DBColumn(DBTable dbTable, String columnName, String fieldName, String fieldType) {
 		this.dbTable = dbTable;
 		this.columnName = columnName;
 		this.targetField = fieldName;
+		this.fieldType = fieldType;
+		this.converter = ResultSetConverterFactory.getConverter(getFieldType());
+		
 	}
 	
 	public DBTable getDbTable() {
@@ -69,5 +75,9 @@ public class DBColumn {
 
 	public void setColumnName(String columnName) {
 		this.columnName = columnName;
+	}
+	
+	public DBFieldType getFieldType() {
+		return DBFieldType.valueOf(fieldType);
 	}
 }

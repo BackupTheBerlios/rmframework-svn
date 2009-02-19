@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.mapping.converter;
+package net.form105.rm.base.db.converter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

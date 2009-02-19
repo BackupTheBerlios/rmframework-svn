@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.mapping.converter;
+package net.form105.rm.base.db.converter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface IResultSetConverter<R> {
+public class VarCharConverter implements IResultSetConverter<String> {
 
-	public R convert(ResultSet rs, String columnName) throws SQLException;
-	
+	@Override
+	public String convert(ResultSet rs, String columnName) throws SQLException {
+		return rs.getString(columnName);
+	}
 }

@@ -13,22 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.db.mapping;
+package net.form105.rm.base.db;
 
-public class DBTable {
+public enum DBFieldType {
 	
-	private String tableName;
-	
-	public String getTableName() {
-		return tableName;
-	}
-
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
-	}
-
-	public DBTable(String tableName) {
-		this.tableName = tableName;
-	}
+	VARCHAR,
+	DOUBLE,
+	FLOAT;
 
 }
