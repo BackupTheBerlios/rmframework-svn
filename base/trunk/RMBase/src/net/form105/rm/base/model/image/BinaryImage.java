@@ -6,13 +6,12 @@
 package net.form105.rm.base.model.image;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
-import org.hibernate.annotations.Type;
 
 @Entity
 public class BinaryImage extends ImageData implements Serializable {
     
-    @Type(type="org.hibernate.type.BinaryType")
     private byte imageAsByte[];
 
     public byte[] getImageAsByte() {
