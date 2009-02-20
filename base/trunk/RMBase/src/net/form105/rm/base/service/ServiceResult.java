@@ -15,7 +15,7 @@ public class ServiceResult<T> extends AbstractResult<T> {
 	private List<T> resultList = new ArrayList<T>();
     
     public ServiceResult() {
-        setStatus(Status.UNDEFINED);
+        setStatus(ResultStatus.UNDEFINED);
     }
 
     public List<T> getResultList() {

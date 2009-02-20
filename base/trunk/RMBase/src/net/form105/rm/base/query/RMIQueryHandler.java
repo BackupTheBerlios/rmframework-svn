@@ -7,7 +7,11 @@ import java.util.Collection;
 
 import net.form105.rm.base.service.IResult;
 
+import org.apache.log4j.Logger;
+
 public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHandler<T> {
+	
+	public static Logger logger = Logger.getLogger(RMIQueryHandler.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,6 +29,7 @@ public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHan
 			Collection<T> queryResult = query.execute();
 			result.setResultList(new ArrayList<T>(queryResult));
 		} catch (Exception ex) {
+			logger.error(ex, ex);
 			result.setException(ex);
 		}
 

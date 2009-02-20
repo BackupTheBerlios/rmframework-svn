@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import net.form105.rm.base.container.UserManagementContainer;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.rm.server.service.CreateUserService;
 
 import org.apache.log4j.Logger;
@@ -27,7 +27,7 @@ public class CreateBulkUsersTest extends AbstractRemoteTest<User> {
 		CreateUserService.ServiceArgument arg = service.getArgument();
 		arg.user = user;
 		IResult<User> result = doService(service);
-		assertTrue(result.getStatus() == Status.SUCCESS);
+		assertTrue(result.getStatus() == ResultStatus.SUCCESS);
 	}
 
 	@Test

@@ -43,4 +43,8 @@ public abstract class ParameterizedElement extends AgentObject implements java.i
         return parameterMap.values();
     }
     
+    public AbstractParameter getParameterById(String id) {
+    	return parameterMap.get(id);
+    }
+    
 }

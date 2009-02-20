@@ -22,6 +22,9 @@ import net.form105.rm.base.db.MappingTable;
 @MappingTable(tableName="Orders")
 public class PaceOrderDbEntity extends AbstractDBEntity {
 	
+	@MappingColumn(fieldName="Order #", fieldType="VARCHAR")
+	private String orderId;
+	
 	@MappingColumn(fieldName="Customer #",fieldType="VARCHAR")
 	private String customerId;
 	
@@ -29,7 +32,7 @@ public class PaceOrderDbEntity extends AbstractDBEntity {
 	private Double gQuantity;
 	
 	@MappingColumn(fieldName="Customer Name",fieldType="VARCHAR")
-	private Double customerName;
+	private String customerName;
 
 	public String getCustomerId() {
 		return customerId;
@@ -47,12 +50,20 @@ public class PaceOrderDbEntity extends AbstractDBEntity {
 		gQuantity = quantity;
 	}
 
-	public Double getCustomerName() {
+	public String getCustomerName() {
 		return customerName;
 	}
 
-	public void setCustomerName(Double customerName) {
+	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
 }

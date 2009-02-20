@@ -5,7 +5,7 @@
 
 package net.form105.rm.base.service;
 
-public enum Status {
+public enum ResultStatus {
         SUCCESS,
         FAIL,
         UNDEFINED;

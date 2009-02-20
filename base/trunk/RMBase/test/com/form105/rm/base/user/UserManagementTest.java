@@ -9,7 +9,7 @@ import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.DefaultFilterQuery;
 import net.form105.rm.base.query.FindAllDaoQuery;
 import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.rm.server.filter.other.UserAuthorizationFilter;
 import net.form105.rm.server.selection.UserSelection;
 import net.form105.rm.server.service.CreateUserService;
@@ -50,10 +50,10 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 		user.setPassword("12345");
 		arg.user = user;
 		IResult<User> result = doService(service);
-		assertTrue(result.getStatus() == Status.SUCCESS);
+		assertTrue(result.getStatus() == ResultStatus.SUCCESS);
 		result = doService(service);
 		logger.info("Test: Adding user with id = 9999 again with failed result");
-		assertTrue(result.getStatus() == Status.FAIL);
+		assertTrue(result.getStatus() == ResultStatus.FAIL);
 	}
 
 
@@ -100,11 +100,11 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 		DeleteUserService.ServiceArgument arg = service.getArgument();
 		arg.id = 9999L;
 		IResult<User> result = doService(service);
-		assertTrue(result.getStatus() == Status.SUCCESS);
+		assertTrue(result.getStatus() == ResultStatus.SUCCESS);
 		
 		logger.info("Test: Deleting user with id = 9999 again with failed result");
 		result = doService(service);
-		assertTrue(result.getStatus() == Status.FAIL);
+		assertTrue(result.getStatus() == ResultStatus.FAIL);
 		logger.info(result.getException());
 	}
 	

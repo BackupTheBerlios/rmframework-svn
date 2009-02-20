@@ -7,49 +7,50 @@ package net.form105.rm.base.model.parameter;
 
 import javax.persistence.Entity;
 
+import net.form105.rm.base.model.IXmlObjectLoadable;
 import net.form105.xml.schema.model.ParameterDocument.Parameter;
 
 import org.apache.xmlbeans.XmlObject;
 
 /**
- *
+ * A parameter represents a double value
  * @author hk
  */
 
 @Entity
-public class StringParameter extends AbstractParameter<String> {
+public class DoubleParameter extends AbstractParameter<Double> implements IXmlObjectLoadable<IParameter> {
 
     private static final long serialVersionUID = 1L;
 
-    private String parameterValue;
+    private Double parameterValue;
     
-    public StringParameter() {};
-    
-    public StringParameter(String id, String name, String value) {
+    public DoubleParameter(String id, String name, Double value) {
     	setElementId(id);
     	setName(name);
     	setParameterValue(value);
     }
 
-    public String getParameterValue() {
+    public Double getParameterValue() {
         return parameterValue;
     }
 
     @Override
-    public void setParameterValue(String value) {
+    public void setParameterValue(Double value) {
         this.parameterValue = value;
     }
 
     @Override
     public String getValueAsString() {
-        return parameterValue;
+        return parameterValue.toString();
     }
 
+    @Override
     public IParameter loadFromXml(XmlObject xmlObject) {
         Parameter parameter = (Parameter) xmlObject;
         this.setElementId(parameter.getId());
         this.setName(parameter.getName());
-        this.setParameterValue(parameter.getValue());
+        Double doubleValue = new Double(parameter.getValue());
+        this.setParameterValue(doubleValue);
         return this;
     }
 

@@ -16,9 +16,9 @@ public interface IResult<T> extends Serializable {
 
     public void setException(Exception ex);
 
-    public Status getStatus();
+    public ResultStatus getStatus();
 
-    public void setStatus(Status status);
+    public void setStatus(ResultStatus status);
 
     public List<T> getResultList();
 

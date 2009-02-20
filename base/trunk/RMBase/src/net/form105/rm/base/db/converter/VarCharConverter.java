@@ -19,9 +19,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class VarCharConverter implements IResultSetConverter<String> {
+	
+	public final String EMPTY_STRING = "";
 
 	@Override
 	public String convert(ResultSet rs, String columnName) throws SQLException {
-		return rs.getString(columnName);
+		String result = rs.getString(columnName);
+		if (result == null) return EMPTY_STRING;
+		return result;
 	}
 }

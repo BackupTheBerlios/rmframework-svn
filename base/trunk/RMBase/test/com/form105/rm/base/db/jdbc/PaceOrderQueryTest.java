@@ -13,30 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.form105.rm.base.importToModel;
+package com.form105.rm.base.db.jdbc;
 
-import net.form105.rm.base.model.Resource;
+
+import net.form105.rm.base.model.Order;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
-import net.form105.rm.server.service.LoadXmlModelService;
+import net.form105.rm.server.query.db.PaceOrderQuery;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import com.form105.rm.base.query.AbstractRemoteTest;
 
-
-public class ImportXmlModelTest extends AbstractRemoteTest<Resource>{
-    
-    @Test
-    public void importModel() {
-        LoadXmlModelService service = new LoadXmlModelService();
-        LoadXmlModelService.ServiceArgument argument = service.getArgument();
-        argument.filename = "testModel.xml";
-        
-        IResult<Resource> result = doService(service);
-        if (ResultStatus.FAIL == result.getStatus()) {
-            logger.error("Service terminated unsuccessful");
-        }
-    }
+public class PaceOrderQueryTest extends AbstractRemoteTest<Order> {
+	
+	public static Logger logger = Logger.getLogger(PaceOrderQueryTest.class);
+	
+	@Test
+	public void executeTest() {
+		PaceOrderQuery query = new PaceOrderQuery();
+		IResult<Order> result = doQuery(query);
+		if (result.getStatus() == ResultStatus.FAIL) {
+			logger.error(result.getException(), result.getException());
+		}
+		logger.info(result.getResultList().size());
+	}
 
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.service.AbstractResult;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 
 
 public class CommandResult<T> extends AbstractResult<T> {
@@ -18,7 +18,7 @@ public class CommandResult<T> extends AbstractResult<T> {
 	private List<T> resultList = new ArrayList<T>();
     
     public CommandResult() {
-        setStatus(Status.UNDEFINED);
+        setStatus(ResultStatus.UNDEFINED);
     }
 
     public List<T> getResultList() {

@@ -15,4 +15,10 @@
 	<entry key="server.import.folder">/tmp/import</entry>
 
 	<entry key="server.communication">on</entry>
+	
+	<!-- jdbc connection / c3p0 -->
+	<entry key="connection.jdbcDriver">com.ddtek.jdbc.sequelink.SequeLinkDriver</entry>
+	<entry key="connection.jdbcUrl">jdbc:sequelink://localhost:2399</entry>
+	<entry key="connection.user">Admin</entry>
+	<entry key="connection.password">Avalon</entry>
 </properties>

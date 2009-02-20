@@ -21,57 +21,78 @@ import net.form105.rm.base.db.DBColumn;
 import org.apache.log4j.Logger;
 
 public class UniversalDialect implements IDialect {
-	
+
 	public static Logger logger = Logger.getLogger(UniversalDialect.class);
-	
+
 	private final char BLANK_STRING = ' ';
 	private final String FROM_STRING = "FROM";
 	private final String SELECT_STRING = "SELECT";
-	
-	/* (non-Javadoc)
-	 * @see net.form105.rm.base.db.dalect.IDialect#getFieldPart(net.form105.rm.base.db.AbstractDBEntity)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.form105.rm.base.db.dalect.IDialect#getFieldPart(net.form105.rm.base
+	 * .db.AbstractDBEntity)
 	 */
 	public String getFieldPart(AbstractDBEntity entity) {
 		StringBuilder sb = new StringBuilder();
 		for (DBColumn column : entity.getColumns()) {
-				sb.append(column.getColumnName());
-				sb.append(',');
-				sb.append(' ');
-			sb.deleteCharAt(sb.length() - 1);
+			sb.append("\"");
+			sb.append(column.getColumnName());
+			sb.append("\"");
+			sb.append(',');
+
+			
 		}
+		sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();
 	}
-	
-	/* (non-Javadoc)
-	 * @see net.form105.rm.base.db.dalect.IDialect#getTablePart(net.form105.rm.base.db.AbstractDBEntity)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.form105.rm.base.db.dalect.IDialect#getTablePart(net.form105.rm.base
+	 * .db.AbstractDBEntity)
 	 */
 	public String getTablePart(AbstractDBEntity entity) {
 		return entity.getTable().getTableName();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.form105.rm.base.db.dalect.IDialect#getSelectCommand()
 	 */
 	public String getSelectCommand() {
 		return SELECT_STRING;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.form105.rm.base.db.dalect.IDialect#getFromCommand()
 	 */
 	public String getFromCommand() {
 		return FROM_STRING;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see net.form105.rm.base.db.dalect.IDialect#getBlank()
 	 */
 	public char getBlank() {
 		return BLANK_STRING;
 	}
-	
-	/* (non-Javadoc)
-	 * @see net.form105.rm.base.db.dalect.IDialect#concatenateSelectStatement(net.form105.rm.base.db.AbstractDBEntity)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * net.form105.rm.base.db.dalect.IDialect#concatenateSelectStatement(net
+	 * .form105.rm.base.db.AbstractDBEntity)
 	 */
 	public String concatenateSelectStatement(AbstractDBEntity entity) {
 		StringBuilder sb = new StringBuilder();
@@ -81,7 +102,7 @@ public class UniversalDialect implements IDialect {
 		sb.append(getFromCommand());
 		sb.append(getBlank());
 		sb.append(getTablePart(entity));
-		logger.debug("Select statement is: "+sb.toString());
+		logger.debug("Select statement is: " + sb.toString());
 		return sb.toString();
 	}
 

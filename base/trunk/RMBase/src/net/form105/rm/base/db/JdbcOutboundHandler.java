@@ -41,15 +41,19 @@ public class JdbcOutboundHandler {
 		ResultSet rs = stmt.executeQuery();
 		
 		List<AbstractDBEntity> resultList = new ArrayList<AbstractDBEntity>();
-		
 		while (rs.next()) {
 			AbstractDBEntity newEntity = entity.getNewInstance();
 			for (DBColumn col : entity.getColumns()) {
+
 				Object o = col.getConverter().convert(rs, col.getColumnName());
+				//logger.debug("Object by rs: "+o+" columnType: "+col.getFieldType()+" colConverter: "+col.getConverter());
 				try {
-					Method method = newEntity.getClass().getDeclaredMethod("set"+col.getTargetField(), o.getClass());
+					String targetField = col.getTargetField();
+					targetField = Character.toUpperCase(targetField.charAt(0)) + targetField.substring(1);
+					
+					Method method = newEntity.getClass().getDeclaredMethod("set"+targetField, o.getClass());
 					method.invoke(newEntity, o);
-					resultList.add(newEntity);
+					
 				} catch (SecurityException e) {
 					logger.error(e,e);
 				} catch (NoSuchMethodException nsme) {
@@ -62,8 +66,8 @@ public class JdbcOutboundHandler {
 					logger.error(itex, itex);
 				}
 			}
+			resultList.add(newEntity);
 		}
 		return resultList;
 	}
-
 }

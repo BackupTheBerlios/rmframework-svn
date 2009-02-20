@@ -34,7 +34,6 @@ public abstract class AbstractDBEntity {
 	public IDialect dialect;
 	
 	public AbstractDBEntity() {
-		logger.info("instantiate Abstract class");
 		colList = getColumns();
 		outboundHandler = new JdbcOutboundHandler();
 		dialect = new UniversalDialect();

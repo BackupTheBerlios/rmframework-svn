@@ -9,7 +9,7 @@ package net.form105.rm.base.command;
 import java.util.List;
 
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.rm.server.i18n.BaseI18NMessage;
 
 import org.apache.log4j.Logger;
@@ -31,11 +31,11 @@ public class CommandHandler<T> extends AbstractCommandHandler<T> {
                 logger.info("Executing command: " + command.getId());
                 command.execute();
             }
-            getResult().setStatus(Status.SUCCESS);
+            getResult().setStatus(ResultStatus.SUCCESS);
         } catch (Exception ex) {
             BaseI18NMessage message = new BaseI18NMessage();
             RMException rmEx = new RMException(message, "exception.command.default", new String[] {}, ex);
-            getResult().setStatus(Status.FAIL);
+            getResult().setStatus(ResultStatus.FAIL);
             getResult().setException(rmEx);
             throw rmEx;
         }

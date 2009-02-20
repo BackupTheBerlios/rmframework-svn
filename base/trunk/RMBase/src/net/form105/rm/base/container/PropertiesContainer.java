@@ -85,7 +85,7 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
         
         Object value = properties.get(key);
         if (value == null) {
-            throw new PropertyNotFoundException(new BaseI18NMessage(), "property.notFound", new String[] {key});
+            throw new PropertyNotFoundException(new BaseI18NMessage(), "exception.property.notFound", new String[] {key});
         }
         return (String) properties.get(key);
     }

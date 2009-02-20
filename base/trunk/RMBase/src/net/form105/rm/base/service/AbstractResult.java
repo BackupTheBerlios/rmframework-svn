@@ -16,7 +16,7 @@ import java.util.List;
 public abstract class AbstractResult<T> implements IResult<T> {
     
 	private static final long serialVersionUID = 1L;
-	private Status status;
+	private ResultStatus status;
     private List<T> resultList;
     private Exception exception;
 
@@ -24,7 +24,7 @@ public abstract class AbstractResult<T> implements IResult<T> {
      * Get the status of the result
      * @return Current status
      */
-    public Status getStatus() {
+    public ResultStatus getStatus() {
         return status;
     }
     
@@ -32,7 +32,7 @@ public abstract class AbstractResult<T> implements IResult<T> {
      * Set the status of the result
      * @param status Status of the result to set
      */
-    public void setStatus(Status status) {
+    public void setStatus(ResultStatus status) {
         this.status = status;
     }
     

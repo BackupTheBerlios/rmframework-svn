@@ -12,7 +12,7 @@ import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.IService;
 import net.form105.rm.base.service.IServiceHandler;
 import net.form105.rm.base.service.ServiceResult;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
@@ -50,7 +50,7 @@ public class AbstractRemoteTest<T> {
         } catch (RemoteException re) {
             logger.error(re, re);
             ServiceResult<T> result = new ServiceResult<T>();
-            result.setStatus(Status.FAIL);
+            result.setStatus(ResultStatus.FAIL);
             return result;
         }
     }
