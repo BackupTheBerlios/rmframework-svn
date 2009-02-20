@@ -12,6 +12,8 @@
     <component-implementation class='net.form105.rm.base.container.ModeContainer'/>
     <component-implementation class='net.form105.rm.base.container.Db4oContainer'/>
     <component-implementation class='net.form105.rm.base.container.PersistenceModeContainer' />
+    <component-implementation class='net.form105.rm.base.container.DBConnectionPoolContainer' />
+    
     <!-- component-implementation class='net.form105.rm.base.container.CommunicationContainer' / -->
     <!-- component-implementation class='net.form105.rm.base.container.CommunicationConfigurationContainer' / PLC Communication-->
     
