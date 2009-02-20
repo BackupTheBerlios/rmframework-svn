@@ -20,8 +20,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.form105.rm.base.db.dalect.IDialect;
-import net.form105.rm.base.db.dalect.UniversalDialect;
+import net.form105.rm.base.db.dialect.IDialect;
+import net.form105.rm.base.db.dialect.UniversalDialect;
 
 import org.apache.log4j.Logger;
 

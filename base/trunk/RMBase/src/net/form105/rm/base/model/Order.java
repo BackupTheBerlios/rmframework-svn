@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, form105 Heiko Kundlacz
+ * Copyright (c) 2009, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.server.service.db;
+package net.form105.rm.base.model;
 
-import java.util.List;
-
-import net.form105.rm.base.query.AbstractSimpleQuery;
-import net.form105.rm.server.db.entity.PaceOrderDbEntity;
-
-public class PaceOrderQuery extends AbstractSimpleQuery<PaceOrderDbEntity> {
+/**
+ * Represents an order in the sense of a model. It will be used to trigger a workflow.
+ * An order is also mostly a representation of data imported or sent to other systems.
+ * @author heikok
+ *
+ */
+public class Order extends ParameterizedElement {
 
 	private static final long serialVersionUID = 1L;
-
-	@Override
-	public List<PaceOrderDbEntity> execute() {
-		PaceOrderDbEntity entity = new PaceOrderDbEntity();
-		entity.executeSelectAllQuery();
-		return null;
-	}
 
 }
