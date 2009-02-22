@@ -11,22 +11,22 @@ import java.util.List;
  *
  * @author heiko
  */
-public interface IEntry<T> {
+public interface IEntry {
     
-    public List<T> getItems();
+    public List<Object> getItems();
     
-    public T getFirstItem();
+    public Object getFirstItem();
     
-    public void updateItem(T object);
+    public void updateItem(Object object);
     
-    public void updateItems(List<T> list);
+    public void updateItems(List<Object> list);
     
-    public void removeItem(T object);
+    public void removeItem(Object object);
     
-    public void removeItems(List<T> list);
+    public void removeItems(List<Object> list);
     
-    public void addItem(T object);
+    public void addItem(Object object);
     
-    public void addItems(List<T> list);
+    public void addItems(List<Object> list);
     
 }

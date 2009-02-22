@@ -30,7 +30,7 @@ public class UserManagementContainer extends AbstractContainer implements Starta
 
         String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
 
-        ILookup<AbstractAgentObjectDao<? extends AgentObject>> lookup = lookupContainer.getDaoLookup();
+        ILookup lookup = lookupContainer.getDaoLookup();
         XMLUserObjectDAO usersDao = new XMLUserObjectDAO(configDir + USER_CONFIG_FILE);
         lookup.addContentObject(User.class, usersDao);
 

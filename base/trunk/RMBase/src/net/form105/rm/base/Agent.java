@@ -47,7 +47,7 @@ public class Agent {
      * Getting the dao lookup
      * @return
      */
-    public static ILookup<AbstractAgentObjectDao<? extends AgentObject>> getDaoLookup() {
+    public static ILookup getDaoLookup() {
         LookupContainer container = (LookupContainer) Container.getContainer().getComponent(LookupContainer.class);
         return container.getDaoLookup();
     }
@@ -57,7 +57,7 @@ public class Agent {
         return container.getProperty(key);
     }
 
-    public static ILookup<?> getLookup() {
+    public static ILookup getLookup() {
         LookupContainer container = (LookupContainer) getContainer(LookupContainer.class);
         return container.getGlobalLookup();
     }

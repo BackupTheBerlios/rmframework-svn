@@ -12,16 +12,16 @@ import net.form105.rm.base.exception.RMException;
  *
  * @author hk
  */
-public class AbstractEntry<T> implements IEntry<T> {
+public class AbstractEntry implements IEntry {
 
     public Set<ILookupListener> listeners = Collections.synchronizedSet(new HashSet<ILookupListener>());
-    public List<T> lookupItems = Collections.synchronizedList(new ArrayList<T>());
+    public List<Object> lookupItems = Collections.synchronizedList(new ArrayList<Object>());
 
-    public List<T> getItems() {
+    public List<Object> getItems() {
         return lookupItems;
     }
     
-    public T getFirstItem() {
+    public Object getFirstItem() {
         if (lookupItems.size() == 0) {
             throw new RMException("Entry list size is 0");
         } else {
@@ -37,7 +37,7 @@ public class AbstractEntry<T> implements IEntry<T> {
         listeners.remove(listener);
     }
 
-    public void updateItem(T object) {
+    public void updateItem(Object object) {
         removeItem(object);
         addItem(object);
         if (listeners.size() > 0) {
@@ -47,7 +47,7 @@ public class AbstractEntry<T> implements IEntry<T> {
         }
     }
 
-    public void updateItems(List<T> list) {
+    public void updateItems(List<Object> list) {
         removeItems(list);
         addItems(list);
         if (listeners.size() > 0) {
@@ -66,7 +66,7 @@ public class AbstractEntry<T> implements IEntry<T> {
         }
     }
 
-    public void removeItems(List<T> list) {
+    public void removeItems(List<Object> list) {
         lookupItems.removeAll(list);
         if (listeners.size() > 0) {
             for (ILookupListener listener : listeners) {
@@ -75,7 +75,7 @@ public class AbstractEntry<T> implements IEntry<T> {
         }
     }
 
-    public void addItem(T object) {
+    public void addItem(Object object) {
         lookupItems.add(object);
         if (listeners.size() > 0) {
             for (ILookupListener listener : listeners) {
@@ -84,7 +84,7 @@ public class AbstractEntry<T> implements IEntry<T> {
         }
     }
 
-    public void addItems(List<T> list) {
+    public void addItems(List<Object> list) {
         lookupItems.addAll(list);
         if (listeners.size() > 0) {
             for (ILookupListener listener : listeners) {

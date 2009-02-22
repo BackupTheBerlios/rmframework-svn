@@ -21,21 +21,21 @@ import org.apache.log4j.Logger;
  * objects.
  * @author heiko
  */
-public class SimpleLookupRegistry<T> implements ILookup<T> {
+public class SimpleLookupRegistry implements ILookup {
 
     private Logger logger = Logger.getLogger(SimpleLookupRegistry.class);
 
-    private Map<Class<?>, IEntry<T>> registry = new HashMap<Class<?>, IEntry<T>>();
+    private Map<Class<?>, IEntry> registry = new HashMap<Class<?>, IEntry>();
 
     @Override
-    public <I> void removeContentObject(Class<I> clazz, T object) {
-        IEntry<T> entry = registry.get(clazz);
+    public void removeContentObject(Class<?> clazz, Object object) {
+        IEntry entry = registry.get(clazz);
         entry.removeItem(object);
     }
 
     @Override
-    public <I> void addContentObject(Class<I> clazz, T object) {
-        IEntry<T> entry;
+    public void addContentObject(Class<?> clazz, Object object) {
+        IEntry entry;
         if (registry.get(clazz) == null) {
             entry = createDefaultEntry();
             registry.put(clazz, entry);
@@ -46,38 +46,38 @@ public class SimpleLookupRegistry<T> implements ILookup<T> {
     }
 
     @Override
-    public <I> T getFirstContentObject(Class<I> clazz) {
+    public Object getFirstContentObject(Class<?> clazz) {
         if (registry.get(clazz) == null) {
             throw new RMException(new BaseI18NMessage(), "exception.lookup.noEntry", new String[] {clazz.getName()});
         } else {
-            T object = registry.get(clazz).getFirstItem();
+            Object object = registry.get(clazz).getFirstItem();
             return object;
         }
     }
 
     @Override
-    public <I> void addEntry(Class<I> clazz, IEntry<T> entry) {
+    public void addEntry(Class clazz, IEntry entry) {
         registry.put(clazz, entry);
     }
 
     @Override
-    public <I> IEntry<T> getEntry(Class<I> clazz) {
+    public IEntry getEntry(Class<?> clazz) {
         return registry.get(clazz);
     }
 
     @Override
-    public <I> List<T> getEntryAsList(Class<I> clazz) {
-        IEntry<T> entry = registry.get(clazz);
+    public List<?> getEntryAsList(Class<?> clazz) {
+        IEntry entry = registry.get(clazz);
         return entry.getItems();
     }
 
     @Override
-    public <I> void removeEntry(Class<I> clazz) {
+    public void removeEntry(Class<?> clazz) {
         registry.remove(clazz);
     }
     
-    private IEntry<T> createDefaultEntry() {
-        SimpleLookupEntry<T> entry = new SimpleLookupEntry<T>();
+    private IEntry createDefaultEntry() {
+        SimpleLookupEntry entry = new SimpleLookupEntry();
         return entry;
     }
 

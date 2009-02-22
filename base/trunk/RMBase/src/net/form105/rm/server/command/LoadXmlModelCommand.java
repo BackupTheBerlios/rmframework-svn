@@ -67,9 +67,9 @@ public class LoadXmlModelCommand extends AbstractCommand {
 
     @Override
     public void execute() throws RMException {
-        ILookup<AbstractAgentObjectDao<? extends AgentObject>> daoLookup = Agent.getDaoLookup();
+        ILookup daoLookup = Agent.getDaoLookup();
         for (Resource resource : loadResources(loadXmlModelFile(file))) {
-            List<AbstractAgentObjectDao<?>> daos = daoLookup.getEntryAsList(Resource.class);
+            List daos = daoLookup.getEntryAsList(Resource.class);
             for (AbstractAgentObjectDao dao : daos) {
                 logger.info("Saving resource to dao: "+resource.getElementId());
                 dao.save(resource);

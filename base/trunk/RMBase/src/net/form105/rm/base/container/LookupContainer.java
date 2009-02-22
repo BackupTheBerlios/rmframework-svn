@@ -7,10 +7,8 @@
 
 package net.form105.rm.base.container;
 
-import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
 import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.lookup.SimpleLookupRegistry;
-import net.form105.rm.base.model.AgentObject;
 
 /**
  *
@@ -18,27 +16,27 @@ import net.form105.rm.base.model.AgentObject;
  */
 public class LookupContainer extends AbstractContainer {
     
-    private ILookup<?> globalRegistry;
-    private SimpleLookupRegistry<AbstractAgentObjectDao<?>> daoRegistry;
+    private ILookup globalRegistry;
+    private SimpleLookupRegistry daoRegistry;
     
     public LookupContainer() {
     	super();
     }
     
     public void start() {
-        globalRegistry = new SimpleLookupRegistry<Object>();
-        daoRegistry = new SimpleLookupRegistry<AbstractAgentObjectDao<?>>();
+        globalRegistry = new SimpleLookupRegistry();
+        daoRegistry = new SimpleLookupRegistry();
     }
 
     public void stop() {
         
     }
     
-    public ILookup<?> getGlobalLookup() {
+    public ILookup getGlobalLookup() {
         return globalRegistry;
     }
     
-    public <T> ILookup<AbstractAgentObjectDao<? extends AgentObject>> getDaoLookup() {
+    public ILookup getDaoLookup() {
         return daoRegistry;
     }
 

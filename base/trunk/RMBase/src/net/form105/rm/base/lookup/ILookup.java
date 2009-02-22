@@ -2,40 +2,40 @@ package net.form105.rm.base.lookup;
 
 import java.util.List;
 
-public interface ILookup<V> {
+public interface ILookup {
     
-    public abstract <I> void removeContentObject(Class<I> clazz, V Object);
+    public abstract void removeContentObject(Class<?> clazz, Object Object);
     
-    public abstract <I> void addContentObject(Class<I> clazz, V object);
+    public abstract void addContentObject(Class<?> clazz, Object object);
     
     /**
      * Returns the first object of the entry which includes a list
      * @param clazz
      * @return
      */
-    public abstract <I> V getFirstContentObject(Class<I> clazz);
+    public abstract Object getFirstContentObject(Class<?> clazz);
 
     /**
      * Add an object to the registry by its class
      * @param clazz
      * @param object
      */
-    public abstract <I> void addEntry(Class<I> clazz, IEntry<V> entry);
+    public abstract void addEntry(Class<?> clazz, IEntry entry);
 
     /**
          * Removes an entry from the registry
          * @param clazz
          */
-    public abstract <I> void removeEntry(Class<I> clazz);
+    public abstract void removeEntry(Class<?> clazz);
 
     /**
      * Get an entry by its class. 
      * @param clazz
      * @return The entry which holds a list of objects
      */
-    public abstract <I> IEntry<V> getEntry(Class<I> clazz);
+    public abstract IEntry getEntry(Class<?> clazz);
 
-    public abstract <I> List<V> getEntryAsList(Class<I> clazz);
+    public abstract List<?> getEntryAsList(Class<?> clazz);
 
     
 
