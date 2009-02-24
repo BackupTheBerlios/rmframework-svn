@@ -13,24 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.db.converter;
+package net.form105.rm.server.db.validator;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import net.form105.rm.base.db.AbstractDBEntity;
 
-public class VarCharConverter implements IResultSetConverter<String> {
+/**
+ * The validator to check a entity for its consistency. The entity is sensitive against misconfiguration
+ * which is done by annotations.
+ * @author heikok
+ *
+ */
+public interface IEntityValidator {
 	
-	public final String EMPTY_STRING = "";
+	/**
+	 * Checks if an entity is valid
+	 * @return
+	 */
+	public abstract boolean isValid(AbstractDBEntity entity);
 
-	@Override
-	public String convert(ResultSet rs, String columnName) throws SQLException {
-		String result = rs.getString(columnName);
-		if (result == null) return EMPTY_STRING;
-		return result;
-	}
-	
-	@Override
-	public String toString(Object object) {
-		return (String) object;
-	}
- }
+}

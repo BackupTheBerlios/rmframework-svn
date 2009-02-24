@@ -15,7 +15,6 @@
  */
 package net.form105.rm.base.db;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,44 +29,49 @@ import net.form105.rm.base.container.DBConnectionPoolContainer;
 import org.apache.log4j.Logger;
 
 public class JdbcOutboundHandler {
-	
+
 	public static Logger logger = Logger.getLogger(JdbcOutboundHandler.class);
-	
+
 	public List<AbstractDBEntity> select(AbstractDBEntity entity) throws SQLException {
-		DBConnectionPoolContainer connectionContainer = (DBConnectionPoolContainer) Agent.getContainer(DBConnectionPoolContainer.class);
-		Connection connection = connectionContainer.getDefaultConnection();
-		String sql = entity.getDialect().concatenateSelectStatement(entity);
-		PreparedStatement stmt = connection.prepareStatement(sql);
+
+		String sql = entity.getDialect().getSelectStatement(entity);
+		PreparedStatement stmt = getConnection().prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
-		
+
 		List<AbstractDBEntity> resultList = new ArrayList<AbstractDBEntity>();
 		while (rs.next()) {
 			AbstractDBEntity newEntity = entity.getNewInstance();
-			for (DBColumn col : entity.getColumns()) {
+			for (IDbColumn col : entity.getColumns()) {
 
-				Object o = col.getConverter().convert(rs, col.getColumnName());
-				//logger.debug("Object by rs: "+o+" columnType: "+col.getFieldType()+" colConverter: "+col.getConverter());
+				Object o = col.getConverter().convert(rs, col.getDbColumnName());
+				// logger.debug("Object by rs: "+o+" columnType: "+col.getFieldType()+" colConverter: "+col.getConverter());
 				try {
-					String targetField = col.getTargetField();
+					String targetField = col.getDeclaredField();
 					targetField = Character.toUpperCase(targetField.charAt(0)) + targetField.substring(1);
-					
-					Method method = newEntity.getClass().getDeclaredMethod("set"+targetField, o.getClass());
+
+					Method method = newEntity.getClass().getDeclaredMethod("set" + targetField, o.getClass());
 					method.invoke(newEntity, o);
-					
-				} catch (SecurityException e) {
-					logger.error(e,e);
-				} catch (NoSuchMethodException nsme) {
-					logger.error(nsme, nsme);
-				} catch (IllegalArgumentException iArgEx) {
-					logger.error(iArgEx, iArgEx);
-				} catch (IllegalAccessException iAccEx) {
-					logger.error(iAccEx, iAccEx);
-				} catch (InvocationTargetException itex) {
-					logger.error(itex, itex);
+
+				} catch (Exception e) {
+					logger.error(e, e);
 				}
 			}
 			resultList.add(newEntity);
 		}
 		return resultList;
+	}
+
+	public void update(AbstractDBEntity entity) throws SQLException {
+		String sql = entity.getDialect().getUpdateStatement(entity);
+		PreparedStatement stmt = getConnection().prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+	}
+
+	protected Connection getConnection() throws SQLException {
+		DBConnectionPoolContainer connectionContainer = (DBConnectionPoolContainer) Agent
+				.getContainer(DBConnectionPoolContainer.class);
+		Connection connection = connectionContainer.getDefaultConnection();
+		return connection;
 	}
 }

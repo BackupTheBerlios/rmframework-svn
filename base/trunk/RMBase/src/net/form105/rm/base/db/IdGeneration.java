@@ -13,24 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.db.converter;
+package net.form105.rm.base.db;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class VarCharConverter implements IResultSetConverter<String> {
+public @interface IdGeneration {
 	
-	public final String EMPTY_STRING = "";
+	public IdGenerationStrategy value() default IdGenerationStrategy.NONE;
 
-	@Override
-	public String convert(ResultSet rs, String columnName) throws SQLException {
-		String result = rs.getString(columnName);
-		if (result == null) return EMPTY_STRING;
-		return result;
-	}
-	
-	@Override
-	public String toString(Object object) {
-		return (String) object;
-	}
- }
+}

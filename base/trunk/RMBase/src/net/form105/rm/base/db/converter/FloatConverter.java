@@ -30,4 +30,10 @@ public class FloatConverter implements IResultSetConverter<BigDecimal>{
 		BigDecimal decimal = rs.getBigDecimal(columnName);
 		return decimal;
 	}
+
+	@Override
+	public String toString(Object object) {
+		BigDecimal decimal = (BigDecimal) object;
+		return decimal.toString();
+	}
 }

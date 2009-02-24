@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, form105 Heiko Kundlacz
+ * Copyright (c) 2009, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,63 +20,94 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.form105.rm.base.db.converter.IResultSetConverter;
+import net.form105.rm.base.db.converter.ResultSetConverterFactory;
 import net.form105.rm.base.db.dialect.IDialect;
 import net.form105.rm.base.db.dialect.UniversalDialect;
+import net.form105.rm.server.db.validator.IEntityValidator;
+import net.form105.rm.server.db.validator.TableAnnotationValidator;
 
 import org.apache.log4j.Logger;
 
 public abstract class AbstractDBEntity {
-	
+
 	public static Logger logger = Logger.getLogger(AbstractDBEntity.class);
-	public List<DBColumn> colList;
-	
+	public List<DbColumn> colList;
+
 	public JdbcOutboundHandler outboundHandler;
 	public IDialect dialect;
-	
+	public IDbColumn primaryColumn;
+
 	public AbstractDBEntity() {
-		colList = getColumns();
+		isValid();
+		colList = createColumnMapping();
 		outboundHandler = new JdbcOutboundHandler();
-		dialect = new UniversalDialect();
+		dialect = new UniversalDialect(this);
 	}
-	
-	public List<DBColumn> getColumns() {
-		List<DBColumn> colList = new ArrayList<DBColumn>();
+
+	/**
+	 * Create the columns which associates database columns with the fields of
+	 * the entity class
+	 * 
+	 * @return
+	 */
+	protected List<DbColumn> createColumnMapping() {
+		List<DbColumn> colList = new ArrayList<DbColumn>();
 		Field[] fields = getClass().getDeclaredFields();
 		for (Field field : fields) {
+			IdGeneration idGeneration = field.getAnnotation(IdGeneration.class);
 			MappingColumn mCol = field.getAnnotation(MappingColumn.class);
 			if (mCol != null) {
-				DBColumn col = new DBColumn(getTable(), mCol.fieldName(), field.getName(), mCol.fieldType());
+				IResultSetConverter<?> converter = ResultSetConverterFactory.getConverter(DBFieldType.valueOf(mCol.fieldType()));
+				DbColumn col = new DbColumn(getTable(), field.getName(), mCol, converter, idGeneration);
+				if (mCol.id())
+					primaryColumn = col;
 				colList.add(col);
 			}
 		}
 		return colList;
 	}
-	
+
 	public DBTable getTable() {
 		MappingTable mTable = this.getClass().getAnnotation(MappingTable.class);
 		DBTable table = new DBTable(mTable.tableName());
 		return table;
 	}
-	
+
+	/**
+	 * Check for validation of the entity object and class. This method executes registered
+	 * validators.
+	 * @return
+	 * @see IEntityValidator
+	 */
 	public boolean isValid() {
+		TableAnnotationValidator tableAnnotationValidator = new TableAnnotationValidator();
+		if (!tableAnnotationValidator.isValid(this)) {
+			return false;
+		}
 		return true;
 	}
-	
+
 	public List<AbstractDBEntity> executeSelectAllQuery() {
 		List<AbstractDBEntity> list = new ArrayList<AbstractDBEntity>();
 		try {
 			list = outboundHandler.select(this);
 		} catch (SQLException e) {
-			//TODO: catch SQLException
+			// TODO: catch SQLException
 			e.printStackTrace();
 		}
 		return list;
 	}
-	
+
 	public IDialect getDialect() {
 		return dialect;
 	}
-	
+
+	/**
+	 * New instances are required for select statements. After executing a select statements
+	 * the result should be packaged to an object.
+	 * @return
+	 */
 	public AbstractDBEntity getNewInstance() {
 		AbstractDBEntity entity = null;
 		try {
@@ -88,8 +119,24 @@ public abstract class AbstractDBEntity {
 		}
 		return entity;
 	}
-	
-	
-	
-	
+
+	/**
+	 * Get the primary column which is defined by the annotation
+	 * {@link MappingColumn}
+	 * 
+	 * @return
+	 */
+	public IDbColumn getPrimaryColumn() {
+		return primaryColumn;
+	}
+
+	/**
+	 * Get all columns which are defined by the annotation @
+	 * 
+	 * @return
+	 */
+	public List<DbColumn> getColumns() {
+		return colList;
+	}
+
 }

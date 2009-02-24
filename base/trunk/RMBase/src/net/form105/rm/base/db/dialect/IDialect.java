@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, form105 Heiko Kundlacz
+ * Copyright (c) 2009, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  */
 package net.form105.rm.base.db.dialect;
 
-import net.form105.rm.base.db.AbstractDBEntity;
 
 public interface IDialect {
 
@@ -25,16 +24,30 @@ public interface IDialect {
 	 * @param entity
 	 * @return
 	 */
-	public abstract String getFieldPart(AbstractDBEntity entity);
+	public abstract String getFieldPart();
 
-	public abstract String getTablePart(AbstractDBEntity entity);
+	public abstract String getTablePart();
 
-	public abstract String getSelectCommand();
-
-	public abstract String getFromCommand();
-
-	public abstract char getBlank();
-
-	public abstract String concatenateSelectStatement(AbstractDBEntity entity);
+	public abstract String getSelectStatement();
+	
+	public abstract String getDelemitedFieldValues();
+	
+	/**
+	 * Creates to string to execute an update statement on the database.
+	 * example:
+	 * update OrderLines set quantity = '5', notes='this is a note' where
+	 * "Order #" = '142541' AND "Part #" = 'PA28034'
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	public abstract String getUpdateStatement();
+	
+	/**
+	 * Creates a string to execute an insert statement on the database.
+	 * @param entity
+	 * @return
+	 */
+	public abstract String getInsertStatement();
 
 }

@@ -23,5 +23,6 @@ public @interface MappingColumn {
 	
 	public String fieldName();
 	public String fieldType();
+	public boolean id() default false;
 
 }

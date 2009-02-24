@@ -27,7 +27,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
  * The connection pool creates a connection to a jdbc database based on the c3p0 connection
- * helper. Please visit <a href="http://sourceforge.net/projects/c3p0" /> to get advanced 
+ * helper. Please visit <a href="http://sourceforge.net/projects/c3p0">c3p0 projecty</a> to get advanced 
  * information about this software. There are some system properties required to start the 
  * connection pool successfully. These are:
  * 

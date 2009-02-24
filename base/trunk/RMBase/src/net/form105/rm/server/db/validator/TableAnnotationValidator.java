@@ -13,28 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.db.converter;
+package net.form105.rm.server.db.validator;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import net.form105.rm.base.db.AbstractDBEntity;
+import net.form105.rm.base.db.MappingTable;
+import net.form105.rm.base.exception.RMException;
+import net.form105.rm.server.i18n.BaseI18NMessage;
 
-/**
- * Converts a field from a {@link ResultSet} to a double
- * @author heikok
- *
- */
-public class DoubleConverter implements IResultSetConverter<Double> {
+public class TableAnnotationValidator implements IEntityValidator {
 
 	@Override
-	public Double convert(ResultSet rs, String columnName) throws SQLException {
-		Double doubleValue = rs.getDouble(columnName);
-		return doubleValue;
-	}
+	public boolean isValid(AbstractDBEntity entity) {
 
-	@Override
-	public String toString(Object object) {
-		Double doubleValue = (Double) object;
-		return doubleValue.toString();
+		MappingTable classAnnotation = entity.getClass().getAnnotation(MappingTable.class);
+		
+		if (classAnnotation == null) {
+			throw new RMException(new BaseI18NMessage(), "validator.entity.mappingTable.exist", new String[] {entity.getClass().getName()});
+		}
+
+		return true;
 	}
 
 }

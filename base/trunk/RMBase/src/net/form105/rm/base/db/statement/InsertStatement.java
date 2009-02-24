@@ -13,24 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.db.converter;
+package net.form105.rm.base.db.statement;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import net.form105.rm.base.db.dialect.IDialect;
 
-public class VarCharConverter implements IResultSetConverter<String> {
+public class InsertStatement {
 	
-	public final String EMPTY_STRING = "";
+	public String getStatement(IDialect dialect) {
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(StatementConstant.INSERT_STRING).append(StatementConstant.BLANK_STRING);
+		sb.append(StatementConstant.INTO_STRING).append(StatementConstant.BLANK_STRING);
+		sb.append(dialect.getTablePart()).append(StatementConstant.BLANK_STRING);
+		sb.append('(');
+		sb.append(dialect.getFieldPart());
+		sb.append(')');
+		
+		
+		
+		return "";
+	}
 
-	@Override
-	public String convert(ResultSet rs, String columnName) throws SQLException {
-		String result = rs.getString(columnName);
-		if (result == null) return EMPTY_STRING;
-		return result;
-	}
-	
-	@Override
-	public String toString(Object object) {
-		return (String) object;
-	}
- }
+}

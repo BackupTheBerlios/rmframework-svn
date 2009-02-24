@@ -22,4 +22,6 @@ public interface IResultSetConverter<R> {
 
 	public R convert(ResultSet rs, String columnName) throws SQLException;
 	
+	public String toString(Object object);
+	
 }
