@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import>
+    <import_purchase_orders>
+        <purchase_order>
+            <split_order>
+                <order_line>
+                    <id>001</id>
+                    <kit_id>2944</kit_id>
+                    <kit_version>1</kit_version>
+                    <quantity>1</quantity>
+                    <wrapping_type_id>1</wrapping_type_id>
+                    <article_price>5.720000</article_price>
+                </order_line>
+            </split_order>
+        </purchase_order>
+    </import_purchase_orders>
+</import>
