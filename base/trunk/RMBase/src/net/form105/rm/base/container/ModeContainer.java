@@ -29,8 +29,8 @@ public class ModeContainer extends AbstractContainer implements Startable {
 	public enum Mode {
 
 		MEMORY("memory", true, false), 
-		DBSingle("db", false, true), 
-		DBMulti("dbmulti", false, true), 
+		DBSINGLE("dbsingle", false, true), 
+		DBMULTI("dbmulti", false, true), 
 		DUAL("dual", true, true);
 
 		private String id;

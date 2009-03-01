@@ -55,7 +55,7 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 		String dboFile;
 
 		switch (modeContainer.getCurrentMode()) {
-		case DBSingle:
+		case DBSINGLE:
 			dboFile = properties.getProperty(DBO_FILE_PROPERTY);
 			provideDbSingleMode();
 			break;
@@ -69,6 +69,7 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 			provideMemoryMode();
 
 		default:
+		    logger.info("Running Agent in persistence mode: "+modeContainer.getCurrentMode());
 			break;
 		}
 
