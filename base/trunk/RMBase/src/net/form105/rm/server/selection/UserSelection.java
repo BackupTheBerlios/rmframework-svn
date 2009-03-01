@@ -21,7 +21,7 @@ public class UserSelection extends AbstractSelection<User> {
 
     @Override
     public List<User> select() {
-        ILookup<AbstractAgentObjectDao<? extends AgentObject>> lookup = Agent.getDaoLookup();
+        ILookup lookup = Agent.getDaoLookup();
         XMLUserObjectDAO dao = (XMLUserObjectDAO) lookup.getFirstContentObject(User.class);
         return dao.findAll();
     }

@@ -31,7 +31,7 @@ public class ResourceSelection extends AbstractSelection<Resource> {
     @SuppressWarnings("unchecked")
     @Override
     public List<Resource> select() {
-        ILookup<AbstractAgentObjectDao<? extends AgentObject>> daoLookup = Agent.getDaoLookup();
+        ILookup daoLookup = Agent.getDaoLookup();
         AbstractAgentObjectDao<Resource> dao = (AbstractAgentObjectDao<Resource>) daoLookup.getFirstContentObject(Resource.class);
         List<Resource> resourceList = dao.getReadDao().findAll();
         return resourceList;

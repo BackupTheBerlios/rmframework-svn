@@ -34,7 +34,7 @@ public class JdbcOutboundHandler {
 
 	public List<AbstractDBEntity> select(AbstractDBEntity entity) throws SQLException {
 
-		String sql = entity.getDialect().getSelectStatement(entity);
+		String sql = entity.getDialect().getSelectStatement();
 		PreparedStatement stmt = getConnection().prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
 
@@ -62,7 +62,7 @@ public class JdbcOutboundHandler {
 	}
 
 	public void update(AbstractDBEntity entity) throws SQLException {
-		String sql = entity.getDialect().getUpdateStatement(entity);
+		String sql = entity.getDialect().getUpdateStatement();
 		PreparedStatement stmt = getConnection().prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();

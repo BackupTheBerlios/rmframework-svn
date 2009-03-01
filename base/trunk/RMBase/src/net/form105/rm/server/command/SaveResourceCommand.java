@@ -1,15 +1,9 @@
 package net.form105.rm.server.command;
 
-import java.util.List;
-
-import net.form105.rm.base.Agent;
 import net.form105.rm.base.command.AbstractCommand;
-import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
-import net.form105.rm.base.dao.resource.AbstractResourceDao;
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.base.lookup.ILookup;
-import net.form105.rm.base.model.AgentObject;
 import net.form105.rm.base.model.Resource;
+import net.form105.rm.base.persistence.PersistenceHandler;
 
 import org.apache.log4j.Logger;
 
@@ -33,14 +27,17 @@ public class SaveResourceCommand extends AbstractCommand {
 
     @Override
     public void execute() throws RMException {
+        
+        PersistenceHandler pHandler = new PersistenceHandler();
+        pHandler.saveAgentObject(resource);
 
-        ILookup<AbstractAgentObjectDao<? extends AgentObject>> lookup = Agent.getDaoLookup();
-        List<AbstractAgentObjectDao<? extends AgentObject>> list = lookup.getEntryAsList(Resource.class);
+        /*ILookup lookup = Agent.getDaoLookup();
+        List<AbstractAgentObjectDao<Resource>> list = (List<AbstractAgentObjectDao<Resource>>) lookup.getEntryAsList(Resource.class);
 
         for (AbstractAgentObjectDao<? extends AgentObject> dao : list) {
             AbstractResourceDao resourceDao = (AbstractResourceDao) dao;
             resourceDao.save(resource);
-        }
+        }*/
     }
 
     @Override
