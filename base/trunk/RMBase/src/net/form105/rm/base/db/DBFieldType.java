@@ -18,7 +18,7 @@ package net.form105.rm.base.db;
 public enum DBFieldType {
 	
 	VARCHAR,
-	DOUBLE,
+	INTEGER,
 	FLOAT;
 
 }

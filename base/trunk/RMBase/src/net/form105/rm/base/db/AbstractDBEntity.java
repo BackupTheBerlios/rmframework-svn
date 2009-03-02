@@ -56,12 +56,14 @@ public abstract class AbstractDBEntity {
 		Field[] fields = getClass().getDeclaredFields();
 		for (Field field : fields) {
 			IdGeneration idGeneration = field.getAnnotation(IdGeneration.class);
+
 			MappingColumn mCol = field.getAnnotation(MappingColumn.class);
 			if (mCol != null) {
-				IResultSetConverter<?> converter = ResultSetConverterFactory.getConverter(DBFieldType.valueOf(mCol.fieldType()));
+				IResultSetConverter<?> converter = ResultSetConverterFactory.getConverter(mCol.fieldType());
 				DbColumn col = new DbColumn(getTable(), field.getName(), mCol, converter, idGeneration);
-				if (mCol.id())
+				if (idGeneration != null) {
 					primaryColumn = col;
+				}
 				colList.add(col);
 			}
 		}
@@ -75,8 +77,9 @@ public abstract class AbstractDBEntity {
 	}
 
 	/**
-	 * Check for validation of the entity object and class. This method executes registered
-	 * validators.
+	 * Check for validation of the entity object and class. This method executes
+	 * registered validators.
+	 * 
 	 * @return
 	 * @see IEntityValidator
 	 */
@@ -104,8 +107,9 @@ public abstract class AbstractDBEntity {
 	}
 
 	/**
-	 * New instances are required for select statements. After executing a select statements
-	 * the result should be packaged to an object.
+	 * New instances are required for select statements. After executing a
+	 * select statements the result should be packaged to an object.
+	 * 
 	 * @return
 	 */
 	public AbstractDBEntity getNewInstance() {

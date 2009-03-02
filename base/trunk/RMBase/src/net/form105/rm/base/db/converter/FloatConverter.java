@@ -34,6 +34,7 @@ public class FloatConverter implements IResultSetConverter<BigDecimal>{
 	@Override
 	public String toString(Object object) {
 		BigDecimal decimal = (BigDecimal) object;
+		
 		return decimal.toString();
 	}
 }

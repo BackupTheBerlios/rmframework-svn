@@ -18,14 +18,21 @@ package net.form105.rm.base.db.converter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 public class VarCharConverter implements IResultSetConverter<String> {
+	
+	public static Logger logger = Logger.getLogger(VarCharConverter.class);
 	
 	public final String EMPTY_STRING = "";
 
 	@Override
 	public String convert(ResultSet rs, String columnName) throws SQLException {
 		String result = rs.getString(columnName);
-		if (result == null) return EMPTY_STRING;
+		if (result == null) {
+			logger.info(columnName+": Null value in result set");
+			return EMPTY_STRING;
+		}
 		return result;
 	}
 	

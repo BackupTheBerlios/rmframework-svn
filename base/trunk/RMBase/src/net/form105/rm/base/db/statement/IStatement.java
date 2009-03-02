@@ -13,28 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.db.converter;
+package net.form105.rm.base.db.statement;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import net.form105.rm.base.db.dialect.IDialect;
 
-/**
- * Converts a field from a {@link ResultSet} to a double
- * @author heikok
- *
- */
-public class DoubleConverter implements IResultSetConverter<Double> {
-
-	@Override
-	public Double convert(ResultSet rs, String columnName) throws SQLException {
-		Double doubleValue = rs.getDouble(columnName);
-		return doubleValue;
-	}
-
-	@Override
-	public String toString(Object object) {
-		Double doubleValue = (Double) object;
-		return doubleValue.toString();
-	}
+public interface IStatement {
+	
+	public abstract String getStatement(IDialect dialect);
 
 }

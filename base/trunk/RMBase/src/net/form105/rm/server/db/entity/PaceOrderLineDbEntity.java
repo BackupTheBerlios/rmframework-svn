@@ -16,6 +16,7 @@
 package net.form105.rm.server.db.entity;
 
 import net.form105.rm.base.db.AbstractDBEntity;
+import net.form105.rm.base.db.DBFieldType;
 import net.form105.rm.base.db.IdGeneration;
 import net.form105.rm.base.db.IdGenerationStrategy;
 import net.form105.rm.base.db.MappingColumn;
@@ -25,14 +26,14 @@ import net.form105.rm.base.db.MappingTable;
 public class PaceOrderLineDbEntity extends AbstractDBEntity {
 	
 	@IdGeneration(IdGenerationStrategy.DBGENERATED)
-	@MappingColumn(fieldName="Order Line #", fieldType="VARCHAR", id=true)
+	@MappingColumn(fieldName="Order Line #", fieldType=DBFieldType.VARCHAR)
 	private String orderLineId;
 	
-	@MappingColumn(fieldName="Part #", fieldType="VARCHAR")
+	@MappingColumn(fieldName="Part #", fieldType=DBFieldType.VARCHAR)
 	private String partId;
 	
-	@MappingColumn(fieldName="Quantity", fieldType="DOUBLE")
-	private Double quantity;
+	@MappingColumn(fieldName="Quantity", fieldType=DBFieldType.INTEGER)
+	private Integer quantity;
 
 	/**
 	 * @return the orderLineId
@@ -65,14 +66,14 @@ public class PaceOrderLineDbEntity extends AbstractDBEntity {
 	/**
 	 * @return the quantity
 	 */
-	public Double getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
 	/**
 	 * @param quantity the quantity to set
 	 */
-	public void setQuantity(Double quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 

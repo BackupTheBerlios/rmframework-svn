@@ -17,6 +17,8 @@ package net.form105.rm.base.db;
 
 import net.form105.rm.base.db.converter.IResultSetConverter;
 
+import org.apache.log4j.Logger;
+
 /**
  * Represents the definition of a database column. This object is required to
  * associate a database column with an entity object. The declared field is the
@@ -30,6 +32,8 @@ import net.form105.rm.base.db.converter.IResultSetConverter;
  * 
  */
 public class DbColumn implements IDbColumn {
+	
+	public static Logger logger = Logger.getLogger(DbColumn.class);
 
 	private DBTable dbTable;
 	private String declaredField;
@@ -88,7 +92,7 @@ public class DbColumn implements IDbColumn {
 	 * @see net.form105.rm.base.db.IDBColumn#getFieldType()
 	 */
 	public DBFieldType getFieldType() {
-		return DBFieldType.valueOf(mappingColumnDeclaration.fieldType());
+		return mappingColumnDeclaration.fieldType();
 	}
 
 	/*
@@ -97,7 +101,8 @@ public class DbColumn implements IDbColumn {
 	 * @see net.form105.rm.base.db.IDBColumn#isPrimaryColumn()
 	 */
 	public boolean isPrimaryColumn() {
-		return mappingColumnDeclaration.id();
+		if (idGeneration != null) return true;
+		return false;
 	}
 
 	/*

@@ -23,6 +23,16 @@ public class IntParameter extends AbstractParameter<Integer> implements IXmlObje
     private static final long serialVersionUID = 1L;
 
     private Integer parameterValue;
+    
+    public IntParameter() {
+    	
+    }
+    
+    public IntParameter(String id, String name, Integer value) {
+    	setElementId(id);
+    	setName(name);
+    	setParameterValue(value);
+    }
 
     public Integer getParameterValue() {
         return parameterValue;

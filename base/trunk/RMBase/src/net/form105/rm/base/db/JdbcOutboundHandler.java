@@ -25,6 +25,7 @@ import java.util.List;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.container.DBConnectionPoolContainer;
+import net.form105.rm.base.db.statement.InsertStatement;
 
 import org.apache.log4j.Logger;
 
@@ -62,7 +63,8 @@ public class JdbcOutboundHandler {
 	}
 
 	public void update(AbstractDBEntity entity) throws SQLException {
-		String sql = entity.getDialect().getUpdateStatement();
+		InsertStatement insertStmt = new InsertStatement();
+		String sql = insertStmt.getStatement(entity.getDialect());
 		PreparedStatement stmt = getConnection().prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();

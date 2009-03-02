@@ -17,22 +17,27 @@ package net.form105.rm.base.db.statement;
 
 import net.form105.rm.base.db.dialect.IDialect;
 
-public class InsertStatement implements IStatement {
+public class UpdateStatement implements IStatement {
 
+	@Override
 	public String getStatement(IDialect dialect) {
-
+		
 		StringBuilder sb = new StringBuilder();
-		sb.append(StatementConstant.INSERT_STRING).append(StatementConstant.BLANK_STRING);
-		sb.append(StatementConstant.INTO_STRING).append(StatementConstant.BLANK_STRING);
-		sb.append(dialect.getTablePart()).append(StatementConstant.BLANK_STRING);
-		sb.append(StatementConstant.LEFT_PARENTHESES);
-		sb.append(dialect.getFieldPart());
-		sb.append(StatementConstant.RIGHT_PARENTHESES).append(StatementConstant.BLANK_STRING);
-
-		sb.append(StatementConstant.VALUES_STRING);
-		sb.append(StatementConstant.LEFT_PARENTHESES);
-		sb.append(dialect.getDelemitedFieldValues());
-		sb.append(StatementConstant.RIGHT_PARENTHESES);
+		sb.append(StatementConstant.UPDATE_STRING);
+		sb.append(StatementConstant.BLANK_STRING);
+		// generated
+		sb.append(dialect.getTablePart());
+		sb.append(StatementConstant.BLANK_STRING);
+		sb.append(StatementConstant.SET_STRING);
+		sb.append(StatementConstant.BLANK_STRING);
+		// generated
+		sb.append(dialect.getFieldAssignmentPart());
+		sb.append(StatementConstant.BLANK_STRING);
+		sb.append(StatementConstant.WHERE_STRING);
+		sb.append(StatementConstant.BLANK_STRING);
+		// generated
+		sb.append(dialect.getIdSelectionPart());
+		
 		return sb.toString();
 	}
 

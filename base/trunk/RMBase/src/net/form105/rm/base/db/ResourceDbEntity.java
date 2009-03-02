@@ -19,13 +19,13 @@ package net.form105.rm.base.db;
 @MappingTable(tableName="resourceElement")
 public class ResourceDbEntity extends AbstractDBEntity {
 	
-	@MappingColumn(fieldName="elementId", fieldType="VARCHAR")
+	@MappingColumn(fieldName="elementId", fieldType=DBFieldType.VARCHAR)
 	private String elementId;
 	
-	@MappingColumn(fieldName="elementName", fieldType="VARCHAR")
+	@MappingColumn(fieldName="elementName", fieldType=DBFieldType.VARCHAR)
 	private String elementName;
 	
-	@MappingColumn(fieldName="elementType", fieldType="VARCHAR")
+	@MappingColumn(fieldName="elementType", fieldType=DBFieldType.VARCHAR)
 	private String elementType;
 	
 	public String getElementId() {

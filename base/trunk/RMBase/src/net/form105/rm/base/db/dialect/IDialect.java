@@ -33,21 +33,19 @@ public interface IDialect {
 	public abstract String getDelemitedFieldValues();
 	
 	/**
-	 * Creates to string to execute an update statement on the database.
-	 * example:
-	 * update OrderLines set quantity = '5', notes='this is a note' where
-	 * "Order #" = '142541' AND "Part #" = 'PA28034'
-	 * 
-	 * @param entity
+	 * Get the selection part for the where condition
+	 * example: 
 	 * @return
 	 */
-	public abstract String getUpdateStatement();
+	public abstract String getIdSelectionPart();
 	
 	/**
-	 * Creates a string to execute an insert statement on the database.
-	 * @param entity
+	 * Get the assignment part of a sql statement
+	 * example: "Part #"='PA28034', "Quantity"='101.0'
 	 * @return
 	 */
-	public abstract String getInsertStatement();
+	public abstract String getFieldAssignmentPart();
+	
+	
 
 }

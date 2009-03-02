@@ -20,7 +20,7 @@ import java.util.List;
 
 import net.form105.rm.base.db.AbstractDBEntity;
 import net.form105.rm.base.model.Order;
-import net.form105.rm.base.model.parameter.DoubleParameter;
+import net.form105.rm.base.model.parameter.IntParameter;
 import net.form105.rm.base.model.parameter.StringParameter;
 import net.form105.rm.base.query.AbstractSimpleQuery;
 import net.form105.rm.server.db.entity.PaceOrderDbEntity;
@@ -57,7 +57,7 @@ public class PaceOrderQuery extends AbstractSimpleQuery<Order> {
 			StringParameter customerNameParameter = new StringParameter("customerName", "Customer Name", orderEntity.getCustomerName());
 			order.addParameter(customerNameParameter);
 			
-			DoubleParameter gQuantity = new DoubleParameter("gQuantity", "G Quantity", orderEntity.getGQuantity());
+			IntParameter gQuantity = new IntParameter("gQuantity", "G Quantity", orderEntity.getGQuantity());
 			order.addParameter(gQuantity);
 			
 			orderList.add(order);

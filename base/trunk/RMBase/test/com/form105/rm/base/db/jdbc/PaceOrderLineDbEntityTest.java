@@ -15,8 +15,8 @@
  */
 package com.form105.rm.base.db.jdbc;
 
-import net.form105.rm.base.db.MappingTable;
 import net.form105.rm.base.db.dialect.UniversalDialect;
+import net.form105.rm.base.db.statement.UpdateStatement;
 import net.form105.rm.server.db.entity.PaceOrderLineDbEntity;
 
 import org.apache.log4j.Logger;
@@ -31,9 +31,10 @@ public class PaceOrderLineDbEntityTest {
 		PaceOrderLineDbEntity entity = new PaceOrderLineDbEntity();
 		entity.setOrderLineId("158766");
 		entity.setPartId("PA28034");
-		entity.setQuantity(101d);
-		UniversalDialect dialect = new UniversalDialect();
-		String updateStatement = dialect.getUpdateStatement(entity);
+		entity.setQuantity(101);
+		UniversalDialect dialect = new UniversalDialect(entity);
+		UpdateStatement statement = new UpdateStatement();
+		String updateStatement = statement.getStatement(dialect);
 		logger.info(updateStatement);
 	}
 

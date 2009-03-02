@@ -15,33 +15,26 @@
  */
 package net.form105.rm.base.db.converter;
 
-import net.form105.rm.base.db.DBFieldType;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ResultSetConverterFactory {
-	
-	private static ResultSetConverterFactory instance;
-	
-	static {
-		instance = new ResultSetConverterFactory();
-	}
-	
-	
-	public static IResultSetConverter<?> getConverter(DBFieldType type) {
-		
-		switch (type) {
-		case INTEGER:
-			return new IntegerConverter();
-		case VARCHAR:
-			return new VarCharConverter();
-		case FLOAT:
-			return new FloatConverter();
+/**
+ * Converts a field from a {@link ResultSet} to a double
+ * @author heikok
+ *
+ */
+public class IntegerConverter implements IResultSetConverter<Integer> {
 
-		default:
-			return null;
-		}
-		
+	@Override
+	public Integer convert(ResultSet rs, String columnName) throws SQLException {
+		Integer integerValue = rs.getInt(columnName);
+		return integerValue;
 	}
-	
-	
+
+	@Override
+	public String toString(Object object) {
+		Integer intValue = (Integer) object;
+		return intValue.toString();
+	}
 
 }

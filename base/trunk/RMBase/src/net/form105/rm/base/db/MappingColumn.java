@@ -22,7 +22,6 @@ import java.lang.annotation.RetentionPolicy;
 public @interface MappingColumn {
 	
 	public String fieldName();
-	public String fieldType();
-	public boolean id() default false;
+	public DBFieldType fieldType();
 
 }

@@ -15,6 +15,10 @@
  */
 package net.form105.rm.base.db;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
 public @interface IdGeneration {
 	
 	public IdGenerationStrategy value() default IdGenerationStrategy.NONE;

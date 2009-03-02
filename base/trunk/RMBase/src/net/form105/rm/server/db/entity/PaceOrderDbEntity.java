@@ -16,22 +16,23 @@
 package net.form105.rm.server.db.entity;
 
 import net.form105.rm.base.db.AbstractDBEntity;
+import net.form105.rm.base.db.DBFieldType;
 import net.form105.rm.base.db.MappingColumn;
 import net.form105.rm.base.db.MappingTable;
 
 @MappingTable(tableName="Orders")
 public class PaceOrderDbEntity extends AbstractDBEntity {
 	
-	@MappingColumn(fieldName="Order #", fieldType="VARCHAR")
+	@MappingColumn(fieldName="Order #", fieldType=DBFieldType.VARCHAR)
 	private String orderId;
 	
-	@MappingColumn(fieldName="Customer #",fieldType="VARCHAR")
+	@MappingColumn(fieldName="Customer #",fieldType=DBFieldType.VARCHAR)
 	private String customerId;
 	
-	@MappingColumn(fieldName="gQuantity",fieldType="DOUBLE")
-	private Double gQuantity;
+	@MappingColumn(fieldName="gQuantity",fieldType=DBFieldType.INTEGER)
+	private Integer gQuantity;
 	
-	@MappingColumn(fieldName="Customer Name",fieldType="VARCHAR")
+	@MappingColumn(fieldName="Customer Name",fieldType=DBFieldType.VARCHAR)
 	private String customerName;
 
 	public String getCustomerId() {
@@ -42,11 +43,11 @@ public class PaceOrderDbEntity extends AbstractDBEntity {
 		this.customerId = customerId;
 	}
 
-	public Double getGQuantity() {
+	public Integer getGQuantity() {
 		return gQuantity;
 	}
 
-	public void setGQuantity(Double quantity) {
+	public void setGQuantity(Integer quantity) {
 		gQuantity = quantity;
 	}
 
