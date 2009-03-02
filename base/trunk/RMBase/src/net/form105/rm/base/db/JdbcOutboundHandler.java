@@ -26,6 +26,7 @@ import java.util.List;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.container.DBConnectionPoolContainer;
 import net.form105.rm.base.db.statement.InsertStatement;
+import net.form105.rm.base.db.statement.SelectStatement;
 
 import org.apache.log4j.Logger;
 
@@ -35,8 +36,8 @@ public class JdbcOutboundHandler {
 
 	public List<AbstractDBEntity> select(AbstractDBEntity entity) throws SQLException {
 
-		String sql = entity.getDialect().getSelectStatement();
-		PreparedStatement stmt = getConnection().prepareStatement(sql);
+		SelectStatement selectStmt = new SelectStatement();
+		PreparedStatement stmt = getConnection().prepareStatement(selectStmt.getStatement(entity.getDialect()));
 		ResultSet rs = stmt.executeQuery();
 
 		List<AbstractDBEntity> resultList = new ArrayList<AbstractDBEntity>();

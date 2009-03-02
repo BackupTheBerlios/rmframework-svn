@@ -27,6 +27,7 @@ public class StatementConstant {
 	public final static String INTO_STRING = "INTO";
 	public final static String VALUES_STRING = "VALUES";
 	public final static String NULL_STRING = "NULL";
+	public final static String DELETE_STRING = "DELETE";
 	
 	public final static char LEFT_PARENTHESES = '(';
 	public final static char RIGHT_PARENTHESES = ')';

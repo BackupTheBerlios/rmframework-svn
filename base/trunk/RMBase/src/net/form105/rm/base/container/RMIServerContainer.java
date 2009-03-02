@@ -34,7 +34,7 @@ public class RMIServerContainer extends AbstractContainer implements Startable {
 
     public void start() {
         props = propContainer.getProperties();
-        port = new Integer(props.getProperty("server.rmi.port"));
+        port = Integer.parseInt(props.getProperty("server.rmi.port"));
         
         logger.info("Starting: RMI Registry on port: "+port);
         try {

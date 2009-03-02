@@ -26,10 +26,16 @@ public interface IDialect {
 	 */
 	public abstract String getFieldPart();
 
+	/**
+	 * Create the table part of a sql statement. The table part consists of the table name
+	 * @return
+	 */
 	public abstract String getTablePart();
-
-	public abstract String getSelectStatement();
 	
+	/**
+	 * Field values are the assignments of column names to its values.
+	 * @return
+	 */
 	public abstract String getDelemitedFieldValues();
 	
 	/**

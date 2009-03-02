@@ -17,26 +17,17 @@ package net.form105.rm.base.db.statement;
 
 import net.form105.rm.base.db.dialect.IDialect;
 
-public class UpdateStatement extends AbstractStatement {
+public class SelectStatement extends AbstractStatement {
 
 	@Override
 	public String getStatement(IDialect dialect) {
-		
 		StringBuilder sb = new StringBuilder();
-		sb.append(StatementConstant.UPDATE_STRING);
+		sb.append(StatementConstant.SELECT_STRING);
 		sb.append(StatementConstant.BLANK_STRING);
-		// generated
+		sb.append(dialect.getFieldPart());
+		sb.append(StatementConstant.FROM_STRING);
+		sb.append(StatementConstant.BLANK_STRING);
 		sb.append(dialect.getTablePart());
-		sb.append(StatementConstant.BLANK_STRING);
-		sb.append(StatementConstant.SET_STRING);
-		sb.append(StatementConstant.BLANK_STRING);
-		// generated
-		sb.append(dialect.getFieldAssignmentPart());
-		sb.append(StatementConstant.BLANK_STRING);
-		sb.append(StatementConstant.WHERE_STRING);
-		sb.append(StatementConstant.BLANK_STRING);
-		// generated
-		sb.append(dialect.getIdSelectionPart());
 		logStatement(sb.toString());
 		return sb.toString();
 	}

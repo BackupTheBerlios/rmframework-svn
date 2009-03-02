@@ -21,4 +21,7 @@
 	<entry key="connection.jdbcUrl">jdbc:sequelink://localhost:2399</entry>
 	<entry key="connection.user">Admin</entry>
 	<entry key="connection.password">Avalon</entry>
+	
+	<!-- logging part -->
+	<entry key="log.jdbcIntegration">on</entry> <!-- enables logging for jdbc integration -->
 </properties>

@@ -50,6 +50,7 @@ public class UniversalDialect implements IDialect {
 			sb.append(',');
 		}
 		sb.deleteCharAt(sb.length() - 1);
+		sb.append(StatementConstant.BLANK_STRING);
 		return sb.toString();
 	}
 
@@ -124,25 +125,6 @@ public class UniversalDialect implements IDialect {
 	 */
 	public String getTablePart() {
 		return entity.getTable().getTableName();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * net.form105.rm.base.db.dalect.IDialect#concatenateSelectStatement(net
-	 * .form105.rm.base.db.AbstractDBEntity)
-	 */
-	public String getSelectStatement() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(StatementConstant.SELECT_STRING);
-		sb.append(StatementConstant.BLANK_STRING);
-		sb.append(getFieldPart());
-		sb.append(StatementConstant.FROM_STRING);
-		sb.append(StatementConstant.BLANK_STRING);
-		sb.append(getTablePart());
-		logger.debug("Select statement is: " + sb.toString());
-		return sb.toString();
 	}
 
 	/**

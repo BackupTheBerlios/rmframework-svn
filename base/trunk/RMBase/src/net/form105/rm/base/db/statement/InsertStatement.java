@@ -17,7 +17,7 @@ package net.form105.rm.base.db.statement;
 
 import net.form105.rm.base.db.dialect.IDialect;
 
-public class InsertStatement implements IStatement {
+public class InsertStatement extends AbstractStatement {
 
 	public String getStatement(IDialect dialect) {
 
@@ -33,6 +33,7 @@ public class InsertStatement implements IStatement {
 		sb.append(StatementConstant.LEFT_PARENTHESES);
 		sb.append(dialect.getDelemitedFieldValues());
 		sb.append(StatementConstant.RIGHT_PARENTHESES);
+		logStatement(sb.toString());
 		return sb.toString();
 	}
 

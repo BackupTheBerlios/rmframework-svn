@@ -36,7 +36,7 @@ public class Agent {
     public static Object getContainer(Class clazz) {
         Object container = Container.getContainer().getComponent(clazz);
         if (container == null) {
-            System.err.println("Container: " + clazz.getName() + " doesn't exist as a registered container");
+            System.err.println("Container: " + clazz.getSimpleName() + " doesn't exist as a registered container. Server hasn't been started?");
             return null;
         } else {
             return container;
@@ -54,6 +54,10 @@ public class Agent {
 
     public static String getRMProperty(String key) {
         PropertiesContainer container = (PropertiesContainer) getContainer(PropertiesContainer.class);
+        if (container == null) {
+        	// try to get a property directly from system properties
+        	return System.getProperty(key);
+        }
         return container.getProperty(key);
     }
 
