@@ -109,19 +109,33 @@ public abstract class AbstractDBEntity {
 	/**
 	 * New instances are required for select statements. After executing a
 	 * select statements the result should be packaged to an object.
+	 * This is often called as the prototype pattern. 
 	 * 
 	 * @return
+	 * @see Cloneable
 	 */
 	public AbstractDBEntity getNewInstance() {
-		AbstractDBEntity entity = null;
+//		AbstractDBEntity entity = null;
+//		try {
+//			entity = this.getClass().newInstance();
+//		} catch (InstantiationException e) {
+//			e.printStackTrace();
+//		} catch (IllegalAccessException e) {
+//			e.printStackTrace();
+//		}
+		AbstractDBEntity newEntity = (AbstractDBEntity) clone();
+		return newEntity;
+	}
+	
+	public Object clone() {
+		
+		Object object = null;
 		try {
-			entity = this.getClass().newInstance();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			object = super.clone();
+		} catch (CloneNotSupportedException e) {
+			logger.error(e,e);
 		}
-		return entity;
+		return object;
 	}
 
 	/**
