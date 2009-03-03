@@ -23,6 +23,7 @@ import net.form105.rm.base.model.Order;
 import net.form105.rm.base.model.parameter.IntParameter;
 import net.form105.rm.base.model.parameter.StringParameter;
 import net.form105.rm.base.query.AbstractSimpleQuery;
+import net.form105.rm.base.service.IResult;
 import net.form105.rm.server.db.entity.PaceOrderDbEntity;
 
 import org.apache.log4j.Logger;
@@ -37,12 +38,12 @@ public class PaceOrderQuery extends AbstractSimpleQuery<Order> {
 	@Override
 	public List<Order> execute() {
 		PaceOrderDbEntity entity = new PaceOrderDbEntity();
-		List<AbstractDBEntity> entityList = entity.executeSelectAllQuery();
-		logger.debug("Entities got: "+entityList.size());
+		IResult<AbstractDBEntity> result = entity.executeSelectAllQuery();
+		logger.debug("Entities got: "+result.getResultList().size());
 		
 		List<Order> orderList = new ArrayList<Order>();
 
-		for (AbstractDBEntity resultEntity : entityList) {
+		for (AbstractDBEntity resultEntity : result.getResultList()) {
 			PaceOrderDbEntity orderEntity = (PaceOrderDbEntity) resultEntity;
 			Order order = new Order();
 			order.setElementId(orderEntity.getOrderId());

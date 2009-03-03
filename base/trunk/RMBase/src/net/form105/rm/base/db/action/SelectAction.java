@@ -29,13 +29,16 @@ import net.form105.rm.base.db.statement.SelectStatement;
 
 import org.apache.log4j.Logger;
 
-public class SelectAction {
+public class SelectAction implements IJdbcAction {
 	
 	public static Logger logger = Logger.getLogger(SelectAction.class);
 	
 	private final String ID = "SELECT_BY_STATEMENT_ACTION";
 	
 	
+	/* (non-Javadoc)
+	 * @see net.form105.rm.base.db.action.IDbEntityAction#execute(net.form105.rm.base.db.AbstractDBEntity, java.sql.Connection)
+	 */
 	public List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException {
 		SelectStatement selectStmt = new SelectStatement();
 		PreparedStatement stmt = connection.prepareStatement(selectStmt.getStatement(entity.getDialect()));
@@ -66,8 +69,16 @@ public class SelectAction {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see net.form105.rm.base.db.action.IDbEntityAction#getId()
+	 */
 	public final String getId() {
 		return ID;
+	}
+
+	@Override
+	public ActionType getRegistrationName() {
+		return ActionType.SELECT;
 	}
 
 }

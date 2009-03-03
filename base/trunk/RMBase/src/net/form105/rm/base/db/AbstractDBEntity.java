@@ -16,15 +16,16 @@
 package net.form105.rm.base.db;
 
 import java.lang.reflect.Field;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.form105.rm.base.db.action.ActionType;
 import net.form105.rm.base.db.action.JdbcOutboundHandler;
 import net.form105.rm.base.db.converter.IResultSetConverter;
 import net.form105.rm.base.db.converter.ResultSetConverterFactory;
 import net.form105.rm.base.db.dialect.IDialect;
 import net.form105.rm.base.db.dialect.UniversalDialect;
+import net.form105.rm.base.service.IResult;
 import net.form105.rm.server.db.validator.IEntityValidator;
 import net.form105.rm.server.db.validator.TableAnnotationValidator;
 
@@ -92,15 +93,11 @@ public abstract class AbstractDBEntity {
 		return true;
 	}
 
-	public List<AbstractDBEntity> executeSelectAllQuery() {
-		List<AbstractDBEntity> list = new ArrayList<AbstractDBEntity>();
-		try {
-			list = outboundHandler.select(this);
-		} catch (SQLException e) {
-			// TODO: catch SQLException
-			e.printStackTrace();
-		}
-		return list;
+	public IResult<AbstractDBEntity> executeSelectAllQuery() {
+
+		IResult<AbstractDBEntity> result = outboundHandler.executeAction(this, ActionType.SELECT);
+
+		return result;
 	}
 
 	public IDialect getDialect() {
@@ -109,32 +106,32 @@ public abstract class AbstractDBEntity {
 
 	/**
 	 * New instances are required for select statements. After executing a
-	 * select statements the result should be packaged to an object.
-	 * This is often called as the prototype pattern. 
+	 * select statements the result should be packaged to an object. This is
+	 * often called as the prototype pattern.
 	 * 
 	 * @return
 	 * @see Cloneable
 	 */
 	public AbstractDBEntity getNewInstance() {
-//		AbstractDBEntity entity = null;
-//		try {
-//			entity = this.getClass().newInstance();
-//		} catch (InstantiationException e) {
-//			e.printStackTrace();
-//		} catch (IllegalAccessException e) {
-//			e.printStackTrace();
-//		}
+		// AbstractDBEntity entity = null;
+		// try {
+		// entity = this.getClass().newInstance();
+		// } catch (InstantiationException e) {
+		// e.printStackTrace();
+		// } catch (IllegalAccessException e) {
+		// e.printStackTrace();
+		// }
 		AbstractDBEntity newEntity = (AbstractDBEntity) clone();
 		return newEntity;
 	}
-	
+
 	public Object clone() {
-		
+
 		Object object = null;
 		try {
 			object = super.clone();
 		} catch (CloneNotSupportedException e) {
-			logger.error(e,e);
+			logger.error(e, e);
 		}
 		return object;
 	}

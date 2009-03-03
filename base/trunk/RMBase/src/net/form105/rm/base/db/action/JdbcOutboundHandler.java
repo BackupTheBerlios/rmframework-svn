@@ -15,20 +15,18 @@
  */
 package net.form105.rm.base.db.action;
 
-import java.lang.reflect.Method;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.container.DBConnectionPoolContainer;
 import net.form105.rm.base.db.AbstractDBEntity;
-import net.form105.rm.base.db.IDbColumn;
-import net.form105.rm.base.db.statement.InsertStatement;
-import net.form105.rm.base.db.statement.SelectStatement;
+import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.ResultStatus;
 
 import org.apache.log4j.Logger;
 
@@ -36,48 +34,46 @@ public class JdbcOutboundHandler {
 
 	public static Logger logger = Logger.getLogger(JdbcOutboundHandler.class);
 	
-	public List<AbstractDBEntity> select(AbstractDBEntity entity) throws SQLException {
-
-		SelectStatement selectStmt = new SelectStatement();
-		PreparedStatement stmt = getConnection().prepareStatement(selectStmt.getStatement(entity.getDialect()));
-		ResultSet rs = stmt.executeQuery();
-
-		List<AbstractDBEntity> resultList = new ArrayList<AbstractDBEntity>();
-		while (rs.next()) {
-			AbstractDBEntity newEntity = entity.getNewInstance();
-			for (IDbColumn col : entity.getColumns()) {
-
-				Object o = col.getConverter().convert(rs, col.getDbColumnName());
-				// logger.debug("Object by rs: "+o+" columnType: "+col.getFieldType()+" colConverter: "+col.getConverter());
-				try {
-					String targetField = col.getDeclaredField();
-					targetField = Character.toUpperCase(targetField.charAt(0)) + targetField.substring(1);
-
-					Method method = newEntity.getClass().getDeclaredMethod("set" + targetField, o.getClass());
-					method.invoke(newEntity, o);
-
-				} catch (Exception e) {
-					logger.error(e, e);
-				}
-			}
-			resultList.add(newEntity);
+	private Map<ActionType, IJdbcAction> actionMap = new HashMap<ActionType, IJdbcAction>();
+	
+	public JdbcOutboundHandler() {
+		actionMap.put(ActionType.SELECT, new SelectAction());
+		actionMap.put(ActionType.INSERT, new InsertAction());
+		actionMap.put(ActionType.DELETE, new DeleteAction());
+		actionMap.put(ActionType.UPDATE, new UpdateAction());
+	}
+	
+	public IResult<AbstractDBEntity> executeAction(AbstractDBEntity entity, ActionType type) {
+		IResult<AbstractDBEntity> result = new JdbcResult();
+		
+		IJdbcAction action = actionMap.get(type);
+		
+		try {
+			List<AbstractDBEntity> list = action.execute(entity, getConnection());
+			result.setResultList(list);
+			result.setStatus(ResultStatus.SUCCESS);
+		} catch (SQLException e) {
+			result.setException(e);
+			result.setResultList(new ArrayList<AbstractDBEntity>());
+			result.setStatus(ResultStatus.FAIL);
+			logger.error(e,e);
 		}
-		return resultList;
+		return result;
 	}
-
-	public void update(AbstractDBEntity entity) throws SQLException {
-		InsertStatement insertStmt = new InsertStatement();
-		String sql = insertStmt.getStatement(entity.getDialect());
-		PreparedStatement stmt = getConnection().prepareStatement(sql);
-		stmt.executeUpdate();
-		stmt.close();
-	}
-
+	
 	protected Connection getConnection() throws SQLException {
 		DBConnectionPoolContainer connectionContainer = (DBConnectionPoolContainer) Agent
 				.getContainer(DBConnectionPoolContainer.class);
 		Connection connection = connectionContainer.getDefaultConnection();
 		return connection;
+	}
+	
+	public void addAction(ActionType type, IJdbcAction action) {
+		actionMap.put(type, action);
+	}
+	
+	public IJdbcAction getAction(ActionType type) {
+		return actionMap.get(type);
 	}
 	
 	
