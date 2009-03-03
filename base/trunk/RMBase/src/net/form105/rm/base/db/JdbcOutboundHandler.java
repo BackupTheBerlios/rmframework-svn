@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
 public class JdbcOutboundHandler {
 
 	public static Logger logger = Logger.getLogger(JdbcOutboundHandler.class);
-
+	
 	public List<AbstractDBEntity> select(AbstractDBEntity entity) throws SQLException {
 
 		SelectStatement selectStmt = new SelectStatement();
@@ -77,4 +77,6 @@ public class JdbcOutboundHandler {
 		Connection connection = connectionContainer.getDefaultConnection();
 		return connection;
 	}
+	
+	
 }
