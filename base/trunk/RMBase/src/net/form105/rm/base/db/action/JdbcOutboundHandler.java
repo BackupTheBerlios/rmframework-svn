@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.db;
+package net.form105.rm.base.db.action;
 
 import java.lang.reflect.Method;
 import java.sql.Connection;
@@ -25,6 +25,8 @@ import java.util.List;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.container.DBConnectionPoolContainer;
+import net.form105.rm.base.db.AbstractDBEntity;
+import net.form105.rm.base.db.IDbColumn;
 import net.form105.rm.base.db.statement.InsertStatement;
 import net.form105.rm.base.db.statement.SelectStatement;
 
