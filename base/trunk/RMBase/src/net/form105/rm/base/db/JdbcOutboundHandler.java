@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.db.action;
+package net.form105.rm.base.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -24,57 +24,69 @@ import java.util.Map;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.container.DBConnectionPoolContainer;
-import net.form105.rm.base.db.AbstractDBEntity;
+import net.form105.rm.base.db.action.ActionType;
+import net.form105.rm.base.db.action.DeleteAction;
+import net.form105.rm.base.db.action.IJdbcAction;
+import net.form105.rm.base.db.action.InsertAction;
+import net.form105.rm.base.db.action.JdbcResult;
+import net.form105.rm.base.db.action.SelectAction;
+import net.form105.rm.base.db.action.UpdateAction;
+import net.form105.rm.base.exception.RMSqlException;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
+import net.form105.rm.server.i18n.BaseI18NMessage;
 
 import org.apache.log4j.Logger;
 
+/**
+ * This outbound handler executes an action which is one that acts on a database connected via
+ * jdbc. The actions are registered in a map and can be accessed by an action type. All data required
+ * for execution is provided by an {@link AbstractDBEntity}. The execution wraps {@link SQLException} to 
+ * a {@link RMSqlException}.
+ * @author heikok
+ *
+ */
 public class JdbcOutboundHandler {
 
 	public static Logger logger = Logger.getLogger(JdbcOutboundHandler.class);
-	
+
 	private Map<ActionType, IJdbcAction> actionMap = new HashMap<ActionType, IJdbcAction>();
-	
+
 	public JdbcOutboundHandler() {
-		actionMap.put(ActionType.SELECT, new SelectAction());
-		actionMap.put(ActionType.INSERT, new InsertAction());
-		actionMap.put(ActionType.DELETE, new DeleteAction());
-		actionMap.put(ActionType.UPDATE, new UpdateAction());
+		addAction(ActionType.SELECT, new SelectAction());
+		addAction(ActionType.INSERT, new InsertAction());
+		addAction(ActionType.DELETE, new DeleteAction());
+		addAction(ActionType.UPDATE, new UpdateAction());
 	}
-	
-	public IResult<AbstractDBEntity> executeAction(AbstractDBEntity entity, ActionType type) {
+
+	public IResult<AbstractDBEntity> executeAction(AbstractDBEntity entity, ActionType type) throws RMSqlException {
 		IResult<AbstractDBEntity> result = new JdbcResult();
-		
 		IJdbcAction action = actionMap.get(type);
-		
+
 		try {
 			List<AbstractDBEntity> list = action.execute(entity, getConnection());
 			result.setResultList(list);
 			result.setStatus(ResultStatus.SUCCESS);
-		} catch (SQLException e) {
-			result.setException(e);
-			result.setResultList(new ArrayList<AbstractDBEntity>());
-			result.setStatus(ResultStatus.FAIL);
-			logger.error(e,e);
+		} catch (SQLException sqlEx) {
+			throw new RMSqlException(new BaseI18NMessage(), "exception.sql.base", new String[] {}, sqlEx);
 		}
+
 		return result;
 	}
-	
+
 	protected Connection getConnection() throws SQLException {
 		DBConnectionPoolContainer connectionContainer = (DBConnectionPoolContainer) Agent
 				.getContainer(DBConnectionPoolContainer.class);
 		Connection connection = connectionContainer.getDefaultConnection();
 		return connection;
 	}
-	
+
 	public void addAction(ActionType type, IJdbcAction action) {
 		actionMap.put(type, action);
 	}
-	
+
 	public IJdbcAction getAction(ActionType type) {
 		return actionMap.get(type);
 	}
-	
-	
+
 }

@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.db.action.ActionType;
-import net.form105.rm.base.db.action.JdbcOutboundHandler;
 import net.form105.rm.base.db.converter.IResultSetConverter;
 import net.form105.rm.base.db.converter.ResultSetConverterFactory;
 import net.form105.rm.base.db.dialect.IDialect;
@@ -72,6 +71,10 @@ public abstract class AbstractDBEntity {
 		return colList;
 	}
 
+	/**
+	 * Get the table definition of the entity
+	 * @return
+	 */
 	public DBTable getTable() {
 		MappingTable mTable = this.getClass().getAnnotation(MappingTable.class);
 		DBTable table = new DBTable(mTable.tableName());
@@ -125,6 +128,10 @@ public abstract class AbstractDBEntity {
 		return newEntity;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#clone()
+	 */
 	public Object clone() {
 
 		Object object = null;

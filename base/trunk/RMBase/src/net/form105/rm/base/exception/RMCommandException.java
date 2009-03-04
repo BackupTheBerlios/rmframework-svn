@@ -13,7 +13,9 @@ import net.form105.rm.base.command.ICommand;
  */
 public class RMCommandException extends RMException {
 
-    private ICommand command;
+
+	private static final long serialVersionUID = 1L;
+	private ICommand command;
     
     /**
      * Constructs an exception thrown by an command
