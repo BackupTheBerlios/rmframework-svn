@@ -15,6 +15,8 @@
  */
 package net.form105.rm.base.db.action;
 
+import java.io.Serializable;
+
 /** 
  * The type of actions that exist to execute statements on the database via
  * the jdbc connection

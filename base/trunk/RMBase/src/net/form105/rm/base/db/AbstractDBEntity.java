@@ -15,34 +15,34 @@
  */
 package net.form105.rm.base.db;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.form105.rm.base.db.action.ActionType;
 import net.form105.rm.base.db.converter.IResultSetConverter;
 import net.form105.rm.base.db.converter.ResultSetConverterFactory;
 import net.form105.rm.base.db.dialect.IDialect;
 import net.form105.rm.base.db.dialect.UniversalDialect;
-import net.form105.rm.base.service.IResult;
 import net.form105.rm.server.db.validator.IEntityValidator;
 import net.form105.rm.server.db.validator.TableAnnotationValidator;
 
 import org.apache.log4j.Logger;
 
-public abstract class AbstractDBEntity {
+public abstract class AbstractDBEntity implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	public static Logger logger = Logger.getLogger(AbstractDBEntity.class);
 	public List<DbColumn> colList;
 
-	public JdbcOutboundHandler outboundHandler;
+	//public JdbcOutboundHandler outboundHandler;
 	public IDialect dialect;
 	public IDbColumn primaryColumn;
 
 	public AbstractDBEntity() {
 		isValid();
 		colList = createColumnMapping();
-		outboundHandler = new JdbcOutboundHandler();
+		//outboundHandler = new JdbcOutboundHandler();
 		dialect = new UniversalDialect(this);
 	}
 
@@ -94,13 +94,6 @@ public abstract class AbstractDBEntity {
 			return false;
 		}
 		return true;
-	}
-
-	public IResult<AbstractDBEntity> executeSelectAllQuery() {
-
-		IResult<AbstractDBEntity> result = outboundHandler.executeAction(this, ActionType.SELECT);
-
-		return result;
 	}
 
 	public IDialect getDialect() {
