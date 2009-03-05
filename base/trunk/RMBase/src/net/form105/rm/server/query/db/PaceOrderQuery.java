@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.db.AbstractDBEntity;
+import net.form105.rm.base.db.JdbcOutboundHandler;
+import net.form105.rm.base.db.action.ActionType;
 import net.form105.rm.base.model.Order;
 import net.form105.rm.base.model.parameter.IntParameter;
 import net.form105.rm.base.model.parameter.StringParameter;
@@ -38,7 +40,10 @@ public class PaceOrderQuery extends AbstractSimpleQuery<Order> {
 	@Override
 	public List<Order> execute() {
 		PaceOrderDbEntity entity = new PaceOrderDbEntity();
-		IResult<AbstractDBEntity> result = entity.executeSelectAllQuery();
+		
+		JdbcOutboundHandler handler = new JdbcOutboundHandler();
+		
+		IResult<AbstractDBEntity> result = handler.executeAction(entity, ActionType.SELECT);
 		logger.debug("Entities got: "+result.getResultList().size());
 		
 		List<Order> orderList = new ArrayList<Order>();
