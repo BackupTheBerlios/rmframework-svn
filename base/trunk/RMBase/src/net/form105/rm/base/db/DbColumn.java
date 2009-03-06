@@ -15,6 +15,8 @@
  */
 package net.form105.rm.base.db;
 
+import java.io.Serializable;
+
 import net.form105.rm.base.db.converter.IResultSetConverter;
 
 import org.apache.log4j.Logger;
@@ -31,8 +33,10 @@ import org.apache.log4j.Logger;
  * @author heikok
  * 
  */
-public class DbColumn implements IDbColumn {
+public class DbColumn implements IDbColumn, Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	public static Logger logger = Logger.getLogger(DbColumn.class);
 
 	private DBTable dbTable;
@@ -111,6 +115,7 @@ public class DbColumn implements IDbColumn {
 	 * @see net.form105.rm.base.db.IDBColumn#getIdGeneration()
 	 */
 	public IdGenerationStrategy getIdGeneration() {
+		if (idGeneration == null) return IdGenerationStrategy.NONE;
 		return idGeneration.value();
 	}
 }

@@ -67,10 +67,10 @@ public class UniversalDialectTest {
 	
 	@Test
 	public void universalDialectIdSelectionPart() {
-		entity.setObjectId("objectId001");
+		entity.setObjectId(001);
 		UniversalDialect dialect = new UniversalDialect(entity);
 		logger.info("String result from getIdSelectionPart: "+dialect.getIdSelectionPart());
-		Assert.assertEquals("\"resource #\"='objectId001'", dialect.getIdSelectionPart());
+		Assert.assertEquals("\"resource #\"=001", dialect.getIdSelectionPart());
 	}
 	
 	@Test

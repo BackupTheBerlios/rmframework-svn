@@ -29,15 +29,16 @@ import net.form105.rm.server.db.validator.TableAnnotationValidator;
 
 import org.apache.log4j.Logger;
 
-public abstract class AbstractDBEntity implements Serializable {
+public abstract class AbstractDBEntity implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1L;
-	public static Logger logger = Logger.getLogger(AbstractDBEntity.class);
-	public List<DbColumn> colList;
+	private static Logger logger = Logger.getLogger(AbstractDBEntity.class);
+	private List<DbColumn> colList;
 
-	//public JdbcOutboundHandler outboundHandler;
-	public IDialect dialect;
-	public IDbColumn primaryColumn;
+	private IDialect dialect;
+	private IDbColumn primaryColumn;
+	
+	private String constrain;
 
 	public AbstractDBEntity() {
 		isValid();
@@ -153,6 +154,17 @@ public abstract class AbstractDBEntity implements Serializable {
 	 */
 	public List<DbColumn> getColumns() {
 		return colList;
+	}
+	
+	public void setConstraint(String constrain) {
+		this.constrain = constrain;
+	}
+	
+	public String getConstrain() {
+		if (constrain == null) {
+			return "";
+		}
+		return constrain;
 	}
 
 }

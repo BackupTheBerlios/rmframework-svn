@@ -25,23 +25,25 @@ import java.util.List;
 
 import net.form105.rm.base.db.AbstractDBEntity;
 import net.form105.rm.base.db.IDbColumn;
-import net.form105.rm.base.db.statement.SelectStatement;
+import net.form105.rm.base.db.statement.IStatement;
 
 import org.apache.log4j.Logger;
 
-public class SelectAction implements IJdbcAction {
+public abstract class AbstractSelectAction implements IJdbcAction {
 	
-	public static Logger logger = Logger.getLogger(SelectAction.class);
+	public static Logger logger = Logger.getLogger(AbstractSelectAction.class);
+
+	@Override
+	public abstract List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException;
+
+	@Override
+	public abstract String getId();
+
+	@Override
+	public abstract ActionType getRegistrationName();
 	
-	private final String ID = "SELECT_BY_STATEMENT_ACTION";
-	
-	
-	/* (non-Javadoc)
-	 * @see net.form105.rm.base.db.action.IDbEntityAction#execute(net.form105.rm.base.db.AbstractDBEntity, java.sql.Connection)
-	 */
-	public List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException {
-		SelectStatement selectStmt = new SelectStatement();
-		PreparedStatement stmt = connection.prepareStatement(selectStmt.getStatement(entity.getDialect()));
+	public List<AbstractDBEntity> executeStatement(IStatement statement, AbstractDBEntity entity, Connection connection) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(statement.getStatement(entity.getDialect()));
 		ResultSet rs = stmt.executeQuery();
 
 		List<AbstractDBEntity> resultList = new ArrayList<AbstractDBEntity>();
@@ -50,11 +52,12 @@ public class SelectAction implements IJdbcAction {
 			for (IDbColumn col : entity.getColumns()) {
 
 				Object o = col.getConverter().convert(rs, col.getDbColumnName());
+				if (o == null) continue;
 				// logger.debug("Object by rs: "+o+" columnType: "+col.getFieldType()+" colConverter: "+col.getConverter());
 				try {
 					String targetField = col.getDeclaredField();
 					targetField = Character.toUpperCase(targetField.charAt(0)) + targetField.substring(1);
-
+					
 					Method method = newEntity.getClass().getDeclaredMethod("set" + targetField, o.getClass());
 					method.invoke(newEntity, o);
 
@@ -64,21 +67,8 @@ public class SelectAction implements IJdbcAction {
 			}
 			resultList.add(newEntity);
 		}
-		
 		return resultList;
-		
 	}
 	
-	/* (non-Javadoc)
-	 * @see net.form105.rm.base.db.action.IDbEntityAction#getId()
-	 */
-	public final String getId() {
-		return ID;
-	}
-
-	@Override
-	public ActionType getRegistrationName() {
-		return ActionType.SELECT;
-	}
 
 }

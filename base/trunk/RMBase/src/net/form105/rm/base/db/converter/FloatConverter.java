@@ -21,6 +21,8 @@ import java.sql.SQLException;
 
 /**
  * Converts a field of a {@link ResultSet} which is a float to a {@link BigDecimal}
+ * If you don't want to run in rounding problems its a good idea to use the String
+ * constructor of the {@link BigDecimal} instead of providing a double.
  * @author heikok
  */
 public class FloatConverter implements IResultSetConverter<BigDecimal>{
@@ -34,6 +36,7 @@ public class FloatConverter implements IResultSetConverter<BigDecimal>{
 	@Override
 	public String toString(Object object) {
 		BigDecimal decimal = (BigDecimal) object;
+		
 		
 		return decimal.toString();
 	}

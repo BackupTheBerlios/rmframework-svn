@@ -15,7 +15,6 @@
  */
 package net.form105.rm.base.db.action;
 
-import java.io.Serializable;
 
 /** 
  * The type of actions that exist to execute statements on the database via
@@ -27,7 +26,8 @@ public enum ActionType {
 	
 	UPDATE(),
 	DELETE(),
-	SELECT(),
+	SELECTALL(),
+	SELECT_BY_CONSTRAIN(),
 	INSERT();
 
 }

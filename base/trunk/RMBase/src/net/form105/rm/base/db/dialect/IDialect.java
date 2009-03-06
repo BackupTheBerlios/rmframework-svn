@@ -25,6 +25,12 @@ public interface IDialect {
 	 * @return
 	 */
 	public abstract String getFieldPart();
+	
+	/**
+	 * Same as getFieldPart() but without PK entry
+	 * @return
+	 */
+	public abstract String getFieldPartWithoutPK();
 
 	/**
 	 * Create the table part of a sql statement. The table part consists of the table name
@@ -51,6 +57,15 @@ public interface IDialect {
 	 * @return
 	 */
 	public abstract String getFieldAssignmentPart();
+	
+	/**
+	 * Returns a String which declares the where clause from
+	 * a select statement
+	 * example:
+	 * WHERE "Part #"='PA28034'
+	 * @return
+	 */
+	public abstract String getConstrain();
 	
 	
 

@@ -16,30 +16,20 @@
 package net.form105.rm.base.db.action;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.db.AbstractDBEntity;
-import net.form105.rm.base.db.statement.InsertStatement;
+import net.form105.rm.base.db.statement.SelectStatement;
 
-import org.apache.log4j.Logger;
+public class SelectByConstrainAction extends AbstractSelectAction {
 
-public class InsertAction implements IJdbcAction {
-	
-	public static Logger logger = Logger.getLogger(InsertAction.class);
-	
-	private final String ID = "INSERT_BY_STATEMENT_ACTION";
+	private final String ID = "SELECT_BY_CONSTRAIN_ACTION";
 
 	@Override
 	public List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException {
-		InsertStatement insertStmt = new InsertStatement();
-		String sql = insertStmt.getStatement(entity.getDialect());
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.executeUpdate();
-		stmt.close();
-		return new ArrayList<AbstractDBEntity>();
+		SelectStatement statement = new SelectStatement();
+		return executeStatement(statement, entity, connection);
 	}
 
 	@Override
@@ -49,6 +39,8 @@ public class InsertAction implements IJdbcAction {
 
 	@Override
 	public ActionType getRegistrationName() {
-		return ActionType.UPDATE;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }

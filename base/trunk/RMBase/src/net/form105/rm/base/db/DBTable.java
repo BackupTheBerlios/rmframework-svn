@@ -15,7 +15,16 @@
  */
 package net.form105.rm.base.db;
 
-public class DBTable {
+import java.io.Serializable;
+
+/**
+ * DBTable is the representation of the database table name.
+ * @author heikok
+ *
+ */
+public class DBTable implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	private String tableName;
 	

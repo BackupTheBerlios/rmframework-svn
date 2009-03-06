@@ -17,17 +17,22 @@ package com.form105.rm.base.db.jdbc;
 
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import net.form105.rm.base.db.AbstractDBEntity;
 import net.form105.rm.base.db.action.ActionType;
 import net.form105.rm.base.service.IResult;
+import net.form105.rm.server.query.db.EntityQuery;
 import net.form105.rm.server.service.ExecuteEntityService;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import com.form105.rm.base.query.AbstractRemoteTest;
 
 public class ExecuteEntityServiceTest extends AbstractRemoteTest<AbstractDBEntity> {
+	
+	public static Logger logger = Logger.getLogger(ExecuteEntityServiceTest.class);
 	
 	@Test
 	public void executeInsert() {
@@ -46,5 +51,80 @@ public class ExecuteEntityServiceTest extends AbstractRemoteTest<AbstractDBEntit
 		
 		IResult<AbstractDBEntity> result = doService(service);
 	}
+	
+	//@Test
+	public void selectResource() {
+		ResourceDBEntityTest entity = new ResourceDBEntityTest();
+		//entity.setConstraint("WHERE \"dbElementId\" LIKE 'bcr%'");
+		
+		EntityQuery query = new EntityQuery(entity);
+		IResult<AbstractDBEntity> result = doQuery(query);
+		
+		//Assert.assertEquals(ResultStatus.SUCCESS, result.getStatus());
+		logger.info("rows got: "+result.getResultList().size());
+		
+		/*for (AbstractDBEntity resultEntity : result.getResultList()) {
+			StringBuffer sb = new StringBuffer();
+			ResourceDBEntityTest finalEntity = (ResourceDBEntityTest) resultEntity;
+			sb.append(finalEntity.getObjectId()).append(":");
+			sb.append(finalEntity.getElementId()).append(":");
+			sb.append(finalEntity.getElementType()).append(":");
+			sb.append(finalEntity.getElementFloat()).append(":");
+			sb.append(finalEntity.getElementInteger()).append(":");
+		}*/
+	}
+	
+	//@Test
+	public void insertBatch() {
+		int max = 1000;
+		
+		ResourceDBEntityTest entity = new ResourceDBEntityTest();
+		
+		for (int i = 0; i < max; i++) {
+			entity.setElementId("bcr"+i);
+			entity.setElementType("basic");
+			entity.setElementInteger(i);
+			Double value = (double) 1/(i+1);
+			entity.setElementFloat(new BigDecimal(value));
+			
+			ExecuteEntityService service = new ExecuteEntityService();
+			ExecuteEntityService.ServiceArgument argument = service.getArgument();
+			argument.entity = entity;
+			argument.actionType = ActionType.INSERT;
+			
+			doService(service);
+		}
+	}
+	
+	//@Test
+	public void deleteAll() {
+		ResourceDBEntityTest qEntity = new ResourceDBEntityTest();
+		
+		EntityQuery query = new EntityQuery(qEntity);
+		IResult<AbstractDBEntity> result = doQuery(query);
+		List<AbstractDBEntity> list = result.getResultList();
+		for (AbstractDBEntity entity : list) {
+			ResourceDBEntityTest resEntity = (ResourceDBEntityTest) entity;
+			logger.info(resEntity.getObjectId());
+		}
+		
+		ExecuteEntityService service = new ExecuteEntityService();
+		ExecuteEntityService.ServiceArgument argument = service.getArgument();
+		
+		for (AbstractDBEntity entity : list) {
+			argument.entity = entity;
+			argument.actionType = ActionType.DELETE;
+			//doService(service);
+		}
+		
+	}
+
+	public void basicTest() {
+		Double value = 1/3d;
+		BigDecimal bi = new BigDecimal(value);
+		logger.info(bi+":"+value);
+	}
+	
+	
 
 }

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.db.AbstractDBEntity;
-import net.form105.rm.base.db.statement.InsertStatement;
+import net.form105.rm.base.db.statement.UpdateStatement;
 
 public class UpdateAction implements IJdbcAction {
 	
@@ -30,8 +30,8 @@ public class UpdateAction implements IJdbcAction {
 
 	@Override
 	public List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException {
-		InsertStatement insertStmt = new InsertStatement();
-		String sql = insertStmt.getStatement(entity.getDialect());
+		UpdateStatement updateStmt = new UpdateStatement();
+		String sql = updateStmt.getStatement(entity.getDialect());
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();

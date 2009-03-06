@@ -15,10 +15,11 @@
  */
 package net.form105.rm.base.db.converter;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public interface IResultSetConverter<R> {
+public interface IResultSetConverter<R> extends Serializable {
 
 	public R convert(ResultSet rs, String columnName) throws SQLException;
 	

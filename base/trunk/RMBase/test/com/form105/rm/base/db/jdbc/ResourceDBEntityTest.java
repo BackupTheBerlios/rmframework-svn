@@ -27,9 +27,11 @@ import net.form105.rm.base.db.MappingTable;
 @MappingTable(tableName="resourceElement")
 public class ResourceDBEntityTest extends AbstractDBEntity {
 	
+	private static final long serialVersionUID = 1L;
+
 	@IdGeneration(IdGenerationStrategy.DBGENERATED)
-	@MappingColumn(fieldName="resource #", fieldType=DBFieldType.VARCHAR)
-	private String objectId;
+	@MappingColumn(fieldName="resource #", fieldType=DBFieldType.INTEGER)
+	private Integer objectId;
 	
 	@MappingColumn(fieldName="dbElementId",fieldType=DBFieldType.VARCHAR)
 	private String elementId;
@@ -46,14 +48,14 @@ public class ResourceDBEntityTest extends AbstractDBEntity {
 	/**
 	 * @return the objectId
 	 */
-	public String getObjectId() {
+	public Integer getObjectId() {
 		return objectId;
 	}
 
 	/**
 	 * @param objectId the objectId to set
 	 */
-	public void setObjectId(String objectId) {
+	public void setObjectId(Integer objectId) {
 		this.objectId = objectId;
 	}
 

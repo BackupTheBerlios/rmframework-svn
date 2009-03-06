@@ -28,8 +28,11 @@ public class SelectStatement extends AbstractStatement {
 		sb.append(StatementConstant.FROM_STRING);
 		sb.append(StatementConstant.BLANK_STRING);
 		sb.append(dialect.getTablePart());
+		sb.append(StatementConstant.BLANK_STRING);
+		
+		sb.append(dialect.getConstrain());
+
 		logStatement(sb.toString());
 		return sb.toString();
 	}
-
 }

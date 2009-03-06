@@ -60,7 +60,7 @@ public static Logger logger = Logger.getLogger(UniversalDialectTest.class);
 	
 	@Test
 	public void deleteStatement() {
-		entity.setObjectId("objectId001");
+		entity.setObjectId(001);
 		UniversalDialect dialect = new UniversalDialect(entity);
 		DeleteStatement delete = new DeleteStatement();
 		String sql = "DELETE resourceElement WHERE \"resource #\"='objectId001'";

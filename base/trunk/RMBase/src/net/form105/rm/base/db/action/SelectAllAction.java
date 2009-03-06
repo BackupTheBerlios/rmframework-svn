@@ -16,39 +16,40 @@
 package net.form105.rm.base.db.action;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.db.AbstractDBEntity;
-import net.form105.rm.base.db.statement.InsertStatement;
+import net.form105.rm.base.db.statement.SelectAllStatement;
 
 import org.apache.log4j.Logger;
 
-public class InsertAction implements IJdbcAction {
+public class SelectAllAction extends AbstractSelectAction {
 	
-	public static Logger logger = Logger.getLogger(InsertAction.class);
+	public static Logger logger = Logger.getLogger(SelectAllAction.class);
 	
-	private final String ID = "INSERT_BY_STATEMENT_ACTION";
-
-	@Override
+	private final String ID = "SELECT_ALL_ACTION";
+	
+	
+	/* (non-Javadoc)
+	 * @see net.form105.rm.base.db.action.IDbEntityAction#execute(net.form105.rm.base.db.AbstractDBEntity, java.sql.Connection)
+	 */
 	public List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException {
-		InsertStatement insertStmt = new InsertStatement();
-		String sql = insertStmt.getStatement(entity.getDialect());
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.executeUpdate();
-		stmt.close();
-		return new ArrayList<AbstractDBEntity>();
+		SelectAllStatement selectStmt = new SelectAllStatement();
+		
+		return executeStatement(selectStmt, entity, connection);
 	}
-
-	@Override
-	public String getId() {
+	
+	/* (non-Javadoc)
+	 * @see net.form105.rm.base.db.action.IDbEntityAction#getId()
+	 */
+	public final String getId() {
 		return ID;
 	}
 
 	@Override
 	public ActionType getRegistrationName() {
-		return ActionType.UPDATE;
+		return ActionType.SELECTALL;
 	}
+
 }

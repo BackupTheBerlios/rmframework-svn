@@ -43,7 +43,7 @@ public class PaceOrderQuery extends AbstractSimpleQuery<Order> {
 		
 		JdbcOutboundHandler handler = new JdbcOutboundHandler();
 		
-		IResult<AbstractDBEntity> result = handler.executeAction(entity, ActionType.SELECT);
+		IResult<AbstractDBEntity> result = handler.executeAction(entity, ActionType.SELECTALL);
 		logger.debug("Entities got: "+result.getResultList().size());
 		
 		List<Order> orderList = new ArrayList<Order>();

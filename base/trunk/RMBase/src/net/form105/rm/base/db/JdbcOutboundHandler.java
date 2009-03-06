@@ -17,7 +17,6 @@ package net.form105.rm.base.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +28,8 @@ import net.form105.rm.base.db.action.DeleteAction;
 import net.form105.rm.base.db.action.IJdbcAction;
 import net.form105.rm.base.db.action.InsertAction;
 import net.form105.rm.base.db.action.JdbcResult;
-import net.form105.rm.base.db.action.SelectAction;
+import net.form105.rm.base.db.action.SelectAllAction;
+import net.form105.rm.base.db.action.SelectByConstrainAction;
 import net.form105.rm.base.db.action.UpdateAction;
 import net.form105.rm.base.exception.RMSqlException;
 import net.form105.rm.base.service.IResult;
@@ -53,10 +53,11 @@ public class JdbcOutboundHandler {
 	private Map<ActionType, IJdbcAction> actionMap = new HashMap<ActionType, IJdbcAction>();
 
 	public JdbcOutboundHandler() {
-		addAction(ActionType.SELECT, new SelectAction());
+		addAction(ActionType.SELECTALL, new SelectAllAction());
 		addAction(ActionType.INSERT, new InsertAction());
 		addAction(ActionType.DELETE, new DeleteAction());
 		addAction(ActionType.UPDATE, new UpdateAction());
+		addAction(ActionType.SELECT_BY_CONSTRAIN, new SelectByConstrainAction());
 	}
 
 	public IResult<AbstractDBEntity> executeAction(AbstractDBEntity entity, ActionType type) throws RMSqlException {
@@ -68,7 +69,7 @@ public class JdbcOutboundHandler {
 			result.setResultList(list);
 			result.setStatus(ResultStatus.SUCCESS);
 		} catch (SQLException sqlEx) {
-			throw new RMSqlException(new BaseI18NMessage(), "exception.sql.base", new String[] {}, sqlEx);
+			throw new RMSqlException(new BaseI18NMessage(), "exception.sql.base", new String[] {sqlEx.getMessage()}, sqlEx);
 		}
 
 		return result;
@@ -87,6 +88,14 @@ public class JdbcOutboundHandler {
 
 	public IJdbcAction getAction(ActionType type) {
 		return actionMap.get(type);
+	}
+	
+	public void commitConnection() {
+		try {
+			getConnection().commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

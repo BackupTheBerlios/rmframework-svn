@@ -15,6 +15,7 @@
  */
 package net.form105.rm.base.db.dialect;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 
 import net.form105.rm.base.db.AbstractDBEntity;
@@ -24,7 +25,9 @@ import net.form105.rm.base.db.statement.StatementConstant;
 
 import org.apache.log4j.Logger;
 
-public class UniversalDialect implements IDialect {
+public class UniversalDialect implements IDialect, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public static Logger logger = Logger.getLogger(UniversalDialect.class);
 
@@ -44,6 +47,21 @@ public class UniversalDialect implements IDialect {
 	public String getFieldPart() {
 		StringBuilder sb = new StringBuilder();
 		for (IDbColumn column : entity.getColumns()) {
+			sb.append("\"");
+			sb.append(column.getDbColumnName());
+			sb.append("\"");
+			sb.append(',');
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		sb.append(StatementConstant.BLANK_STRING);
+		return sb.toString();
+	}
+	
+	
+	public String getFieldPartWithoutPK() {
+		StringBuilder sb = new StringBuilder();
+		for (IDbColumn column : entity.getColumns()) {
+			if (column.isPrimaryColumn()) continue;
 			sb.append("\"");
 			sb.append(column.getDbColumnName());
 			sb.append("\"");
@@ -161,6 +179,11 @@ public class UniversalDialect implements IDialect {
 		
 		sb.append(sd);
 		return sb.toString();
+	}
+
+	@Override
+	public String getConstrain() {
+		return entity.getConstrain();
 	}
 
 }
