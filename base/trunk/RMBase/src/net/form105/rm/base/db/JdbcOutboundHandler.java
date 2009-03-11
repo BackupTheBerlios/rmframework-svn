@@ -28,6 +28,7 @@ import net.form105.rm.base.db.action.DeleteAction;
 import net.form105.rm.base.db.action.IJdbcAction;
 import net.form105.rm.base.db.action.InsertAction;
 import net.form105.rm.base.db.action.JdbcResult;
+import net.form105.rm.base.db.action.ResetTableAction;
 import net.form105.rm.base.db.action.SelectAllAction;
 import net.form105.rm.base.db.action.SelectByConstrainAction;
 import net.form105.rm.base.db.action.UpdateAction;
@@ -58,24 +59,36 @@ public class JdbcOutboundHandler {
 		addAction(ActionType.DELETE, new DeleteAction());
 		addAction(ActionType.UPDATE, new UpdateAction());
 		addAction(ActionType.SELECT_BY_CONSTRAIN, new SelectByConstrainAction());
+		addAction(ActionType.RESETTABLE, new ResetTableAction());
 	}
 
 	public IResult<AbstractDBEntity> executeAction(AbstractDBEntity entity, ActionType type) throws RMSqlException {
 		IResult<AbstractDBEntity> result = new JdbcResult();
 		IJdbcAction action = actionMap.get(type);
-
+		Connection connection = null;
 		try {
-			List<AbstractDBEntity> list = action.execute(entity, getConnection());
+			logger.info("Getting connection");
+			connection = getConnection();
+			logger.info("Got connection");
+			connection.setAutoCommit(false);
+			List<AbstractDBEntity> list = action.execute(entity, connection);
 			result.setResultList(list);
 			result.setStatus(ResultStatus.SUCCESS);
+			connection.setAutoCommit(true);
 		} catch (SQLException sqlEx) {
+			if (connection != null)
+				try {
+					connection.rollback();
+				} catch (SQLException e) {
+					logger.error("Tried to rollback transacton, but unsuccessfully ended!");
+				}
 			throw new RMSqlException(new BaseI18NMessage(), "exception.sql.base", new String[] {sqlEx.getMessage()}, sqlEx);
 		}
 
 		return result;
 	}
 
-	protected Connection getConnection() throws SQLException {
+	public Connection getConnection() throws SQLException {
 		DBConnectionPoolContainer connectionContainer = (DBConnectionPoolContainer) Agent
 				.getContainer(DBConnectionPoolContainer.class);
 		Connection connection = connectionContainer.getDefaultConnection();

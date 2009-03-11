@@ -19,6 +19,6 @@ import net.form105.rm.base.db.dialect.IDialect;
 
 public interface IStatement {
 	
-	public abstract String getStatement(IDialect dialect);
+	public abstract StringBuilder getStatement(IDialect dialect);
 
 }

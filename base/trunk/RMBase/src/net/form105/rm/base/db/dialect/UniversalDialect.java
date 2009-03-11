@@ -123,6 +123,19 @@ public class UniversalDialect implements IDialect, Serializable {
 			sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();
 	}
+	
+	public String getDelemitedFieldValuesWithoutPK() {
+		StringBuffer sb = new StringBuffer();
+		String sd = "";
+		for (IDbColumn column : entity.getColumns()) {
+			if (column.isPrimaryColumn()) continue;
+			sb.append(getFieldValue(column));
+			sb.append(',');
+		}
+		if (sb.length() > 0)
+			sb.deleteCharAt(sb.length() - 1);
+		return sb.toString();
+	}
 
 	public String getIdSelectionPart() {
 		StringBuffer sb = new StringBuffer();

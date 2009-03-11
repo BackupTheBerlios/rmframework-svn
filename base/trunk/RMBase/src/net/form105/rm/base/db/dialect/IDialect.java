@@ -44,6 +44,14 @@ public interface IDialect {
 	 */
 	public abstract String getDelemitedFieldValues();
 	
+	
+	/**
+	 * Get the values of the fields from the entity class but left the field if
+	 * it is a primary key
+	 * @return
+	 */
+	public abstract String getDelemitedFieldValuesWithoutPK();
+	
 	/**
 	 * Get the selection part for the where condition
 	 * example: 

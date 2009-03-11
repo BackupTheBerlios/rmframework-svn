@@ -24,6 +24,11 @@ import java.util.List;
 import net.form105.rm.base.db.AbstractDBEntity;
 import net.form105.rm.base.db.statement.UpdateStatement;
 
+/**
+ * Action to update the database by an sql statement
+ * @author heikok
+ *
+ */
 public class UpdateAction implements IJdbcAction {
 	
 	private final String ID = "UPDATE_BY_STATEMENT_ACTION";
@@ -31,8 +36,8 @@ public class UpdateAction implements IJdbcAction {
 	@Override
 	public List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException {
 		UpdateStatement updateStmt = new UpdateStatement();
-		String sql = updateStmt.getStatement(entity.getDialect());
-		PreparedStatement stmt = connection.prepareStatement(sql);
+		StringBuilder sql = updateStmt.getStatement(entity.getDialect());
+		PreparedStatement stmt = connection.prepareStatement(sql.toString());
 		stmt.executeUpdate();
 		stmt.close();
 		return new ArrayList<AbstractDBEntity>();
@@ -42,12 +47,4 @@ public class UpdateAction implements IJdbcAction {
 	public String getId() {
 		return ID;
 	}
-
-	@Override
-	public ActionType getRegistrationName() {
-		return ActionType.UPDATE;
-	}
-	
-	
-
 }

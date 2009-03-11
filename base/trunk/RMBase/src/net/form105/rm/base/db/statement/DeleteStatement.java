@@ -20,14 +20,14 @@ import net.form105.rm.base.db.dialect.IDialect;
 public class DeleteStatement extends AbstractStatement {
 
 	@Override
-	public String getStatement(IDialect dialect) {
+	public StringBuilder getStatement(IDialect dialect) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(StatementConstant.DELETE_STRING).append(StatementConstant.BLANK_STRING);
 		sb.append(dialect.getTablePart()).append(StatementConstant.BLANK_STRING);
 		sb.append(StatementConstant.WHERE_STRING).append(StatementConstant.BLANK_STRING);
 		sb.append(dialect.getIdSelectionPart());
-		logStatement(sb.toString());
-		return sb.toString();
+		logStatement(sb);
+		return sb;
 	}
 
 }

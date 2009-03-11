@@ -34,7 +34,7 @@ public class PaceOrderLineDbEntityTest {
 		entity.setQuantity(101);
 		UniversalDialect dialect = new UniversalDialect(entity);
 		UpdateStatement statement = new UpdateStatement();
-		String updateStatement = statement.getStatement(dialect);
+		StringBuilder updateStatement = statement.getStatement(dialect);
 		logger.info(updateStatement);
 	}
 

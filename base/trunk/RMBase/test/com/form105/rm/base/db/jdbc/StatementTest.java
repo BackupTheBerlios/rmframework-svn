@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 import net.form105.rm.base.db.dialect.UniversalDialect;
 import net.form105.rm.base.db.statement.DeleteStatement;
 import net.form105.rm.base.db.statement.InsertStatement;
+import net.form105.rm.base.db.statement.ResetTableStatement;
 import net.form105.rm.base.db.statement.SelectStatement;
 import net.form105.rm.base.db.statement.UpdateStatement;
 
@@ -28,6 +29,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Compares each statement with the expected results. The statements are this one
+ * which are sent to the database
+ * @author heikok
+ *
+ */
 public class StatementTest {
 	
 public static Logger logger = Logger.getLogger(UniversalDialectTest.class);
@@ -46,8 +53,9 @@ public static Logger logger = Logger.getLogger(UniversalDialectTest.class);
 	public void selectStatement() {
 		UniversalDialect dialect = new UniversalDialect(entity);
 		SelectStatement select = new SelectStatement();
-		String sql = select.getStatement(dialect);
-		Assert.assertEquals("SELECT \"resource #\",\"dbElementId\",\"dbElementType\",\"dbElementInteger\",\"dbElementFloat\" FROM resourceElement", sql);
+		StringBuilder sql = select.getStatement(dialect);
+		//logger.info(sql);
+		Assert.assertEquals("SELECT \"resource #\",\"dbElementId\",\"dbElementType\",\"dbElementInteger\",\"dbElementFloat\" FROM resourceElement ", sql.toString());
 	}
 	
 	@Test
@@ -55,24 +63,32 @@ public static Logger logger = Logger.getLogger(UniversalDialectTest.class);
 		UniversalDialect dialect = new UniversalDialect(entity);
 		UpdateStatement update = new UpdateStatement();
 		String sql = "UPDATE resourceElement SET  \"dbElementId\"='id001', \"dbElementType\"='resourceType', \"dbElementInteger\"=NULL, \"dbElementFloat\"=15.0000326 WHERE \"resource #\"=NULL";
-		Assert.assertEquals(sql, update.getStatement(dialect));
+		Assert.assertEquals(sql, update.getStatement(dialect).toString());
 	}
 	
 	@Test
 	public void deleteStatement() {
-		entity.setObjectId(001);
+		entity.setObjectId(1);
 		UniversalDialect dialect = new UniversalDialect(entity);
 		DeleteStatement delete = new DeleteStatement();
-		String sql = "DELETE resourceElement WHERE \"resource #\"='objectId001'";
-		Assert.assertEquals(sql, delete.getStatement(dialect));
+		String sql = "DELETE resourceElement WHERE \"resource #\"=1";
+		Assert.assertEquals(sql, delete.getStatement(dialect).toString());
 	}
 	
 	@Test
 	public void insertStatement() {
 		UniversalDialect dialect = new UniversalDialect(entity);
 		InsertStatement insert = new InsertStatement();
-		String sql = "INSERT INTO resourceElement (\"resource #\",\"dbElementId\",\"dbElementType\",\"dbElementInteger\",\"dbElementFloat\" ) VALUES(NULL,'id001','resourceType',NULL,15.0000326)";
-		Assert.assertEquals(sql, insert.getStatement(dialect));
+		String sql = "INSERT INTO resourceElement (\"dbElementId\",\"dbElementType\",\"dbElementInteger\",\"dbElementFloat\" ) VALUES('id001','resourceType',NULL,15.0000326)";
+		Assert.assertEquals(sql, insert.getStatement(dialect).toString());
+	}
+	
+	@Test
+	public void resetTableStatement() {
+		UniversalDialect dialect = new UniversalDialect(entity);
+		ResetTableStatement stmt = new ResetTableStatement();
+		String sql = "DELETE FROM resourceElement";
+		Assert.assertEquals(sql, stmt.getStatement(dialect).toString());
 	}
 
 }

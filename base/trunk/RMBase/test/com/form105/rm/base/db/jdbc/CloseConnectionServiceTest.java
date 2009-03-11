@@ -13,22 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.db.action;
+package com.form105.rm.base.db.jdbc;
+
+import net.form105.rm.server.service.DBConnectionService;
+
+import org.junit.Test;
+
+import com.form105.rm.base.query.AbstractRemoteTest;
 
 
-/** 
- * The type of actions that exist to execute statements on the database via
- * the jdbc connection
- * @author heikok
- *
- */
-public enum ActionType {
+public class CloseConnectionServiceTest extends AbstractRemoteTest<Object>{
 	
-	UPDATE(),
-	DELETE(),
-	RESETTABLE(),
-	SELECTALL(),
-	SELECT_BY_CONSTRAIN(),
-	INSERT();
+	@Test
+	public void closeConnection() {
+		DBConnectionService service = new DBConnectionService();
+		doService(service);
+	}
 
 }

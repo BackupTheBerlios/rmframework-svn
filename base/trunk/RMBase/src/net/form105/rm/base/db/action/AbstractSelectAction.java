@@ -38,12 +38,10 @@ public abstract class AbstractSelectAction implements IJdbcAction {
 
 	@Override
 	public abstract String getId();
-
-	@Override
-	public abstract ActionType getRegistrationName();
+	
 	
 	public List<AbstractDBEntity> executeStatement(IStatement statement, AbstractDBEntity entity, Connection connection) throws SQLException {
-		PreparedStatement stmt = connection.prepareStatement(statement.getStatement(entity.getDialect()));
+		PreparedStatement stmt = connection.prepareStatement(statement.getStatement(entity.getDialect()).toString());
 		ResultSet rs = stmt.executeQuery();
 
 		List<AbstractDBEntity> resultList = new ArrayList<AbstractDBEntity>();

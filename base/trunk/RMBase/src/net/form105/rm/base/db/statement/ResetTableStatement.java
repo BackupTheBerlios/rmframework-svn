@@ -17,33 +17,15 @@ package net.form105.rm.base.db.statement;
 
 import net.form105.rm.base.db.dialect.IDialect;
 
-/**
- * Creates a String to update a row in the database
- * @author heikok
- *
- */
-public class UpdateStatement extends AbstractStatement {
+
+public class ResetTableStatement extends AbstractStatement {
 
 	@Override
 	public StringBuilder getStatement(IDialect dialect) {
-		
 		StringBuilder sb = new StringBuilder();
-		sb.append(StatementConstant.UPDATE_STRING);
-		sb.append(StatementConstant.BLANK_STRING);
-		// generated
+		sb.append(StatementConstant.DELETE_STRING).append(StatementConstant.BLANK_STRING);
+		sb.append(StatementConstant.FROM_STRING).append(StatementConstant.BLANK_STRING);
 		sb.append(dialect.getTablePart());
-		sb.append(StatementConstant.BLANK_STRING);
-		sb.append(StatementConstant.SET_STRING);
-		sb.append(StatementConstant.BLANK_STRING);
-		// generated
-		sb.append(dialect.getFieldAssignmentPart());
-		sb.append(StatementConstant.BLANK_STRING);
-		sb.append(StatementConstant.WHERE_STRING);
-		sb.append(StatementConstant.BLANK_STRING);
-		// generated
-		sb.append(dialect.getIdSelectionPart());
-		logStatement(sb);
 		return sb;
 	}
-
 }

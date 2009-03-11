@@ -19,7 +19,7 @@ import net.form105.rm.base.db.dialect.IDialect;
 
 public class InsertStatement extends AbstractStatement {
 
-	public String getStatement(IDialect dialect) {
+	public StringBuilder getStatement(IDialect dialect) {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(StatementConstant.INSERT_STRING).append(StatementConstant.BLANK_STRING);
@@ -31,10 +31,11 @@ public class InsertStatement extends AbstractStatement {
 
 		sb.append(StatementConstant.VALUES_STRING);
 		sb.append(StatementConstant.LEFT_PARENTHESES);
-		sb.append(dialect.getDelemitedFieldValues());
+		sb.append(dialect.getDelemitedFieldValuesWithoutPK());
+		//sb.append(dialect.getDelemitedFieldValues());
 		sb.append(StatementConstant.RIGHT_PARENTHESES);
-		logStatement(sb.toString());
-		return sb.toString();
+		logStatement(sb);
+		return sb;
 	}
 
 }

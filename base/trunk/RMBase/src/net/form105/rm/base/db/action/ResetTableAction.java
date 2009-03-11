@@ -22,22 +22,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.db.AbstractDBEntity;
-import net.form105.rm.base.db.statement.InsertStatement;
+import net.form105.rm.base.db.statement.ResetTableStatement;
 
-import org.apache.log4j.Logger;
-
-public class InsertAction implements IJdbcAction {
+public class ResetTableAction implements IJdbcAction {
 	
-	public static Logger logger = Logger.getLogger(InsertAction.class);
-	
-	private final String ID = "INSERT_BY_STATEMENT_ACTION";
+	private final String ID = "RESET_TABLE_ACTION";
 
 	@Override
 	public List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException {
-		InsertStatement insertStmt = new InsertStatement();
-		StringBuilder sql = insertStmt.getStatement(entity.getDialect());
+		ResetTableStatement updateStmt = new ResetTableStatement();
+		StringBuilder sql = updateStmt.getStatement(entity.getDialect());
 		PreparedStatement stmt = connection.prepareStatement(sql.toString());
-		logger.info("Execute statement update");
 		stmt.executeUpdate();
 		stmt.close();
 		return new ArrayList<AbstractDBEntity>();
@@ -47,4 +42,5 @@ public class InsertAction implements IJdbcAction {
 	public String getId() {
 		return ID;
 	}
+
 }

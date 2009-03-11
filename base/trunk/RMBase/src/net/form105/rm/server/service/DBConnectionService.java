@@ -13,38 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.server.command;
+package net.form105.rm.server.service;
+
+import java.sql.Connection;
 
 import net.form105.rm.base.Agent;
-import net.form105.rm.base.command.AbstractCommand;
 import net.form105.rm.base.container.JdbcOutboundContainer;
-import net.form105.rm.base.db.AbstractDBEntity;
 import net.form105.rm.base.db.JdbcOutboundHandler;
-import net.form105.rm.base.db.action.ActionType;
-import net.form105.rm.base.exception.RMException;
+import net.form105.rm.base.service.AbstractService;
+import net.form105.rm.base.service.IArgument;
 
-public class ExecuteEntityCommand extends AbstractCommand {
-
-	private final String ID = "EXECUTE_ENTITY_COMMAND";
-
-	private AbstractDBEntity _entity;
-	private ActionType _actionType;
-
-	public ExecuteEntityCommand(AbstractDBEntity entity, ActionType actionType) {
-		_entity = entity;
-		_actionType = actionType;
-	}
+public class DBConnectionService extends AbstractService {
+	
+	private static final long serialVersionUID = 1L;
+	private ServiceArgument argument = new ServiceArgument();
 
 	@Override
-	public void execute() throws RMException {
+	public void execute() throws Exception {
 		JdbcOutboundContainer container = (JdbcOutboundContainer) Agent.getContainer(JdbcOutboundContainer.class);
-		JdbcOutboundHandler handler = container.getHandler();
-		handler.executeAction(_entity, _actionType);
+		JdbcOutboundHandler cHandler = container.getHandler();
+		Connection connection = cHandler.getConnection();
+		logger.info("Connection is: "+connection);
+		//connection.commit();
+		//connection.close();
 	}
 
 	@Override
-	public String getId() {
-		return ID;
+	public ServiceArgument getArgument() {
+		return argument;
+	}
+	
+	public class ServiceArgument implements IArgument {
+		private static final long serialVersionUID = 1L;
 	}
 
 }

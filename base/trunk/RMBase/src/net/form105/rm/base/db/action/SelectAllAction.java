@@ -47,9 +47,4 @@ public class SelectAllAction extends AbstractSelectAction {
 		return ID;
 	}
 
-	@Override
-	public ActionType getRegistrationName() {
-		return ActionType.SELECTALL;
-	}
-
 }

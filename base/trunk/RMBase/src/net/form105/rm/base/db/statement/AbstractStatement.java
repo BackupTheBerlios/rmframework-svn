@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 public abstract class AbstractStatement implements IStatement {
 
 	@Override
-	public abstract String getStatement(IDialect dialect);
+	public abstract StringBuilder getStatement(IDialect dialect);
 	
 	public void log(String logString) {
 		Logger logger = Logger.getLogger(this.getClass());
@@ -33,7 +33,7 @@ public abstract class AbstractStatement implements IStatement {
 		}
 	}
 	
-	public void logStatement(String statement) {
+	public void logStatement(StringBuilder statement) {
 		String logStatement = "Statement "+getClass().getSimpleName()+": "+statement;
 		log(logStatement);
 	}

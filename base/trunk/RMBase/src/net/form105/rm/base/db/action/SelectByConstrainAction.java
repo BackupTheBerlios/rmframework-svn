@@ -37,10 +37,6 @@ public class SelectByConstrainAction extends AbstractSelectAction {
 		return ID;
 	}
 
-	@Override
-	public ActionType getRegistrationName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

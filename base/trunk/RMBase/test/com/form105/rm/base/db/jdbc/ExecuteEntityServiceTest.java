@@ -34,7 +34,7 @@ public class ExecuteEntityServiceTest extends AbstractRemoteTest<AbstractDBEntit
 	
 	public static Logger logger = Logger.getLogger(ExecuteEntityServiceTest.class);
 	
-	@Test
+	//@Test
 	public void executeInsert() {
 		String time = String.valueOf(System.currentTimeMillis());
 		ExecuteEntityService service = new ExecuteEntityService();
@@ -74,9 +74,9 @@ public class ExecuteEntityServiceTest extends AbstractRemoteTest<AbstractDBEntit
 		}*/
 	}
 	
-	//@Test
+	@Test
 	public void insertBatch() {
-		int max = 1000;
+		int max = 10000;
 		
 		ResourceDBEntityTest entity = new ResourceDBEntityTest();
 		

@@ -39,8 +39,10 @@ public class Container {
     private ContainerConfiguration configuration;
 
     static {
-        instance = new Container();
+        
+    	instance = new Container();
         instance.initialize();
+        
     }
 
     public void initialize() {

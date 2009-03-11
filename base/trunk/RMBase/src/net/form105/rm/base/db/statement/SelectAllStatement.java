@@ -25,7 +25,7 @@ import net.form105.rm.base.db.dialect.IDialect;
 public class SelectAllStatement extends AbstractStatement {
 
 	@Override
-	public String getStatement(IDialect dialect) {
+	public StringBuilder getStatement(IDialect dialect) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(StatementConstant.SELECT_STRING);
 		sb.append(StatementConstant.BLANK_STRING);
@@ -33,8 +33,8 @@ public class SelectAllStatement extends AbstractStatement {
 		sb.append(StatementConstant.FROM_STRING);
 		sb.append(StatementConstant.BLANK_STRING);
 		sb.append(dialect.getTablePart());
-		logStatement(sb.toString());
-		return sb.toString();
+		logStatement(sb);
+		return sb;
 	}
 
 }

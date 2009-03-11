@@ -26,7 +26,5 @@ public interface IJdbcAction {
 	public abstract List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException;
 
 	public abstract String getId();
-	
-	public abstract ActionType getRegistrationName();
 
 }

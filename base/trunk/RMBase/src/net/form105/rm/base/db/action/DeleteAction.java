@@ -32,8 +32,8 @@ public class DeleteAction implements IJdbcAction {
 	public List<AbstractDBEntity> execute(AbstractDBEntity entity, Connection connection) throws SQLException {
 		
 		DeleteStatement deleteStmt = new DeleteStatement();
-		String sql = deleteStmt.getStatement(entity.getDialect());
-		PreparedStatement stmt = connection.prepareStatement(sql);
+		StringBuilder sql = deleteStmt.getStatement(entity.getDialect());
+		PreparedStatement stmt = connection.prepareStatement(sql.toString());
 		stmt.executeUpdate();
 		stmt.close();
 		
@@ -43,11 +43,6 @@ public class DeleteAction implements IJdbcAction {
 	@Override
 	public String getId() {
 		return ID;
-	}
-
-	@Override
-	public ActionType getRegistrationName() {
-		return ActionType.DELETE;
 	}
 
 }

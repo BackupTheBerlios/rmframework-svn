@@ -37,7 +37,9 @@ public class BackgroundThreadContainer extends AbstractContainer implements ISta
     }
 
     public void stop() {
+    	logger.info("Stopping: "+this.getClass().getCanonicalName());
         bgThread.stop();
+        // stop all containers
     }
 
     public void initialize() {
