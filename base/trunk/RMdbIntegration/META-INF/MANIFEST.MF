@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RMdbIntegration Plug-in
+Bundle-SymbolicName: RMdbIntegration; singleton:=true
+Bundle-Version: 0.1
+Bundle-Activator: com.epac.plugin.dbIntegration.base.Activator
+Bundle-Vendor: EPAC Technologies GmbH
+Require-Bundle: org.eclipse.core.runtime,
+ net.form105.rm.RMBase;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
