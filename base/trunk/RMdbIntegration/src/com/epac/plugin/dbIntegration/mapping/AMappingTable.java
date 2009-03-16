@@ -19,8 +19,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface IdGeneration {
+public @interface AMappingTable {
 	
-	public IdGenerationStrategy value() default IdGenerationStrategy.NONE;
+	public String tableName();
 
 }

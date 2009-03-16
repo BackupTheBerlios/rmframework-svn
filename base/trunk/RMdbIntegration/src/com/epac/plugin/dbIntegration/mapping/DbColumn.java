@@ -42,11 +42,11 @@ public class DbColumn implements IDbColumn, Serializable {
 	private DBTable dbTable;
 	private String declaredField;
 	IResultSetConverter<?> converter;
-	MappingColumn mappingColumnDeclaration;
-	IdGeneration idGeneration;
+	AMappingColumn mappingColumnDeclaration;
+	AIdGeneration idGeneration;
 
-	public DbColumn(DBTable dbTable, String declaredField, MappingColumn mColumn, IResultSetConverter<?> converter,
-			IdGeneration idGen) {
+	public DbColumn(DBTable dbTable, String declaredField, AMappingColumn mColumn, IResultSetConverter<?> converter,
+			AIdGeneration idGen) {
 		this.dbTable = dbTable;
 		this.declaredField = declaredField;
 		this.mappingColumnDeclaration = mColumn;

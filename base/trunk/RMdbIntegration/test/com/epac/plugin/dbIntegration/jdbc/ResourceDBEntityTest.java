@@ -19,30 +19,30 @@ import java.math.BigDecimal;
 
 import com.epac.plugin.dbIntegration.mapping.AbstractDBEntity;
 import com.epac.plugin.dbIntegration.mapping.DBFieldType;
-import com.epac.plugin.dbIntegration.mapping.IdGeneration;
+import com.epac.plugin.dbIntegration.mapping.AIdGeneration;
 import com.epac.plugin.dbIntegration.mapping.IdGenerationStrategy;
-import com.epac.plugin.dbIntegration.mapping.MappingColumn;
-import com.epac.plugin.dbIntegration.mapping.MappingTable;
+import com.epac.plugin.dbIntegration.mapping.AMappingColumn;
+import com.epac.plugin.dbIntegration.mapping.AMappingTable;
 
-@MappingTable(tableName="resourceElement")
+@AMappingTable(tableName="resourceElement")
 public class ResourceDBEntityTest extends AbstractDBEntity {
 	
 	private static final long serialVersionUID = 1L;
 
-	@IdGeneration(IdGenerationStrategy.DBGENERATED)
-	@MappingColumn(fieldName="resource #", fieldType=DBFieldType.INTEGER)
+	@AIdGeneration(IdGenerationStrategy.DBGENERATED)
+	@AMappingColumn(fieldName="resource #", fieldType=DBFieldType.INTEGER)
 	private Integer objectId;
 	
-	@MappingColumn(fieldName="dbElementId",fieldType=DBFieldType.VARCHAR)
+	@AMappingColumn(fieldName="dbElementId",fieldType=DBFieldType.VARCHAR)
 	private String elementId;
 	
-	@MappingColumn(fieldName="dbElementType",fieldType=DBFieldType.VARCHAR)
+	@AMappingColumn(fieldName="dbElementType",fieldType=DBFieldType.VARCHAR)
 	private String elementType;
 	
-	@MappingColumn(fieldName="dbElementInteger",fieldType=DBFieldType.INTEGER)
+	@AMappingColumn(fieldName="dbElementInteger",fieldType=DBFieldType.INTEGER)
 	private Integer elementInteger;
 	
-	@MappingColumn(fieldName="dbElementFloat",fieldType=DBFieldType.FLOAT)
+	@AMappingColumn(fieldName="dbElementFloat",fieldType=DBFieldType.FLOAT)
 	private BigDecimal elementFloat;
 
 	/**

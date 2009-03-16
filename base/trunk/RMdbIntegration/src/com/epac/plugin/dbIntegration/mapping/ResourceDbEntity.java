@@ -16,16 +16,16 @@
 package com.epac.plugin.dbIntegration.mapping;
 
 
-@MappingTable(tableName="resourceElement")
+@AMappingTable(tableName="resourceElement")
 public class ResourceDbEntity extends AbstractDBEntity {
 	
-	@MappingColumn(fieldName="elementId", fieldType=DBFieldType.VARCHAR)
+	@AMappingColumn(fieldName="elementId", fieldType=DBFieldType.VARCHAR)
 	private String elementId;
 	
-	@MappingColumn(fieldName="elementName", fieldType=DBFieldType.VARCHAR)
+	@AMappingColumn(fieldName="elementName", fieldType=DBFieldType.VARCHAR)
 	private String elementName;
 	
-	@MappingColumn(fieldName="elementType", fieldType=DBFieldType.VARCHAR)
+	@AMappingColumn(fieldName="elementType", fieldType=DBFieldType.VARCHAR)
 	private String elementType;
 	
 	public String getElementId() {

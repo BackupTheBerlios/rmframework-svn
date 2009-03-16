@@ -17,11 +17,12 @@ package com.epac.plugin.dbIntegration.jdbc;
 
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.ResultStatus;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.epac.plugin.dbIntegration.mapping.AbstractDBEntity;
@@ -30,11 +31,25 @@ import com.epac.plugin.dbIntegration.query.EntityQuery;
 import com.epac.plugin.dbIntegration.service.ExecuteEntityService;
 import com.form105.rm.base.query.AbstractRemoteTest;
 
+/**
+ * Writes 100 rows into the database and checks for results. The table will be reset
+ * before and after the test
+ * @author heikok
+ *
+ */
 public class ExecuteEntityServiceTest extends AbstractRemoteTest<AbstractDBEntity> {
 	
 	public static Logger logger = Logger.getLogger(ExecuteEntityServiceTest.class);
 	
-	//@Test
+	@Test
+	public void databaseActionTest() {
+		int cycle = 100;
+		resetTable();
+		insertBatch(cycle);
+		Assert.assertEquals(cycle, selectResource());
+		resetTable();
+	}
+	
 	public void executeInsert() {
 		String time = String.valueOf(System.currentTimeMillis());
 		ExecuteEntityService service = new ExecuteEntityService();
@@ -52,31 +67,21 @@ public class ExecuteEntityServiceTest extends AbstractRemoteTest<AbstractDBEntit
 		IResult<AbstractDBEntity> result = doService(service);
 	}
 	
-	//@Test
-	public void selectResource() {
+	
+	public int selectResource() {
 		ResourceDBEntityTest entity = new ResourceDBEntityTest();
 		//entity.setConstraint("WHERE \"dbElementId\" LIKE 'bcr%'");
 		
 		EntityQuery query = new EntityQuery(entity);
 		IResult<AbstractDBEntity> result = doQuery(query);
 		
-		//Assert.assertEquals(ResultStatus.SUCCESS, result.getStatus());
-		logger.info("rows got: "+result.getResultList().size());
-		
-		/*for (AbstractDBEntity resultEntity : result.getResultList()) {
-			StringBuffer sb = new StringBuffer();
-			ResourceDBEntityTest finalEntity = (ResourceDBEntityTest) resultEntity;
-			sb.append(finalEntity.getObjectId()).append(":");
-			sb.append(finalEntity.getElementId()).append(":");
-			sb.append(finalEntity.getElementType()).append(":");
-			sb.append(finalEntity.getElementFloat()).append(":");
-			sb.append(finalEntity.getElementInteger()).append(":");
-		}*/
+		Assert.assertEquals(ResultStatus.SUCCESS, result.getStatus());
+		return result.getResultList().size();
 	}
 	
-	@Test
-	public void insertBatch() {
-		int max = 10000;
+	
+	public void insertBatch(int rows) {
+		int max = rows;
 		
 		ResourceDBEntityTest entity = new ResourceDBEntityTest();
 		
@@ -96,35 +101,14 @@ public class ExecuteEntityServiceTest extends AbstractRemoteTest<AbstractDBEntit
 		}
 	}
 	
-	//@Test
-	public void deleteAll() {
-		ResourceDBEntityTest qEntity = new ResourceDBEntityTest();
-		
-		EntityQuery query = new EntityQuery(qEntity);
-		IResult<AbstractDBEntity> result = doQuery(query);
-		List<AbstractDBEntity> list = result.getResultList();
-		for (AbstractDBEntity entity : list) {
-			ResourceDBEntityTest resEntity = (ResourceDBEntityTest) entity;
-			logger.info(resEntity.getObjectId());
-		}
-		
+	
+	public void resetTable() {
+		ResourceDBEntityTest entity = new ResourceDBEntityTest();
 		ExecuteEntityService service = new ExecuteEntityService();
 		ExecuteEntityService.ServiceArgument argument = service.getArgument();
-		
-		for (AbstractDBEntity entity : list) {
-			argument.entity = entity;
-			argument.actionType = ActionType.DELETE;
-			//doService(service);
-		}
-		
-	}
-
-	public void basicTest() {
-		Double value = 1/3d;
-		BigDecimal bi = new BigDecimal(value);
-		logger.info(bi+":"+value);
+		argument.entity = entity;
+		argument.actionType = ActionType.RESETTABLE;
+		doService(service);
 	}
 	
-	
-
 }

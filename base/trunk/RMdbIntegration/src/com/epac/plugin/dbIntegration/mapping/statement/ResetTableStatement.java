@@ -27,6 +27,7 @@ public class ResetTableStatement extends AbstractStatement {
 		sb.append(StatementConstant.DELETE_STRING).append(StatementConstant.BLANK_STRING);
 		sb.append(StatementConstant.FROM_STRING).append(StatementConstant.BLANK_STRING);
 		sb.append(dialect.getTablePart());
+		logStatement(sb);
 		return sb;
 	}
 }

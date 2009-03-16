@@ -19,14 +19,14 @@ import net.form105.rm.base.exception.RMException;
 import net.form105.rm.server.i18n.BaseI18NMessage;
 
 import com.epac.plugin.dbIntegration.mapping.AbstractDBEntity;
-import com.epac.plugin.dbIntegration.mapping.MappingTable;
+import com.epac.plugin.dbIntegration.mapping.AMappingTable;
 
 public class TableAnnotationValidator implements IEntityValidator {
 
 	@Override
 	public boolean isValid(AbstractDBEntity entity) {
 
-		MappingTable classAnnotation = entity.getClass().getAnnotation(MappingTable.class);
+		AMappingTable classAnnotation = entity.getClass().getAnnotation(AMappingTable.class);
 		
 		if (classAnnotation == null) {
 			throw new RMException(new BaseI18NMessage(), "validator.entity.mappingTable.exist", new String[] {entity.getClass().getName()});

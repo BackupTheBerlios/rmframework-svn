@@ -20,6 +20,7 @@ import java.util.List;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.query.AbstractSimpleQuery;
 import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.ResultStatus;
 
 import com.epac.plugin.dbIntegration.base.container.JdbcOutboundContainer;
 import com.epac.plugin.dbIntegration.mapping.AbstractDBEntity;
@@ -48,6 +49,7 @@ public class EntityQuery extends AbstractSimpleQuery<AbstractDBEntity> {
 		}
 		
 		IResult<AbstractDBEntity> result = handler.executeAction(_entity, actionType);
+		result.setStatus(ResultStatus.SUCCESS);
 		return result.getResultList();
 	}
 

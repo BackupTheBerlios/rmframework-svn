@@ -19,7 +19,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MappingColumn {
+public @interface AMappingColumn {
 	
 	public String fieldName();
 	public DBFieldType fieldType();

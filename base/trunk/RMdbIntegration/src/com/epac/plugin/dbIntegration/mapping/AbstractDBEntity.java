@@ -57,9 +57,9 @@ public abstract class AbstractDBEntity implements Serializable, Cloneable {
 		List<DbColumn> colList = new ArrayList<DbColumn>();
 		Field[] fields = getClass().getDeclaredFields();
 		for (Field field : fields) {
-			IdGeneration idGeneration = field.getAnnotation(IdGeneration.class);
+			AIdGeneration idGeneration = field.getAnnotation(AIdGeneration.class);
 
-			MappingColumn mCol = field.getAnnotation(MappingColumn.class);
+			AMappingColumn mCol = field.getAnnotation(AMappingColumn.class);
 			if (mCol != null) {
 				IResultSetConverter<?> converter = ResultSetConverterFactory.getConverter(mCol.fieldType());
 				DbColumn col = new DbColumn(getTable(), field.getName(), mCol, converter, idGeneration);
@@ -77,7 +77,7 @@ public abstract class AbstractDBEntity implements Serializable, Cloneable {
 	 * @return
 	 */
 	public DBTable getTable() {
-		MappingTable mTable = this.getClass().getAnnotation(MappingTable.class);
+		AMappingTable mTable = this.getClass().getAnnotation(AMappingTable.class);
 		DBTable table = new DBTable(mTable.tableName());
 		return table;
 	}
@@ -139,7 +139,7 @@ public abstract class AbstractDBEntity implements Serializable, Cloneable {
 
 	/**
 	 * Get the primary column which is defined by the annotation
-	 * {@link MappingColumn}
+	 * {@link AMappingColumn}
 	 * 
 	 * @return
 	 */
