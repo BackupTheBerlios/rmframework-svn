@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.ResultStatus;
 
 import org.apache.log4j.Logger;
 
@@ -28,9 +29,11 @@ public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHan
 		try {
 			Collection<T> queryResult = query.execute();
 			result.setResultList(new ArrayList<T>(queryResult));
+			result.setStatus(ResultStatus.SUCCESS);
 		} catch (Exception ex) {
 			logger.error(ex, ex);
 			result.setException(ex);
+			result.setStatus(ResultStatus.FAIL);
 		}
 
 	}
