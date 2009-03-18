@@ -30,6 +30,10 @@ public class ExecuteEntityService extends AbstractService {
 
 	@Override
 	public void execute() throws Exception {
+		if (argument.entity == null || argument.actionType == null) {
+			logger.error("Null arguments not allowed for this service");
+			return;
+		}
 		CommandHandler<AbstractDBEntity> cHandler = new CommandHandler<AbstractDBEntity>();
 		ExecuteEntityCommand command = new ExecuteEntityCommand(argument.entity, argument.actionType);
 		cHandler.execute(command);

@@ -68,15 +68,14 @@ public class JdbcOutboundHandler {
 		IJdbcAction action = actionMap.get(type);
 		Connection connection = null;
 		try {
-			logger.info("Getting connection");
 			connection = getConnection();
-			logger.info("Got connection");
 			connection.setAutoCommit(false);
 			List<AbstractDBEntity> list = action.execute(entity, connection);
 			result.setResultList(list);
 			result.setStatus(ResultStatus.SUCCESS);
 			connection.setAutoCommit(true);
 		} catch (SQLException sqlEx) {
+			logger.info("Exception occured with action: "+action.getId());
 			if (connection != null)
 				try {
 					connection.rollback();

@@ -100,6 +100,10 @@ public abstract class AbstractDBEntity implements Serializable, Cloneable {
 	public IDialect getDialect() {
 		return dialect;
 	}
+	
+	protected void setDialect(IDialect dialect) {
+		this.dialect = dialect;
+	}
 
 	/**
 	 * New instances are required for select statements. After executing a
@@ -119,6 +123,7 @@ public abstract class AbstractDBEntity implements Serializable, Cloneable {
 		// e.printStackTrace();
 		// }
 		AbstractDBEntity newEntity = (AbstractDBEntity) clone();
+		newEntity.setDialect(new UniversalDialect(newEntity));
 		return newEntity;
 	}
 
