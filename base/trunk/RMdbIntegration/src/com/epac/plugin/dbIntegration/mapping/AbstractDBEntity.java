@@ -114,14 +114,6 @@ public abstract class AbstractDBEntity implements Serializable, Cloneable {
 	 * @see Cloneable
 	 */
 	public AbstractDBEntity getNewInstance() {
-		// AbstractDBEntity entity = null;
-		// try {
-		// entity = this.getClass().newInstance();
-		// } catch (InstantiationException e) {
-		// e.printStackTrace();
-		// } catch (IllegalAccessException e) {
-		// e.printStackTrace();
-		// }
 		AbstractDBEntity newEntity = (AbstractDBEntity) clone();
 		newEntity.setDialect(new UniversalDialect(newEntity));
 		return newEntity;
