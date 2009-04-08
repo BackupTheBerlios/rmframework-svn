@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<assembly>
+	<id>bin</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>lib</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<includes>
+				<include>README*</include>
+				<include>LICENSE*</include>
+				<include>NOTICE*</include>
+			</includes>
+		</fileSet>
+		
+		<fileSet>
+			<directory>license</directory>
+		</fileSet>
+		<fileSet>
+			<directory>config</directory>
+		</fileSet>
+		
+
+	</fileSets>
+</assembly>

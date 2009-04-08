@@ -10,6 +10,14 @@
 	<version>0.1-SNAPSHOT</version>
 	<description>RM Base Server</description>
 
+	<repositories>
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+	</repositories>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 
@@ -27,6 +35,28 @@
 					<downloadSources>true</downloadSources>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-3</version>
+				<configuration>
+					<descriptor>src/etc/maven_assembly.xml</descriptor>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries />
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>net.form105.rm.base.Agent</mainClass>
+						</manifest>
+
+					</archive>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
@@ -69,18 +99,20 @@
 			<artifactId>picocontainer</artifactId>
 			<version>2.8</version>
 		</dependency>
-
-		<dependency>
-			<groupId>portlet</groupId>
-			<artifactId>db4o-7.4.71.12224-java5.jar</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/db4o-7.4.71.12224-java5.jar</systemPath>
-		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.db4o</groupId>
+			<artifactId>com.springsource.com.db4o.java5</artifactId>
+			<version>7.2.54.11278</version>
+		</dependency>
+		<dependency>
+			<groupId>RM</groupId>
+			<artifactId>RMxmlHelper</artifactId>
+			<version>0.1</version>
 		</dependency>
 	</dependencies>
 

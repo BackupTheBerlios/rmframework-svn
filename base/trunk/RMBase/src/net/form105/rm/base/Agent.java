@@ -6,12 +6,12 @@
  */
 package net.form105.rm.base;
 
+
+
 import net.form105.rm.base.config.SimpleConfiguration;
 import net.form105.rm.base.container.LookupContainer;
 import net.form105.rm.base.container.PropertiesContainer;
-import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
 import net.form105.rm.base.lookup.ILookup;
-import net.form105.rm.base.model.AgentObject;
 
 /**
  * The main class which starts the agent and gives access to the 
@@ -19,6 +19,7 @@ import net.form105.rm.base.model.AgentObject;
  * @author heiko
  */
 public class Agent {
+    
 
     /**
      * @param args the command line arguments

@@ -18,7 +18,7 @@ import org.picocontainer.Startable;
  */
 public class BackgroundThreadContainer extends AbstractContainer implements IStartable, Startable {
 
-    public BackgroundThreadContainer() {
+    public BackgroundThreadContainer(LoggerContainer logC) {
         super();
     }
 
