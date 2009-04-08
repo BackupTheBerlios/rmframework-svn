@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>RMxmlHelper</groupId>
+	<groupId>RM</groupId>
 	<artifactId>RMxmlHelper</artifactId>
 	<name>RMXmlHelper</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<description>The xml helper project to integrate to RMBase and
 		provides xml mapper funktions</description>
 	<build>
@@ -41,7 +41,5 @@
 			<artifactId>xmlbeans</artifactId>
 			<version>2.4.0</version>
 		</dependency>
-
-
 	</dependencies>
 </project>
