@@ -6,16 +6,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-
 import net.form105.rm.base.model.AgentObject;
 
 /**
  * Represents a user which has some user data associated. 
  * @author heiko
  */
-@Entity(name = "SystemUser")
 public class User extends AgentObject implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,7 +33,6 @@ public class User extends AgentObject implements Serializable {
 
     private List<String> roles = new ArrayList<String>();
 
-    @OneToMany
     private Set<Group> groups = new HashSet<Group>();
 
     /**

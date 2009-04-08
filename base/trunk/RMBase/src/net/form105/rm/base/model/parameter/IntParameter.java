@@ -5,8 +5,6 @@
 
 package net.form105.rm.base.model.parameter;
 
-import javax.persistence.Entity;
-
 import net.form105.rm.base.model.IXmlObjectLoadable;
 import net.form105.xml.schema.model.ParameterDocument.Parameter;
 
@@ -17,7 +15,6 @@ import org.apache.xmlbeans.XmlObject;
  * @author hk
  */
 
-@Entity
 public class IntParameter extends AbstractParameter<Integer> implements IXmlObjectLoadable<IParameter> {
 
     private static final long serialVersionUID = 1L;

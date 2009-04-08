@@ -7,8 +7,6 @@ package net.form105.rm.base.model.parameter;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Entity;
-
 import net.form105.rm.base.model.IXmlObjectLoadable;
 import net.form105.xml.schema.model.ParameterDocument.Parameter;
 
@@ -19,7 +17,6 @@ import org.apache.xmlbeans.XmlObject;
  * @author hk
  */
 
-@Entity
 public class FloatParameter extends AbstractParameter<BigDecimal> implements IXmlObjectLoadable<IParameter> {
     
 	private static final long serialVersionUID = 1L;

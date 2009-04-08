@@ -23,7 +23,7 @@ public class Agent {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
     	ContainerConfiguration configuration = new ContainerConfiguration(new SimpleConfiguration());
         Container.getInstance().load(configuration);
     }

@@ -6,23 +6,13 @@
  */
 package net.form105.rm.base.model.category;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-
 /**
  *
  * @author Heiko Kundlacz
  */
-@Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+
 public class AbstractCategory implements ICategory {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long oid;
     private String name;
     private Category parent;

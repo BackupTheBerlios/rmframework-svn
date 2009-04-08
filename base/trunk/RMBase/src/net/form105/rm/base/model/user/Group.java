@@ -7,12 +7,6 @@
 package net.form105.rm.base.model.user;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 
 import net.form105.rm.base.model.AgentObject;
 
@@ -20,8 +14,7 @@ import net.form105.rm.base.model.AgentObject;
  *
  * @author Heiko Kundlacz
  */
-@Entity(name = "t_group")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
 public class Group extends AgentObject implements Serializable {
 
     private Long oid;

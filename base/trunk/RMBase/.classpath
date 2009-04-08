@@ -6,13 +6,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RMxmlHelper"/>
-	<classpathentry kind="lib" path="lib/derbyclient.jar"/>
-	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/joda-time-1.5.2.jar"/>
 	<classpathentry kind="lib" path="config"/>
 	<classpathentry kind="lib" path="lib/db4o-7.4.71.12224-java5.jar" sourcepath="/home/heiko/development/db4o-7.4/src/db4oj/core/src"/>
 	<classpathentry kind="lib" path="lib/sljc.jar"/>
-	<classpathentry kind="lib" path="lib/metadata-extractor-2.3.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

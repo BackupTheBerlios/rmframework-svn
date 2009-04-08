@@ -5,8 +5,6 @@
 
 package net.form105.rm.base.model.parameter;
 
-import javax.persistence.Entity;
-
 import net.form105.xml.schema.model.ParameterDocument.Parameter;
 
 import org.apache.xmlbeans.XmlObject;
@@ -16,7 +14,6 @@ import org.apache.xmlbeans.XmlObject;
  * @author hk
  */
 
-@Entity
 public class StringParameter extends AbstractParameter<String> {
 
     private static final long serialVersionUID = 1L;

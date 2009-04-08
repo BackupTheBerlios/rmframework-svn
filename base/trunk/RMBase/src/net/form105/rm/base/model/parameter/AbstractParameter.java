@@ -6,12 +6,6 @@
 package net.form105.rm.base.model.parameter;
 
 import java.io.Serializable;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 import net.form105.rm.base.model.AgentObject;
 import net.form105.rm.base.model.IXmlObjectLoadable;
@@ -22,13 +16,9 @@ import net.form105.rm.base.model.IXmlObjectLoadable;
  * @author heiko
  */
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "parameter_type", discriminatorType=DiscriminatorType.STRING)
 public abstract class AbstractParameter<T> extends AgentObject implements IParameter, IXmlObjectLoadable<IParameter>, Serializable {
     
     private static final long serialVersionUID = 1L;
-    @Id 
     private Long id;
     private String elementId;
     private String name;
