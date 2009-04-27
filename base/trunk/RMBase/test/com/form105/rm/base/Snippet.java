@@ -38,8 +38,6 @@ public class Snippet {
 			e.printStackTrace();
 		}
 		
-		
-		
 	}
 	
 	@Test

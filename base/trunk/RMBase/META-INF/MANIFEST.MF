@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: RMBase
-Bundle-SymbolicName: net.form105.rm.RMBase
+Bundle-SymbolicName: net.form105.rm.RMBase;singleton:=true
 Bundle-Version: 0.1
 Bundle-ClassPath: RMBase.jar,
  lib/derbyclient.jar,
