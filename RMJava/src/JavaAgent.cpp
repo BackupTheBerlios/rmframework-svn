@@ -12,7 +12,22 @@
 #include <stdlib.h>
 #include <dlfcn.h>
 
+# if defined( __linux__ )
+#	define PATHS_TO_JVM_LIB "/usr/lib/jvm/java-6-sun/jre/lib/i386/client/libjvm.so"
+# 	define DYNAMIC_LIB_JVMCREATE "JNI_CreateJavaVM"
+#	error darwin detected
+# endif
+
+# ifdef __APPLE__
+#	define PATHS_TO_JVM_LIB "/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Libraries/libjvm.dylib"
+# 	define DYNAMIC_LIB_JVMCREATE "JNI_CreateJavaVM_Impl"
+# endif
+
+
+
 using namespace std;
+
+
 
 JavaAgent::JavaAgent() {
 
@@ -70,12 +85,10 @@ string JavaAgent::getMainClass(JNIEnv *jniEnv, char *jarFileName) {
 	jMethodId = jniEnv -> GetMethodID(jClass, "getManifest", "()Ljava/util/jar/Manifest;");
 	jManifest = jniEnv -> CallObjectMethod(jJar, jMethodId);
 
-	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jManifest), "getMainAttributes",
-			"()Ljava/util/jar/Attributes;");
+	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jManifest), "getMainAttributes", "()Ljava/util/jar/Attributes;");
 	jAttr = jniEnv -> CallObjectMethod(jManifest, jMethodId);
 
-	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jAttr), "getValue",
-			"(Ljava/lang/String;)Ljava/lang/String;");
+	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jAttr), "getValue", "(Ljava/lang/String;)Ljava/lang/String;");
 	jStr = jniEnv -> NewStringUTF(MAIN_CLASS);
 	jMainClass = (jstring) jniEnv -> CallObjectMethod(jAttr, jMethodId, jStr);
 
@@ -89,20 +102,23 @@ string JavaAgent::getMainClass(JNIEnv *jniEnv, char *jarFileName) {
  * The mainClass is required with / path separator
  */
 void JavaAgent::startMain(JNIEnv* jniEnv, string mainClass) {
+
 	jclass mainClazz = 0;
 	jmethodID mainID;
 	const char *cMainClass = mainClass.data();
+
 	mainClazz = jniEnv -> FindClass(cMainClass);
 	if (mainClazz == 0) {
-		cout << "Can't get class " << cMainClass;
+		cout << "Can't get class " << "'" << cMainClass << "'" << endl;;
 	}
-	mainID = jniEnv -> GetStaticMethodID(mainClazz, "main", "([Ljava/lang/String;)V");
+	cout << "finished startMain" << endl;
+	mainID = jniEnv -> GetStaticMethodID(mainClazz, "main",
+			"([Ljava/lang/String;)V");
 
 	cout << "got main id" << endl;
 
 	jclass cls = jniEnv -> FindClass("java/lang/String");
 	jobject ary = jniEnv -> NewObjectArray(0, cls, 0);
-
 
 	jniEnv -> CallStaticVoidMethod(mainClazz, mainID, ary);
 
@@ -111,43 +127,60 @@ void JavaAgent::startMain(JNIEnv* jniEnv, string mainClass) {
 
 JNIEnv* JavaAgent::startJVM(char *jarPath) {
 
+
 	typedef int createVM(JavaVM **, void **, void *);
 	// mainClassName = GetMainClassName(env, jarfile);
 	// mainID = (*env)->GetStaticMethodID(env, mainClass, "main", "([Ljava/lang/String;)V");
 	// (*env)->CallStaticVoidMethod(env, mainClass, mainID, mainArgs);
 
-	cout << "jarPath:" << jarPath;
+	cout << "jarPath:" << jarPath << endl;
 
 	JavaVM *jvm;
 	JNIEnv *jniEnv;
 
-	JavaVMOption options[2];
+	JavaVMOption options[3];
 	JavaVMInitArgs vm_args;
 
 	int result;
 
 	options[0].optionString = "-Djava.compiler=NONE";
 	options[1].optionString = "-Djava.class.path=RMBase-0.1.jar";
+	options[2].optionString = "-verbose:jni";
 	//options[2].optionString = "-verbose";
 
 	vm_args.version = JNI_VERSION_1_4;
 	vm_args.options = options;
-	vm_args.nOptions = 2;
-	vm_args.ignoreUnrecognized = JNI_TRUE;
+	vm_args.nOptions = 3;
+	vm_args.ignoreUnrecognized = JNI_FALSE;
 
-	cout << "Starting JVM" << "\n";
+	cout << "Starting JVM with library: "  << PATHS_TO_JVM_LIB << "\n";
 
-	void *libVM = dlopen("/usr/lib/jvm/java-6-sun/jre/lib/i386/client/libjvm.so", RTLD_LAZY);
-	cout << "Starting JVM" << "\n";
+	void
+	*libVM = dlopen(PATHS_TO_JVM_LIB, RTLD_LAZY);
+	cout << "Starting JVM+" << libVM << endl;
 	const char* dlsym_error = dlerror();
 
 	if (dlsym_error) {
-		cerr << "Cannot load symbol create: " << dlsym_error << '\n';
+		cerr << "Cannot load symbol: " << dlsym_error << '\n';
 	}
 
 	createVM* libjvm_create = NULL;
 
-	libjvm_create = (createVM*) dlsym(libVM, "JNI_CreateJavaVM");
+	libjvm_create = (createVM*) dlsym(libVM, DYNAMIC_LIB_JVMCREATE);
+
+	dlsym_error = dlerror();
+	if (dlsym_error) {
+		cerr << "Cannot load symbol create: " << dlsym_error << '\n';
+	}
+
+	if (libjvm_create == 0) {
+		cout << "Error starting jvm. Exiting ...";
+		exit(-1);
+	}
+
+	cout << "Started ..." << "\n";
+
+
 
 	result = (*libjvm_create)(&jvm, (void**) &jniEnv, &vm_args);
 
