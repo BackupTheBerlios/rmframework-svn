@@ -16,7 +16,6 @@
 # if defined( __linux__ )
 #	define PATHS_TO_JVM_LIB "/usr/lib/jvm/java-6-sun/jre/lib/i386/client/libjvm.so"
 # 	define DYNAMIC_LIB_JVMCREATE "JNI_CreateJavaVM"
-#	error darwin detected
 # endif
 
 # ifdef __APPLE__
