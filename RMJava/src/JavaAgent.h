@@ -11,6 +11,9 @@
 
 using namespace std;
 
+#ifndef JAVAAGENT_H_
+#define JAVAAGENT_H_
+
 
 
 class JavaAgent {
@@ -26,6 +29,8 @@ public:
 
 	virtual ~JavaAgent();
 };
+
+#endif /* JVMAGENT_H_ */
 
 
 
