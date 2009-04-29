@@ -195,6 +195,10 @@ JNIEnv* JavaAgent::startJVM(char *jarPath) {
 
 }
 
+void* executor(void* param) {
+	return 0;
+}
+
 void JavaAgent::start() {
 	pthread_t thread;
 	int thread_id;

@@ -25,11 +25,8 @@ public:
 	void start();
 
 	virtual ~JavaAgent();
-	virtual void startMain();
 };
 
-void* executor(void* param) {
-	return 0;
-}
+
 
 
