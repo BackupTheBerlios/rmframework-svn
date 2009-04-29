@@ -11,8 +11,7 @@
 
 using namespace std;
 
-#ifndef JAVAAGENT_H_
-#define JAVAAGENT_H_
+
 
 class JavaAgent {
 public:
@@ -23,8 +22,14 @@ public:
 	JNIEnv* startJVM(char* jarPath);
 	void replaceChar(string &input, char* c1, char* c2);
 	void startMain(JNIEnv* jniEnv, string mainClass);
+	void start();
 
 	virtual ~JavaAgent();
+	virtual void startMain();
 };
 
-#endif /* JAVAAGENT_H_ */
+void* executor(void* param) {
+	return 0;
+}
+
+

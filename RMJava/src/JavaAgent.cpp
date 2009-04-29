@@ -11,6 +11,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <dlfcn.h>
+#include <pthread.h>
 
 # if defined( __linux__ )
 #	define PATHS_TO_JVM_LIB "/usr/lib/jvm/java-6-sun/jre/lib/i386/client/libjvm.so"
@@ -23,11 +24,7 @@
 # 	define DYNAMIC_LIB_JVMCREATE "JNI_CreateJavaVM_Impl"
 # endif
 
-
-
 using namespace std;
-
-
 
 JavaAgent::JavaAgent() {
 
@@ -57,6 +54,10 @@ bool JavaAgent::checkCLParameters(int argc, char **env) {
 string JavaAgent::getMainClass(JNIEnv *jniEnv, char *jarFileName) {
 #define MAIN_CLASS "Main-Class"
 
+	static JavaVM *g_jVM = NULL;
+
+	jniEnv -> GetJavaVM(&g_jVM);
+
 	cout << "getMainClass() starting" << endl;
 
 	jmethodID jMethodId;
@@ -74,8 +75,6 @@ string JavaAgent::getMainClass(JNIEnv *jniEnv, char *jarFileName) {
 	jStr = jniEnv -> NewStringUTF(jarFileName);
 	jJar = jniEnv -> NewObject(jClass, jMethodId, jStr);
 
-	cout << "jar loaded" << endl;
-
 	if (jJar == 0) {
 		cout << "Can't load JarFile " << jarFileName << "! Exiting ... \n";
 		exit(-1);
@@ -85,10 +84,12 @@ string JavaAgent::getMainClass(JNIEnv *jniEnv, char *jarFileName) {
 	jMethodId = jniEnv -> GetMethodID(jClass, "getManifest", "()Ljava/util/jar/Manifest;");
 	jManifest = jniEnv -> CallObjectMethod(jJar, jMethodId);
 
-	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jManifest), "getMainAttributes", "()Ljava/util/jar/Attributes;");
+	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jManifest), "getMainAttributes",
+			"()Ljava/util/jar/Attributes;");
 	jAttr = jniEnv -> CallObjectMethod(jManifest, jMethodId);
 
-	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jAttr), "getValue", "(Ljava/lang/String;)Ljava/lang/String;");
+	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jAttr), "getValue",
+			"(Ljava/lang/String;)Ljava/lang/String;");
 	jStr = jniEnv -> NewStringUTF(MAIN_CLASS);
 	jMainClass = (jstring) jniEnv -> CallObjectMethod(jAttr, jMethodId, jStr);
 
@@ -98,22 +99,27 @@ string JavaAgent::getMainClass(JNIEnv *jniEnv, char *jarFileName) {
 
 }
 
+
+
 /**
  * The mainClass is required with / path separator
  */
 void JavaAgent::startMain(JNIEnv* jniEnv, string mainClass) {
 
+	char CurrentPath[1024];
+	cout << getcwd(CurrentPath, 1024) << endl;
+
 	jclass mainClazz = 0;
 	jmethodID mainID;
 	const char *cMainClass = mainClass.data();
 
-	mainClazz = jniEnv -> FindClass(cMainClass);
+	//mainClazz = jniEnv -> FindClass(cMainClass);
+	mainClazz = jniEnv -> FindClass("net/form105/rm/base/Agent");
 	if (mainClazz == 0) {
-		cout << "Can't get class " << "'" << cMainClass << "'" << endl;;
+		cout << "Can't get class " << "'" << cMainClass << "'" << endl;
 	}
 	cout << "finished startMain" << endl;
-	mainID = jniEnv -> GetStaticMethodID(mainClazz, "main",
-			"([Ljava/lang/String;)V");
+	mainID = jniEnv -> GetStaticMethodID(mainClazz, "main", "([Ljava/lang/String;)V");
 
 	cout << "got main id" << endl;
 
@@ -122,41 +128,35 @@ void JavaAgent::startMain(JNIEnv* jniEnv, string mainClass) {
 
 	jniEnv -> CallStaticVoidMethod(mainClazz, mainID, ary);
 
-
 }
 
 JNIEnv* JavaAgent::startJVM(char *jarPath) {
 
-
 	typedef int createVM(JavaVM **, void **, void *);
-	// mainClassName = GetMainClassName(env, jarfile);
-	// mainID = (*env)->GetStaticMethodID(env, mainClass, "main", "([Ljava/lang/String;)V");
-	// (*env)->CallStaticVoidMethod(env, mainClass, mainID, mainArgs);
 
 	cout << "jarPath:" << jarPath << endl;
 
 	JavaVM *jvm;
 	JNIEnv *jniEnv;
 
-	JavaVMOption options[3];
+	JavaVMOption options[2];
 	JavaVMInitArgs vm_args;
 
 	int result;
 
 	options[0].optionString = "-Djava.compiler=NONE";
 	options[1].optionString = "-Djava.class.path=RMBase-0.1.jar";
-	options[2].optionString = "-verbose:jni";
-	//options[2].optionString = "-verbose";
+	//options[2].optionString = "-verbose:jni";
+	//options[2].optionString = "-verbose:jni";
 
 	vm_args.version = JNI_VERSION_1_4;
 	vm_args.options = options;
-	vm_args.nOptions = 3;
-	vm_args.ignoreUnrecognized = JNI_FALSE;
+	vm_args.nOptions = 2;
+	vm_args.ignoreUnrecognized = JNI_TRUE;
 
-	cout << "Starting JVM with library: "  << PATHS_TO_JVM_LIB << "\n";
+	cout << "Starting JVM with library: " << PATHS_TO_JVM_LIB << "\n";
 
-	void
-	*libVM = dlopen(PATHS_TO_JVM_LIB, RTLD_LAZY);
+	void *libVM = dlopen(PATHS_TO_JVM_LIB, RTLD_LAZY);
 	cout << "Starting JVM+" << libVM << endl;
 	const char* dlsym_error = dlerror();
 
@@ -180,8 +180,6 @@ JNIEnv* JavaAgent::startJVM(char *jarPath) {
 
 	cout << "Started ..." << "\n";
 
-
-
 	result = (*libjvm_create)(&jvm, (void**) &jniEnv, &vm_args);
 
 	if (result == JNI_ERR) {
@@ -189,13 +187,19 @@ JNIEnv* JavaAgent::startJVM(char *jarPath) {
 		exit(-1);
 	}
 
+	if (jniEnv->ExceptionCheck()) {
+		cout << "got error";
+		jniEnv->ExceptionDescribe();
+	}
+
 	return jniEnv;
 
-	/*if (jniEnv->ExceptionCheck()) {
-	 cout << "got error";
-	 jniEnv->ExceptionDescribe();
-	 }*/
+}
 
+void JavaAgent::start() {
+	pthread_t thread;
+	int thread_id;
+	thread_id = pthread_create(&thread, 0, executor, 0);
 }
 
 void JavaAgent::replaceChar(string &input, char* c1, char* c2) {
