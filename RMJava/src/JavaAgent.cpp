@@ -191,6 +191,8 @@ JNIEnv* JavaAgent::startJVM(char *jarPath) {
 		jniEnv->ExceptionDescribe();
 	}
 
+
+
 	return jniEnv;
 
 }
