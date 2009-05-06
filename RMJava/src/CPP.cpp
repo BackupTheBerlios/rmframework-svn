@@ -16,10 +16,8 @@ void jnicall(void);
 
 int main(int argc, char **argv) {
 
-
 	char jarPath[] = "RMBase-0.1.jar";
 	JvmStarter starter;
-
 	starter.start(jarPath);
 
 }
