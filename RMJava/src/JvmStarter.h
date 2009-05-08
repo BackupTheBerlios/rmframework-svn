@@ -34,7 +34,7 @@ private:
 	JavaVM* jvm;
 	pthread_t thread;
 	std::string mainClass;
-	char* jarFile;
+	std::string *jarFile;
 
 
 public:
@@ -43,10 +43,10 @@ public:
 	JvmStarter() {
 	}
 
-	void start(char* jarFile);
+	void start(std::string *jarFile);
 	void startJVM();
-	void replaceChar(std::string &input, char* inputChar, char* replaceChar);
-	std::string getMainClass(JNIEnv *jniEnv, char *jarFileName);
+	void replaceChar(std::string &input, const char* inputChar, const char* replaceChar);
+	std::string getMainClass(JNIEnv *jniEnv, string *jarFileName);
 
 	virtual void run() {
 
@@ -91,7 +91,7 @@ void* threadExecutor(void* param) {
 	return 0;
 }
 
-void JvmStarter::start(char* jarFile) {
+void JvmStarter::start(std::string *jarFile) {
 
 	this -> jarFile = jarFile;
 	int threadId;
@@ -112,7 +112,10 @@ void JvmStarter::startJVM() {
 	int result;
 
 	char path[1024];
-	sprintf(path,"%s%s","-Djava.class.path=",jarFile);
+	sprintf(path,"%s%s","-Djava.class.path=",jarFile -> data());
+	cout << "Property java.class.path is: " << jarFile -> data();
+
+
 
 	options[0].optionString = "-Djava.compiler=NONE";
 	options[1].optionString = path;
@@ -162,7 +165,7 @@ void JvmStarter::startJVM() {
 
 }
 
-string JvmStarter::getMainClass(JNIEnv *jniEnv, char *jarFileName) {
+string JvmStarter::getMainClass(JNIEnv *jniEnv, std::string *jarFileName) {
 #define MAIN_CLASS "Main-Class"
 
 	static JavaVM *g_jVM = NULL;
@@ -183,7 +186,7 @@ string JvmStarter::getMainClass(JNIEnv *jniEnv, char *jarFileName) {
 	}
 
 	jMethodId = jniEnv -> GetMethodID(jClass, "<init>", "(Ljava/lang/String;)V");
-	jStr = jniEnv -> NewStringUTF(jarFileName);
+	jStr = jniEnv -> NewStringUTF(jarFileName -> data());
 	jJar = jniEnv -> NewObject(jClass, jMethodId, jStr);
 
 	if (jJar == 0) {
@@ -210,7 +213,7 @@ string JvmStarter::getMainClass(JNIEnv *jniEnv, char *jarFileName) {
 
 }
 
-void JvmStarter::replaceChar(string &input, char* c1, char* c2) {
+void JvmStarter::replaceChar(string &input, const char* c1, const char* c2) {
 	string::size_type pos = 0;
 	string::size_type amount = strlen(c1);
 
