@@ -4,6 +4,7 @@ public enum ConfigurationType {
 	
 	SIMPLE,
 	WEB,
-	ECLIPSE;
+	ECLIPSE,
+	SIMPLE_PROPERTY;
 
 }

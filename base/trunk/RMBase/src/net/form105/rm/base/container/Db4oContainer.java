@@ -15,6 +15,8 @@
  */
 package net.form105.rm.base.container;
 
+import java.io.File;
+
 import net.form105.rm.base.dao.db.IDbSelector;
 import net.form105.rm.base.dao.db.SingleDBSelector;
 

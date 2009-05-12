@@ -29,7 +29,6 @@ public class BackgroundThreadContainer extends AbstractContainer implements ISta
     Thread thread;
 
     public void start() {
-        logger.info("Start BackgroundThreadContainer");
         synchronized (bgThread) {
             thread = new Thread(bgThread);
             thread.start();
