@@ -28,6 +28,7 @@ public class PropertyConfiguration implements IConfiguration {
     
     private String property;
     
+    private String basePath;
     private String configPath;
     private String containerFile = "container.xml";
     private String importPath;
@@ -44,13 +45,12 @@ public class PropertyConfiguration implements IConfiguration {
             System.err.println("Path is not valid (Value="+getPropertyValue()+"). Exiting now ...");
             System.exit(1);
         } else {
+            basePath = getPropertyValue()+File.separator;
             configPath = getPropertyValue()+File.separator+"config"+File.separator;
             importPath = getPropertyValue()+File.separator+"import"+File.separator;
             modelPath = getPropertyValue()+File.separator+"model"+File.separator;
         }
     }
-    
-    
 
     @Override
     public String getConfigurationPath() {
@@ -99,6 +99,11 @@ public class PropertyConfiguration implements IConfiguration {
             return homeDir.exists();
         }
         return false;
+    }
+
+    @Override
+    public String getBasePath() {
+        return basePath;
     }
     
     

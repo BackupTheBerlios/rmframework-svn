@@ -31,4 +31,9 @@ public class SimpleClientConfiguration implements IConfiguration {
         throw new NotSupportedException();
     }
 
+    @Override
+    public String getBasePath() {
+        return ".";
+    }
+
 }

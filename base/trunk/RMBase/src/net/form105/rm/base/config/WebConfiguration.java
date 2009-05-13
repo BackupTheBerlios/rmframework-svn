@@ -61,4 +61,9 @@ public class WebConfiguration implements IConfiguration {
         return modelPath;
     }
 
+    @Override
+    public String getBasePath() {
+        return ".";
+    }
+
 }

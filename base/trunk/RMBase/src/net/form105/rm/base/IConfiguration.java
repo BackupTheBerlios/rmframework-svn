@@ -31,5 +31,11 @@ public interface IConfiguration {
 	
 	
 	public abstract ConfigurationType getType();
+	
+	/**
+	 * The path to the working directory.
+	 * @return
+	 */
+	public abstract String getBasePath();
 
 }
