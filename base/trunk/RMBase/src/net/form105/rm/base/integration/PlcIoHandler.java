@@ -24,43 +24,36 @@ public class PlcIoHandler implements IoHandler {
     
     public static Logger logger = Logger.getLogger(PlcIoHandler.class);
 
-    @Override
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
         logger.info("message received: "+message);
 
     }
 
-    @Override
     public void messageSent(IoSession session, Object message) throws Exception {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void sessionClosed(IoSession session) throws Exception {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void sessionCreated(IoSession session) throws Exception {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void sessionIdle(IoSession session, IdleStatus status) throws Exception {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void sessionOpened(IoSession session) throws Exception {
         // TODO Auto-generated method stub
 

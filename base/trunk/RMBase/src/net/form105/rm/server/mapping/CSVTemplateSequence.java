@@ -82,7 +82,6 @@ public class CSVTemplateSequence implements ITemplateSequence {
 	/* (non-Javadoc)
 	 * @see net.form105.rm.server.mapping.ITemplateSequence#getSequence()
 	 */
-	@Override
 	public List<IField> getSequenceAsList() {
 		return fieldList;
 	}

@@ -29,22 +29,18 @@ public abstract class AbstractMessage<T> implements IMessage<T> {
 		currentTime = System.currentTimeMillis();
 	}
 	
-	@Override
 	public List<T> getBody() {
 		return bodyList;
 	}
 	
-	@Override
 	public String getSender() {
 		return sender;
 	}
 	
-	@Override
 	public String getAcceptor() {
 		return acceptor;
 	}
 	
-	@Override
 	public String getMessageId() {
 		return currentTime.toString();
 	}

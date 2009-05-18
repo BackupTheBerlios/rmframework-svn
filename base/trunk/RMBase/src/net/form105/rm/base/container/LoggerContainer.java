@@ -27,13 +27,11 @@ public class LoggerContainer extends AbstractContainer implements Startable {
     
     private final String LOG4J_PROP = "log4j.properties";
     
-    @Override
     public void start() {
         String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
         PropertyConfigurator.configureAndWatch(configDir+File.separator+LOG4J_PROP);
     }
 
-    @Override
     public void stop() {
         LogManager.shutdown();
     }

@@ -45,7 +45,6 @@ public class IntParameter extends AbstractParameter<Integer> implements IXmlObje
         return parameterValue.toString();
     }
 
-    @Override
     public IParameter loadFromXml(XmlObject xmlObject) {
         Parameter parameter = (Parameter) xmlObject;
         this.setElementId(parameter.getId());

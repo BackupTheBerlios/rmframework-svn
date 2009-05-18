@@ -21,13 +21,11 @@ import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 
 public class KaiserPlcOutboundContentHeaderDecoder implements ProtocolEncoder {
 
-    @Override
     public void dispose(IoSession session) throws Exception {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void encode(IoSession session, Object message, ProtocolEncoderOutput out) throws Exception {
         
 

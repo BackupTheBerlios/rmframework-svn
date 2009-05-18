@@ -40,7 +40,6 @@ public class SaveResourceCommand extends AbstractCommand {
         }*/
     }
 
-    @Override
     public String getId() {
         return id;
     }

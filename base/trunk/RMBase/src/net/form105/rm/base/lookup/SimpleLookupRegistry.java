@@ -27,13 +27,11 @@ public class SimpleLookupRegistry implements ILookup {
 
     private Map<Class<?>, IEntry> registry = new HashMap<Class<?>, IEntry>();
 
-    @Override
     public void removeContentObject(Class<?> clazz, Object object) {
         IEntry entry = registry.get(clazz);
         entry.removeItem(object);
     }
 
-    @Override
     public void addContentObject(Class<?> clazz, Object object) {
         IEntry entry;
         if (registry.get(clazz) == null) {
@@ -45,7 +43,6 @@ public class SimpleLookupRegistry implements ILookup {
         entry.addItem(object);
     }
 
-    @Override
     public Object getFirstContentObject(Class<?> clazz) {
         if (registry.get(clazz) == null) {
             throw new RMException(new BaseI18NMessage(), "exception.lookup.noEntry", new String[] {clazz.getName()});
@@ -55,23 +52,20 @@ public class SimpleLookupRegistry implements ILookup {
         }
     }
 
-    @Override
+
     public void addEntry(Class clazz, IEntry entry) {
         registry.put(clazz, entry);
     }
 
-    @Override
     public IEntry getEntry(Class<?> clazz) {
         return registry.get(clazz);
     }
 
-    @Override
     public List<?> getEntryAsList(Class<?> clazz) {
         IEntry entry = registry.get(clazz);
         return entry.getItems();
     }
 
-    @Override
     public void removeEntry(Class<?> clazz) {
         registry.remove(clazz);
     }

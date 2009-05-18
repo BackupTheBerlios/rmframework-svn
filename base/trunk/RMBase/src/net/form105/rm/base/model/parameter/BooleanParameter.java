@@ -25,17 +25,14 @@ public class BooleanParameter extends AbstractParameter<Boolean> implements IXml
         return parameterValue;
     }
 
-    @Override
     public void setParameterValue(Boolean value) {
         this.parameterValue = value;
     }
 
-    @Override
     public String getValueAsString() {
         return parameterValue.toString();
     }
 
-    @Override
     public IParameter loadFromXml(XmlObject xmlObject) {
         ParameterDocument.Parameter parameter = (ParameterDocument.Parameter) xmlObject;
         this.setElementId(parameter.getId());

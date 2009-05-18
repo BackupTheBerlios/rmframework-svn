@@ -24,7 +24,6 @@ import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 public class KaiserPlcInboundContentHeaderDecoder implements ProtocolDecoder {
     public static Logger logger = Logger.getLogger(KaiserPlcInboundContentHeaderDecoder.class);
 
-    @Override
     public void decode(IoSession session, IoBuffer in, ProtocolDecoderOutput out) throws Exception {
         
         if (in.remaining() >= 12) {
@@ -36,13 +35,11 @@ public class KaiserPlcInboundContentHeaderDecoder implements ProtocolDecoder {
         out.write(in);
     }
 
-    @Override
     public void dispose(IoSession session) throws Exception {
         // TODO Auto-generated method stub
 
     }
 
-    @Override
     public void finishDecode(IoSession session, ProtocolDecoderOutput out) throws Exception {
         // TODO Auto-generated method stub
 

@@ -9,7 +9,6 @@ public class LocalQueryHandler<T> implements IQueryHandler<T> {
 
 	private QueryResult<T> result = new QueryResult<T>();
 
-	@Override
 	public void executeQuery(IQuery<T> query) {
 
 		try {
@@ -21,7 +20,6 @@ public class LocalQueryHandler<T> implements IQueryHandler<T> {
 
 	}
 
-	@Override
 	public IResult<T> getResult() {
 		return result;
 	}

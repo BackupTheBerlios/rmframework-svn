@@ -36,7 +36,6 @@ public class FloatParameter extends AbstractParameter<BigDecimal> implements IXm
         return parameterValue.toEngineeringString();
     }
 
-    @Override
     public IParameter loadFromXml(XmlObject xmlObject) {
             Parameter parameter = (Parameter) xmlObject;
             this.setElementId(parameter.getId());

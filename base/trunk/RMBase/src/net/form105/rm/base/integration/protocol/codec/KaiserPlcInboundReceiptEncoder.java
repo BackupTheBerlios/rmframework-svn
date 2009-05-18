@@ -25,13 +25,11 @@ public class KaiserPlcInboundReceiptEncoder implements ProtocolEncoder {
     
     public static Logger logger = Logger.getLogger(KaiserPlcInboundReceiptEncoder.class);
 
-    @Override
     public void dispose(IoSession session) throws Exception {
         
 
     }
 
-    @Override
     public void encode(IoSession session, Object message, ProtocolEncoderOutput out) throws Exception {
         byte[] inMessage = (byte[]) message;
         inMessage[1] = 2;

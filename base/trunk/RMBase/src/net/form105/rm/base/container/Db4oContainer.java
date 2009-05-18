@@ -37,12 +37,10 @@ public class Db4oContainer implements Startable {
         this.propertiesContainer = propertiesContainer;
     }
 
-    @Override
     public void start() {
         dboFile = propertiesContainer.getProperty("server.db4o.defaultPath");
     }
 
-    @Override
     public void stop() {
         dbSelector.getObjectContainer().close();
     }

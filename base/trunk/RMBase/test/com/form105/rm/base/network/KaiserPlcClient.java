@@ -49,7 +49,6 @@ public class KaiserPlcClient extends IoHandlerAdapter {
         
         cFuture.addListener(new IoFutureListener<ConnectFuture>() {
 
-            @Override
             public void operationComplete(ConnectFuture future) {
                 if (future.isConnected()) {
                     session = future.getSession();

@@ -25,7 +25,6 @@ public class UserManagementContainer extends AbstractContainer implements Starta
         this.lookupContainer = lookupContainer;
     }
 
-    @Override
     public void start() {
 
         String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
@@ -54,7 +53,6 @@ public class UserManagementContainer extends AbstractContainer implements Starta
         }
     }
 
-    @Override
     public void stop() {
         lookupContainer.getDaoLookup().removeEntry(User.class);
     }

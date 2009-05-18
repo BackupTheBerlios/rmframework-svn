@@ -85,12 +85,10 @@ public class PlcMessageTemplate implements IMessageTemplate<XmlObject> {
 		return hashcode;
 	}
 
-	@Override
 	public String getId() {
 		return id;
 	}
 
-	@Override
 	public XmlObject getConfiguration() {
 		return messageData;
 	}

@@ -106,13 +106,11 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 		readPlcMessageConfiguration();
 	}
 
-	@Override
 	public void start() {
 		initialize();
 
 	}
 
-	@Override
 	public void stop() {
 		configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
 	}

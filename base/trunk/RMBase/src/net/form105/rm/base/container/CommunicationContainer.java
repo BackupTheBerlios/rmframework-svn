@@ -51,9 +51,6 @@ public class CommunicationContainer extends AbstractContainer {
 		
 	}
 	
-	
-
-	@Override
 	public void start() {
 		initialize();
 		
@@ -67,7 +64,6 @@ public class CommunicationContainer extends AbstractContainer {
 		
 	}
 
-	@Override
 	public void stop() {
 		
 	}

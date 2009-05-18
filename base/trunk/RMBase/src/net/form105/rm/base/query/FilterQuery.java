@@ -36,7 +36,6 @@ public class FilterQuery<T> implements IQuery<T> {
 		this.selection = selection;
 	}
 	
-	@Override
 	public List<T> execute() {
 		List<T> tempList = new ArrayList<T>();
 		List<T> result = selection.select();

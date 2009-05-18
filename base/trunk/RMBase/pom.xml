@@ -78,7 +78,9 @@
 														<classpathPrefix>lib/</classpathPrefix>
 														<mainClass>net.form105.rm.base.Agent</mainClass>
 												</manifest>
-
+												<manifestEntries>
+													<Build-Jdk>1.5.0_16</Build-Jdk>
+												</manifestEntries>
 										</archive>
 								</configuration>
 						</plugin>

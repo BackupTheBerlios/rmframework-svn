@@ -22,7 +22,6 @@ public class DefaultMessageHandler implements Runnable {
 	
 	private HashMap<Class<?>, IMessageNotificationRegistry> notificationMap = new HashMap<Class<?>, IMessageNotificationRegistry>();
 
-	@Override
 	public void run() {
 		while (runState) {
 			try {

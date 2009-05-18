@@ -45,12 +45,10 @@ public class CSVTemplate implements ITemplate {
 	
 	}
 
-	@Override
 	public String getId() {
 		return id;
 	}
 
-	@Override
 	public List<IField> getSequence() {
 		return templateSequence.getSequenceAsList();
 	}

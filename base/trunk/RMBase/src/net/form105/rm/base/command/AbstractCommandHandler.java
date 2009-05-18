@@ -15,7 +15,6 @@ public abstract class AbstractCommandHandler<T> implements ICommandHandler<T> {
 	
 	public abstract void execute(List<ICommand> commands);
 
-	@Override
 	public IResult<T> getResult() {
 		return result;
 	}

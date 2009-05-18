@@ -17,7 +17,6 @@ public class SimpleIdFilter implements IFilter<String> {
 		this.id = id;
 	}
 
-	@Override
 	public boolean filter(String object) {
 		return false;
 	}

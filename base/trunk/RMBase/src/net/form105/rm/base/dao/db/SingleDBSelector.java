@@ -34,7 +34,6 @@ public class SingleDBSelector implements IDbSelector {
         startDBServer(path + fileName);
     }
 
-    @Override
     public ObjectContainer getObjectContainer() {
 
         if (objectContainer == null) {
@@ -44,7 +43,6 @@ public class SingleDBSelector implements IDbSelector {
         return objectContainer;
     }
 
-    @Override
     public ObjectContainer newObjectContainer() {
         return Db4o.openClient(HOST, PORT, USER, PASSWD);
     }

@@ -60,12 +60,10 @@ public class LoadXmlModelCommand extends AbstractCommand {
         file = FileHelper.appendFileSeparator(modelDir) + modelFileName;
     }
 
-    @Override
     public final String getId() {
         return id;
     }
 
-    @Override
     public void execute() throws RMException {
         ILookup daoLookup = Agent.getDaoLookup();
         for (Resource resource : loadResources(loadXmlModelFile(file))) {

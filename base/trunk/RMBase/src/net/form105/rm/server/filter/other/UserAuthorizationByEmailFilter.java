@@ -23,7 +23,6 @@ public class UserAuthorizationByEmailFilter<T extends User> implements IFilter<U
 		this.passwd = passwd;
 	}
 
-	@Override
 	public boolean filter(User object) {
 		
 		if (object.getPassword() == null) return false;

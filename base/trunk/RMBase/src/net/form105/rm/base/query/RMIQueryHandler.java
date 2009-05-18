@@ -23,7 +23,6 @@ public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHan
 		super();
 	}
 
-	@Override
 	public void executeQuery(IQuery<T> query) throws RemoteException {
 
 		try {
@@ -38,7 +37,6 @@ public class RMIQueryHandler<T> extends UnicastRemoteObject implements IQueryHan
 
 	}
 
-	@Override
 	public IResult<T> getResult() throws RemoteException {
 		return result;
 	}

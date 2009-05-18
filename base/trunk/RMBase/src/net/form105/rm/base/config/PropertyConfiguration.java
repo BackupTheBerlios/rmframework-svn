@@ -52,27 +52,22 @@ public class PropertyConfiguration implements IConfiguration {
         }
     }
 
-    @Override
     public String getConfigurationPath() {
         return configPath;
     }
 
-    @Override
     public String getContainerFile() {
         return containerFile;
     }
 
-    @Override
     public String getImportPath() {
         return importPath;
     }
 
-    @Override
     public String getModelPath() {
         return modelPath;
     }
 
-    @Override
     public ConfigurationType getType() {
         return ConfigurationType.SIMPLE_PROPERTY;
     }
@@ -101,7 +96,6 @@ public class PropertyConfiguration implements IConfiguration {
         return false;
     }
 
-    @Override
     public String getBasePath() {
         return basePath;
     }

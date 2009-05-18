@@ -31,28 +31,20 @@ public abstract class AbstractAgentObjectDao<T extends AgentObject> implements I
     
     public AbstractAgentObjectDao() {};
 
-    @Override
     public abstract void delete(T object);
 
-    @Override
     public abstract List<T> findAll();
 
-    @Override
     public abstract T findByElementId(String elementId);
 
-    @Override
     public abstract T findById(Long id);
 
-    @Override
     public abstract T merge(T object);
 
-    @Override
     public abstract void save(T object);
 
-    @Override
     public abstract void saveOrUpdate(T object);
 
-    @Override
     public abstract void update(T object);
 
     public AbstractAgentObjectDao<T> getTransientDao() {

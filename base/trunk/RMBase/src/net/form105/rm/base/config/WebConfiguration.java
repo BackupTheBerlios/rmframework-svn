@@ -12,17 +12,14 @@ public class WebConfiguration implements IConfiguration {
     
     protected ContainerConfiguration configuration;
 
-    @Override
     public String getConfigurationPath() {
         return configurationPath;
     }
 
-    @Override
     public String getContainerFile() {
         return containerFile;
     }
 
-    @Override
     public ConfigurationType getType() {
         return ConfigurationType.WEB;
     }
@@ -47,7 +44,6 @@ public class WebConfiguration implements IConfiguration {
         this.configuration = configuration;
     }
 
-    @Override
     public String getImportPath() {
         return importPath;
     }
@@ -56,12 +52,10 @@ public class WebConfiguration implements IConfiguration {
         this.modelPath = path;
     }
     
-    @Override
     public String getModelPath() {
         return modelPath;
     }
 
-    @Override
     public String getBasePath() {
         return ".";
     }

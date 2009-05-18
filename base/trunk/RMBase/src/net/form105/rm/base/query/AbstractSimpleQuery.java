@@ -6,7 +6,6 @@ public abstract class AbstractSimpleQuery<T> implements IQuery<T> {
 	
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	public abstract List<T> execute();
 
 }

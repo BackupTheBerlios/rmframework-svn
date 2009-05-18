@@ -19,25 +19,21 @@ import org.picocontainer.LifecycleStrategy;
 
 public class ApplicationLifecycle implements LifecycleStrategy {
 
-	@Override
 	public void dispose(Object arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public boolean hasLifecycle(Class<?> arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public void start(Object arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void stop(Object arg0) {
 		// TODO Auto-generated method stub
 

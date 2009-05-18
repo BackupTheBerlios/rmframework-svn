@@ -17,7 +17,6 @@ public class UserAuthorizationFilter<T extends User> implements IFilter<User> {
 		this.passwd = passwd;
 	}
 
-	@Override
 	public boolean filter(User object) {
 		
 		logger.info("Running filter on user: "+object.getId());
