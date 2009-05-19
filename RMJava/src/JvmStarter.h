@@ -9,6 +9,8 @@
 #include <string>
 #include <pthread.h>
 #include <dlfcn.h>
+#include "JvmAttributes.h"
+
 
 #ifndef JVMSTARTER_H_
 #define JVMSTARTER_H_
@@ -34,48 +36,27 @@ private:
 	JavaVM* jvm;
 	pthread_t thread;
 	std::string mainClass;
-	std::string *jarFile;
+	JvmAttributes* attributes;
 
 
 public:
 
 
-	JvmStarter() {
+	JvmStarter(JvmAttributes* attributes) {
+		this -> attributes = attributes;
 	}
 
-	void start(std::string *jarFile);
+	void start();
 	void startJVM();
+	void startMain();
 	void replaceChar(std::string &input, const char* inputChar, const char* replaceChar);
 	std::string getMainClass(JNIEnv *jniEnv, string *jarFileName);
+
 
 	virtual void run() {
 
 		startJVM();
-		mainClass = getMainClass(jniEnv, jarFile);
-		replaceChar(mainClass, ".", "/");
-
-		jvm -> AttachCurrentThread((void**)&jniEnv, NULL);
-
-		char CurrentPath[1024];
-		cout << getcwd(CurrentPath, 1024) << endl;
-
-		jclass mainClazz = 0;
-		jmethodID mainID;
-		const char *cMainClass = mainClass.data();
-
-		mainClazz = jniEnv -> FindClass(cMainClass);
-
-		if (mainClazz == 0) {
-			cout << "Can't get class " << "'" << cMainClass << "'" << endl;
-			exit(-1);
-		}
-		cout << "finished startMain" << endl;
-		mainID = jniEnv -> GetStaticMethodID(mainClazz, "main", "([Ljava/lang/String;)V");
-
-		jclass cls = jniEnv -> FindClass("java/lang/String");
-		jobject ary = jniEnv -> NewObjectArray(0, cls, 0);
-
-		jniEnv -> CallStaticVoidMethod(mainClazz, mainID, ary);
+		startMain();
 
 	}
 	virtual ~JvmStarter() {
@@ -91,40 +72,87 @@ void* threadExecutor(void* param) {
 	return 0;
 }
 
-void JvmStarter::start(std::string *jarFile) {
+void JvmStarter::startMain() {
+		cout << "Starting Main \n";
+		std::string jarFile = this -> attributes -> getJarFile();
+		mainClass = getMainClass(jniEnv, &jarFile);
+		replaceChar(mainClass, ".", "/");
 
-	this -> jarFile = jarFile;
+		cout << mainClass.data() << endl;
+
+		//jvm -> AttachCurrentThread((void**)&jniEnv, NULL);
+
+		//char CurrentPath[1024];
+
+		jclass mainClazz = 0;
+		jmethodID mainID;
+		const char *cMainClass = mainClass.data();
+
+		mainClazz = jniEnv -> FindClass(cMainClass);
+
+		if (mainClazz == 0) {
+			cout << "Can't get class " << "'" << cMainClass << "'" << endl;
+		}
+
+		mainID = jniEnv -> GetStaticMethodID(mainClazz, "main", "([Ljava/lang/String;)V");
+
+		jclass cls = jniEnv -> FindClass("java/lang/String");
+		jobject ary = jniEnv -> NewObjectArray(0, cls, 0);
+
+		jniEnv -> CallStaticVoidMethod(mainClazz, mainID, ary);
+
+
+		if (jniEnv->ExceptionCheck()) {
+			jniEnv->ExceptionDescribe();
+		}
+
+		//jvm -> DestroyJavaVM();
+
+	}
+
+
+void JvmStarter::start() {
+
 	int threadId;
-	//startJVM();
 
 	threadId = pthread_create(&thread, 0, threadExecutor, this);
-	pthread_join(thread, NULL);
-	jvm -> DestroyJavaVM();
+	cout << "pthread create finished" << endl;
+	//pthread_join(thread, NULL);
+	//jvm -> DestroyJavaVM();
+
 }
 
 void JvmStarter::startJVM() {
 
+
 	typedef int createVM(JavaVM **, void **, void *);
 
-	JavaVMOption options[2];
+	JavaVMOption options[4];
 	JavaVMInitArgs vm_args;
 
 	int result;
 
+	char homeDir[1024];
+	sprintf(homeDir, "%s%s", "-Drmbase.home.dir=", this -> attributes -> getHomeDir().data());
+	cout << "Property rmbase.home.dir is: " << this -> attributes -> getHomeDir().data() << "\n";
+	
 	char path[1024];
-	sprintf(path,"%s%s","-Djava.class.path=",jarFile -> data());
-	cout << "Property java.class.path is: " << jarFile -> data();
-
+	sprintf(path,"%s%s","-Djava.class.path=", this -> attributes -> getJarFile().data());
+	cout << "Property java.class.path is: " << this -> attributes -> getJarFile().data() << "\n";
+	
 
 
 	options[0].optionString = "-Djava.compiler=NONE";
-	options[1].optionString = path;
+	options[1].optionString = "-Dcom.sun.management.jmxremote";
+	options[2].optionString = path;
+	options[3].optionString = homeDir;
+	
 	//options[2].optionString = "-verbose:jni";
 	//options[2].optionString = "-verbose:jni";
 
 	vm_args.version = JNI_VERSION_1_4;
 	vm_args.options = options;
-	vm_args.nOptions = 2;
+	vm_args.nOptions = 4;
 	vm_args.ignoreUnrecognized = JNI_TRUE;
 
 	cout << "Starting JVM with library: " << PATHS_TO_JVM_LIB << "\n";
@@ -141,38 +169,45 @@ void JvmStarter::startJVM() {
 
 	libjvm_create = (createVM*) dlsym(libVM, DYNAMIC_LIB_JVMCREATE);
 
+	if (libjvm_create == 0) {
+		cerr << "libjvm not loaded" << endl;
+	}
+
 	dlsym_error = dlerror();
 	if (dlsym_error) {
 		cerr << "Cannot load symbol create: " << dlsym_error << '\n';
-		exit(-1);
 	}
 
 	if (libjvm_create == 0) {
 		cout << "Error starting jvm. Exiting ...";
-		exit(-1);
 	}
 
 	result = (*libjvm_create)(&jvm, (void**) &jniEnv, &vm_args);
 
+	cout << "started jvm with result: " <<  result << endl;
+
 	if (result == JNI_ERR) {
 		printf("Error invoking the JVM");
-		exit(-1);
+
+		//exit(-1);
 	}
 
 	if (jniEnv->ExceptionCheck()) {
 		jniEnv->ExceptionDescribe();
 	}
 
+	cout << "jvm startet" << endl;
+
 }
 
-string JvmStarter::getMainClass(JNIEnv *jniEnv, std::string *jarFileName) {
+string JvmStarter::getMainClass(JNIEnv *jniEnv, std::string* jarFileName) {
 #define MAIN_CLASS "Main-Class"
 
 	static JavaVM *g_jVM = NULL;
 
 	jniEnv -> GetJavaVM(&g_jVM);
 
-	cout << "getMainClass() starting" << endl;
+	//cout << "getMainClass() starting" << endl;
 
 	jmethodID jMethodId;
 	jobject jManifest, jAttr, jJar;
