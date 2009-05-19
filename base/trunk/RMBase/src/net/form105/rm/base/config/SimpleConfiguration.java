@@ -1,5 +1,8 @@
 package net.form105.rm.base.config;
 
+import java.io.File;
+import java.io.IOException;
+
 import net.form105.rm.base.IConfiguration;
 
 public class SimpleConfiguration implements IConfiguration {
@@ -25,7 +28,14 @@ public class SimpleConfiguration implements IConfiguration {
     }
 
     public String getBasePath() {
-        return ".";
+    	try {
+    		File file = new File(".");
+    		return file.getCanonicalPath()+File.separator;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return ".";
+		}
+        
     }
 
 }

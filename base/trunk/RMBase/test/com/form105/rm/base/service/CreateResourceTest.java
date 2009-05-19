@@ -2,6 +2,8 @@ package com.form105.rm.base.service;
 
 import net.form105.rm.base.model.Resource;
 import net.form105.rm.base.model.user.User;
+import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.rm.server.service.CreateResourceService;
 
 import org.junit.Test;
@@ -27,7 +29,14 @@ public class CreateResourceTest extends AbstractRemoteTest<User> {
 		
 		arg.resource = resource;
 		
-		doService(service);
+		IResult result = doService(service);
+		ResultStatus status = result.getStatus();
+		if (status == ResultStatus.FAIL) {
+			logger.info("status = fail");
+			
+		} else {
+			logger.info("status = success");
+		}
 	}
 
 }

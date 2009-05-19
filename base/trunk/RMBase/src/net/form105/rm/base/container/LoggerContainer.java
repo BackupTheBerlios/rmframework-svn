@@ -24,16 +24,28 @@ import org.apache.log4j.PropertyConfigurator;
 import org.picocontainer.Startable;
 
 public class LoggerContainer extends AbstractContainer implements Startable {
+	
+	private final String logFolder = "log";
     
     private final String LOG4J_PROP = "log4j.properties";
     
     public void start() {
+    	//createLogFolder();
         String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
         PropertyConfigurator.configureAndWatch(configDir+File.separator+LOG4J_PROP);
+        
     }
 
     public void stop() {
         LogManager.shutdown();
+    }
+    
+    protected void createLogFolder() {
+    	String basePath = Container.getInstance().getConfiguration().getConfiguration().getBasePath();
+    	File file = new File(basePath+logFolder);
+    	if (! file.exists() || !file.isDirectory()) {
+    		file.mkdir();
+    	}
     }
 
 }
