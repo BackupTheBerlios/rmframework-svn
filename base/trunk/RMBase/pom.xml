@@ -4,7 +4,7 @@
 
 
 		<modelVersion>4.0.0</modelVersion>
-		<groupId>RMBase</groupId>
+		<groupId>net.form105.rm</groupId>
 		<name>RMBase</name>
 		<artifactId>RMBase</artifactId>
 		<version>0.1</version>
