@@ -3,7 +3,7 @@ package net.form105.web.impl.form;
 import net.form105.rm.base.helper.UniqueIdHelper;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.LocalServiceHandler;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.rm.server.service.CreateUserService;
 import net.form105.web.base.component.form.AbstractForm;
 import net.form105.web.base.type.EventType;
@@ -71,7 +71,7 @@ public class AddUserForm extends AbstractForm {
 		user.setId(UniqueIdHelper.getId());
 		
 		handler.executeService(cService);
-		if (handler.getResult().getStatus() == Status.FAIL) {
+		if (handler.getResult().getStatus() == ResultStatus.FAIL) {
 		} else {
 			info(getString("info.creation.successful"));
 		}

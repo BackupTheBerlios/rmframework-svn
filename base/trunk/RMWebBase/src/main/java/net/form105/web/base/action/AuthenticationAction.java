@@ -1,11 +1,10 @@
 package net.form105.web.base.action;
 
-import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.DefaultFilterQuery;
 import net.form105.rm.base.query.LocalQueryHandler;
 import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.rm.server.filter.other.UserAuthorizationByEmailFilter;
 import net.form105.rm.server.selection.UserSelection;
 import net.form105.web.base.component.login.authorize.DefaultUser;
@@ -53,9 +52,9 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 			getSession().setAuthentication(new Authentication(provUser));
 			
 			// Set Result to success
-			getResult().setStatus(Status.SUCCESS);
+			getResult().setStatus(ResultStatus.SUCCESS);
 		} else {
-			getResult().setStatus(Status.FAIL);
+			getResult().setStatus(ResultStatus.FAIL);
 		}
 		
 		return getResult();

@@ -3,14 +3,14 @@ package net.form105.web.base.action;
 import java.util.List;
 
 import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 
 public abstract class AbstractActionResult<T> implements IResult<T> {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Exception exception;
-	private Status status;
+	private ResultStatus status;
 	private List<T> resultList;
 	
 	public Exception getException() {
@@ -21,11 +21,11 @@ public abstract class AbstractActionResult<T> implements IResult<T> {
 		this.exception = ex;
 	}
 
-    public Status getStatus() {
+    public ResultStatus getStatus() {
     	return status;
     }
     
-    public void setStatus(Status status) {
+    public void setStatus(ResultStatus status) {
     	this.status = status;
     }
     

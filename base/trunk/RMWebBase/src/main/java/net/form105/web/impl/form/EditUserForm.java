@@ -2,7 +2,7 @@ package net.form105.web.impl.form;
 
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.LocalServiceHandler;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.rm.server.service.UpdateUserService;
 import net.form105.web.base.component.behavior.FocusOnLoadBehavior;
 import net.form105.web.base.component.form.AbstractForm;
@@ -68,7 +68,7 @@ public class EditUserForm extends AbstractForm {
 		arg.password = user.getPassword();
 		arg.shortName = user.getShortName();
 		handler.executeService(uService);
-		if (handler.getResult().getStatus() == Status.FAIL) {
+		if (handler.getResult().getStatus() == ResultStatus.FAIL) {
 			// add message to a panel -> model window
 			
 		}

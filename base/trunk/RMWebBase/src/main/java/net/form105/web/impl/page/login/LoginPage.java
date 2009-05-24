@@ -2,7 +2,7 @@ package net.form105.web.impl.page.login;
 
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.web.base.HomePage;
 import net.form105.web.base.action.AuthenticationAction;
 import net.form105.web.base.component.login.authorize.DefaultUser;
@@ -73,7 +73,7 @@ public class LoginPage extends DefaultPageTemplate {
 		protected void onSubmit() {
 			AuthenticationAction action = new AuthenticationAction(user.getUserId(), user.getPassword());
 			IResult<User> result = action.doAction();
-			if (result.getStatus() == Status.SUCCESS) {
+			if (result.getStatus() == ResultStatus.SUCCESS) {
 				setResponsePage(HomePage.class);
 			} else {
 				// Gets the instance of this page. Shows the previously typed in user name again in the user name field. 

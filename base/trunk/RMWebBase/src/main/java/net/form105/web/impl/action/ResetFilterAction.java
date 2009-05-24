@@ -2,7 +2,7 @@ package net.form105.web.impl.action;
 
 import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.web.base.ApplicationSession;
 import net.form105.web.base.action.DefaultActionResult;
 import net.form105.web.base.action.IPageAction;
@@ -39,11 +39,11 @@ public class ResetFilterAction implements IPageAction {
 			lookup.removeEntry(filterClazz);
 		} catch (Exception ex) {
 			actionResult.setException(ex);
-			actionResult.setStatus(Status.FAIL);
+			actionResult.setStatus(ResultStatus.FAIL);
 			return actionResult;
 		}
 		
-		actionResult.setStatus(Status.SUCCESS);
+		actionResult.setStatus(ResultStatus.SUCCESS);
 		return actionResult;
 	}
 

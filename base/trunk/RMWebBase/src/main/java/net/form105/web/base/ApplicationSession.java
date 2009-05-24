@@ -3,7 +3,7 @@ package net.form105.web.base;
 import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.Status;
+import net.form105.rm.base.service.ResultStatus;
 import net.form105.web.base.action.AuthenticationAction;
 import net.form105.web.base.component.login.authorize.NoUser;
 import net.form105.web.base.lookup.UserLookupRegistry;
@@ -55,7 +55,7 @@ public class ApplicationSession extends AuthenticatedWebSession {
 	public boolean authenticate(String username, String password) {
 		AuthenticationAction action = new AuthenticationAction(username, password);
 		IResult<User> result = action.doAction();
-		return result.getStatus() == Status.SUCCESS;
+		return result.getStatus() == ResultStatus.SUCCESS;
 	}
 
 	@Override
