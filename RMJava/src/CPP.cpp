@@ -18,10 +18,20 @@ int main(int argc, char **argv) {
 
 	//const char jarPath[] = "RMBase-0.1.jar";
 
-	const char jarPath[] = "/Applications/FileMaker Pro 10 Advanced/Extensions/FMPluginDebug.fmplugin/RMBase-0.1.jar";
+	//const char jarPath[] = "/Applications/FileMaker Pro 10 Advanced/Extensions/FMPluginDebug.fmplugin/RMBase-0.1.jar";
 
-	JvmStarter starter;
-	starter.start(new string(jarPath));
+
+	JvmAttributes jvmAttributes;
+	jvmAttributes.setHomeDir(new string("/Applications/FileMaker Pro 10 Advanced/Extensions/FMPluginDebug.fmplugin"));
+	jvmAttributes.setJarFile(new string("/Applications/FileMaker Pro 10 Advanced/Extensions/FMPluginDebug.fmplugin/RMBase-0.1.jar"));
+
+	JvmStarter starter(&jvmAttributes);
+	starter.startJVM();
+	starter.startMain();
+	//starter.sendLogEntry(new string("fmorder"), new string("sample log entry"));
+
+	//jvmStarter -> startJVM();
+	//jvmStarter -> startMain();
 
 }
 

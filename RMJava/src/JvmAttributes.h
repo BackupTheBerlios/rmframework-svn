@@ -6,12 +6,12 @@
  *  Copyright 2009 EPAC Technologies GmbH. All rights reserved.
  *
  */
- 
+
 #ifndef JVMATTRIBUTES_H_
 #define JVMATTRIBUTES_H_
 
 #include <string>
- 
+
 using namespace std;
 
 class JvmAttributes {
@@ -19,16 +19,16 @@ class JvmAttributes {
 	private:
 		std::string *jarFile;
 		std::string *homeDir;
-		
+
 	public:
-	
+
 	JvmAttributes() {}
-	
+
 	std::string getJarFile();
 	std::string getHomeDir();
 	void setJarFile(std::string* jarFile);
 	void setHomeDir(std::string* homeDir);
-	
+
 	virtual ~JvmAttributes() {
 
 	}
@@ -46,7 +46,7 @@ std::string JvmAttributes::getHomeDir() {
 
 void JvmAttributes::setHomeDir(std::string* homeDir) {
 	this -> homeDir = homeDir;
-} 
+}
 
 void JvmAttributes::setJarFile(std::string* jarFile) {
 	this -> jarFile = jarFile;
