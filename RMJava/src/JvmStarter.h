@@ -78,10 +78,6 @@ void JvmStarter::startMain() {
 
 	cout << mainClass.data() << endl;
 
-	//jvm -> AttachCurrentThread((void**)&jniEnv, NULL);
-
-	//char CurrentPath[1024];
-
 	jclass mainClazz = 0;
 	jmethodID mainID;
 	const char *cMainClass = mainClass.data();
@@ -139,9 +135,6 @@ void JvmStarter::startJVM() {
 	options[1].optionString = "-Dcom.sun.management.jmxremote";
 	options[2].optionString = path;
 	options[3].optionString = homeDir;
-
-	//options[2].optionString = "-verbose:jni";
-	//options[2].optionString = "-verbose:jni";
 
 	vm_args.version = JNI_VERSION_1_4;
 	vm_args.options = options;
@@ -210,37 +203,49 @@ string JvmStarter::getMainClass(JNIEnv *jniEnv, std::string* jarFileName) {
 	// Loading jarFile
 	jClass = jniEnv -> FindClass("java/util/jar/JarFile");
 	if (jClass == 0) {
-		cerr << "jClass == 0" << endl;
+		cerr << "Error: Can't load Class java/util/jar/JarFile" << endl;
 	}
 
 	jMethodId = jniEnv -> GetMethodID(jClass, "<init>", "(Ljava/lang/String;)V");
 	if (jMethodId == 0) {
-		cout << "Can't find constructor for java/util/jar/JarFile(String) " << endl;
+		cout << "Error: Can't find constructor for java/util/jar/JarFile(String) " << endl;
 	}
 	jStr = jniEnv -> NewStringUTF(jarFileName -> data());
 	jJar = jniEnv -> NewObject(jClass, jMethodId, jStr);
 
 	if (jniEnv->ExceptionCheck()) {
 		jniEnv->ExceptionDescribe();
-		cout << "Can't load JarFile " << jarFileName -> data() << endl;
-		cout << "Exiting now \n";
+		cout << "Error: Can't load JarFile " << jarFileName -> data() << endl;
 	}
 
 	// Getting manifest
 	jMethodId = jniEnv -> GetMethodID(jClass, "getManifest", "()Ljava/util/jar/Manifest;");
+	if (jMethodId == 0) {
+		cout << "Error: Can't find method getManifest in java.util.jar.Manifest" << endl;
+	}
 	jManifest = jniEnv -> CallObjectMethod(jJar, jMethodId);
 
-	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jManifest), "getMainAttributes",
-			"()Ljava/util/jar/Attributes;");
+	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jManifest), "getMainAttributes","()Ljava/util/jar/Attributes;");
 	jAttr = jniEnv -> CallObjectMethod(jManifest, jMethodId);
+	
+	if (jniEnv->ExceptionCheck()) {
+		jniEnv->ExceptionDescribe();
+		cout << "Error: Can't load JarFile " << jarFileName -> data() << endl;
+	}
 
-	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jAttr), "getValue",
-			"(Ljava/lang/String;)Ljava/lang/String;");
+	jMethodId = jniEnv -> GetMethodID(jniEnv -> GetObjectClass(jAttr), "getValue", "(Ljava/lang/String;)Ljava/lang/String;");
 	jStr = jniEnv -> NewStringUTF(MAIN_CLASS);
 	jMainClass = (jstring) jniEnv -> CallObjectMethod(jAttr, jMethodId, jStr);
+	if (jMainClass == 0) {
+		cout << "Error: Can't find attribute MainClass in the manifest." << endl;
+	}
+	
+	if (jniEnv->ExceptionCheck()) {
+		jniEnv->ExceptionDescribe();
+		cout << "Error: Can't load JarFile " << jarFileName -> data() << endl;
+	}
 
 	const char* mainClass = jniEnv -> GetStringUTFChars(jMainClass, 0);
-
 	return string(mainClass);
 
 }
@@ -251,7 +256,6 @@ void JvmStarter::replaceChar(string &input, const char* c1, const char* c2) {
 
 	// npos = length of string
 	while ((pos = input.find(c1, pos + 1)) != string::npos) {
-		cout << pos << ",";
 		input.replace(pos, amount, c2);
 	}
 }
@@ -262,8 +266,7 @@ void JvmStarter::sendLogEntry(unsigned short* logCategory, long sizeCategory, un
 	result = jvm -> AttachCurrentThread((void**) &jniEnv, NULL);
 
 	if (result > 0) {
-		fprintf(stderr, "Attach failed\n");
-
+		cout << "Error: Attaching current thread by JNI." << endl;
 	}
 
 	jclass serviceClass = jniEnv -> FindClass("net/form105/rm/server/service/log/StandardLogService");
@@ -292,9 +295,7 @@ void JvmStarter::sendLogEntry(unsigned short* logCategory, long sizeCategory, un
 	}
 	jobject argumentObject = jniEnv -> CallObjectMethod(service, argumentMethod);
 
-	//jstring jCategory = jniEnv -> NewStringUTF(logCategory -> data());
 	jstring jCategory = jniEnv -> NewString((const jchar*) logCategory, sizeCategory);
-	//jstring jCategory = jniEnv -> NewStringUTF("lö");
 	jstring jMessage = jniEnv -> NewString((const jchar*) logMessage, sizeMessage);
 	
 	jfieldID categoryFieldId = jniEnv -> GetFieldID(argumentClass, "category", "Ljava/lang/String;");
@@ -313,8 +314,15 @@ void JvmStarter::sendLogEntry(unsigned short* logCategory, long sizeCategory, un
 	// get method for execution
 
 	jmethodID executeMethod = jniEnv -> GetMethodID(serviceClass, "execute", "()V");
+	if (messageFieldId == 0) {
+		cout << "Error: Can't find execute() in service class." << endl;
+	}
 
 	jniEnv -> CallObjectMethod(service, executeMethod);
+	
+	if (jniEnv->ExceptionCheck()) {
+		jniEnv->ExceptionDescribe();
+	}
 
 	result = jvm -> DetachCurrentThread();
 

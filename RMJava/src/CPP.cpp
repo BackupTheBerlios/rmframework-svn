@@ -9,6 +9,7 @@
 #include <jni.h>
 #include <pthread.h>
 #include "JvmStarter.h"
+#include "LogHelper.h"
 
 using namespace std;
 
@@ -20,6 +21,8 @@ int main(int argc, char **argv) {
 
 	//const char jarPath[] = "/Applications/FileMaker Pro 10 Advanced/Extensions/FMPluginDebug.fmplugin/RMBase-0.1.jar";
 
+	LogHelper *logger = LogHelper::Instance();
+	logger -> info(true, string("this is my log message"));
 
 	JvmAttributes jvmAttributes;
 	jvmAttributes.setHomeDir(new string("/Applications/FileMaker Pro 10 Advanced/Extensions/FMPluginDebug.fmplugin"));
