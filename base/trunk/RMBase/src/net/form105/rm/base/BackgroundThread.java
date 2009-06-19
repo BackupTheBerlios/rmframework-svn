@@ -19,7 +19,12 @@ public class BackgroundThread implements Runnable {
         running = true;
         while (running) {
             try {
-                Thread.sleep(Long.MAX_VALUE);
+            	logger.info("Start waiting");
+            	synchronized (this) {
+					wait();
+				}
+                //wait();
+                logger.info("Thread notified");
             } catch (InterruptedException ex) {
                 logger.error("Thread interrupted. ", ex);
             }
@@ -30,8 +35,8 @@ public class BackgroundThread implements Runnable {
 
     public void stop() {
         running = false;
-        this.notify();
-
+        this.notifyAll();
+        logger.info("notified");
     }
 
 }

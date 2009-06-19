@@ -64,6 +64,16 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
     }
 
     public void stop() {
+    	try {
+			Naming.unbind(serviceHandlerUrl);
+			Naming.unbind(queryHandlerUrl);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
     	serviceHandler = null;
     }
 

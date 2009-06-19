@@ -8,6 +8,7 @@ package net.form105.rm.base.container;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 import net.form105.rm.base.service.RMIServiceHandler;
 
@@ -28,8 +29,10 @@ public class RMIServiceHandlerContainer extends AbstractContainer implements Sta
     public void start() {
         logger.info("Starting: Binding RMIServiceHandler to the registry.");
         try {
-            Registry registry = rmiServerContainer.getRegistry();
+          Registry registry = rmiServerContainer.getRegistry();
             registry.rebind(rmiServiceHandler.getName(), rmiServiceHandler);
+            UnicastRemoteObject.unexportObject(registry, true);
+            UnicastRemoteObject.unexportObject(rmiServiceHandler, true);
         } catch (RemoteException ex) {
             logger.error("Error in rebinding the RMIServiceHandler to the registry", ex);
         } 
@@ -38,6 +41,7 @@ public class RMIServiceHandlerContainer extends AbstractContainer implements Sta
     }
 
     public void stop() {
+    	logger.info("Stopping container: "+getClass().getCanonicalName());
         try {
             Registry registry = rmiServerContainer.getRegistry();
             registry.unbind(rmiServiceHandler.getName());

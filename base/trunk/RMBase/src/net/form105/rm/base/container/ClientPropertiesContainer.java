@@ -64,11 +64,7 @@ public class ClientPropertiesContainer extends AbstractContainer implements Star
     }
 
     public void stop() {
-        try {
-            fiStream.close();
-        } catch (IOException ex) {
-            logger.error(ex, ex);
-        }
+        logger.info("Stopping ClientPropertiesContainer");
     }
 
     public Properties getProperties() {

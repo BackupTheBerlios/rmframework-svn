@@ -45,7 +45,7 @@ public class RMIServerContainer extends AbstractContainer implements Startable {
     }
 
     public void stop() {
-    	logger.info("Stopping RMIServerContainer");
+    	logger.info("Stopping container: "+getClass().getCanonicalName());
     	try {
 			UnicastRemoteObject.unexportObject(registry, true);
 		} catch (NoSuchObjectException e) {

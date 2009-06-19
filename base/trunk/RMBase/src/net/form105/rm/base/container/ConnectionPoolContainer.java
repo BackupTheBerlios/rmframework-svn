@@ -43,8 +43,7 @@ public class ConnectionPoolContainer implements Startable {
     }
 
     public void stop() {
-        // TODO Auto-generated method stub
-
+    	logger.info("Stopping container: "+getClass().getCanonicalName());
     }
     
     private void loadXmlConfiguration() {

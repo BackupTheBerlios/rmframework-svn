@@ -33,7 +33,6 @@ public class LoggerContainer extends AbstractContainer implements Startable {
     	//createLogFolder();
         String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
         PropertyConfigurator.configureAndWatch(configDir+File.separator+LOG4J_PROP);
-        
     }
 
     public void stop() {

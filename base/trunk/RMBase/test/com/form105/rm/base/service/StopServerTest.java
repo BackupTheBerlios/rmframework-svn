@@ -15,26 +15,19 @@
  */
 package com.form105.rm.base.service;
 
-import junit.framework.Assert;
-import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.ResultStatus;
-import net.form105.rm.server.service.log.StandardLogService;
+import net.form105.rm.server.service.StopServerService;
 
 import org.junit.Test;
 
 import com.form105.rm.base.query.AbstractRemoteTest;
 
-public class LogTest extends AbstractRemoteTest {
+
+public class StopServerTest extends AbstractRemoteTest {
 	
 	@Test
-	public void logTest() {
-		StandardLogService service = new StandardLogService();
-		StandardLogService.ServiceArgument arg = service.getArgument();
-		arg.logMessage = "fmOrder";
-		arg.category = "A log entry from remote side";
-		
-		IResult result = doService(service);
-		Assert.assertEquals(result.getStatus(), ResultStatus.SUCCESS);
+	public void stopServer() {
+		StopServerService service = new StopServerService();
+		doService(service);
 	}
 
 }

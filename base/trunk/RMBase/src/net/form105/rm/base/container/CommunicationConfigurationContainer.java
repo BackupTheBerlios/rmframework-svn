@@ -112,7 +112,7 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 	}
 
 	public void stop() {
-		configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
+		logger.info("Stopping container: "+getClass().getCanonicalName());
 	}
 
 	/**

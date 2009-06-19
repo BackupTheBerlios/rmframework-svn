@@ -66,11 +66,7 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
     }
 
     public void stop() {
-        try {
-            fiStream.close();
-        } catch (IOException ex) {
-            logger.error(ex, ex);
-        }
+     
     }
 
     public Properties getProperties() {

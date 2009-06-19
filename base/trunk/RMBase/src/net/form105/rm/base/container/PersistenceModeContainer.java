@@ -76,7 +76,7 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 	}
 
 	public void stop() {
-
+		logger.info("Stopping container: "+getClass().getCanonicalName());
 	}
 
 	public void dispose() {

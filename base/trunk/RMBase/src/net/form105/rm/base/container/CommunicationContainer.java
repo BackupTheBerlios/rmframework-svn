@@ -65,6 +65,6 @@ public class CommunicationContainer extends AbstractContainer {
 	}
 
 	public void stop() {
-		
+		logger.info("Stopping container: "+getClass().getCanonicalName());
 	}
 }

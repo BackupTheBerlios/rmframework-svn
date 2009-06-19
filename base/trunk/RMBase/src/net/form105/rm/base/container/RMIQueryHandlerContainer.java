@@ -37,13 +37,14 @@ public class RMIQueryHandlerContainer extends AbstractContainer implements Start
             Registry registry = rmiServerContainer.getRegistry();
             registry.rebind(rmiQueryHandler.getName(), rmiQueryHandler);
         } catch (RemoteException ex) {
-            logger.error("Error in rebinding the RMIQueryHandler to the registry", ex);
+           logger.error("Error in rebinding the RMIQueryHandler to the registry", ex);
         } 
         
         
     }
 
     public void stop() {
+    	logger.info("Stopping container: "+getClass().getCanonicalName());
         try {
             Registry registry = rmiServerContainer.getRegistry();
             registry.unbind(rmiQueryHandler.getName());

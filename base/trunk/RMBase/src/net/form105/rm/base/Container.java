@@ -6,11 +6,13 @@
  */
 package net.form105.rm.base;
 
+import java.io.File;
 import java.util.List;
 
 import net.form105.rm.base.util.xml.XMLLoader;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.picocontainer.DefaultPicoContainer;
@@ -81,6 +83,21 @@ public class Container {
      */
     public void load(ContainerConfiguration configuration) {
     	this.configuration = configuration;
+    	
+    	// check for log4j config file
+    	
+    	
+    	// 1st of all - load log4j
+    	String configDir = configuration.getConfigurationDirectory();
+    	String log4jConfigPath = configDir + "log4j.properties";
+    	File file = new File(log4jConfigPath);
+    	if (!file.exists()) {
+    		System.err.println("Error: Log4j configuration file doesn't exit: "+log4jConfigPath);
+    	}
+        PropertyConfigurator.configureAndWatch(configDir+File.separator+"log4j.properties");
+        logger = Logger.getLogger(Container.class);
+    	
+    	
         XMLLoader loader = new XMLLoader(configuration.getPath());
         Document document = loader.parseFile();
         Element rootElement = document.getRootElement();
@@ -108,6 +125,10 @@ public class Container {
         }
         container.start();
         
+    }
+    
+    public void stopAll() {
+    	container.stop();
     }
     
     /**
