@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>WebForm105</name>
-	<comment></comment>
+	<comment>Webpage for form105.ch</comment>
 	<projects>
-		<project>RMWebProvider</project>
 		<project>RMBase</project>
+		<project>RMWebProvider</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

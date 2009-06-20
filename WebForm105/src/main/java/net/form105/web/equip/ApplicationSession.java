@@ -1,0 +1,80 @@
+package net.form105.web.equip;
+
+import net.form105.rm.base.lookup.ILookup;
+import net.form105.rm.base.model.user.User;
+import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.ResultStatus;
+import net.form105.web.base.action.AuthenticationAction;
+import net.form105.web.base.component.login.authorize.NoUser;
+import net.form105.web.base.lookup.UserLookupRegistry;
+import net.form105.web.base.model.authorize.Authentication;
+import net.form105.web.base.session.IAuthenticationSession;
+
+import org.apache.wicket.Request;
+import org.apache.wicket.Response;
+import org.apache.wicket.Session;
+import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authorization.strategies.role.Roles;
+
+/**
+ * The application session holds the information needed that are needed longer than a browser request. Each variable represents
+ * such an information. By default the ApplicationSession creates an Authentication object with a default NoUser.
+ * @author hk
+ *
+ */
+public class ApplicationSession extends AuthenticatedWebSession implements IAuthenticationSession {
+	
+	Authentication authentication;
+	UserLookupRegistry lookup = new UserLookupRegistry();
+
+	private static final long serialVersionUID = 1L;
+	
+	public ApplicationSession(Request request) {
+		super(request);
+		authentication = new Authentication(new NoUser());
+	}
+	
+	public static ApplicationSession get() {
+	    return (ApplicationSession) Session.get();
+	}
+	
+
+	/**
+	 * Getting the authentication which holds some user information
+	 * @return
+	 */
+	public Authentication getAuthentication() {
+		return authentication;
+	}
+
+	/**
+	 * Setting the authorization which holds some user information
+	 * @param authorization
+	 */
+	public void setAuthentication(Authentication authorization) {
+		this.authentication = authorization;
+	}
+	
+	public ILookup getLookup() {
+		return lookup;
+	}
+
+	@Override
+	public boolean authenticate(String username, String password) {
+		AuthenticationAction action = new AuthenticationAction(username, password);
+		IResult<User> result = action.doAction();
+		return result.getStatus() == ResultStatus.SUCCESS;
+	}
+
+	@Override
+	public Roles getRoles() {
+		if (authentication.getUser().getRoles() != null) {
+			Roles roles = new Roles();
+			roles.addAll(authentication.getUser().getRoles());
+			return roles;
+		}
+		
+		
+		return null;
+	}
+}

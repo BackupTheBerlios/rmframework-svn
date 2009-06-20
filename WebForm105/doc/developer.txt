@@ -1,0 +1,24 @@
+1. web.xml
+----------
+Define a parameter for wicket which is the application start point. The parameter defines the classname of the class which should be loaded.
+<init-param>
+			<param-name>applicationClassName</param-name>
+			<param-value>net.form105.web.equip.Application</param-value>
+</init-param>
+
+
+2. Application.java
+-------------------
+Be aware that a special session is used which derives from AuthenticatedWebSession and implements IAuthenticationSession. The session provides
+functionality for authenticating user and access rights for pages.
+
+The application class defines the home page by the following method:
+
+public Class<HomePage> getHomePage() {
+    return HomePage.class;
+}
+
+3. HomePage class
+-----------------
+
+The home page derives from DefaultPageTemplate which
