@@ -4,8 +4,8 @@
     <entry key="server.model.name">model.xml</entry>
     
     
-    <!-- memory, db, dual -->
-    <entry key="server.operation.mode">memory</entry>
+    <!-- memory, dbsingle, dbmulti, dual -->
+    <entry key="server.operation.mode">dbsingle</entry>
     <entry key="server.userManagement.initialize">true</entry>
     <entry key="server.import.folder">/tmp/import</entry>
     

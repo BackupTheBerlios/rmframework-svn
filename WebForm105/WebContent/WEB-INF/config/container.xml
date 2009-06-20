@@ -8,19 +8,12 @@
     <component-implementation class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
     <component-implementation class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
     <component-implementation class='net.form105.rm.base.container.UserManagementContainer'/>
+    <component-implementation class='net.form105.rm.base.container.PersistenceModeContainer' />
+    <component-implementation class='net.form105.rm.base.container.ModeContainer'/>
     <component-implementation class='net.form105.rm.base.container.Db4oContainer'/>
     
 
-    <!-- component-implementation class='net.form105.rm.base.container.BackgroundThreadContainer' />
-    <component-implementation class='net.form105.rm.base.container.PropertiesContainer'/>
-    <component-implementation class='net.form105.rm.base.container.RMIServerContainer'/>
-    <component-implementation class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
-    <component-implementation class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
-    <component-implementation class='net.form105.rm.base.container.LookupContainer'/>
-    <component-implementation class='net.form105.rm.base.container.UserManagementContainer'/>
-    <component-implementation class='net.form105.rm.base.container.ModeContainer'/>
-    <component-implementation class='net.form105.rm.base.container.Db4oContainer'/>
-    <component-implementation class='net.form105.rm.base.container.PersistenceModeContainer' / -->
+    <!-- component-implementation class='net.form105.rm.base.container.BackgroundThreadContainer' / -->
 </container>
 
 
