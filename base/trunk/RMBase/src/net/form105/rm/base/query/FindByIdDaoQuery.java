@@ -30,7 +30,7 @@ public class FindByIdDaoQuery<T extends AgentObject> extends AbstractSimpleQuery
 	
 	@Override
 	public List<T> execute() {
-		ILookup lookup = Agent.getLookup();
+		ILookup lookup = Agent.getDaoLookup();
 		@SuppressWarnings("unchecked")
 		IBasicDao<T> dao = (IBasicDao<T>) lookup.getFirstContentObject(daoClass);
 		T result = dao.findById(id);

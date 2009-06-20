@@ -58,11 +58,18 @@ public class SimpleLookupRegistry implements ILookup {
     }
 
     public IEntry getEntry(Class<?> clazz) {
+        IEntry entry = registry.get(clazz);
+        if (entry == null) {
+            return new AbstractEntry() {};
+        }
         return registry.get(clazz);
     }
 
     public List<?> getEntryAsList(Class<?> clazz) {
         IEntry entry = registry.get(clazz);
+        if (entry == null) {
+            entry = new AbstractEntry() {};
+        }
         return entry.getItems();
     }
 

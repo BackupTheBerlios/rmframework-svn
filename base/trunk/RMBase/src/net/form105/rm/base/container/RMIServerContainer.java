@@ -22,21 +22,24 @@ import org.picocontainer.Startable;
 public class RMIServerContainer extends AbstractContainer implements Startable {
 
     private PropertiesContainer propContainer;
+
     private Properties props;
+
     private int port = 1099;
+
     private Registry registry;
 
     public RMIServerContainer(PropertiesContainer propContainer) {
-    	super();
+        super();
         this.propContainer = propContainer;
-        
+
     }
 
     public void start() {
         props = propContainer.getProperties();
         port = Integer.parseInt(props.getProperty("server.rmi.port"));
-        
-        logger.info("Starting: RMI Registry on port: "+port);
+
+        logger.info("Starting: RMI Registry on port: " + port);
         try {
             registry = LocateRegistry.createRegistry(port);
         } catch (RemoteException ex) {
@@ -45,13 +48,13 @@ public class RMIServerContainer extends AbstractContainer implements Startable {
     }
 
     public void stop() {
-    	logger.info("Stopping container: "+getClass().getCanonicalName());
-    	try {
-			UnicastRemoteObject.unexportObject(registry, true);
-		} catch (NoSuchObjectException e) {
-			e.printStackTrace();
-		}
-        
+        logger.info("Stopping container: " + getClass().getCanonicalName());
+        try {
+            UnicastRemoteObject.unexportObject(registry, true);
+        } catch (NoSuchObjectException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

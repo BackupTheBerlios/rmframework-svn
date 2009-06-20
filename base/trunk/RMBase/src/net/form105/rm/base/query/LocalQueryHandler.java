@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.ResultStatus;
 
 public class LocalQueryHandler<T> implements IQueryHandler<T> {
 
@@ -16,6 +17,7 @@ public class LocalQueryHandler<T> implements IQueryHandler<T> {
 			result.setResultList(new ArrayList<T>(queryResult));
 		} catch (Exception ex) {
 			result.setException(ex);
+			result.setStatus(ResultStatus.FAIL);
 		}
 
 	}

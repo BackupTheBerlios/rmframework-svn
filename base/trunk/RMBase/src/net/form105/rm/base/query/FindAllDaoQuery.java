@@ -26,7 +26,7 @@ public class FindAllDaoQuery<T extends AgentObject> extends AbstractSimpleQuery<
 	
 	@Override
 	public List<T> execute() {
-		ILookup lookup = Agent.getLookup();
+		ILookup lookup = Agent.getDaoLookup();
 		IBasicDao<T> dao = (IBasicDao<T>) lookup.getFirstContentObject(daoClass);
 		List<T> results = dao.findAll();
 		return results;

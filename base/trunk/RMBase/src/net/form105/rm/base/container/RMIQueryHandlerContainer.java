@@ -8,6 +8,7 @@ package net.form105.rm.base.container;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 import net.form105.rm.base.query.RMIQueryHandler;
 import net.form105.rm.base.service.RMIServiceHandler;
@@ -48,6 +49,7 @@ public class RMIQueryHandlerContainer extends AbstractContainer implements Start
         try {
             Registry registry = rmiServerContainer.getRegistry();
             registry.unbind(rmiQueryHandler.getName());
+            UnicastRemoteObject.unexportObject(rmiQueryHandler, true);
         } catch (RemoteException ex) {
             logger.error("Error in unbinding the RMIQueryHandler from registry", ex);
         } catch (NotBoundException ex) {
