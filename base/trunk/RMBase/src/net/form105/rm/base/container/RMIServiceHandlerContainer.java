@@ -5,7 +5,6 @@
 
 package net.form105.rm.base.container;
 
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
