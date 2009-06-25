@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapping>
+	<configuration>
+		<linestart>3</linestart>
+		<mandate>default</mandate>
+	</configuration>
+	
+	<object>
+		<base>resource</base>
+		<id>
+			<prefix>part</prefix>
+			<startNumber>generated</startNumber>
+		</id>
+		<type>sparePart</type>
+		<name>Ersatzteil Förderanlage Lysbüchel</name>
+		<division>coopConveyingSystem</division>
+	</object>
+
+	<field ordinal="1" class="net.form105.rm.base.mapping.target.IntegerParameterTarget">
+		<elementId>position</elementId>
+		<name>Position</name>
+	</field>
+	
+	<field ordinal="2" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>articleNo</elementId>
+		<name>Article Number</name>
+	</field>
+	
+	<field ordinal="3" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>description</elementId>
+		<name>Article Description</name>
+	</field>
+	
+	<field ordinal="4" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>supplier</elementId>
+		<name>Article Supplier</name>
+	</field>
+	
+	<field ordinal="5" class="net.form105.rm.base.mapping.target.IntegerParameterTarget">
+		<elementId>quantity</elementId>
+		<type>integer</type>
+		<name>Quantity</name>
+	</field>
+	
+	<field ordinal="6" class="net.form105.rm.base.mapping.target.IntegerParameterTarget">
+		<elementId>suggestQuantity</elementId>
+		<type>integer</type>
+		<name>Suggested Quantity</name>
+	</field>
+	
+	<field ordinal="7" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>deliveryTime</elementId>
+		<type>string</type>
+		<name>Delivery Time (Week)</name>
+		<unit>week</unit>
+	</field>
+	
+	<field ordinal="8" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>pricePerPeace</elementId>
+		<name>Price per Unit</name>
+		<unit>currency</unit>
+		<locale>de_ch</locale>
+	</field>
+	
+	<field ordinal="9" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>priceTotal</elementId>
+		<name>Price Total</name>
+		<unit>currency</unit>
+		<locale>de_ch</locale>
+	</field>
+	
+	<field ordinal="10" class="net.form105.rm.base.mapping.target.StringParameterTarget">
+		<elementId>priceNetto</elementId>
+		<name>Price Netto</name>
+		<unit>currency</unit>
+		<locale>de_ch</locale>
+	</field>
+	
+	<field ordinal="10" class="net.form105.rm.base.mapping.target.FloatParameterTarget">
+		<elementId>factor</elementId>
+		<name>Calculation Factor</name>
+		<unit>currency</unit>
+		<locale>de_ch</locale>
+	</field>
+	
+	
+	
+</mapping>
+

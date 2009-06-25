@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: heikok
+Implementation-Title: RMBase
+Implementation-Version: 0.1
+Implementation-Vendor-Id: RMBase
+Main-Class: net.form105.rm.base.Agent
+Build-Jdk: 1.5.0_16
+Class-Path: lib/dom4j-1.6.1.jar lib/xml-apis-1.0.b2.jar lib/log4j-1.2.
+ 14.jar lib/xmlbeans-2.3.0.jar lib/stax-api-1.0.1.jar lib/mina-core-2.
+ 0.0-M3.jar lib/slf4j-api-1.5.2.jar lib/slf4j-log4j12-1.4.2.jar lib/c3
+ p0-0.9.1.2.jar lib/picocontainer-2.8.jar lib/joda-time-1.6.jar lib/co
+ m.springsource.com.db4o.java5-7.2.54.11278.jar lib/RMxmlHelper-0.1.jar
+

@@ -1,0 +1,127 @@
+0x010f;271;Exif;Make;;PENTAX Corporation 
+0x0110;272;Exif;Model;;PENTAX K10D        
+0x0112;274;Exif;Orientation;;Top, left side (Horizontal / normal)
+0x011a;282;Exif;X Resolution;;72 dots per inch
+0x011b;283;Exif;Y Resolution;;72 dots per inch
+0x0128;296;Exif;Resolution Unit;;Inch
+0x0131;305;Exif;Software;;K10D Ver 1.30          
+0x0132;306;Exif;Date/Time;;2007:11:18 18:44:46
+0x013e;318;Exif;White Point;;313/1000 329/1000
+0x013f;319;Exif;Primary Chromaticities;;64/100 33/100 21/100 71/100 15/100 6/100
+0x0211;529;Exif;YCbCr Coefficients;;299/1000 587/1000 114/1000
+0x0213;531;Exif;YCbCr Positioning;;Datum point
+0x829a;33434;Exif;Exposure Time;;1/180 sec
+0x829d;33437;Exif;F-Number;;F2.2
+0x8822;34850;Exif;Exposure Program;;Aperture priority
+0x8827;34855;Exif;ISO Speed Ratings;;100
+0x9000;36864;Exif;Exif Version;;2.21
+0x9003;36867;Exif;Date/Time Original;;2007:11:18 18:44:46
+0x9004;36868;Exif;Date/Time Digitized;;2007:11:18 18:44:46
+0x9101;37121;Exif;Components Configuration;;YCbCr
+0x9204;37380;Exif;Exposure Bias Value;;0 EV
+0x9207;37383;Exif;Metering Mode;;Spot
+0x9209;37385;Exif;Flash;;Flash fired
+0x920a;37386;Exif;Focal Length;;0.0 mm
+0xa000;40960;Exif;FlashPix Version;;1.00
+0xa001;40961;Exif;Color Space;;Undefined
+0xa002;40962;Exif;Exif Image Width;;3872 pixels
+0xa003;40963;Exif;Exif Image Height;;2592 pixels
+0xa217;41495;Exif;Sensing Method;;One-chip color area sensor
+0xa300;41728;Exif;File Source;;Digital Still Camera (DSC)
+0xa301;41729;Exif;Scene Type;;Directly photographed image
+0xa401;41985;Exif;Custom Rendered;;Normal process
+0xa402;41986;Exif;Exposure Mode;;Auto exposure
+0xa403;41987;Exif;White Balance;;Auto white balance
+0xa405;41989;Exif;Focal Length 35;;Unknown
+0xa406;41990;Exif;Scene Capture Type;;Standard
+0xa408;41992;Exif;Contrast;;None
+0xa409;41993;Exif;Saturation;;None
+0xa40a;41994;Exif;Sharpness;;None
+0xa40c;41996;Exif;Subject Distance Range;;Distant view
+0xa500;42240;Exif;Unknown tag (0xa500);;2.2
+0xc4a5;50341;Exif;Unknown tag (0xc4a5);;80 114 105 110 116 73 77 0 48 51 48 48 0 0 0 33 0 1 0 22 0 22 0 2 1 0 0 0 0 3 0 0 0 -42 0 7 0 0 0 0 0 8 0 0 0 0 0 9 0 0 0 0 0 10 0 0 0 0 0 11 0 0 1 30 0 12 0 0 0 0 0 13 0 0 0 0 0 14 0 0 1 52 1 0 5 0 0 0 1 1 -1 0 0 0 1 2 -125 0 0 0 1 3 -125 0 0 0 1 4 -125 0 0 0 1 5 -125 0 0 0 1 6 -125 0 0 0 1 7 -128 -128 -128 0 1 16 -128 0 0 0 2 0 0 0 0 0 2 7 0 0 0 0 2 8 0 0 0 0 2 9 0 0 0 0 2 10 0 0 0 0 2 11 0 0 1 68 2 13 0 0 0 0 3 0 5 0 0 0 3 1 -1 0 0 0 3 2 -125 0 0 0 3 3 -125 0 0 0 3 6 -125 0 0 0 3 16 -128 0 0 0 0 0 23 -46 0 0 39 16 0 0 8 5 0 0 39 16 0 0 5 -44 0 0 39 16 0 0 12 39 0 0 39 16 0 0 24 113 0 0 39 16 0 0 2 120 0 0 39 16 0 0 0 -62 0 0 39 16 0 0 2 97 0 0 39 16 0 0 29 24 0 0 39 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0x0103;259;Exif;Compression;;JPEG (old-style)
+0x0201;513;Exif;Thumbnail Offset;;46304 bytes
+0x0202;514;Exif;Thumbnail Length;;6427 bytes
+0xf001;61441;Exif;Thumbnail Data;;[6427 bytes of thumbnail data]
+0x0000;0;Casio Makernote;Unknown tag (0x0000);;3 0 0 0
+0x0001;1;Casio Makernote;Unknown tag (0x0001);;0
+0x0002;2;Casio Makernote;Thumbnail Dimensions;;640 x 480 pixels
+0x0003;3;Casio Makernote;Thumbnail Size;;26599 bytes
+0x0004;4;Casio Makernote;Thumbnail Offset;;2408
+0x0005;5;Casio Makernote;Unknown tag (0x0005);;76830
+0x0006;6;Casio Makernote;Unknown tag (0x0006);;7 -41 11 18
+0x0007;7;Casio Makernote;Unknown tag (0x0007);;18 44 46
+0x0008;8;Casio Makernote;Quality Mode;;Super Fine
+0x000c;12;Casio Makernote;Unknown tag (0x000c);;258 63
+0x000d;13;Casio Makernote;Focus Mode;;Unknown (3)
+0x000e;14;Casio Makernote;Unknown tag (0x000e);;65534
+0x0012;18;Casio Makernote;Unknown tag (0x0012);;555
+0x0013;19;Casio Makernote;Unknown tag (0x0013);;22
+0x0014;20;Casio Makernote;ISO Sensitivity;;100
+0x0016;22;Casio Makernote;Unknown tag (0x0016);;50
+0x0017;23;Casio Makernote;Unknown tag (0x0017);;2
+0x0018;24;Casio Makernote;Unknown tag (0x0018);;0 0
+0x0019;25;Casio Makernote;White Balance;;Auto
+0x001a;26;Casio Makernote;Unknown tag (0x001a);;8
+0x001d;29;Casio Makernote;Focal Length;;0.0 mm
+0x001f;31;Casio Makernote;Saturation;;Normal
+0x0020;32;Casio Makernote;Contrast;;Normal
+0x0021;33;Casio Makernote;Sharpness;;Normal
+0x0022;34;Casio Makernote;Unknown tag (0x0022);;1
+0x0023;35;Casio Makernote;Unknown tag (0x0023);;0
+0x0024;36;Casio Makernote;Unknown tag (0x0024);;12
+0x0025;37;Casio Makernote;Unknown tag (0x0025);;0
+0x0026;38;Casio Makernote;Unknown tag (0x0026);;0
+0x0027;39;Casio Makernote;Unknown tag (0x0027);;-2 -31 -1 -19
+0x0028;40;Casio Makernote;Unknown tag (0x0028);;-2 -31 -1 -19
+0x002d;45;Casio Makernote;Unknown tag (0x002d);;10112
+0x0032;50;Casio Makernote;Unknown tag (0x0032);;0 0 0 0
+0x0033;51;Casio Makernote;Unknown tag (0x0033);;7 0 1
+0x0034;52;Casio Makernote;Unknown tag (0x0034);;0 0 0 0
+0x0037;55;Casio Makernote;Unknown tag (0x0037);;1
+0x003d;61;Casio Makernote;Unknown tag (0x003d);;8192
+0x003e;62;Casio Makernote;Unknown tag (0x003e);;26 26 0 0
+0x003f;63;Casio Makernote;Unknown tag (0x003f);;2 0 0
+0x0040;64;Casio Makernote;Unknown tag (0x0040);;50
+0x0041;65;Casio Makernote;Unknown tag (0x0041);;0
+0x0047;71;Casio Makernote;Unknown tag (0x0047);;17
+0x0048;72;Casio Makernote;Unknown tag (0x0048);;0
+0x0049;73;Casio Makernote;Unknown tag (0x0049);;0
+0x004d;77;Casio Makernote;Unknown tag (0x004d);;0
+0x004f;79;Casio Makernote;Unknown tag (0x004f);;0
+0x0050;80;Casio Makernote;Unknown tag (0x0050);;0
+0x005c;92;Casio Makernote;Unknown tag (0x005c);;0 0 57 100
+0x005d;93;Casio Makernote;Unknown tag (0x005d);;-22 4 -40 51
+0x0062;98;Casio Makernote;Unknown tag (0x0062);;1
+0x0200;512;Casio Makernote;Unknown tag (0x0200);;162 32778 10240 41600
+0x0201;513;Casio Makernote;Unknown tag (0x0201);;2600 162 32778 10240
+0x0205;517;Casio Makernote;Unknown tag (0x0205);;-94 -128 10 40 0 -94 -128 10 40 0 -94 -128 10 40 0 -94 -128 10 40 0 -94 -128 10
+0x0206;518;Casio Makernote;Unknown tag (0x0206);;0 -94 -128 10 40 0 -94 -128 10 40 0 -94 -128 10 40 0
+0x0207;519;Casio Makernote;Unknown tag (0x0207);;-94 -128 10 40 0 -94 -128 10 40 0 -94 -128 10 40 0 -94 -128 10 40 0 -94 -128 61 72 -8 75 67 3 -2 60 127 -14 43 -1 0 -115 66 124 45 -94 3 -113 -79 127 -28 87 -1 0 26 -28 -10 -110 -18 109 -54 -121 47 -123 116 67 -1 0 46 95 -7 21 -1 0 -58
+0x0208;520;Casio Makernote;Unknown tag (0x0208);;-48 -119 -1 0 -113 31 -4 -118 -1 0 -4 85 47 107 62 -31 -56 -121 -1 0 -62 33 -95 99 -2 60 127
+0x0209;521;Casio Makernote;Unknown tag (0x0209);;43 -1 0 -15 84 -125 -62 26 25 -1 0 -105 31 -4 -118 -1
+0x020a;522;Casio Makernote;Unknown tag (0x020a);;0 -4 85 63 107 46 -31 -56 -122 63 -124 -76 53 -23 99 -1
+0x020b;523;Casio Makernote;Unknown tag (0x020b);;0 -111 95 -4 105 35 -16 -90 -124 78 13 -114 127 -19 -85 -1
+0x020d;525;Casio Makernote;Unknown tag (0x020d);;241 21627 22903 3652
+0x020e;526;Casio Makernote;Unknown tag (0x020e);;23326 3824 65244 65280
+0x020f;527;Casio Makernote;Unknown tag (0x020f);;26623 228 26943 63658
+0x0210;528;Casio Makernote;Unknown tag (0x0210);;34300 9120 33665 25087
+0x0211;529;Casio Makernote;Unknown tag (0x0211);;145 42239 226 43125
+0x0212;530;Casio Makernote;Unknown tag (0x0212);;26076 14608 43489 3332
+0x0213;531;Casio Makernote;Unknown tag (0x0213);;65280 52103 65094 37887
+0x0214;532;Casio Makernote;Unknown tag (0x0214);;138 41551 2152 10808
+0x0215;533;Casio Makernote;Unknown tag (0x0215);;-1325465400 -763367084 2069460750 1145355795 -791675720
+0x0216;534;Casio Makernote;Unknown tag (0x0216);;-1 0 -28 87 -1 0
+0x021f;543;Casio Makernote;Unknown tag (0x021f);;-16 -106 -124 127 -27 -61 -1 0 34 -55 -1 0
+0x0222;546;Casio Makernote;Unknown tag (0x0222);;-59 82 -10 -77 -18 62 68 60 120 67 65 -17 99 -1 0 -111 -92 -1
+0x03ff;1023;Casio Makernote;Unknown tag (0x03ff);;-87 71 -124 124 63 -113 -7 7 -1 0 -28 105 63 -8 -86 61 -84 -69 -121 34 3 -31 29 3 31 -15 -31 -1 0 -111 -92 -1
+0x0001;1;Interoperability;Interoperability Index;;Unknown (R03)
+0x0002;2;Interoperability;Interoperability Version;;1.00
+0x0000;0;Jpeg;Data Precision;;8 bits
+0x0001;1;Jpeg;Image Height;;2592 pixels
+0x0003;3;Jpeg;Image Width;;3872 pixels
+0x0005;5;Jpeg;Number of Components;;3
+0x0006;6;Jpeg;Component 1;;Y component: Quantization table 0, Sampling factors 1 horiz/2 vert
+0x0007;7;Jpeg;Component 2;;Cb component: Quantization table 1, Sampling factors 1 horiz/1 vert
+0x0008;8;Jpeg;Component 3;;Cr component: Quantization table 1, Sampling factors 1 horiz/1 vert

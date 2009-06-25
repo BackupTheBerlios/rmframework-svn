@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+
+		<modelVersion>4.0.0</modelVersion>
+		<groupId>RMBase</groupId>
+		<name>RMBase</name>
+		<artifactId>RMBase</artifactId>
+		<version>0.1</version>
+		<description>RM Base Server</description>
+
+		<repositories>
+				<repository>
+						<id>com.springsource.repository.bundles.external</id>
+						<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+						<url>http://repository.springsource.com/maven/bundles/external</url>
+				</repository>
+		</repositories>
+
+		<build>
+				<sourceDirectory>src</sourceDirectory>
+
+				<plugins>
+						<plugin>
+								<artifactId>maven-compiler-plugin</artifactId>
+								<configuration>
+										<source>1.5</source>
+										<target>1.5</target>
+								</configuration>
+						</plugin>
+						<plugin>
+								<artifactId>maven-eclipse-plugin</artifactId>
+								<configuration>
+										<downloadSources>true</downloadSources>
+								</configuration>
+						</plugin>
+						<plugin>
+								<artifactId>maven-assembly-plugin</artifactId>
+								<version>2.2-beta-3</version>
+								<configuration>
+									<descriptors>
+										<descriptor>src/etc/maven_assembly.xml</descriptor>
+									</descriptors>
+								</configuration>
+						</plugin>
+						<plugin>
+								<artifactId>maven-antrun-plugin</artifactId>
+								<executions>
+										<execution>
+												<phase>package</phase>
+												<configuration>
+														<tasks>
+																<echo message="Debug data" />
+																<echo message="basedir                             = ${basedir}" />
+																<echo message="djobj                               = ${djobj}" />
+																<echo message="project.build.sourceDirectory       = ${project.build.sourceDirectory}" />
+																<echo message="project.build.scriptSourceDirectory = ${project.build.scriptSourceDirectory}" />
+																<echo message="project.build.testSourceDirectory   = ${project.build.testSourceDirectory}" />
+																<echo message="project.build.outputDirectory       = ${project.build.outputDirectory}" />
+																<echo message="project.build.testOutputDirectory   = ${project.build.testOutputDirectory}" />
+																<echo message="project.build.directory             = ${project.build.directory}" />
+														</tasks>
+												</configuration>
+												<goals>
+														<goal>run</goal>
+												</goals>
+										</execution>
+								</executions>
+						</plugin>
+						<plugin>
+								<artifactId>maven-jar-plugin</artifactId>
+								<configuration>
+										<archive>
+												<manifest>
+														<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+														<addClasspath>true</addClasspath>
+														<classpathPrefix>lib/</classpathPrefix>
+														<mainClass>net.form105.rm.base.Agent</mainClass>
+												</manifest>
+												<manifestEntries>
+													<Build-Jdk>1.5.0_16</Build-Jdk>
+												</manifestEntries>
+										</archive>
+								</configuration>
+						</plugin>
+
+				</plugins>
+		</build>
+
+
+
+
+		<dependencies>
+				<dependency>
+						<groupId>dom4j</groupId>
+						<artifactId>dom4j</artifactId>
+						<version>1.6.1</version>
+				</dependency>
+				<dependency>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+						<version>1.2.14</version>
+				</dependency>
+				<dependency>
+						<groupId>org.apache.xmlbeans</groupId>
+						<artifactId>xmlbeans</artifactId>
+						<version>2.3.0</version>
+				</dependency>
+				<dependency>
+						<groupId>org.apache.mina</groupId>
+						<artifactId>mina-core</artifactId>
+						<version>2.0.0-M3</version>
+				</dependency>
+				<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+						<version>1.4.2</version>
+				</dependency>
+				<dependency>
+						<groupId>c3p0</groupId>
+						<artifactId>c3p0</artifactId>
+						<version>0.9.1.2</version>
+				</dependency>
+				<dependency>
+						<groupId>org.picocontainer</groupId>
+						<artifactId>picocontainer</artifactId>
+						<version>2.8</version>
+				</dependency>
+				<dependency>
+						<groupId>joda-time</groupId>
+						<artifactId>joda-time</artifactId>
+						<version>1.6</version>
+				</dependency>
+				<dependency>
+						<groupId>com.db4o</groupId>
+						<artifactId>com.springsource.com.db4o.java5</artifactId>
+						<version>7.2.54.11278</version>
+				</dependency>
+				<dependency>
+						<groupId>RM</groupId>
+						<artifactId>RMxmlHelper</artifactId>
+						<version>0.1</version>
+				</dependency>
+		</dependencies>
+
+</project>

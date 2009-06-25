@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComElements>
+  <Key k1="System" k2="state">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.91 /0.0/32 Byte">
+        <SetValueBy id="state" />
+      </Command>
+    </Notifications>
+  </Key>
+    <Key k1="System" k2="mode">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.92 /0.0/6 Byte">
+        <SetValueBy id="state" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="RBG1_full" k2="full">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /2.0/1 Bit">
+        <SetValueBy id="state" />
+        <ValueInterpreter value="1" interpretation="full" />
+        <ValueInterpreter value="0" interpretation="notFull" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="RBG2_full" k2="full">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /2.1/1 Bit">
+        <SetValueBy id="state" />
+        <ValueInterpreter value="1" interpretation="full" />
+        <ValueInterpreter value="0" interpretation="notFull" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="RBG3_full" k2="full">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /2.2/1 Bit">
+        <SetValueBy id="state" />
+        <ValueInterpreter value="1" interpretation="full" />
+        <ValueInterpreter value="0" interpretation="notFull" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="RBG4_full" k2="full">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /2.3/1 Bit">
+        <SetValueBy id="state" />
+        <ValueInterpreter value="1" interpretation="full" />
+        <ValueInterpreter value="0" interpretation="notFull" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="RBG5_full" k2="full">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /2.4/1 Bit">
+        <SetValueBy id="state" />
+        <ValueInterpreter value="1" interpretation="full" />
+        <ValueInterpreter value="0" interpretation="notFull" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="RBG6_full" k2="full">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /2.5/1 Bit">
+        <SetValueBy id="state" />
+        <ValueInterpreter value="1" interpretation="full" />
+        <ValueInterpreter value="0" interpretation="notFull" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="RBG7_full" k2="full">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /2.6/1 Bit">
+        <SetValueBy id="state" />
+        <ValueInterpreter value="1" interpretation="full" />
+        <ValueInterpreter value="0" interpretation="notFull" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="RBG8_full" k2="full">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /2.7/1 Bit">
+        <SetValueBy id="state" />
+        <ValueInterpreter value="1" interpretation="full" />
+        <ValueInterpreter value="0" interpretation="notFull" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_10" k2="exit">
+    <Notifications><!--BarcodeReader 10: Results-->
+      <Command stream="commandStream" type="notification" address="M/205.1/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_10" k2="exit_auto_815">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 198.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+  </Key>
+  <Key k1="decisionBCR_10" k2="exit_auto_816">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 198.2/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+  </Key>
+  <Key k1="decisionBCR_10" k2="res20">
+    <Notifications><!--BarcodeReader 10: Results-->
+      <Command stream="commandStream" type="notification" address="M/205.2/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_10" k2="res21">
+    <Notifications><!--BarcodeReader 10: Results-->
+      <Command stream="commandStream" type="notification" address="M/205.3/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_10" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /184.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_10" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 198.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 10: Results-->
+      <Command stream="commandStream" type="notification" address="M/205.0/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_11" k2="exit">
+    <Notifications><!--BarcodeReader 11: Results-->
+      <Command stream="commandStream" type="notification" address="M/205.5/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_11" k2="exit_camion_812">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 218.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+  </Key>
+  <Key k1="decisionBCR_11" k2="exit_post_813">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 218.2/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+  </Key>
+  <Key k1="decisionBCR_11" k2="exit_post_814">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 218.3/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+  </Key>
+  <Key k1="decisionBCR_11" k2="res22">
+    <Notifications><!--BarcodeReader 11: Results-->
+      <Command stream="commandStream" type="notification" address="M/205.6/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_11" k2="res23">
+    <Notifications><!--BarcodeReader 11: Results-->
+      <Command stream="commandStream" type="notification" address="M/205.7/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_11" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /204.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_11" k2="exit_camion_811">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 218.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 11: Results-->
+      <Command stream="commandStream" type="notification" address="M/205.4/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_12" k2="exit_shop">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 238.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 12: Results-->
+      <Command stream="commandStream" type="notification" address="M/206.1/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_12" k2="res24">
+    <Notifications><!--BarcodeReader 12: Results-->
+      <Command stream="commandStream" type="notification" address="M/206.2/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_12" k2="res25">
+    <Notifications><!--BarcodeReader 12: Results-->
+      <Command stream="commandStream" type="notification" address="M/206.3/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_12" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /224.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_12" k2="exit_self">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 238.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 12: Results-->
+      <Command stream="commandStream" type="notification" address="M/206.0/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_13" k2="exit">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 258.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 13: Results-->
+      <Command stream="commandStream" type="notification" address="M/206.5/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_13" k2="res26">
+    <Notifications><!--BarcodeReader 13: Results-->
+      <Command stream="commandStream" type="notification" address="M/206.6/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_13" k2="res27">
+    <Notifications><!--BarcodeReader 13: Results-->
+      <Command stream="commandStream" type="notification" address="M/206.7/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_13" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /244.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_13" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 258.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 13: Results-->
+      <Command stream="commandStream" type="notification" address="M/206.4/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_14" k2="exit_cargo">
+    <Notifications><!--Reserve 1-->
+      <Command stream="commandStream" type="notification" address="M/207.0/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_14" k2="res">
+    <Notifications><!--Reserve 2-->
+      <Command stream="commandStream" type="notification" address="M/207.1/1 bit" /><!--Reserve 3-->
+      <Command stream="commandStream" type="notification" address="M/207.2/1 bit" /><!--Reserve 4-->
+      <Command stream="commandStream" type="notification" address="M/207.3/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_15" k2="res">
+    <Notifications><!--Reserve 5-->
+      <Command stream="commandStream" type="notification" address="M/207.4/1 bit" /><!--Reserve 6-->
+      <Command stream="commandStream" type="notification" address="M/207.5/1 bit" /><!--Reserve 7-->
+      <Command stream="commandStream" type="notification" address="M/207.6/1 bit" /><!--Reserve 8-->
+      <Command stream="commandStream" type="notification" address="M/207.7/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_1" k2="exit">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 18.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 1: Results-->
+      <Command stream="commandStream" type="notification" address="M/200.1/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_1" k2="res1">
+    <Notifications><!--BarcodeReader 1: Results-->
+      <Command stream="commandStream" type="notification" address="M/200.2/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_1" k2="res2">
+    <Notifications><!--BarcodeReader 1: Results-->
+      <Command stream="commandStream" type="notification" address="M/200.3/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_1" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /4.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_1" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 18.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 1: Results-->
+      <Command stream="commandStream" type="notification" address="M/200.0/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_2" k2="exit">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 38.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 2: Results-->
+      <Command stream="commandStream" type="notification" address="M/200.5/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_2" k2="res3">
+    <Notifications><!--BarcodeReader 2: Results-->
+      <Command stream="commandStream" type="notification" address="M/200.6/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_2" k2="res4">
+    <Notifications><!--BarcodeReader 2: Results-->
+      <Command stream="commandStream" type="notification" address="M/200.7/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_2" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /24.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_2" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 38.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 2: Results-->
+      <Command stream="commandStream" type="notification" address="M/200.4/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_3" k2="exit">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 58.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 3: Results-->
+      <Command stream="commandStream" type="notification" address="M/201.1/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_3" k2="res5">
+    <Notifications><!--BarcodeReader 3: Results-->
+      <Command stream="commandStream" type="notification" address="M/201.2/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_3" k2="res6">
+    <Notifications><!--BarcodeReader 3: Results-->
+      <Command stream="commandStream" type="notification" address="M/201.3/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_3" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /44.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_3" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 58.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 3: Results-->
+      <Command stream="commandStream" type="notification" address="M/201.0/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_4" k2="exit">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 78.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 4: Results-->
+      <Command stream="commandStream" type="notification" address="M/201.5/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_4" k2="res7">
+    <Notifications><!--BarcodeReader 4: Results-->
+      <Command stream="commandStream" type="notification" address="M/201.6/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_4" k2="res8">
+    <Notifications><!--BarcodeReader 4: Results-->
+      <Command stream="commandStream" type="notification" address="M/201.7/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_4" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /64.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_4" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 78.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 4: Results-->
+      <Command stream="commandStream" type="notification" address="M/201.4/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_5" k2="exit">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 98.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 5: Results-->
+      <Command stream="commandStream" type="notification" address="M/202.1/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_5" k2="res10">
+    <Notifications><!--BarcodeReader 5: Results-->
+      <Command stream="commandStream" type="notification" address="M/202.3/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_5" k2="res9">
+    <Notifications><!--BarcodeReader 5: Results-->
+      <Command stream="commandStream" type="notification" address="M/202.2/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_5" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /84.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_5" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 98.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 5: Results-->
+      <Command stream="commandStream" type="notification" address="M/202.0/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_6" k2="exit">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 118.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 6: Results-->
+      <Command stream="commandStream" type="notification" address="M/202.5/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_6" k2="res11">
+    <Notifications><!--BarcodeReader 6: Results-->
+      <Command stream="commandStream" type="notification" address="M/202.6/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_6" k2="res12">
+    <Notifications><!--BarcodeReader 6: Results-->
+      <Command stream="commandStream" type="notification" address="M/202.7/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_6" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /104.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_6" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 118.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 6: Results-->
+      <Command stream="commandStream" type="notification" address="M/202.4/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_7" k2="exit">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 138.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 7: Results-->
+      <Command stream="commandStream" type="notification" address="M/203.1/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_7" k2="res13">
+    <Notifications><!--BarcodeReader 7: Results-->
+      <Command stream="commandStream" type="notification" address="M/203.2/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_7" k2="res14">
+    <Notifications><!--BarcodeReader 7: Results-->
+      <Command stream="commandStream" type="notification" address="M/203.3/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_7" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /124.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_7" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 138.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 7: Results-->
+      <Command stream="commandStream" type="notification" address="M/203.0/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_8" k2="exit">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 158.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 8: Results-->
+      <Command stream="commandStream" type="notification" address="M/203.5/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_8" k2="res15">
+    <Notifications><!--BarcodeReader 8: Results-->
+      <Command stream="commandStream" type="notification" address="M/203.6/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_8" k2="res16">
+    <Notifications><!--BarcodeReader 8: Results-->
+      <Command stream="commandStream" type="notification" address="M/203.7/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_8" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /144.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_8" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 158.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 8: Results-->
+      <Command stream="commandStream" type="notification" address="M/203.4/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_9" k2="exit_camion">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 178.1/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 9: Results-->
+      <Command stream="commandStream" type="notification" address="M/204.1/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_9" k2="exit_post">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 178.2/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 9: Results-->
+      <Command stream="commandStream" type="notification" address="M/204.2/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_9" k2="exit_auto">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 178.3/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 9: Results-->
+      <Command stream="commandStream" type="notification" address="M/204.3/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_9" k2="exit_self_shop">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 178.4/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 9: Results-->
+      <Command stream="commandStream" type="notification" address="M/204.4/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_9" k2="exit_leer">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 178.5/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+  </Key>
+  <Key k1="decisionBCR_9" k2="res17">
+    <Notifications><!--BarcodeReader 9: Results-->
+      <Command stream="commandStream" type="notification" address="M/204.5/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_9" k2="res18">
+    <Notifications><!--BarcodeReader 9: Results-->
+      <Command stream="commandStream" type="notification" address="M/204.6/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_9" k2="res19">
+    <Notifications><!--BarcodeReader 9: Results-->
+      <Command stream="commandStream" type="notification" address="M/204.7/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="decisionBCR_9" k2="scanner_result">
+    <Notifications><!--null-->
+      <Command stream="infoStream" type="notification" address="DB.100 /164.0/12 Byte">
+        <SetValueBy id="scanner_result" />
+      </Command>
+    </Notifications>
+  </Key>
+
+
+  <Key k1="decisionBCR_9" k2="straight">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="DB.100 / 178.0/1 bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--BarcodeReader 9: Results-->
+      <Command stream="commandStream" type="notification" address="M/204.0/1 bit" />
+    </Notifications>
+  </Key>
+  <Key k1="empty_tray" k2="request">
+    <Telegrams><!--null-->
+      <Command stream="commandStream" type="telegram" address="M/210.0/1 Bit">
+        <Value value="1" />
+      </Command>
+    </Telegrams>
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="M/210.0/1 Bit" />
+    </Notifications>
+  </Key>
+  <Key k1="infeed_empty" k2="mode">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /1.0/1 Bit">
+        <SetValueBy id="ok" />
+      </Command><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 /1.0/1 Bit">
+        <SetValueBy id="nok" />
+      </Command>
+    </Notifications>
+  </Key>
+  <Key k1="rotation" k2="fill_level">
+    <Notifications><!--null-->
+      <Command stream="commandStream" type="notification" address="DB.110 / 0.0/8 bit">
+        <SetValueBy id="fill_level" />
+      </Command>
+    </Notifications>
+  </Key>
+</ComElements>
