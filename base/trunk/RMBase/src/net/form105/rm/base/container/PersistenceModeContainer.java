@@ -112,7 +112,7 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 	 * In db single mode register the
 	 */
 	private void provideDbSingleMode() {
-		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao();
+		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao(db4oContainer.getDb4oContainer());
 		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceDbDao);
 	}
 

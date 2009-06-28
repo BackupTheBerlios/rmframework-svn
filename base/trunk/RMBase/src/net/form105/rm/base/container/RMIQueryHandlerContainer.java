@@ -24,12 +24,12 @@ import org.picocontainer.Startable;
 public class RMIQueryHandlerContainer extends AbstractContainer implements Startable {
     
     private RMIServerContainer rmiServerContainer;
-    private RMIQueryHandler<Void> rmiQueryHandler;
+    private RMIQueryHandler rmiQueryHandler;
     
     public RMIQueryHandlerContainer(RMIServerContainer rmiServerContainer) throws RemoteException {
     	super();
         this.rmiServerContainer = rmiServerContainer;
-        rmiQueryHandler = new RMIQueryHandler<Void>();
+        rmiQueryHandler = new RMIQueryHandler();
     }
 
     public void start() {
@@ -57,7 +57,7 @@ public class RMIQueryHandlerContainer extends AbstractContainer implements Start
         }
     }
     
-    public RMIQueryHandler<Void> getQueryHandler() {
+    public RMIQueryHandler getQueryHandler() {
         return rmiQueryHandler;
     }
 

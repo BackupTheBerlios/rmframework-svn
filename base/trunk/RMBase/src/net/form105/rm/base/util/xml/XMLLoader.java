@@ -52,7 +52,7 @@ public class XMLLoader implements ILifeCycle {
             setDocument(parseStream(inStream));
             return getDocument();
         } catch (DocumentException docException) {
-            logger.error("Exception processing of a xml document", docException);
+            logger.error("Exception processing of a xml document: "+filePath, docException);
             throw(new RMException("DocumentException occured while trying to parse xml document", docException));
         } catch (FileNotFoundException fnfe) {
             logger.error("can't find xml file for parsing: "+filePath);

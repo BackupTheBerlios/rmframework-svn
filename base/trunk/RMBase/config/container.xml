@@ -11,7 +11,7 @@
     <component-implementation class='net.form105.rm.base.container.UserManagementContainer'/>
     <component-implementation class='net.form105.rm.base.container.ModeContainer'/>
     <component-implementation class='net.form105.rm.base.container.Db4oContainer'/>
-    <component-implementation class='net.form105.rm.base.container.PersistenceModeContainer' /  -->
+    <component-implementation class='net.form105.rm.base.container.PersistenceModeContainer' />
     
 </container>
 

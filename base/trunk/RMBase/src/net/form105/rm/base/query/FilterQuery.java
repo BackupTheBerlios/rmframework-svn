@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.form105.rm.base.filter.IFilter;
 import net.form105.rm.base.selection.ISelection;
+import net.form105.rm.base.service.IResult;
 
 
 /**
@@ -14,7 +15,7 @@ import net.form105.rm.base.selection.ISelection;
  *
  * @param <T>
  */
-public class FilterQuery<T> implements IQuery<T> {
+public class FilterQuery<T> extends AbstractQuery<T> implements IQuery<T> {
 	
 
 	private static final long serialVersionUID = 1L;

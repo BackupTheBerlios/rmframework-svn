@@ -28,7 +28,7 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
     private int port;
     private String host;
     private IServiceHandler serviceHandler;
-    private IQueryHandler<?> queryHandler;
+    private IQueryHandler queryHandler;
     private String serviceHandlerUrl;
     private String queryHandlerUrl;
 
@@ -53,7 +53,7 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
         
         try {
             serviceHandler = (IServiceHandler) Naming.lookup(serviceHandlerUrl);
-            queryHandler = (IQueryHandler<?>) Naming.lookup(queryHandlerUrl);
+            queryHandler = (IQueryHandler) Naming.lookup(queryHandlerUrl);
         } catch (NotBoundException nbex) {
             logger.error("ServiceHandler not bound to registry.", nbex);
         } catch (MalformedURLException muex) {

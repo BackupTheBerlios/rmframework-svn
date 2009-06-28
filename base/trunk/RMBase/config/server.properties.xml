@@ -7,7 +7,7 @@
 
 
 	<!-- memory, db, dual -->
-	<entry key="server.operation.mode">dual</entry>
+	<entry key="server.operation.mode">dbsingle</entry>
 	<entry key="server.userManagement.initialize">true</entry>
 	<entry key="server.db4o.defaultPath">db/database.dbo</entry>
 

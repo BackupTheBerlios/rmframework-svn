@@ -6,23 +6,25 @@ import java.util.Collection;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
 
-public class LocalQueryHandler<T> implements IQueryHandler<T> {
+public class LocalQueryHandler implements IQueryHandler {
+    
+    
 
-	private QueryResult<T> result = new QueryResult<T>();
+    public <T> IResult<T> executeQuery(IQuery<T> query) {
 
-	public void executeQuery(IQuery<T> query) {
+        IResult<T> result = null;
+        
+        try {
+            Collection<T> queryResult = query.execute();
+            result = query.getQueryResult();
+            result.setResultList(new ArrayList(queryResult));
+        } catch (Exception ex) {
+            result = new QueryResult<T>();
+            result.setException(ex);
+            result.setStatus(ResultStatus.FAIL);
+        }
+        return result;
 
-		try {
-			Collection<T> queryResult = query.execute();
-			result.setResultList(new ArrayList<T>(queryResult));
-		} catch (Exception ex) {
-			result.setException(ex);
-			result.setStatus(ResultStatus.FAIL);
-		}
+    }
 
-	}
-
-	public IResult<T> getResult() {
-		return result;
-	}
 }

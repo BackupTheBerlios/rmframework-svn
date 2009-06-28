@@ -31,7 +31,7 @@ public class ImportXmlModelTest extends AbstractRemoteTest<Resource>{
     public void importModel() {
         LoadXmlModelService service = new LoadXmlModelService();
         LoadXmlModelService.ServiceArgument argument = service.getArgument();
-        argument.filename = "testModel.xml";
+        argument.filename = "model.xml";
         
         IResult<Resource> result = doService(service);
         if (ResultStatus.FAIL == result.getStatus()) {

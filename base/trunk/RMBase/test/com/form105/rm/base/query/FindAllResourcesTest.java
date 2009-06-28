@@ -28,7 +28,7 @@ public class FindAllResourcesTest extends AbstractRemoteTest<Resource> {
 	
 	@Test
 	public void findAllResources() {
-		FindAllDaoQuery<Resource> query = new FindAllDaoQuery<Resource>(AbstractResourceDao.class);
+		FindAllDaoQuery<Resource> query = new FindAllDaoQuery<Resource>(Resource.class);
 		IResult<Resource> userResult = doQuery(query);
 		Collection<Resource> resources = userResult.getResultList();
 		logger.info("Found resources, amount: "+resources.size());

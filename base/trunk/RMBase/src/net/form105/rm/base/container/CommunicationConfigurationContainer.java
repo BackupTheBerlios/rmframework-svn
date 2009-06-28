@@ -27,6 +27,7 @@ import net.form105.xml.schema.model.ComElementsDocument;
 import net.form105.xml.schema.model.ServerConfigDocument;
 import net.form105.xml.schema.model.ComElementsDocument.ComElements;
 import net.form105.xml.schema.model.ComElementsDocument.ComElements.Key;
+import net.form105.xml.schema.model.ServerConfigDocument.ServerConfig;
 
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlException;

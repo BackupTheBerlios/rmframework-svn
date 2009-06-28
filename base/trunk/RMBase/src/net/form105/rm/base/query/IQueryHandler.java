@@ -6,10 +6,8 @@ import java.rmi.RemoteException;
 import net.form105.rm.base.service.IResult;
 
 
-public interface IQueryHandler<T> extends Remote {
+public interface IQueryHandler extends Remote {
 	
-	public void executeQuery(IQuery<T> query) throws RemoteException;
-	
-	public IResult<T> getResult() throws RemoteException;
+	public <T> IResult<T> executeQuery(IQuery<T> query) throws RemoteException;
 
 }

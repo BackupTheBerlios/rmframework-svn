@@ -35,7 +35,7 @@ public class AbstractRemoteTest<T> {
         clientContainer = (RMIClientContainer) Container.getContainer().getComponent(RMIClientContainer.class);
     }
 
-    protected IQueryHandler<T> getQueryHandler() {
+    protected IQueryHandler getQueryHandler() {
         return clientContainer.getQueryHandler();
     }
 
@@ -57,8 +57,8 @@ public class AbstractRemoteTest<T> {
 
     protected IResult<T> doQuery(IQuery<T> query) {
         try {
-            getQueryHandler().executeQuery(query);
-            return getQueryHandler().getResult();
+            IResult<T> result = getQueryHandler().executeQuery(query);
+            return result;
         } catch (Exception re) {
             logger.error(re, re);
             return null;

@@ -7,13 +7,13 @@ package net.form105.rm.base.service;
 
 import java.io.Serializable;
 
-public interface IService extends Serializable {
+public interface IService<T> extends Serializable {
     
     public void execute() throws Exception;
     
-    public IResult getResult();
+    public IResult<T> getResult();
     
-    public void setResult(IResult result);
+    public void setResult(IResult<T> result);
     
     public String getServiceName();
     

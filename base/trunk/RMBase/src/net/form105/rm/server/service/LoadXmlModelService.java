@@ -23,7 +23,7 @@ public class LoadXmlModelService extends AbstractService {
 
     private static final long serialVersionUID = 1L;
 
-    private ServiceArgument argument;
+    private ServiceArgument argument = new ServiceArgument();
 
     @Override
     public void execute() throws Exception {

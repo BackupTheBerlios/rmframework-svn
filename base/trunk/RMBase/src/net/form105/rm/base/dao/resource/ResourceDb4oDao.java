@@ -28,8 +28,9 @@ public class ResourceDb4oDao extends AbstractAgentObjectDao<Resource> {
 
     }
 
-    public ResourceDb4oDao() {
+    public ResourceDb4oDao(ObjectContainer objectContainer) {
         super();
+        db = objectContainer;
     }
 
     @Override

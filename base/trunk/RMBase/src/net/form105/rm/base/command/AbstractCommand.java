@@ -21,6 +21,7 @@ public abstract class AbstractCommand implements ICommand {
     protected static Logger logger = Logger.getLogger(AbstractCommand.class);
 
     private List<Exception> exceptions;
+    @SuppressWarnings("unused")
     private AbstractIdentity identity;
     
     public AbstractCommand(AbstractIdentity identity) {
