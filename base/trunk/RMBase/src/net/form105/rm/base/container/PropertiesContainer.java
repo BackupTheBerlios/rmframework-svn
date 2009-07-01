@@ -32,7 +32,7 @@ public class PropertiesContainer extends AbstractContainer implements Startable 
     private Properties properties;
     
     
-    public PropertiesContainer(LoggerContainer logC) {
+    public PropertiesContainer(LoggerContainer logC) { 
     	super();
     	
     	

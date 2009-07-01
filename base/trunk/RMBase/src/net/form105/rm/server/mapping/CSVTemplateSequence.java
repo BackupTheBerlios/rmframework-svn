@@ -41,19 +41,21 @@ public class CSVTemplateSequence implements ITemplateSequence {
 	 * @return
 	 */
 	public List<IField> createTemplateFields() {
-		XPath xpathSelector = DocumentHelper.createXPath("/mapping/field");
-		List<Element> elements = xpathSelector.selectNodes(rootElement);
-		
-		ArrayList<IField> fieldSequence = new ArrayList<IField>();
-		
-		for (Element fieldElement : elements) {
-			ITarget<IParameter> target = resolveField(fieldElement);
-			target.createTargetInstance();
-			SimpleField field = new SimpleField(target);
-			
-			fieldSequence.add(field);
-		}
-		return fieldSequence;
+	    // need to uncomment as DocumentHelper generates an compile error
+//		XPath xpathSelector = DocumentHelper.createXPath("/mapping/field");
+//		List<Element> elements = xpathSelector.selectNodes(rootElement);
+//		
+//		ArrayList<IField> fieldSequence = new ArrayList<IField>();
+//		
+//		for (Element fieldElement : elements) {
+//			ITarget<IParameter> target = resolveField(fieldElement);
+//			target.createTargetInstance();
+//			SimpleField field = new SimpleField(target);
+//			
+//			fieldSequence.add(field);
+//		}
+//		return fieldSequence;
+	    return new ArrayList();
 	}
 
 	/**

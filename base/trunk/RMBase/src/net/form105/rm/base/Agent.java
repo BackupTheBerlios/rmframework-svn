@@ -6,11 +6,6 @@
  */
 package net.form105.rm.base;
 
-import java.io.File;
-
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
-
 import net.form105.rm.base.config.PropertyConfiguration;
 import net.form105.rm.base.config.SimpleConfiguration;
 import net.form105.rm.base.container.LookupContainer;
