@@ -18,33 +18,26 @@ package net.form105.rm.base.container;
 import java.io.File;
 
 import net.form105.rm.base.Container;
+import net.form105.rm.base.config.PropertyConfiguration;
 
-import org.apache.log4j.LogManager;
 import org.apache.log4j.PropertyConfigurator;
-import org.picocontainer.Startable;
 
-public class LoggerContainer extends AbstractContainer implements Startable {
-	
-	private final String logFolder = "log";
+public class LoggerContainer extends PropertiesLoggerContainer {
     
-    private final String LOG4J_PROP = "log4j.properties";
+    public LoggerContainer(PropertiesContainer propContainer) {
+    	super(propContainer);
+    }
     
     public void start() {
+    	
+    	if (Container.getInstance().getConfiguration().getConfiguration() instanceof PropertyConfiguration) {
+    		super.start();
+    		return;
+    	}
+    	
     	//createLogFolder();
         String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
-        PropertyConfigurator.configureAndWatch(configDir+File.separator+LOG4J_PROP);
+        String configFile = configDir+File.separator+LOG4J_PROP;   
+        PropertyConfigurator.configureAndWatch(configFile);
     }
-
-    public void stop() {
-        LogManager.shutdown();
-    }
-    
-    protected void createLogFolder() {
-    	String basePath = Container.getInstance().getConfiguration().getConfiguration().getBasePath();
-    	File file = new File(basePath+logFolder);
-    	if (! file.exists() || !file.isDirectory()) {
-    		file.mkdir();
-    	}
-    }
-
 }
