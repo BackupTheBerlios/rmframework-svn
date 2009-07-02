@@ -68,7 +68,6 @@ public:
 };
 
 void* threadExecutor(void* param) {
-	cout << "threadExecutor starting" << endl;
 	JvmStarter* starter = (JvmStarter*) param;
 
 	starter -> run();
@@ -159,7 +158,7 @@ void JvmStarter::startJVM() {
 	}
 
 	if (libjvm_create == 0) {
-		cout << "Error starting jvm. Exiting ...";
+		cerr << "Error starting jvm. Exiting ...";
 	}
 
 	result = (*libjvm_create)(&jvm, (void**) &jniEnv, &vm_args);
@@ -167,7 +166,7 @@ void JvmStarter::startJVM() {
 	cout << "started jvm with result: " << result << endl;
 
 	if (result == JNI_ERR) {
-		cout << "Error invoking the JVM" << endl;
+		cerr << "Error invoking the JVM" << endl;
 	}
 
 	if (jniEnv->ExceptionCheck()) {
@@ -191,14 +190,14 @@ string JvmStarter::getMainClass(JNIEnv *jniEnv, std::string* jarFileName) {
 
 	jMethodId = jniEnv -> GetMethodID(jClass, "<init>", "(Ljava/lang/String;)V");
 	if (jMethodId == 0) {
-		cout << "Error: Can't find constructor for java/util/jar/JarFile(String) " << endl;
+		cerr << "Error: Can't find constructor for java/util/jar/JarFile(String) " << endl;
 	}
 	jStr = jniEnv -> NewStringUTF(jarFileName -> data());
 	jJar = jniEnv -> NewObject(jClass, jMethodId, jStr);
 
 	if (jniEnv->ExceptionCheck()) {
 		jniEnv->ExceptionDescribe();
-		cout << "Error: Can't load JarFile " << jarFileName -> data() << endl;
+		cerr << "Error: Can't load JarFile " << jarFileName -> data() << endl;
 	}
 
 	// Getting manifest
@@ -249,32 +248,32 @@ void JvmStarter::sendLogEntry(unsigned short* logCategory, long sizeCategory, un
 	result = jvm -> AttachCurrentThread((void**) &jniEnv, NULL);
 
 	if (result > 0) {
-		cout << "Error: Attaching current thread by JNI." << endl;
+		cerr << "Error: Attaching current thread by JNI." << endl;
 	}
 
 	jclass serviceClass = jniEnv -> FindClass("net/form105/rm/server/service/log/StandardLogService");
 	if (serviceClass == 0) {
-		cout << "Can't load class StandardLogService." << endl;
+		cerr << "Can't load class StandardLogService." << endl;
 	}
 
 	jclass argumentClass = jniEnv -> FindClass("net/form105/rm/server/service/log/StandardLogService$ServiceArgument");
 	if (argumentClass == 0) {
-		cout << "Can't load Argument class from StandardLogService." << endl;
+		cerr << "Can't load Argument class from StandardLogService." << endl;
 	}
 
 	jmethodID jMethodId = jniEnv -> GetMethodID(serviceClass, "<init>", "()V");
 	if (jMethodId == 0) {
-		cout << "Can't load class StandardLogService." << endl;
+		cerr << "Can't load class StandardLogService." << endl;
 	}
 
 	jobject service = jniEnv -> NewObject(serviceClass, jMethodId);
 	if (service == 0) {
-		cout << "Can't instantiate service object" << endl;
+		cerr << "Can't instantiate service object" << endl;
 	}
 
 	jmethodID argumentMethod = jniEnv -> GetMethodID(serviceClass, "getArgument", "()Lnet/form105/rm/server/service/log/StandardLogService$ServiceArgument;");
 	if (argumentMethod == 0) {
-		cout << "Can't get method id from getArgument()" << endl;
+		cerr << "Can't get method id from getArgument()" << endl;
 	}
 	jobject argumentObject = jniEnv -> CallObjectMethod(service, argumentMethod);
 
@@ -283,12 +282,12 @@ void JvmStarter::sendLogEntry(unsigned short* logCategory, long sizeCategory, un
 
 	jfieldID categoryFieldId = jniEnv -> GetFieldID(argumentClass, "category", "Ljava/lang/String;");
 	if (categoryFieldId == 0) {
-		cout << "Failed to find field category." << endl;
+		cerr << "Failed to find field category." << endl;
 	}
 
 	jfieldID messageFieldId = jniEnv -> GetFieldID(argumentClass, "logMessage", "Ljava/lang/String;");
 	if (messageFieldId == 0) {
-		cout << "Failed to find field logMessage." << endl;
+		cerr << "Failed to find field logMessage." << endl;
 	}
 
 	jniEnv -> SetObjectField(argumentObject, categoryFieldId, jCategory);
@@ -298,7 +297,7 @@ void JvmStarter::sendLogEntry(unsigned short* logCategory, long sizeCategory, un
 
 	jmethodID executeMethod = jniEnv -> GetMethodID(serviceClass, "execute", "()V");
 	if (executeMethod == 0) {
-		cout << "Error: Can't find execute() in service class." << endl;
+		cerr << "Error: Can't find execute() in service class." << endl;
 	}
 
 	jniEnv -> CallObjectMethod(service, executeMethod);
@@ -315,22 +314,22 @@ void JvmStarter::stopServerService() {
 	result = jvm -> AttachCurrentThread((void**) &jniEnv, NULL);
 
 	if (result > 0) {
-		cout << "Error: Attaching current thread by JNI." << endl;
+		cerr << "Error: Attaching current thread by JNI." << endl;
 	}
 
 	jclass serviceClass = jniEnv -> FindClass("net/form105/rm/server/service/StopServerService");
 	if (serviceClass == 0) {
-		cout << "Can't load class StandardLogService." << endl;
+		cerr << "Can't load class StandardLogService." << endl;
 	}
 
 	jmethodID jMethodId = jniEnv -> GetMethodID(serviceClass, "<init>", "()V");
 	if (jMethodId == 0) {
-		cout << "Can't load class StandardLogService." << endl;
+		cerr << "Can't load class StandardLogService." << endl;
 	}
 
 	jobject service = jniEnv -> NewObject(serviceClass, jMethodId);
 	if (service == 0) {
-		cout << "Can't instantiate service object" << endl;
+		cerr << "Can't instantiate service object" << endl;
 	}
 
 
@@ -338,7 +337,7 @@ void JvmStarter::stopServerService() {
 
 	jmethodID executeMethod = jniEnv -> GetMethodID(serviceClass, "execute", "()V");
 	if (executeMethod == 0) {
-		cout << "Error: Can't find execute() in service class." << endl;
+		cerr << "Error: Can't find execute() in service class." << endl;
 	}
 
 	jniEnv -> CallObjectMethod(service, executeMethod);
@@ -364,7 +363,6 @@ bool JvmStarter::jvmInitialized() {
 }
 
 JavaVM* JvmStarter::getJavaVM() {
-	cout << "@@@ JVM: " << &jvm << endl;
 	return jvm;
 }
 
