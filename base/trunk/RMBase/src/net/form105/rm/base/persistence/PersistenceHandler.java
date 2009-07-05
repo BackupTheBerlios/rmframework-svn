@@ -15,10 +15,14 @@
  */
 package net.form105.rm.base.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import net.form105.rm.base.Agent;
+import net.form105.rm.base.dao.IBasicDao;
+import net.form105.rm.base.dao.NullDao;
 import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
+import net.form105.rm.base.dao.resource.ResourceMapDao;
 import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.model.AgentObject;
 import net.form105.rm.base.model.Resource;
@@ -26,22 +30,43 @@ import net.form105.rm.base.model.Resource;
 import org.apache.log4j.Logger;
 
 public class PersistenceHandler {
-    
+
     public static Logger logger = Logger.getLogger(PersistenceHandler.class);
     
-    public void saveAgentObject(AgentObject aObject) {
+    private HashMap<Class<? extends AgentObject>, IBasicDao<? extends AgentObject>> daoMap = new HashMap<Class<? extends AgentObject>, IBasicDao<? extends AgentObject>>();
+
+    
+
+    public PersistenceHandler() {
+        ResourceMapDao rMapDao = new ResourceMapDao();
+        addDao(Resource.class, rMapDao);
         
+        Resource resource = (Resource) getDao(Resource.class).findByElementId("333");
+        
+    }
+
+    public void saveAgentObject(AgentObject aObject) {
+
         Class<? extends AgentObject> clazz = aObject.getClass();
         ILookup daoLookup = Agent.getDaoLookup();
-        
-        List<AbstractAgentObjectDao<Resource>> daoList = (List<AbstractAgentObjectDao<Resource>>) daoLookup.getEntryAsList(clazz);
-        
-        
+
+        List<AbstractAgentObjectDao<Resource>> daoList = (List<AbstractAgentObjectDao<Resource>>) daoLookup
+                .getEntryAsList(clazz);
+
         for (AbstractAgentObjectDao<Resource> dao : daoList) {
             logger.info(dao);
             dao.save((Resource) aObject);
-            
         }
+    }
+
+    
+
+    public void addDao(Class<? extends AgentObject> clazz, IBasicDao<? extends AgentObject> dao) {
+        daoMap.put(clazz, dao);
+    }
+    
+    public IBasicDao<? extends AgentObject> getDao(Class<? extends AgentObject> clazz) {
+        return daoMap.get(clazz);
     }
 
 }

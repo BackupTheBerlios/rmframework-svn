@@ -18,12 +18,13 @@ package net.form105.rm.base.dao.resource;
 import java.util.List;
 
 import net.form105.rm.base.dao.IBasicDao;
+import net.form105.rm.base.dao.NullDao;
 import net.form105.rm.base.model.AgentObject;
 
 
 public abstract class AbstractAgentObjectDao<T extends AgentObject> implements IBasicDao<T> {
 
-    private AbstractAgentObjectDao<T> transientDao;
+    private AbstractAgentObjectDao<T> transientDao = new NullDao<T>();
 
     public AbstractAgentObjectDao(AbstractAgentObjectDao<T> transientDao) {
         this.transientDao = transientDao;
@@ -56,7 +57,7 @@ public abstract class AbstractAgentObjectDao<T extends AgentObject> implements I
     }
 
     public AbstractAgentObjectDao<T> getReadDao() {
-        if (transientDao == null) {
+        if (transientDao instanceof NullDao) {
             return this;
         } else {
             return transientDao;

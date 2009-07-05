@@ -7,7 +7,6 @@ import net.form105.rm.base.model.Resource;
 import org.apache.log4j.Logger;
 
 import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
 import com.db4o.foundation.NotSupportedException;
 import com.db4o.query.Predicate;
 
@@ -48,6 +47,7 @@ public class ResourceDb4oDao extends AbstractAgentObjectDao<Resource> {
 
     @Override
     public void save(final Resource object) {
+        getTransientDao().save(object);
         db.store(object);
         db.commit();
     }
