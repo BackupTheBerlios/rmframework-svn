@@ -24,10 +24,6 @@ import org.apache.log4j.PropertyConfigurator;
 
 public class LoggerContainer extends PropertiesLoggerContainer {
     
-    public LoggerContainer(PropertiesContainer propContainer) {
-    	super(propContainer);
-    }
-    
     public void start() {
     	
     	if (Container.getInstance().getConfiguration().getConfiguration() instanceof PropertyConfiguration) {

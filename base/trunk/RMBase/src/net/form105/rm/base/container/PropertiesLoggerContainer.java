@@ -41,10 +41,6 @@ public class PropertiesLoggerContainer extends AbstractContainer implements Star
 	
 	protected final String LOG4J_PROP = "log4j.properties";
 	
-	public PropertiesLoggerContainer(PropertiesContainer propContainer) {
-		this.propContainer = propContainer;
-	}
-	
 	public void start() {
 		String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
         String configFile = configDir+File.separator+LOG4J_PROP;
