@@ -131,5 +131,10 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
     public IBasicDao<? extends AgentObject> getDao(Class<? extends AgentObject> clazz) {
         return daoMap.get(clazz);
     }
+    
+    public IBasicDao<Resource> getResourceDao() {
+        IBasicDao<Resource> resourceDao = (IBasicDao<Resource>) daoMap.get(Resource.class);
+        return resourceDao;
+    }
 
 }

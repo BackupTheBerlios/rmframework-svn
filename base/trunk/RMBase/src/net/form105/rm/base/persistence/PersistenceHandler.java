@@ -42,9 +42,12 @@ public class PersistenceHandler {
         
     }
 
-    public void saveAgentObject(Resource aObject) {
-        PersistenceModeContainer container = Agent.getPersistenceContainer();
-        container.getDao(aObject.getClass()).save(aObject);
+    public void saveAgentObject(AgentObject aObject) {
+        if (aObject instanceof Resource) {
+            PersistenceModeContainer container = Agent.getPersistenceContainer();
+            IBasicDao<Resource> dao = container.getResourceDao();
+            dao.save((Resource) aObject);
+        }
     }
 
     

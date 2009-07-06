@@ -2,6 +2,7 @@ package net.form105.rm.base.dao.resource;
 
 import java.util.List;
 
+import net.form105.rm.base.exception.AgentObjectAlreadyExistException;
 import net.form105.rm.base.model.Resource;
 
 import org.apache.log4j.Logger;
@@ -48,6 +49,10 @@ public class ResourceDb4oDao extends AbstractAgentObjectDao<Resource> {
 
     @Override
     public void save(Resource object) {
+        // check if object already exist
+        if (getTransientDao().findByElementId(object.getElementId()) != null) {
+            throw new AgentObjectAlreadyExistException(object.getElementId());
+        }
         getTransientDao().save(object);
         db.store(object);
         db.commit();
