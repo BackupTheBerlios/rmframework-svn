@@ -7,10 +7,14 @@
 
 package net.form105.rm.base.container;
 
+import java.util.HashMap;
+
 import net.form105.rm.base.command.CommandHandler;
+import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.dao.resource.ResourceDb4oDao;
 import net.form105.rm.base.dao.resource.ResourceMapDao;
 import net.form105.rm.base.helper.ExceptionHelper;
+import net.form105.rm.base.model.AgentObject;
 import net.form105.rm.base.model.Resource;
 import net.form105.rm.server.command.LoadXmlModelCommand;
 
@@ -30,20 +34,19 @@ import org.picocontainer.Startable;
  * 
  */
 public class PersistenceModeContainer extends AbstractContainer implements Startable, Disposable {
+	
+	private HashMap<Class<? extends AgentObject>, IBasicDao<? extends AgentObject>> daoMap = new HashMap<Class<? extends AgentObject>, IBasicDao<? extends AgentObject>>();
 
 	private String DBO_FILE_PROPERTY = "server.db4o.defaultPath";
 	private ModeContainer modeContainer;
-	private LookupContainer lookupContainer;
 
 	private PropertiesContainer properties;
 	private Db4oContainer db4oContainer;
 
-	public PersistenceModeContainer(PropertiesContainer properties, ModeContainer mode,
-			LookupContainer lookupContainer, Db4oContainer db4oContainer) {
+	public PersistenceModeContainer(PropertiesContainer properties, ModeContainer mode, Db4oContainer db4oContainer) {
 		super();
 		this.properties = properties;
 		this.modeContainer = mode;
-		this.lookupContainer = lookupContainer;
 		this.db4oContainer = db4oContainer;
 
 	}
@@ -52,16 +55,13 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 		logger.info("Starting: PersistenceModeContainer");
 		validate();
 
-		String dboFile;
 
 		switch (modeContainer.getCurrentMode()) {
 		case DBSINGLE:
-			dboFile = properties.getProperty(DBO_FILE_PROPERTY);
 			provideDbSingleMode();
 			break;
 
 		case DUAL:
-			dboFile = properties.getProperty(DBO_FILE_PROPERTY);
 			provideDualMode();
 			break;
 
@@ -103,9 +103,8 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 		// register resource daos
 		ResourceMapDao resourceMapDao = new ResourceMapDao();
 		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao(resourceMapDao, db4oContainer.getDb4oContainer());
-		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceMapDao);
-		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceDbDao);
-		// in dual mode we have to load all core objects to the cached maps
+		
+		addDao(Resource.class, resourceDbDao);
 	}
 
 	/**
@@ -113,16 +112,24 @@ public class PersistenceModeContainer extends AbstractContainer implements Start
 	 */
 	private void provideDbSingleMode() {
 		ResourceDb4oDao resourceDbDao = new ResourceDb4oDao(db4oContainer.getDb4oContainer());
-		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceDbDao);
+		addDao(Resource.class, resourceDbDao);
 	}
 
 	private void provideMemoryMode() {
 		ResourceMapDao resourceMapDao = new ResourceMapDao();
-		lookupContainer.getDaoLookup().addContentObject(Resource.class, resourceMapDao);
+		addDao(Resource.class, resourceMapDao);
 		// in memory mode we load all the core objects to the maps 
 		LoadXmlModelCommand loadCommand = new LoadXmlModelCommand();
 		CommandHandler cHandler = new CommandHandler();
 		cHandler.execute(loadCommand);
 	}
+	
+	public void addDao(Class<? extends AgentObject> clazz, IBasicDao<? extends AgentObject> dao) {
+        daoMap.put(clazz, dao);
+    }
+    
+    public IBasicDao<? extends AgentObject> getDao(Class<? extends AgentObject> clazz) {
+        return daoMap.get(clazz);
+    }
 
 }

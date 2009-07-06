@@ -26,22 +26,25 @@ public class NullDao<T extends AgentObject> extends AbstractAgentObjectDao<T> {
 
     @Override
     public void delete(T object) {
-        throw new NotSupportedException();
+        // do nothing
     }
 
     @Override
     public List<T> findAll() {
-        throw new NotSupportedException();
+    	// supported by persistence dao
+    	throw new NotSupportedException();
     }
 
     @Override
     public T findByElementId(String elementId) {
-        throw new NotSupportedException();
+    	// supported by persistence dao
+    	throw new NotSupportedException();
     }
 
     @Override
     public T findById(Long id) {
-        throw new NotSupportedException();
+    	// supported by persistence dao
+    	throw new NotSupportedException();
     }
 
     @Override
@@ -51,17 +54,17 @@ public class NullDao<T extends AgentObject> extends AbstractAgentObjectDao<T> {
 
     @Override
     public void save(T object) {
-        throw new NotSupportedException();
+        // do nothing
     }
 
     @Override
     public void saveOrUpdate(T object) {
-        throw new NotSupportedException(); 
+        // do nothing
     }
 
     @Override
     public void update(T object) {
-        throw new NotSupportedException();
+        // do nothing
     }
 
 }

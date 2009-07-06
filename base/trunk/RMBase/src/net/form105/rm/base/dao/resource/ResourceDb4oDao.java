@@ -34,6 +34,7 @@ public class ResourceDb4oDao extends AbstractAgentObjectDao<Resource> {
 
     @Override
     public void delete(Resource object) {
+    	getTransientDao().delete(object);
         db.delete(object);
         db.commit();
 
@@ -46,7 +47,7 @@ public class ResourceDb4oDao extends AbstractAgentObjectDao<Resource> {
     }
 
     @Override
-    public void save(final Resource object) {
+    public void save(Resource object) {
         getTransientDao().save(object);
         db.store(object);
         db.commit();
@@ -54,12 +55,14 @@ public class ResourceDb4oDao extends AbstractAgentObjectDao<Resource> {
 
     @Override
     public void saveOrUpdate(Resource object) {
+    	getTransientDao().saveOrUpdate(object);
         db.store(object);
         db.commit();
     }
 
     @Override
     public void update(Resource object) {
+    	getTransientDao().update(object);
         db.store(object);
         db.commit();
     }
