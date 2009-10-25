@@ -56,7 +56,7 @@ public class Main {
 		sb.append("Wrong command line arguments!").append(getNewline());
 		sb.append("Usage: java -jar fm2propConverter.jar sourceFile targetFile").append(getNewline());
 		sb.append("Reads the <sourceFile> which is the xml and converts it to the <targetFile>.").append(getNewline());
-		sb.append("The <targetFile> will be written to the same directory than <sourceFile> is in.");
+		sb.append("The <targetFile> will be written to targetFile");
 		
 		return sb.toString();
 	}
