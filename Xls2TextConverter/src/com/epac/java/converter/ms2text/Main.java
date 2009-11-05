@@ -47,7 +47,7 @@ public class Main {
 			e1.printStackTrace();
 		}
 		
-		XlsHSSFListener xlsListener = new XlsHSSFListener("\t");
+		XlsHSSFListener xlsListener = new XlsHSSFListener(",");
 		MissingRecordAwareHSSFListener listener = new MissingRecordAwareHSSFListener(xlsListener);
 		FormatTrackingHSSFListener formatListener = new FormatTrackingHSSFListener(listener);
 		HSSFEventFactory factory = new HSSFEventFactory();
