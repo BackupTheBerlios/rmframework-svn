@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.epac.java.converter</groupId>
+	<name>MS2TextConverter</name>
+	<artifactId>MS2TextConverter</artifactId>
+	<version>0.1</version>
+	<description>Converter for XML to Properties with Section</description>
+
+	<repositories>
+		<repository>
+			<id>repository.jboss.org</id>
+			<url>http://repository.jboss.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-3</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/etc/maven_assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<echo message="Debug data" />
+								<echo message="basedir                             = ${basedir}" />
+								<echo message="djobj                               = ${djobj}" />
+								<echo message="project.build.sourceDirectory       = ${project.build.sourceDirectory}" />
+								<echo message="project.build.scriptSourceDirectory = ${project.build.scriptSourceDirectory}" />
+								<echo message="project.build.testSourceDirectory   = ${project.build.testSourceDirectory}" />
+								<echo message="project.build.outputDirectory       = ${project.build.outputDirectory}" />
+								<echo message="project.build.testOutputDirectory   = ${project.build.testOutputDirectory}" />
+								<echo message="project.build.directory             = ${project.build.directory}" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.epac.java.converter.ms2text.Main</mainClass>
+						</manifest>
+						
+						<manifestEntries>
+							<Build-Jdk>1.5.0_16</Build-Jdk>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.5-FINAL</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>jms</artifactId>
+			<version>1.1</version>
+		</dependency>
+	</dependencies>
+
+</project>
