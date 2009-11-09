@@ -25,7 +25,6 @@ public class XlsHSSFListener implements HSSFListener {
 	
 	public static Logger logger = Logger.getLogger(XlsHSSFListener.class);
 	
-	private String id = "XLS";
 	private SSTRecord sstRecord = null;
 	
 	private List<String> valueList = new ArrayList<String>();
@@ -36,7 +35,6 @@ public class XlsHSSFListener implements HSSFListener {
 	
 	public XlsHSSFListener(String delemiter) {
 		this.delemiter = delemiter;
-		valueList.add(id);
 	}
 
 	public void processRecord(Record record) {
