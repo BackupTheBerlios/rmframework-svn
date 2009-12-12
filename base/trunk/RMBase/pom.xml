@@ -54,12 +54,18 @@
 								<echo message="Debug data" />
 								<echo message="basedir                             = ${basedir}" />
 								<echo message="djobj                               = ${djobj}" />
-								<echo message="project.build.sourceDirectory       = ${project.build.sourceDirectory}" />
-								<echo message="project.build.scriptSourceDirectory = ${project.build.scriptSourceDirectory}" />
-								<echo message="project.build.testSourceDirectory   = ${project.build.testSourceDirectory}" />
-								<echo message="project.build.outputDirectory       = ${project.build.outputDirectory}" />
-								<echo message="project.build.testOutputDirectory   = ${project.build.testOutputDirectory}" />
-								<echo message="project.build.directory             = ${project.build.directory}" />
+								<echo
+									message="project.build.sourceDirectory       = ${project.build.sourceDirectory}" />
+								<echo
+									message="project.build.scriptSourceDirectory = ${project.build.scriptSourceDirectory}" />
+								<echo
+									message="project.build.testSourceDirectory   = ${project.build.testSourceDirectory}" />
+								<echo
+									message="project.build.outputDirectory       = ${project.build.outputDirectory}" />
+								<echo
+									message="project.build.testOutputDirectory   = ${project.build.testOutputDirectory}" />
+								<echo
+									message="project.build.directory             = ${project.build.directory}" />
 							</tasks>
 						</configuration>
 						<goals>
@@ -82,6 +88,24 @@
 							<Build-Jdk>1.5.0_16</Build-Jdk>
 						</manifestEntries>
 					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>xmlbeans-maven-plugin</artifactId>
+				<version>2.3.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>xmlbeans</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaDirectory>config/xsd</schemaDirectory>
+					<sourceGenerationDirectory>xmlSrc</sourceGenerationDirectory>
+					<classGenerationDirectory>target/generated-classes/xmlbeans
+						</classGenerationDirectory>
 				</configuration>
 			</plugin>
 
@@ -138,10 +162,15 @@
 			<version>7.2.54.11278</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<!-- dependency>
 			<groupId>RM</groupId>
 			<artifactId>RMxmlHelper</artifactId>
 			<version>0.1</version>
-		</dependency>
+		</dependency -->
 	</dependencies>
 
 </project>

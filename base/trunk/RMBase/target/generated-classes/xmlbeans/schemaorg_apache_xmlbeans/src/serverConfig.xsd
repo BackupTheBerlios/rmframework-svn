@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.form105.net/schema/model"
+	elementFormDefault="qualified" xmlns="http://xml.form105.net/schema/model">
+
+	<xsd:element name="connectionPool">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="inbound" maxOccurs="unbounded">
+					
+					<xsd:complexType mixed="true">
+						
+						<xsd:sequence>
+							<xsd:group ref="connectionDefaults"></xsd:group>
+
+							<xsd:element name="sizePendingQueue" maxOccurs="1" minOccurs="0" type="xsd:int"></xsd:element>
+							<xsd:element name="validatorKey" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+							<xsd:element name="packetSize" maxOccurs="1" minOccurs="1" type="xsd:int"></xsd:element>
+							<xsd:element name="contentIdentifier" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="outbound" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:group ref="connectionDefaults"></xsd:group>
+						
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:group name="connectionDefaults">
+		<xsd:sequence>
+		<xsd:element name="id" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+		<xsd:element name="alias" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+		<xsd:element name="host" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+		<xsd:element name="port" maxOccurs="1" minOccurs="1" type="xsd:int"></xsd:element>
+		<xsd:element name="type" maxOccurs="1" minOccurs="1" type="xsd:string"></xsd:element>
+		</xsd:sequence>
+	</xsd:group>
+
+</xsd:schema>

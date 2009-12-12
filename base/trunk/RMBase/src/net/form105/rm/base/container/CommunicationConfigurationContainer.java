@@ -24,10 +24,9 @@ import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.integration.IMessageTemplate;
 import net.form105.rm.server.i18n.BaseI18NMessage;
 import net.form105.xml.schema.model.ComElementsDocument;
-import net.form105.xml.schema.model.ServerConfigDocument;
+import net.form105.xml.schema.model.ConnectionPoolDocument;
 import net.form105.xml.schema.model.ComElementsDocument.ComElements;
 import net.form105.xml.schema.model.ComElementsDocument.ComElements.Key;
-import net.form105.xml.schema.model.ServerConfigDocument.ServerConfig;
 
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlException;
@@ -46,7 +45,7 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 	private String configDir;
 	private final String serverConfigFilename = "serverConfig.xml";
 	private static String plcConfigFileName = "plc.xml";
-	private ServerConfigDocument serverConfigDocument;
+	private ConnectionPoolDocument connectionPoolDocument;
 	private String plcMessageConfigFile;
 	private PropertiesContainer propContainer;
 	
@@ -93,7 +92,7 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 		logger.info("Loading communication server config file: " + configFile);
 
 		try {
-			serverConfigDocument = ServerConfigDocument.Factory.parse(new File(configDir + serverConfigFilename));
+			connectionPoolDocument = ConnectionPoolDocument.Factory.parse(new File(configDir + serverConfigFilename));
 		} catch (XmlException e) {
 			logger.error(e, e);
 		} catch (IOException ex) {
@@ -167,8 +166,8 @@ public class CommunicationConfigurationContainer extends AbstractContainer {
 		return templateRegistry.get(hashcode);
 	}
 	
-	public ServerConfigDocument getServerConfig() {
-		return serverConfigDocument;
+	public ConnectionPoolDocument getServerConfig() {
+		return connectionPoolDocument;
 	}
 
 }

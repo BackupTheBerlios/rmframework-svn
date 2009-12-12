@@ -22,7 +22,7 @@ import java.net.ServerSocket;
 import net.form105.rm.base.integration.protocol.codec.PlcServerCodecFactory;
 import net.form105.rm.base.integration.protocol.codec.ProtocolDecoderType;
 import net.form105.rm.base.integration.protocol.codec.ProtocolEncoderType;
-import net.form105.xml.schema.model.ServerConfigDocument.ServerConfig.Inbound;
+import net.form105.xml.schema.model.ConnectionPoolDocument.ConnectionPool.Inbound;
 
 import org.apache.log4j.Logger;
 import org.apache.mina.core.service.IoAcceptor;

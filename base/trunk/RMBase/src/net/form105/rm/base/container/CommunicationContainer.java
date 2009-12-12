@@ -18,7 +18,7 @@ package net.form105.rm.base.container;
 import java.util.Properties;
 
 import net.form105.rm.base.integration.PlcInboundServer;
-import net.form105.xml.schema.model.ServerConfigDocument.ServerConfig.Inbound;
+import net.form105.xml.schema.model.ConnectionPoolDocument.ConnectionPool.Inbound;
 
 import org.apache.log4j.Logger;
 
@@ -54,7 +54,7 @@ public class CommunicationContainer extends AbstractContainer {
 	public void start() {
 		initialize();
 		
-		inbounds = configContainer.getServerConfig().getServerConfig().getInboundArray();
+		inbounds = configContainer.getServerConfig().getConnectionPool().getInboundArray();
 		
 		for (Inbound inbound : inbounds) {
 			PlcInboundServer inputServer = new PlcInboundServer(inbound);

@@ -21,8 +21,8 @@ import java.util.Map;
 import net.form105.rm.base.Container;
 import net.form105.rm.base.util.helper.FileHelper;
 import net.form105.xml.schema.model.ConnectionPoolDocument;
+import net.form105.xml.schema.model.ConnectionPoolDocument.ConnectionPool.Inbound;
 import net.form105.xml.schema.model.ConnectionPoolDocument.ConnectionPool.Outbound;
-import net.form105.xml.schema.model.ServerConfigDocument.ServerConfig.Inbound;
 
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlException;
