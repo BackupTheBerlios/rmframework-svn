@@ -25,6 +25,7 @@ import net.form105.web.base.type.EventType;
 
 import org.apache.wicket.extensions.ajax.markup.html.tabs.AjaxTabbedPanel;
 import org.apache.wicket.extensions.markup.html.tabs.AbstractTab;
+import org.apache.wicket.extensions.markup.html.tabs.ITab;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.ResourceModel;
@@ -37,7 +38,7 @@ public class TabbedUserContributionPanel extends AbstractContributionPanel {
 	public TabbedUserContributionPanel(String id, final User user, EventType eventType) {
 		super(id, new ResourceModel("header.context"));
 
-		List<AbstractTab> tabs = new ArrayList<AbstractTab>();
+		List<ITab> tabs = new ArrayList<ITab>();
 
 		if (user != null) {
 			tabs.add(new AbstractTab(new ResourceModel("tab.label.show")) {

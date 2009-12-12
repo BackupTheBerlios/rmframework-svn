@@ -36,15 +36,13 @@ public class AuthenticationAction extends AbstractWebPageAction<User> {
 	
 	public IResult doAction() {
 		
-		LocalQueryHandler<User> queryHandler = new LocalQueryHandler<User>();
+		LocalQueryHandler queryHandler = new LocalQueryHandler();
 		
 		UserAuthorizationByEmailFilter<User> filter = new UserAuthorizationByEmailFilter<User>(userId, password);
 		DefaultFilterQuery<User> query = new DefaultFilterQuery<User>(new UserSelection(), filter);
 		queryHandler.executeQuery(query);
-		//setResult(queryHandler.getResult());
-		
-		IResult<User> queryResult = queryHandler.getResult();
-		
+		IResult<User> queryResult = query.getQueryResult();
+			
 		if (queryResult.getResultList().size() > 0) {
 			logger.info("Got user: "+queryResult.getResultList().get(0).getEMail());
 			User user = queryResult.getResultList().get(0);

@@ -60,10 +60,10 @@ public class UserContributionPanel extends ContributionPanel {
 	}
 
 	private User getUserById(long userId) {
-		LocalQueryHandler<User> queryHandler = new LocalQueryHandler<User>();
+		LocalQueryHandler queryHandler = new LocalQueryHandler();
 		FindByIdDaoQuery<User> query = new FindByIdDaoQuery<User>(XMLUserObjectDAO.class, userId);
 		queryHandler.executeQuery(query);
-		IResult<User> result = queryHandler.getResult();
+		IResult<User> result = query.getQueryResult();
 		return result.getResultList().get(0);
 	}
 

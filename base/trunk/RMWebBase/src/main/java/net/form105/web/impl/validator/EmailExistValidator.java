@@ -28,11 +28,11 @@ public class EmailExistValidator<T extends User> extends AbstractValidator {
 	@Override
 	protected void onValidate(IValidatable validatable) {
 		String value = (String) validatable.getValue();
-		LocalQueryHandler<User> qHandler = new LocalQueryHandler<User>();
+		LocalQueryHandler qHandler = new LocalQueryHandler();
 		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
 		qHandler.executeQuery(query);
 		
-		List<User> userList = qHandler.getResult().getResultList();
+		List<User> userList = query.getQueryResult().getResultList();
 		//check for an existing user
 		for (User backendUser : userList) {
 			if (backendUser.getEMail().equals(value)) {

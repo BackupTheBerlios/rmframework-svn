@@ -145,10 +145,10 @@ public class UserDataProvider extends FilterDataProvider<User> {
 	}
 	
 	private List<User> createInput() {
-		LocalQueryHandler<User> queryHandler = new LocalQueryHandler<User>();
+		LocalQueryHandler queryHandler = new LocalQueryHandler();
 		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
 		queryHandler.executeQuery(query);
-		IResult<User> result = queryHandler.getResult();
+		IResult<User> result = query.getQueryResult();
 		List<User> users = result.getResultList();
 		return users;
 	}
