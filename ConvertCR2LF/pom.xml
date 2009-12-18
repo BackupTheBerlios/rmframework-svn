@@ -65,7 +65,8 @@
 						</manifest>
 						
 						<manifestEntries>
-							<Build-Jdk>1.5.0_16</Build-Jdk>
+							<!-- Build-Jdk>1.5.0_16</Build-Jdk -->
+							<Build-Jdk>1.5.0</Build-Jdk>
 						</manifestEntries>
 					</archive>
 				</configuration>

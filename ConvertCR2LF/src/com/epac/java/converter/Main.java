@@ -45,7 +45,7 @@ public class Main {
 		
 		
 		String fileName = line.getOptionValue("file");
-		String outFileName = line.getOptionValue("outFile");
+		String outFileName = line.getOptionValue("fileOut");
 		if (fileName == null) {
 			clConfig.printHelp(true);
 		}
