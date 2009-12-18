@@ -12,7 +12,6 @@ import org.apache.commons.cli.CommandLine;
  * 
  * System.exit:
  * 2: File doesn't exist
- * 10: Amount of CRs too low -> min. 10
  * 
  * @author heikok
  *
@@ -61,7 +60,7 @@ public class Main {
 		
 		if (minAppearance >= action.getLFCount(fileName)) {
 			System.out.println("Not enough CRs. Mininum default is 10. Or change by -appearance command line switch.");
-			System.exit(10);
+			System.exit(0);
 		}
 
 		
