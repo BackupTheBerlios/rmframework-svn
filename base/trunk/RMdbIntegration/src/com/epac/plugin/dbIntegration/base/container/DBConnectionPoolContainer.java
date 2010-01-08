@@ -75,6 +75,7 @@ public class DBConnectionPoolContainer implements Startable {
 		defaultDataSource = new ComboPooledDataSource();
 		try {
 			defaultDataSource.setDriverClass(defaultJdbcDriver);
+			
 		} catch (PropertyVetoException e) {
 			logger.error(e, e);
 		}
@@ -91,6 +92,7 @@ public class DBConnectionPoolContainer implements Startable {
 		password = propContainer.getProperty("connection.password");
 		
 	}
+	
 
 	/**
 	 * Getting the default connection which is provided with default settings

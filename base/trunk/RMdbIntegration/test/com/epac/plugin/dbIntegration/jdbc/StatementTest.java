@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, form105 Heiko Kundlacz
+ * Copyright (c) 2009, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ import com.epac.plugin.dbIntegration.mapping.statement.SelectStatement;
 import com.epac.plugin.dbIntegration.mapping.statement.UpdateStatement;
 
 /**
- * Compares each statement with the expected results. The statements are this one
- * which are sent to the database
+ * Compares each statement with the expected results. The statements are sent to the database
  * @author heikok
  *
  */

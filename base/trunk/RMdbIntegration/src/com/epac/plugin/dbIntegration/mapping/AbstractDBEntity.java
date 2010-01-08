@@ -71,6 +71,10 @@ public abstract class AbstractDBEntity implements Serializable, Cloneable {
 		}
 		return colList;
 	}
+	
+	public void addColumn(DbColumn column) {
+		colList.add(column);
+	}
 
 	/**
 	 * Get the table definition of the entity

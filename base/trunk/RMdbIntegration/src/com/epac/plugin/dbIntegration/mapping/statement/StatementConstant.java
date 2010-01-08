@@ -28,6 +28,8 @@ public class StatementConstant {
 	public final static String VALUES_STRING = "VALUES";
 	public final static String NULL_STRING = "NULL";
 	public final static String DELETE_STRING = "DELETE";
+	public final static String CREATE_STRING = "CREATE";
+	public final static String TABLE_STRING = "TABLE";
 	
 	public final static char LEFT_PARENTHESES = '(';
 	public final static char RIGHT_PARENTHESES = ')';
@@ -35,5 +37,6 @@ public class StatementConstant {
 	public final static char SEMICOLON = ';';
 	public final static char QUOTATION_MARK = '\"';
 	public final static char VARCHAR_DELEMITER = '\'';
+	public final static char EQUAL_SIGN = '=';
 
 }

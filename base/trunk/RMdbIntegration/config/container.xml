@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 
 <container>
-
+	<component-implementation class='net.form105.rm.base.container.LoggerContainer' />
     <component-implementation class='net.form105.rm.base.container.BackgroundThreadContainer' />
     <component-implementation class='net.form105.rm.base.container.PropertiesContainer'/>
     <component-implementation class='net.form105.rm.base.container.RMIServerContainer'/>
