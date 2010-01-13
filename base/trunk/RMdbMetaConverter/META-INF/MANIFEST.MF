@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RMdbMetaConverter
+Bundle-SymbolicName: RMdbMetaConverter
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: net.form105.plugin.metaConverter.base.Activator
+Bundle-Vendor: RMdbMetaConverter.jar
+Require-Bundle: org.eclipse.core.runtime,
+ RMdbIntegration;bundle-version="0.1.0",
+ net.form105.rm.RMBase;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

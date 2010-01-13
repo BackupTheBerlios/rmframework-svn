@@ -1,0 +1,28 @@
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	
+
+	<entry key="server.rmi.port">10099</entry>
+	
+	<!-- jdbc connection / c3p0 -->
+	<entry key="connection.jdbcDriver">com.ddtek.jdbc.sequelink.SequeLinkDriver</entry>
+	<entry key="connection.jdbcUrl">jdbc:sequelink://localhost:2399;serverDataSource=rm</entry>
+	<entry key="connection.user">Admin</entry>
+	<entry key="connection.password">admin</entry>
+	
+	<!-- logging part -->
+	<entry key="log.jdbcIntegration">on</entry> <!-- enables logging for jdbc integration -->
+	
+	<!-- Meta connections -->
+	
+	<entry key="connection.source.jdbcDriver">com.ddtek.jdbc.sequelink.SequeLinkDriver</entry>
+	<entry key="connection.source.jdbcUrl">jdbc:sequelink://localhost:2399;serverDataSource=rm</entry>
+	<entry key="connection.source.user">Admin</entry>
+	<entry key="connection.source.password">admin</entry>
+	
+	<entry key="connection.target.jdbcDriver">com.ddtek.jdbc.sequelink.SequeLinkDriver</entry>
+	<entry key="connection.target.jdbcUrl">jdbc:sequelink://localhost:2399;serverDataSource=rm</entry>
+	<entry key="connection.target.user">Admin</entry>
+	<entry key="connection.target.password">admin</entry>
+</properties>

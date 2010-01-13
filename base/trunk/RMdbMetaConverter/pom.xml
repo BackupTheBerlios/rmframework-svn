@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>RMdbMetaConverter</groupId>
+  <artifactId>RMdbMetaConverter</artifactId>
+  <name>MetaConverter ResourceManagement</name>
+  <version>0.0.1</version>
+  <description>MetaConverter for 2 Database</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.picocontainer</groupId>
+  		<artifactId>picocontainer</artifactId>
+  		<version>2.9</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  		<version>5.1.10</version>
+  	</dependency>
+  </dependencies>
+</project>
