@@ -21,7 +21,7 @@ import net.form105.rm.base.exception.RMException;
 
 import org.apache.log4j.Logger;
 
-import com.epac.plugin.dbIntegration.base.container.JdbcOutboundContainer;
+import com.epac.plugin.dbIntegration.container.JdbcOutboundContainer;
 import com.epac.plugin.dbIntegration.mapping.AbstractDBEntity;
 import com.epac.plugin.dbIntegration.mapping.JdbcOutboundHandler;
 import com.epac.plugin.dbIntegration.mapping.action.ActionType;

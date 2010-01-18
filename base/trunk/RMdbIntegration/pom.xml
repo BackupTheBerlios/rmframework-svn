@@ -4,8 +4,8 @@
 	<groupId>RMdbIntegration</groupId>
 	<artifactId>RMdbIntegration</artifactId>
 	<name>Resource Manager DB Integration</name>
-	<version>0.0.1-SNAPSHOT</version>
-	<description>A tool to connect to databases by JDBC</description>
+	<version>0.0.1</version>
+	<description>A tool to connect to databases with JDBC</description>
 
 	<!-- build>
 		<plugins>
@@ -17,6 +17,37 @@
 			</plugin>
 		</plugins>
 	</build -->
+	
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-3</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/etc/maven_assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<classpathPrefix>config/</classpathPrefix>
+							<mainClass>com.epac.plugin.dbIntegration.Main</mainClass>
+						</manifest>
+						<manifestEntries>
+							<Build-Jdk>1.5.0_16</Build-Jdk>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 
 	<dependencies>
@@ -40,11 +71,13 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.10</version>
 		</dependency>
+		<dependency>
+			<groupId>FileMaker</groupId>
+			<artifactId>sequelinkFileMaker</artifactId>
+			<version>5.05</version>
+		</dependency>
 
 	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-		</dependencies>
-	</dependencyManagement>
+
 
 </project>

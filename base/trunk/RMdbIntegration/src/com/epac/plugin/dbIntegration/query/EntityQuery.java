@@ -22,7 +22,7 @@ import net.form105.rm.base.query.AbstractSimpleQuery;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
 
-import com.epac.plugin.dbIntegration.base.container.JdbcOutboundContainer;
+import com.epac.plugin.dbIntegration.container.JdbcOutboundContainer;
 import com.epac.plugin.dbIntegration.mapping.AbstractDBEntity;
 import com.epac.plugin.dbIntegration.mapping.JdbcOutboundHandler;
 import com.epac.plugin.dbIntegration.mapping.action.ActionType;

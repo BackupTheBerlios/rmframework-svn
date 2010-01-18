@@ -12,8 +12,8 @@
     <!-- component-implementation class='net.form105.rm.base.container.ModeContainer'/ -->
     <!-- component-implementation class='net.form105.rm.base.container.Db4oContainer'/ -->
     <!-- component-implementation class='net.form105.rm.base.container.PersistenceModeContainer' / -->
-    <component-implementation class='com.epac.plugin.dbIntegration.container.DBConnectionPoolContainer' />
-    <component-implementation class='com.epac.plugin.dbIntegration.container.JdbcOutboundContainer' />
+    <component-implementation class='com.epac.plugin.dbIntegration.base.container.DBConnectionPoolContainer' />
+    <component-implementation class='com.epac.plugin.dbIntegration.base.container.JdbcOutboundContainer' />
     
     
     

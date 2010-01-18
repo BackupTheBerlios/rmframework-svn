@@ -21,7 +21,7 @@ import net.form105.rm.base.Agent;
 import net.form105.rm.base.service.AbstractService;
 import net.form105.rm.base.service.IArgument;
 
-import com.epac.plugin.dbIntegration.base.container.JdbcOutboundContainer;
+import com.epac.plugin.dbIntegration.container.JdbcOutboundContainer;
 import com.epac.plugin.dbIntegration.mapping.JdbcOutboundHandler;
 
 public class DBConnectionService extends AbstractService {

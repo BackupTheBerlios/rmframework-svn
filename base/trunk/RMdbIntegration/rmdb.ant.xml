@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project RMdbIntegration with libraries in sub-folder">
+<!--this file was created by Eclipse Runnable JAR Export Wizard-->
+<!--ANT 1.7 is required                                        -->
+<target name="create_run_jar">
+<jar destfile="/Users/heikok/temp/rmdb/rmdb.jar">
+<manifest>
+<attribute name="Main-Class" value="com.epac.plugin.dbIntegration.base.DBIntegrationAgent"/>
+<attribute name="Class-Path" value=". rmdb_lib/org.eclipse.core.runtime_3.5.0.v20090525.jar rmdb_lib/org.eclipse.osgi_3.5.1.R35x_v20090827.jar rmdb_lib/org.eclipse.equinox.common_3.5.1.R35x_v20090807-1100.jar rmdb_lib/org.eclipse.core.jobs_3.4.100.v20090429-1800.jar rmdb_lib/runtime_registry_compatibility.jar rmdb_lib/org.eclipse.equinox.registry_3.4.100.v20090520-1800.jar rmdb_lib/org.eclipse.equinox.preferences_3.2.300.v20090520-1800.jar rmdb_lib/org.eclipse.core.contenttype_3.4.1.R35x_v20090826-0451.jar rmdb_lib/org.eclipse.equinox.app_1.2.0.v20090520-1800.jar rmdb_lib/dom4j-1.6.1.jar rmdb_lib/xml-apis-1.0.b2.jar rmdb_lib/log4j-1.2.14.jar rmdb_lib/xmlbeans-2.4.0.jar rmdb_lib/stax-api-1.0.1.jar rmdb_lib/mina-core-2.0.0-M3.jar rmdb_lib/slf4j-api-1.5.2.jar rmdb_lib/slf4j-log4j12-1.4.2.jar rmdb_lib/c3p0-0.9.1.2.jar rmdb_lib/picocontainer-2.8.jar rmdb_lib/joda-time-1.6.jar rmdb_lib/com.springsource.com.db4o.java5-7.2.54.11278.jar rmdb_lib/junit.jar rmdb_lib/org.hamcrest.core_1.1.0.v20090501071000.jar rmdb_lib/mysql-connector-java-5.1.10.jar"/>
+</manifest>
+<fileset dir="/Users/heikok/development/workspace/RMdbIntegration/target/classes"/>
+<fileset dir="/Users/heikok/development/workspace/RMBase/target/classes"/>
+<fileset dir="/Users/heikok/development/workspace/RMBase/config"/>
+<fileset dir="/Users/heikok/development/workspace/RMdbIntegration/config"/>
+</jar>
+<delete dir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<mkdir dir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.eclipse.core.runtime_3.5.0.v20090525.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.eclipse.osgi_3.5.1.R35x_v20090827.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.eclipse.equinox.common_3.5.1.R35x_v20090807-1100.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.eclipse.core.jobs_3.4.100.v20090429-1800.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.eclipse.core.runtime.compatibility.registry_3.2.200.v20090429-1800/runtime_registry_compatibility.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.eclipse.equinox.registry_3.4.100.v20090520-1800.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.eclipse.equinox.preferences_3.2.300.v20090520-1800.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.eclipse.core.contenttype_3.4.1.R35x_v20090826-0451.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.eclipse.equinox.app_1.2.0.v20090520-1800.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/log4j/log4j/1.2.14/log4j-1.2.14.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/org/apache/xmlbeans/xmlbeans/2.4.0/xmlbeans-2.4.0.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/org/apache/mina/mina-core/2.0.0-M3/mina-core-2.0.0-M3.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/org/slf4j/slf4j-api/1.5.2/slf4j-api-1.5.2.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/org/slf4j/slf4j-log4j12/1.4.2/slf4j-log4j12-1.4.2.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/c3p0/c3p0/0.9.1.2/c3p0-0.9.1.2.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/org/picocontainer/picocontainer/2.8/picocontainer-2.8.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/joda-time/joda-time/1.6/joda-time-1.6.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/com/db4o/com.springsource.com.db4o.java5/7.2.54.11278/com.springsource.com.db4o.java5-7.2.54.11278.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.junit4_4.5.0.v20090824/junit.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/development/eclipse-3.5/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+<copy file="/Users/heikok/.m2/repository/mysql/mysql-connector-java/5.1.10/mysql-connector-java-5.1.10.jar" todir="/Users/heikok/temp/rmdb/rmdb_lib"/>
+</target>
+</project>

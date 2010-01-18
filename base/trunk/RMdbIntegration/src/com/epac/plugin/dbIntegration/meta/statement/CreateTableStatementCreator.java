@@ -5,13 +5,18 @@ import java.util.List;
 import com.epac.plugin.dbIntegration.mapping.statement.StatementConstant;
 import com.epac.plugin.dbIntegration.meta.IMetaColumn;
 import com.epac.plugin.dbIntegration.meta.MetaTable;
+import com.epac.plugin.dbIntegration.meta.converter.IDBConverter;
+import com.epac.plugin.dbIntegration.meta.converter.ReservedKeywords;
 
 public class CreateTableStatementCreator {
 	
 	private MetaTable metaTable;
+	private IDBConverter colConverter;
+	private ReservedKeywords keywords = new ReservedKeywords();
 	
-	public CreateTableStatementCreator(MetaTable metaTable) {
+	public CreateTableStatementCreator(MetaTable metaTable, IDBConverter colConverter) {
 		this.metaTable = metaTable;
+		this.colConverter = colConverter;
 	}
 	
 	public StringBuffer getStatement() {
@@ -41,11 +46,20 @@ public class CreateTableStatementCreator {
 		for (int i=0; i < colList.size(); i++) {
 			String colId = colList.get(i).getId();
 			String colType = colList.get(i).getType().name();
+			
+			// check for colId if it is a reserved keyword
+			if (keywords.isReservedKeyword(colId)) {
+				colId = colId + "_reserved";
+			}
+			
+			
+			String convertedColType = colConverter.convert(colType);
+			
 			int colSize = colList.get(i).getSize();
 			boolean hasSize = colList.get(i).hasSize();
 			
 			colSb.append(colId).append(StatementConstant.BLANK_STRING); // column name
-			colSb.append(colType).append(StatementConstant.BLANK_STRING); // column type
+			colSb.append(convertedColType).append(StatementConstant.BLANK_STRING); // column type
 
 			if (hasSize) {
 				colSb.append(StatementConstant.LEFT_PARENTHESES); // (

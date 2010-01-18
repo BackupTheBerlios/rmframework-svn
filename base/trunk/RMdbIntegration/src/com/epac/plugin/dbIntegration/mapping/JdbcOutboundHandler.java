@@ -29,7 +29,7 @@ import net.form105.rm.server.i18n.BaseI18NMessage;
 
 import org.apache.log4j.Logger;
 
-import com.epac.plugin.dbIntegration.base.container.DBConnectionPoolContainer;
+import com.epac.plugin.dbIntegration.container.DBConnectionPoolContainer;
 import com.epac.plugin.dbIntegration.mapping.action.ActionType;
 import com.epac.plugin.dbIntegration.mapping.action.DeleteAction;
 import com.epac.plugin.dbIntegration.mapping.action.IJdbcAction;

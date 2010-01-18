@@ -9,3 +9,18 @@ Require-Bundle: org.eclipse.core.runtime,
  net.form105.rm.RMBase;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
+Export-Package: com.epac.plugin.dbIntegration.base,
+ com.epac.plugin.dbIntegration.command,
+ com.epac.plugin.dbIntegration.container,
+ com.epac.plugin.dbIntegration.jdbc,
+ com.epac.plugin.dbIntegration.mapping,
+ com.epac.plugin.dbIntegration.mapping.action,
+ com.epac.plugin.dbIntegration.mapping.converter,
+ com.epac.plugin.dbIntegration.mapping.dialect,
+ com.epac.plugin.dbIntegration.mapping.statement,
+ com.epac.plugin.dbIntegration.meta,
+ com.epac.plugin.dbIntegration.meta.converter,
+ com.epac.plugin.dbIntegration.meta.statement,
+ com.epac.plugin.dbIntegration.query,
+ com.epac.plugin.dbIntegration.service,
+ com.epac.plugin.dbIntegration.validator
