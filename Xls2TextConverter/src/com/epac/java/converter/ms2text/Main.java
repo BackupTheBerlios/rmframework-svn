@@ -75,7 +75,10 @@ public class Main {
 			BufferedWriter out = new BufferedWriter(new FileWriter(args[1]));
 			for (String s : valueList) {
 				out.write(s + "\n");
+				logger.info("write: "+s);
 			}
+			out.flush();
+			out.close();
 		} catch (IOException e) {
 			logger.error("Can't write to file "+args[1]);
 			System.exit(5);
