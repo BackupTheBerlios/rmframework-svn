@@ -15,3 +15,9 @@ Where: <path-to-file>  the path to the file to load
        <artifact-id>   the artifact name for the file
        <version>       the version of the file
        <packaging>     the packaging of the file e.g. jar
+       
+       -Dfile="/Users/heikok/development/workspace/RMdbIntegration/lib/sljc.jar" 
+       -DgroupId=FileMaker -DartifactId=sequelinkFileMaker 
+       -Dversion=5.05 
+       -Dpackaging=jar 
+       -DgeneratePOM=true

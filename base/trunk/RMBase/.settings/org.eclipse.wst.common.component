@@ -3,8 +3,6 @@
     <wb-module deploy-name="RMBase">
         <wb-resource deploy-path="/" source-path="/src"/>
         <wb-resource deploy-path="/" source-path="/test"/>
-<wb-resource deploy-path="/" source-path="/xmlSource"/>
-<wb-resource deploy-path="/" source-path="/target/generated-sources/xmlbeans"/>
 <wb-resource deploy-path="/" source-path="/xmlSrc"/>
     </wb-module>
 </project-modules>
