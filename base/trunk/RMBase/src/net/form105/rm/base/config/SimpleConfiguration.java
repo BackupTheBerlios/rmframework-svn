@@ -16,6 +16,9 @@ public class SimpleConfiguration implements IConfiguration {
     }
 
     public String getContainerFile() {
+    	if (System.getProperty("rm.config.fileName") != null) {
+    		return System.getProperty("rm.config.fileName");
+    	}
         return "container.xml";
     }
 

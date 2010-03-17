@@ -15,9 +15,12 @@
  */
 package net.form105.rm.base.exception;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import net.form105.rm.server.i18n.I18nMessage;
+
+import org.apache.log4j.Logger;
 
 /**
  * An RM exception which wraps an {@link SQLException}
@@ -26,10 +29,18 @@ import net.form105.rm.server.i18n.I18nMessage;
  */
 public class RMSqlException extends RMException {
 	
+	public static Logger logger = Logger.getLogger(RMSqlException.class);
+	
 	private static final long serialVersionUID = 1L;
 
-	public RMSqlException(I18nMessage message, String key, String[] params, SQLException cause) {
+	public RMSqlException(I18nMessage message, String key, String[] params, SQLException cause, Connection connection) {
     	super(message.getMessage(key, params), cause);
+    	try {
+			connection.close();
+		} catch (SQLException e) {
+			logger.error(e.getCause());
+			logger.error(e.getMessage());
+		}
     }
 
 }

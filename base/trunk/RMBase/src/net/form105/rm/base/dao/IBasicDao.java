@@ -6,7 +6,6 @@
  */
 package net.form105.rm.base.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import net.form105.rm.base.model.AgentObject;
