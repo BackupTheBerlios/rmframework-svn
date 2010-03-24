@@ -13,16 +13,6 @@ Bundle-ClassPath: RMBase.jar,
  lib/sljc.jar,
  lib/metadata-extractor-2.3.1.jar
 Export-Package: 
- com.form105.rm.base,
- com.form105.rm.base.importToModel,
- com.form105.rm.base.math,
- com.form105.rm.base.message,
- com.form105.rm.base.model,
- com.form105.rm.base.network,
- com.form105.rm.base.query,
- com.form105.rm.base.service,
- com.form105.rm.base.time,
- com.form105.rm.base.user,
  etc,
  i18n,
  net.form105.rm.base,
@@ -64,4 +54,5 @@ Export-Package:
  net.form105.rm.server.i18n,
  net.form105.rm.server.mapping,
  net.form105.rm.server.selection,
- net.form105.rm.server.service
+ net.form105.rm.server.service,
+ net.form105.rm.server.service.log

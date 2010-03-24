@@ -8,7 +8,7 @@
     <component-implementation id="serviceHandler " class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
     <component-implementation id="queryHandler" class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
     <component-implementation id="lookup" class='net.form105.rm.base.container.LookupContainer'/>
-    <component-implementation id="userMgmt" class='net.form105.rm.base.container.UserManagementContainer'/>
+    <!-- component-implementation id="userMgmt" class='net.form105.rm.base.container.UserManagementContainer'/ -->
     <component-implementation id="modeConfigLoader" class='net.form105.rm.base.container.ModeContainer'/>
     <component-implementation id="persistence" class='net.form105.rm.base.container.Db4oContainer'/>
     <component-implementation id="persistenceMode" class='net.form105.rm.base.container.PersistenceModeContainer' />

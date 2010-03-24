@@ -9,6 +9,7 @@
 	<artifactId>RMBase</artifactId>
 	<version>0.1</version>
 	<description>RM Base Server</description>
+	<packaging>pom</packaging>
 
 	<repositories>
 		<repository>
