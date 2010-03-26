@@ -1,0 +1,29 @@
+<!--DOCTYPE container PUBLIC "-//NanoContainer//DTD NanoContainer XML 1.0//EN" "http://nanocontainer.org/dtd/nanocontainer-xml-1_0.dtd"-->
+
+<container>
+	<component-implementation id="logger" class='net.form105.rm.base.container.LoggerContainer' />
+	
+	<component-implementation id="webServer" class="net.form105.web.base.container.EmbeddedWebContainer" />
+    
+    <component-implementation id="properties" class='net.form105.rm.base.container.PropertiesContainer'/>
+    <component-implementation id="rmiServer" class='net.form105.rm.base.container.RMIServerContainer'/>
+    <component-implementation id="serviceHandler " class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
+    <component-implementation id="queryHandler" class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
+    <!-- component-implementation id="dao" class='net.form105.rm.base.container.JcrDaoContainer'/ -->
+    <!-- component-implementation id="persistence" class='net.form105.rm.base.container.JcrContainer'/ -->
+    <component-implementation id="userMgmt" class='net.form105.rm.base.container.UserManagementContainer'/>
+    
+
+    <!-- component-implementation class='net.form105.rm.base.container.BackgroundThreadContainer' />
+    <component-implementation class='net.form105.rm.base.container.PropertiesContainer'/>
+    <component-implementation class='net.form105.rm.base.container.RMIServerContainer'/>
+    <component-implementation class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
+    <component-implementation class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
+    <component-implementation class='net.form105.rm.base.container.LookupContainer'/>
+    <component-implementation class='net.form105.rm.base.container.UserManagementContainer'/>
+    <component-implementation class='net.form105.rm.base.container.ModeContainer'/>
+    <component-implementation class='net.form105.rm.base.container.Db4oContainer'/>
+    <component-implementation class='net.form105.rm.base.container.PersistenceModeContainer' / -->
+</container>
+
+
