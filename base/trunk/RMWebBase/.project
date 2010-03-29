@@ -3,6 +3,7 @@
 	<name>RMWebBase</name>
 	<comment></comment>
 	<projects>
+		<project>RMBase</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

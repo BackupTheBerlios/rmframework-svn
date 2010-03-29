@@ -6,7 +6,9 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import net.form105.rm.base.dao.XMLUserObjectDAO;
+import net.form105.rm.base.Container;
+import net.form105.rm.base.container.UserManagementContainer;
+import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.FindAllDaoQuery;
 import net.form105.rm.base.query.LocalQueryHandler;
@@ -145,8 +147,10 @@ public class UserDataProvider extends FilterDataProvider<User> {
 	}
 	
 	private List<User> createInput() {
+		UserManagementContainer userContainer = (UserManagementContainer) Container.getContainer().getComponent("userMgmt");
+		IBasicDao<User> userDao = userContainer.getUserObjectDao();
 		LocalQueryHandler queryHandler = new LocalQueryHandler();
-		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
+		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(userDao);
 		queryHandler.executeQuery(query);
 		IResult<User> result = query.getQueryResult();
 		List<User> users = result.getResultList();

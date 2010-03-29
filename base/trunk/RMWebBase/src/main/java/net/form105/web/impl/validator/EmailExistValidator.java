@@ -2,6 +2,8 @@ package net.form105.web.impl.validator;
 
 import java.util.List;
 
+import net.form105.rm.base.Agent;
+import net.form105.rm.base.container.UserManagementContainer;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.FindAllDaoQuery;
@@ -29,7 +31,8 @@ public class EmailExistValidator<T extends User> extends AbstractValidator {
 	protected void onValidate(IValidatable validatable) {
 		String value = (String) validatable.getValue();
 		LocalQueryHandler qHandler = new LocalQueryHandler();
-		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
+		UserManagementContainer userContainer = (UserManagementContainer) Agent.getContainer("userMgmt");
+		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(userContainer.getUserObjectDao());
 		qHandler.executeQuery(query);
 		
 		List<User> userList = query.getQueryResult().getResultList();

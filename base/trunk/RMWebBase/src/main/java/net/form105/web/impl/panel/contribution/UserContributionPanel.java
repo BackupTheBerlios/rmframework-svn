@@ -1,6 +1,8 @@
 package net.form105.web.impl.panel.contribution;
 
-import net.form105.rm.base.dao.XMLUserObjectDAO;
+import net.form105.rm.base.Agent;
+import net.form105.rm.base.StaticAgentId;
+import net.form105.rm.base.container.UserManagementContainer;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.FindByIdDaoQuery;
 import net.form105.rm.base.query.LocalQueryHandler;
@@ -61,7 +63,8 @@ public class UserContributionPanel extends ContributionPanel {
 
 	private User getUserById(long userId) {
 		LocalQueryHandler queryHandler = new LocalQueryHandler();
-		FindByIdDaoQuery<User> query = new FindByIdDaoQuery<User>(XMLUserObjectDAO.class, userId);
+		UserManagementContainer userContainer = (UserManagementContainer) Agent.getContainer(StaticAgentId.USER_MANAGEMENT_ID);
+		FindByIdDaoQuery<User> query = new FindByIdDaoQuery<User>(userContainer.getUserObjectDao(), userId);
 		queryHandler.executeQuery(query);
 		IResult<User> result = query.getQueryResult();
 		return result.getResultList().get(0);

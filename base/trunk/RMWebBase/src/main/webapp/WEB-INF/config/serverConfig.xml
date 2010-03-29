@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rm:serverConfig xmlns:rm="http://xml.form105.net/schema/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.form105.net/schema/model ../src/main/resources/schema/serverConfig.xsd ">
-  <rm:inbound>
-    <rm:id>plcInbound01</rm:id>
-    <rm:alias>Inbound Server from PLC</rm:alias>
-    <rm:port>50005</rm:port>
-    <rm:type>inbound</rm:type>
-  </rm:inbound>
-</rm:serverConfig>
