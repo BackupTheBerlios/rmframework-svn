@@ -30,5 +30,7 @@ public interface IMetaColumn {
 	 * @return
 	 */
 	public abstract boolean hasSize();
+	
+	public abstract MetaTable getTable();
 
 }

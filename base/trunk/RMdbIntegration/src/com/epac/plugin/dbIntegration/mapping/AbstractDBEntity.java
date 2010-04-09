@@ -161,7 +161,7 @@ public abstract class AbstractDBEntity implements Serializable, Cloneable {
 		this.constrain = constrain;
 	}
 	
-	public String getConstrain() {
+	public String getConstraint() {
 		if (constrain == null) {
 			return "";
 		}

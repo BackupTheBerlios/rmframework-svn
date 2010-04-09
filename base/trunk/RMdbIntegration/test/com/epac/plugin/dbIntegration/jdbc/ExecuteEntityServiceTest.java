@@ -18,6 +18,7 @@ package com.epac.plugin.dbIntegration.jdbc;
 
 import java.math.BigDecimal;
 
+import net.form105.rm.base.query.AbstractRemoteTest;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
 
@@ -29,7 +30,6 @@ import com.epac.plugin.dbIntegration.mapping.AbstractDBEntity;
 import com.epac.plugin.dbIntegration.mapping.action.ActionType;
 import com.epac.plugin.dbIntegration.query.EntityQuery;
 import com.epac.plugin.dbIntegration.service.ExecuteEntityService;
-import com.form105.rm.base.query.AbstractRemoteTest;
 
 /**
  * Writes 100 rows into the database and checks for results. The table will be reset

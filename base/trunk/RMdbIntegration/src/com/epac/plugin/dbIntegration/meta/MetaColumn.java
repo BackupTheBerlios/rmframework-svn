@@ -7,8 +7,10 @@ public class MetaColumn implements IMetaColumn {
 	private MetaType type;
 	private boolean nullable;
 	private int size;
+	private MetaTable table;
 
-	public MetaColumn(String id, String name, MetaType type, boolean nullable, int size) {
+	public MetaColumn(MetaTable table, String id, String name, MetaType type, boolean nullable, int size) {
+		this.table = table;
 		this.id = id;
 		this.name = name;
 		this.type = type;
@@ -62,6 +64,11 @@ public class MetaColumn implements IMetaColumn {
 	@Override
 	public boolean hasSize() {
 		if (size != -1) { return true;} else { return false; }
+	}
+
+	@Override
+	public MetaTable getTable() {
+		return table;
 	}
 
 }

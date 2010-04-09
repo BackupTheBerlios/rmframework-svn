@@ -33,10 +33,13 @@ public class StatementConstant {
 	
 	public final static char LEFT_PARENTHESES = '(';
 	public final static char RIGHT_PARENTHESES = ')';
+	public final static char LEFT_CURLYBRACE = '{';
+	public final static char RIGHT_CURLYBRACE = '}';
 	public final static char COMMA = ',';
 	public final static char SEMICOLON = ';';
 	public final static char QUOTATION_MARK = '\"';
 	public final static char VARCHAR_DELEMITER = '\'';
 	public final static char EQUAL_SIGN = '=';
+	public final static char SINGLE_QUOTE = '\'';
 
 }

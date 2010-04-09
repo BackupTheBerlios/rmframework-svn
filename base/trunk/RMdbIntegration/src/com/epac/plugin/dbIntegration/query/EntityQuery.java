@@ -42,7 +42,7 @@ public class EntityQuery extends AbstractSimpleQuery<AbstractDBEntity> {
 		JdbcOutboundContainer container = (JdbcOutboundContainer) Agent.getContainer(JdbcOutboundContainer.class);
 		JdbcOutboundHandler handler = container.getHandler();
 		ActionType actionType;
-		if (_entity.getConstrain().equals("")) { 
+		if (_entity.getConstraint().equals("")) { 
 			actionType = ActionType.SELECTALL;
 		} else {
 			actionType = ActionType.SELECT_BY_CONSTRAIN;

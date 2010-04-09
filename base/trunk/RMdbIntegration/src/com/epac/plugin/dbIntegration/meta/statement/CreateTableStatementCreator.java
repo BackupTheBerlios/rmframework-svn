@@ -44,13 +44,9 @@ public class CreateTableStatementCreator {
 		
 		
 		for (int i=0; i < colList.size(); i++) {
-			String colId = colList.get(i).getId();
+			String colId = keywords.prepareKeyword(colList.get(i).getId());
 			String colType = colList.get(i).getType().name();
 			
-			// check for colId if it is a reserved keyword
-			if (keywords.isReservedKeyword(colId)) {
-				colId = colId + "_reserved";
-			}
 			
 			
 			String convertedColType = colConverter.convert(colType);

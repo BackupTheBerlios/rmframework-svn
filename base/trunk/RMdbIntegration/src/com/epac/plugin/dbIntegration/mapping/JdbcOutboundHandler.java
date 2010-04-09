@@ -82,7 +82,7 @@ public class JdbcOutboundHandler {
 				} catch (SQLException e) {
 					logger.error("Tried to rollback transacton, but unsuccessfully ended!");
 				}
-			throw new RMSqlException(new BaseI18NMessage(), "exception.sql.base", new String[] {sqlEx.getMessage()}, sqlEx);
+			throw new RMSqlException(new BaseI18NMessage(), "exception.sql.base", new String[] {sqlEx.getMessage()}, sqlEx, connection);
 		}
 
 		return result;

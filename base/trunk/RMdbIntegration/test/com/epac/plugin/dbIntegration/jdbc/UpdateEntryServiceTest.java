@@ -3,6 +3,7 @@ package com.epac.plugin.dbIntegration.jdbc;
 import java.math.BigDecimal;
 
 import junit.framework.Assert;
+import net.form105.rm.base.query.AbstractRemoteTest;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
 
@@ -13,7 +14,6 @@ import com.epac.plugin.dbIntegration.mapping.AbstractDBEntity;
 import com.epac.plugin.dbIntegration.mapping.action.ActionType;
 import com.epac.plugin.dbIntegration.query.EntityQuery;
 import com.epac.plugin.dbIntegration.service.ExecuteEntityService;
-import com.form105.rm.base.query.AbstractRemoteTest;
 
 /**
  * Creating an database entity doesn't give an idea over the generated id from

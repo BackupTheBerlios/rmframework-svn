@@ -198,7 +198,7 @@ public class UniversalDialect implements IDialect, Serializable {
 	//TODO: adding constrain object to allow simple 
 	@Override
 	public String getConstrain() {
-		return entity.getConstrain();
+		return entity.getConstraint();
 	}
 
 }

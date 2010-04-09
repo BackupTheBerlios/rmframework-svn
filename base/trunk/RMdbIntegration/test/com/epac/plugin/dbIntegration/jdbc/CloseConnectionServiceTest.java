@@ -18,7 +18,7 @@ package com.epac.plugin.dbIntegration.jdbc;
 import org.junit.Test;
 
 import com.epac.plugin.dbIntegration.service.DBConnectionService;
-import com.form105.rm.base.query.AbstractRemoteTest;
+import net.form105.rm.base.query.AbstractRemoteTest;
 
 
 public class CloseConnectionServiceTest extends AbstractRemoteTest<Object>{

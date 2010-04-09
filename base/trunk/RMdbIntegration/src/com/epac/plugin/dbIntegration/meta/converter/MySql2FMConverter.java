@@ -18,8 +18,6 @@ public class MySql2FMConverter implements IDBConverter {
 		} else {
 			return sourceString;
 		}
-		
-		
 	}
 
 }

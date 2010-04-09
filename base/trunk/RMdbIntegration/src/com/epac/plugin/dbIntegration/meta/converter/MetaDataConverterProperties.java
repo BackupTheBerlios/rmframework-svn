@@ -39,7 +39,6 @@ public class MetaDataConverterProperties {
 	private void loadFile() {
 		try {
 			String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
-			System.out.println("config dir: " + configDir);
 			iStream = new FileInputStream(new File(configDir+"MDConverter.properties"));
 			properties = new Properties();
 			properties.load(iStream);
@@ -72,7 +71,6 @@ public class MetaDataConverterProperties {
 	}
 	
 	public Map getConverterMap() {
-		
 		return properties;
 	}
 	

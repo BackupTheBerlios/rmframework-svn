@@ -2,6 +2,7 @@ package com.epac.plugin.dbIntegration.meta;
 
 public enum MetaType {
 	
+	DOUBLE(8),
 	VARCHAR(12),
 	CHAR(4),
 	INTUNSIGNED(4),

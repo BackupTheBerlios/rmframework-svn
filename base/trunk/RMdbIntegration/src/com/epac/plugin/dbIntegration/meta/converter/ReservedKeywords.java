@@ -6,6 +6,7 @@ import java.util.List;
 public class ReservedKeywords {
 	
 	private List<String> keywords = new ArrayList<String>();
+	private final String APPENDIX = "_reserved";
 	
 	public ReservedKeywords() {
 		keywords.add("type");
@@ -19,5 +20,11 @@ public class ReservedKeywords {
 		return false;
 	}
 	
-
+	public String prepareKeyword(String source) {
+		if (isReservedKeyword(source)) {
+			return source + APPENDIX;
+		} else {
+			return source;
+		}
+	}
 }
