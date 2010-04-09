@@ -18,25 +18,22 @@ import net.form105.rm.base.model.AgentObject;
 public class FindByIdDaoQuery<T extends AgentObject> extends AbstractSimpleQuery<T> {
 
 	private static final long serialVersionUID = 1L;
-	private Class<?> daoClass;
+	private IBasicDao<T> dao;
 	private long id;
 	
 	
-	public FindByIdDaoQuery(Class<?> daoClass, Long id) {
-		this.daoClass = daoClass;
+	public FindByIdDaoQuery(IBasicDao<T> dao, Long id) {
+		this.dao = dao;
 		this.id = id;
 	}
 	
 	
 	@Override
 	public List<T> execute() {
-		ILookup lookup = Agent.getDaoLookup();
-		@SuppressWarnings("unchecked")
-		IBasicDao<T> dao = (IBasicDao<T>) lookup.getFirstContentObject(daoClass);
-		T result = dao.findById(id);
-		List<T> results = new ArrayList<T>();
-		results.add(result);
-		return results;
+		T object = dao.findById(id);
+		List<T> list = new ArrayList<T>();
+		list.add(object);
+		return list;
 	}
 
 }

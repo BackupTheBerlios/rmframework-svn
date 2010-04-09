@@ -1,7 +1,9 @@
 package net.form105.rm.server.service;
 
 import net.form105.rm.base.Agent;
-import net.form105.rm.base.dao.XMLUserObjectDAO;
+import net.form105.rm.base.StaticAgentId;
+import net.form105.rm.base.container.UserManagementContainer;
+import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.AbstractService;
@@ -20,9 +22,10 @@ public class DeleteUserService extends AbstractService {
 
 	@Override
 	public void execute() throws Exception {
-		XMLUserObjectDAO dao = (XMLUserObjectDAO) Agent.getDaoLookup().getFirstContentObject(User.class);
-		// check if user exists already
+		UserManagementContainer userContainer = (UserManagementContainer) Agent.getContainer(StaticAgentId.USER_MANAGEMENT_ID);
+		IBasicDao<User> dao = userContainer.getUserObjectDao();
 		User existingUser = dao.findById(argument.id);
+		
 		if (existingUser == null) {
 			BaseI18NMessage message = new BaseI18NMessage();
 			throw new RMException(message, "entry.notExist", new String[] {argument.id.toString()});

@@ -4,6 +4,8 @@ import static junit.framework.Assert.assertTrue;
 
 import java.util.Collection;
 
+import net.form105.rm.base.Agent;
+import net.form105.rm.base.container.UserManagementContainer;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.AbstractRemoteTest;
@@ -27,7 +29,8 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 
 	public void addUser() {
 		// check if user exist
-		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
+		UserManagementContainer userContainer = (UserManagementContainer) Agent.getContainer("userMgmt");
+		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(userContainer.getUserObjectDao());
 		IResult<User> userResult = doQuery(query);
 		Collection<User> users = userResult.getResultList();
 		// if user already exist delete it first
@@ -59,7 +62,8 @@ public class UserManagementTest extends AbstractRemoteTest<User> {
 
 	public void getUsers() {
 		logger.info("Test: Getting user");
-		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(XMLUserObjectDAO.class);
+		UserManagementContainer userContainer = (UserManagementContainer) Agent.getContainer("userMgmt");
+		FindAllDaoQuery<User> query = new FindAllDaoQuery<User>(userContainer.getUserObjectDao());
 		IResult<User> result = doQuery(query);
 		Collection<User> users = result.getResultList();
 		if (users != null) {

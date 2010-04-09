@@ -24,9 +24,9 @@ import net.form105.rm.base.model.AgentObject;
 
 public abstract class AbstractAgentObjectDao<T extends AgentObject> implements IBasicDao<T> {
 
-    private AbstractAgentObjectDao<T> transientDao = new NullDao<T>();
+    private IBasicDao<T> transientDao = new NullDao<T>();
 
-    public AbstractAgentObjectDao(AbstractAgentObjectDao<T> transientDao) {
+    public AbstractAgentObjectDao(IBasicDao<T> transientDao) {
         this.transientDao = transientDao;
     }
     
@@ -48,7 +48,7 @@ public abstract class AbstractAgentObjectDao<T extends AgentObject> implements I
 
     public abstract void update(T object);
 
-    public AbstractAgentObjectDao<T> getTransientDao() {
+    public IBasicDao<T> getTransientDao() {
         return transientDao;
     }
 
@@ -56,7 +56,7 @@ public abstract class AbstractAgentObjectDao<T extends AgentObject> implements I
         this.transientDao = transientDao;
     }
 
-    public AbstractAgentObjectDao<T> getReadDao() {
+    public IBasicDao<T> getReadDao() {
         if (transientDao instanceof NullDao) {
             return this;
         } else {

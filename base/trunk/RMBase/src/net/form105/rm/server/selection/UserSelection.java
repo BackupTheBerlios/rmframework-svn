@@ -2,11 +2,9 @@ package net.form105.rm.server.selection;
 
 import java.util.List;
 
-import net.form105.rm.base.Agent;
-import net.form105.rm.base.dao.XMLUserObjectDAO;
-import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
-import net.form105.rm.base.lookup.ILookup;
-import net.form105.rm.base.model.AgentObject;
+import net.form105.rm.base.Container;
+import net.form105.rm.base.container.UserManagementContainer;
+import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.selection.AbstractSelection;
 
@@ -21,9 +19,12 @@ public class UserSelection extends AbstractSelection<User> {
 
     @Override
     public List<User> select() {
-        ILookup lookup = Agent.getDaoLookup();
-        XMLUserObjectDAO dao = (XMLUserObjectDAO) lookup.getFirstContentObject(User.class);
-        return dao.findAll();
+        
+        
+        UserManagementContainer userContainer = (UserManagementContainer) Container.getContainer().getComponent("userMgmt");
+        IBasicDao<User> dao = userContainer.getUserObjectDao();
+        List<User> userList = dao.findAll();
+        return userList;
     }
 
 }

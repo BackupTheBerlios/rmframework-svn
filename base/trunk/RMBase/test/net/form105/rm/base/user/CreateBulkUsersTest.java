@@ -32,7 +32,7 @@ public class CreateBulkUsersTest extends AbstractRemoteTest<User> {
 
 	@Test
 	public void createUsers() {
-		UserManagementContainer userContainer = new UserManagementContainer(null);
+		UserManagementContainer userContainer = new UserManagementContainer();
 		ArrayList<String> roleList = new ArrayList<String>();
 		roleList.add("user");
 		for (int i = 1; i < 201; i++) {

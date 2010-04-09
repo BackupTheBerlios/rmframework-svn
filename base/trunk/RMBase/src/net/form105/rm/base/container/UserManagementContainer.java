@@ -16,45 +16,34 @@ import org.picocontainer.Startable;
 
 public class UserManagementContainer extends AbstractContainer implements Startable {
 
-    private LookupContainer lookupContainer;
+    
 
     private final String USER_CONFIG_FILE = "users.xml";
+    private XMLUserObjectDAO usersDao;
 
-    public UserManagementContainer(LookupContainer lookupContainer) {
+    public UserManagementContainer() {
         super();
-        this.lookupContainer = lookupContainer;
+
     }
 
     public void start() {
+    	
+    	logger.info("starting UserManagement");
 
         String configDir = Container.getInstance().getConfiguration().getConfigurationDirectory();
+        usersDao = new XMLUserObjectDAO(configDir + USER_CONFIG_FILE);
 
-        ILookup lookup = lookupContainer.getDaoLookup();
-        XMLUserObjectDAO usersDao = new XMLUserObjectDAO(configDir + USER_CONFIG_FILE);
-        lookup.addContentObject(User.class, usersDao);
 
         if (Agent.getRMProperty("server.userManagement.initialize").equals("true")) {
             createDefaultUserEntries();
         }
         
-        MyClass<AgentObject> myClass = new MyClass<AgentObject>();
-        myClass.remove(new User());
-        myClass.add(User.class);
+        
     }
     
-    private class MyClass<T> {
-        
-        public void remove(T object) {
-            
-        }
-        
-        public <M extends T> void add(Class<M> object) {
-            
-        }
-    }
+    
 
     public void stop() {
-        lookupContainer.getDaoLookup().removeEntry(User.class);
     }
 
     /**
@@ -62,14 +51,13 @@ public class UserManagementContainer extends AbstractContainer implements Starta
      */
     public void createDefaultUserEntries() {
         
-        XMLUserObjectDAO dao = (XMLUserObjectDAO) lookupContainer.getDaoLookup().getFirstContentObject(User.class);
-        logger.info("Creating default users");
+
 
         ArrayList<String> roleList = new ArrayList<String>();
         roleList.add("user");
-        dao.save(createUser(9999L, "heiko.kundlacz@kaiser-ag.ch", "Kundlacz", "heiko.kundlacz", "heiko", false, roleList));
+        usersDao.save(createUser(9999L, "heiko.kundlacz@kaiser-ag.ch", "Kundlacz", "heiko.kundlacz", "heiko", false, roleList));
         roleList.add("admin");
-        dao.save(createUser(1L, "admin@kaiser-ag.ch", "Administrator", "admin", "admin", false, roleList));
+        usersDao.save(createUser(1L, "admin@kaiser-ag.ch", "Administrator", "admin", "admin", false, roleList));
 
     }
 
@@ -83,6 +71,10 @@ public class UserManagementContainer extends AbstractContainer implements Starta
         user.setAdmin(isAdmin);
         user.setRoles(roles);
         return user;
+    }
+    
+    public IBasicDao<User> getUserObjectDao() {
+    	return usersDao;
     }
 
 }

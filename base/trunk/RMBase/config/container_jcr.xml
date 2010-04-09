@@ -9,6 +9,7 @@
     <component-implementation id="queryHandler" class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
     <component-implementation id="dao" class='net.form105.rm.base.container.JcrDaoContainer'/>
     <component-implementation id="persistence" class='net.form105.rm.base.container.JcrContainer'/>
+    <component-implementation id="userMgmt" class='net.form105.rm.base.container.UserManagementContainer'/>
     
 </container>
 

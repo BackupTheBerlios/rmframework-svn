@@ -13,23 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.query;
+package net.form105.rm.base;
 
-import net.form105.rm.base.model.Resource;
-
-import org.junit.Test;
-
-public class FindAllResourcesTest extends AbstractRemoteTest<Resource> {
+public class StaticAgentId {
 	
-	@Test
-	public void findAllResources() {
-		/*FindAllDaoQuery<Resource> query = new FindAllDaoQuery<Resource>(Resource.class);
-		IResult<Resource> userResult = doQuery(query);
-		Collection<Resource> resources = userResult.getResultList();
-		logger.info("Found resources, amount: "+resources.size());
-		for (Resource resource : resources) {
-			logger.info("Found resource: "+resource.getElementId());
-		}*/
-	}
+	public static final String USER_MANAGEMENT_ID = "userMgmt";
 
 }

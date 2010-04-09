@@ -3,12 +3,13 @@ package net.form105.rm.server.service;
 import java.util.List;
 
 import net.form105.rm.base.Agent;
+import net.form105.rm.base.StaticAgentId;
+import net.form105.rm.base.container.UserManagementContainer;
+import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
-import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.AbstractService;
 import net.form105.rm.base.service.IArgument;
-import net.form105.rm.server.i18n.BaseI18NMessage;
 
 public class UpdateUserService extends AbstractService {
 
@@ -29,10 +30,14 @@ public class UpdateUserService extends AbstractService {
 
 	@Override
 	public void execute() throws Exception {
-		XMLUserObjectDAO dao = (XMLUserObjectDAO) Agent.getDaoLookup().getFirstContentObject(User.class);
+		
+		UserManagementContainer userContainer = (UserManagementContainer) Agent.getContainer(StaticAgentId.USER_MANAGEMENT_ID);
+		//XMLUserObjectDAO dao = (XMLUserObjectDAO) Agent.getDaoLookup().getFirstContentObject(User.class);
+		
+		IBasicDao<User> userDao = userContainer.getUserObjectDao();
 		
 		// check if user exists already
-		User existingUser = dao.findById(argument.id);
+		User existingUser = userDao.findById(argument.id);
 		
 		User user = new User();
 		user.setEMail(argument.email);
@@ -42,7 +47,7 @@ public class UpdateUserService extends AbstractService {
 		user.setPassword(argument.password);
 		user.setAdmin(argument.isAdmin);
 		user.setRoles(argument.roles);
-		dao.saveOrUpdate(user);
+		userDao.saveOrUpdate(user);
 	}
 	
 	public ServiceArgument getArgument() {

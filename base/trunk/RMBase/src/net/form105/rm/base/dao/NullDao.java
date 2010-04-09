@@ -17,12 +17,11 @@ package net.form105.rm.base.dao;
 
 import java.util.List;
 
-import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
 import net.form105.rm.base.model.AgentObject;
 
 import com.db4o.foundation.NotSupportedException;
 
-public class NullDao<T extends AgentObject> extends AbstractAgentObjectDao<T> {
+public class NullDao<T extends AgentObject> implements IBasicDao<T> {
 
     @Override
     public void delete(T object) {

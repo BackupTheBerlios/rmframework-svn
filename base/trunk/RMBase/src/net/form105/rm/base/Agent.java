@@ -48,6 +48,22 @@ public class Agent {
             return container;
         }
     }
+    
+    /**
+     * Getting an container instance registered at the pico container by an id
+     * @param id
+     * @return
+     */
+    public static Object getContainer(String id) {
+        Object container = Container.getContainer().getComponent(id);
+        if (container == null) {
+            System.err.println("Container id: " + id
+                    + " doesn't exist as a registered container. Server hasn't been started?");
+            return null;
+        } else {
+            return container;
+        }
+    }
 
     /**
      * Getting the dao lookup

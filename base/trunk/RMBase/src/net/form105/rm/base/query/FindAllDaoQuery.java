@@ -2,9 +2,7 @@ package net.form105.rm.base.query;
 
 import java.util.List;
 
-import net.form105.rm.base.Agent;
 import net.form105.rm.base.dao.IBasicDao;
-import net.form105.rm.base.lookup.ILookup;
 import net.form105.rm.base.model.AgentObject;
 
 /**
@@ -17,19 +15,16 @@ import net.form105.rm.base.model.AgentObject;
 public class FindAllDaoQuery<T extends AgentObject> extends AbstractSimpleQuery<T> {
 
 	private static final long serialVersionUID = 1L;
-	private Class<?> daoClass;
+	private IBasicDao<T> dao;
 	
 	
-	public FindAllDaoQuery(Class<?> daoClass) {
-		this.daoClass = daoClass;
+	public FindAllDaoQuery(IBasicDao<T> dao) {
+		this.dao = dao;
 	}
 	
 	@Override
 	public List<T> execute() {
-		ILookup lookup = Agent.getDaoLookup();
-		IBasicDao<T> dao = (IBasicDao<T>) lookup.getFirstContentObject(daoClass);
-		List<T> results = dao.findAll();
-		return results;
+		return dao.findAll();
 	}
 
 }
