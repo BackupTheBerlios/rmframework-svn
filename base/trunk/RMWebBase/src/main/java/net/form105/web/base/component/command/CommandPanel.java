@@ -20,7 +20,6 @@ import java.util.List;
 
 import net.form105.web.base.action.AbstractFormAction;
 import net.form105.web.base.action.IAjaxLinkToPanelAction;
-import net.form105.web.base.action.IModelAction;
 import net.form105.web.base.action.IPageAction;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.EventType;
@@ -56,6 +55,7 @@ public class CommandPanel<T> extends Panel {
 						
 						public void onSubmit() {
 							setResponsePage(this.getPage());
+							
 						}
 					};
 					

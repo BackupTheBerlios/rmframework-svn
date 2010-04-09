@@ -52,8 +52,8 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 		
 		ArrayList<IPageAction> commandList = new ArrayList<IPageAction>();
 		
-		commandList.add(new RemoveUserAction(dataTablePanel.getActionForm(), getString("label.action.remove")));
-		commandList.add(new ContributionAddUserAction(getString("label.action.add")));
+		commandList.add(new RemoveUserAction(dataTablePanel, dataTablePanel.getActionForm(), getString("label.action.remove")));
+		commandList.add(new ContributionAddUserAction(dataTablePanel, getString("label.action.add")));
 		CommandPanel<User> commandPanel = new CommandPanel<User>("panel.command", commandList);
 		add(commandPanel);
 		
@@ -68,9 +68,9 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 
 	
 	
-	private List<IColumn> createColumns() {
-		List<IColumn> list = new ArrayList<IColumn>();
-		list.add(new PropertyColumn(new Model("Id"), "id"));
+	private List<IColumn<User>> createColumns() {
+		List<IColumn<User>> list = new ArrayList<IColumn<User>>();
+		list.add(new PropertyColumn<User>(new Model("Id"), "id"));
 		list.add(new TextFilteredPropertyColumn(new Model("EMail"), UserDataProvider.SortColumnId.EMAIL.name(), "eMail"));
 		list.add(new PropertyColumn(new Model("Shortname"), UserDataProvider.SortColumnId.SHORTNAME.name(),	"shortName"));
 		list.add(new PropertyColumn(new Model("Sir Name"), UserDataProvider.SortColumnId.SIRNAME.name(), "sirName"));

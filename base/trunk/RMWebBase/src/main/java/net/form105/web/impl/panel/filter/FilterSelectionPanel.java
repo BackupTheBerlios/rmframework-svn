@@ -64,7 +64,7 @@ public class FilterSelectionPanel<I> extends Panel {
 		add(form);
 		
 		// Creating action and Link
-		final ResetFilterAction action = new ResetFilterAction(getString("label.link.resetFilter"), page, filterSequence.getClass());
+		final ResetFilterAction action = new ResetFilterAction(this, getString("label.link.resetFilter"), page, filterSequence.getClass());
 		Link resetFilterLink = new Link("iconLink") {
 			private static final long serialVersionUID = 1L;
 

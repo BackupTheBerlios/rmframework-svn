@@ -66,8 +66,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 		return filteredInput.subList(first, toIndex).listIterator();
 	}
 
-	@Override
-	public IModel model(Object object) {
+	public IModel<User> model(Object object) {
 		SelectionModel selectionModel = new SelectionModel((Serializable) object);
 		return selectionModel;
 	}
@@ -165,8 +164,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 		
 		public SelectionModel(Serializable object) {
 			this.object = object;
-		}
-		
+		}		
 
 		public boolean isSelected() {
 			return selected;
@@ -176,12 +174,10 @@ public class UserDataProvider extends FilterDataProvider<User> {
 			this.selected = selected;
 		}
 
-
 		@Override
 		public Object getObject() {
 			return object;
 		}
-
 
 		@Override
 		public void setObject(Object object) {
@@ -189,10 +185,8 @@ public class UserDataProvider extends FilterDataProvider<User> {
 			
 		}
 
-
 		@Override
 		public void detach() {
-		}
-		
+		}		
 	}
 }

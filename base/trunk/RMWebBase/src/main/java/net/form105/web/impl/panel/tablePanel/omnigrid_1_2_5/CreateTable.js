@@ -1,21 +1,17 @@
-var cmu = [
-            {
-               header: "ID",
-               dataIndex: 'help_category_id',
-               dataType:'number'
-            },
-            {
-               header: "Parent ID",
-               dataIndex: 'parent_category_id',
-               dataType:'number',
-               width:50
-            },
-            {
-               header: "Name",
-               dataIndex: 'name',
-               dataType:'string',
-               width:200
-            }];	
+function onGridSelect(evt)
+    {
+         var str = 'row: '+evt.row+' indices: '+evt.indices;
+         str += ' id: '+evt.target.getDataByRow(evt.row).id;
+         
+         alert( str );
+    }
+	
+    function gridButtonClick(button, grid)
+    {
+         alert(button);
+    }
+	
+    
     
     window.addEvent("domready", function(){
 	                
@@ -27,7 +23,7 @@ var cmu = [
 	          {separator: true},
 	          {name: 'Duplicate', bclass: 'duplicate', onclick : gridButtonClick}
 	        ],
-	        url:"data.php",
+	        url:"www.omnisdata.com/omnigrid/data.php",
 	        perPageOptions: [10,20,50,100,200],
 	        perPage:10,
 	        page:1,
@@ -47,7 +43,7 @@ var cmu = [
 	        autoSectionToggle:false,
 	        */
 				
-	        width:600,
+	        width:500,
 	        height: 400
 	    });
 	    

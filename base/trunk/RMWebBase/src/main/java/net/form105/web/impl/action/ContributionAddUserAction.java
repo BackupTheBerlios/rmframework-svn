@@ -3,12 +3,15 @@ package net.form105.web.impl.action;
 import net.form105.rm.base.service.IResult;
 import net.form105.web.base.action.IAjaxLinkToPanelAction;
 
-public class ContributionAddUserAction implements IAjaxLinkToPanelAction {
+import org.apache.wicket.MarkupContainer;
+
+public class ContributionAddUserAction extends AbstractAction implements IAjaxLinkToPanelAction {
 	
 	private static final long serialVersionUID = 1L;
 	private String name;
 	
-	public ContributionAddUserAction(String name) {
+	public ContributionAddUserAction(MarkupContainer markup, String name) {
+		super(markup);
 		this.name = name;
 	}
 

@@ -5,14 +5,15 @@ import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.LocalServiceHandler;
 import net.form105.rm.server.service.DeleteUserService;
 import net.form105.web.base.action.AbstractFormAction;
+import net.form105.web.base.component.table.DataTablePanel;
 
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.model.IModel;
 
 public class RemoveUserAction extends AbstractFormAction<User> {
 	
-	public RemoveUserAction(Form form, String name) {
-		super(form, name);
+	public RemoveUserAction(MarkupContainer markup, Form form, String name) {
+		super(markup, form, name);
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -35,8 +36,12 @@ public class RemoveUserAction extends AbstractFormAction<User> {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public IResult doAction() {
+		DataTablePanel<User> tablePanel = (DataTablePanel<User>) getMarkupContainer();
+		tablePanel.g
+		
 		LocalServiceHandler<User> handler = new LocalServiceHandler<User>();
 		DeleteUserService service = new DeleteUserService();
 		DeleteUserService.ServiceArgument arg = service.getArgument();

@@ -134,6 +134,11 @@
 			<artifactId>jetty-servlet</artifactId>
 			<version>${version.jetty}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.5.0</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<version.wicket>1.4.7</version.wicket>

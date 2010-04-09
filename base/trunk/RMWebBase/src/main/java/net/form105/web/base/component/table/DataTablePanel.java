@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.web.base.action.ActionForm;
+import net.form105.web.base.model.provider.AbstractDataProvider;
 import net.form105.web.base.page.BasePage;
 import net.form105.web.base.type.EventType;
 
@@ -13,7 +14,6 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.extensions.markup.html.repeater.data.table.ISortableDataProvider;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.resources.StyleSheetReference;
 import org.apache.wicket.model.IModel;
@@ -24,9 +24,9 @@ public class DataTablePanel<T> extends Panel {
 	private static final long serialVersionUID = 1L;
 	public static Logger logger = Logger.getLogger(DataTablePanel.class);
 
-	private ISortableDataProvider provider;
+	private AbstractDataProvider<T> provider;
 	private String tableId;
-	private List<IColumn> columns = new ArrayList<IColumn>();
+	private List<IColumn<T>> columns = new ArrayList<IColumn<T>>();
 	private int rowsPerPage;
 
 	private boolean selectable = false;
@@ -43,8 +43,8 @@ public class DataTablePanel<T> extends Panel {
 	 * @param columns The columns of the table provided by a list
 	 * @param rowsPerPage Amount of rows shown per page
 	 */
-	public DataTablePanel(String panelId, String tableId, ISortableDataProvider provider, int rowsPerPage,
-			List<IColumn> columns, boolean selectable) {
+	public DataTablePanel(String panelId, String tableId, AbstractDataProvider<T> provider, int rowsPerPage,
+			List<IColumn<T>> columns, boolean selectable) {
 		super(panelId);
 
 		this.provider = provider;
@@ -101,7 +101,7 @@ public class DataTablePanel<T> extends Panel {
 		return dataTable;
 	}
 
-	private void addCheckBoxColumn(List<IColumn> columns) {
+	private void addCheckBoxColumn(List<IColumn<T>> columns) {
 		if (!selectable) {
 			return;
 		}
@@ -120,6 +120,10 @@ public class DataTablePanel<T> extends Panel {
 
 	public ActionForm getActionForm() {
 		return form;
+	}
+	
+	public AbstractDataProvider getDataProvider() {
+		return provider;
 	}
 
 }

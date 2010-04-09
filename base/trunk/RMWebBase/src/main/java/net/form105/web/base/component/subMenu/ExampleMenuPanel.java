@@ -1,6 +1,7 @@
 package net.form105.web.base.component.subMenu;
 
 import net.form105.web.base.HomePage;
+import net.form105.web.impl.page.TablePage;
 import net.form105.web.impl.page.userManagement.UsersPage;
 
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -32,6 +33,8 @@ public class ExampleMenuPanel extends SubMenuPanel {
 		final SubMenuPanel.MenuItem mi2 = new SubMenuPanel.MenuItem("Home");
 		addMenu(mi2);
 		
+		final SubMenuPanel.MenuItem mi5 = new SubMenuPanel.MenuItem(new BookmarkablePageLink(SubMenuPanel.LINK_ID, TablePage.class), "Table Page Demo");
+		addMenu(mi5);
 		
 
 		final SubMenuPanel.MenuItem mi2_1 = new SubMenuPanel.MenuItem("Home");

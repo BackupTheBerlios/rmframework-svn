@@ -5,8 +5,8 @@ import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
 import net.form105.web.base.ApplicationSession;
 import net.form105.web.base.action.DefaultActionResult;
-import net.form105.web.base.action.IPageAction;
 
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.Page;
 
 /**
@@ -14,7 +14,7 @@ import org.apache.wicket.Page;
  * @author heiko
  *
  */
-public class ResetFilterAction implements IPageAction {
+public class ResetFilterAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
 	private final String id = "RESET_FILTER_ACTION";
@@ -22,7 +22,8 @@ public class ResetFilterAction implements IPageAction {
 	private Page page;
 	private Class<?> filterClazz;
 
-	public ResetFilterAction(String name, Page page, Class filterClazz) {
+	public ResetFilterAction(MarkupContainer markup, String name, Page page, Class filterClazz) {
+		super(markup);
 		this.name = name;
 		this.page = page;
 		this.filterClazz = filterClazz;

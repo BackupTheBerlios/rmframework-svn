@@ -1,14 +1,12 @@
 package net.form105.web.base.model.provider;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
-import org.apache.wicket.model.IModel;
 
 import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.filter.AbstractUIFilter;
+
+import org.apache.wicket.model.IModel;
 
 /**
  * The FilterDataProvider gives the feasibility to filter entities from a given input. This class
@@ -20,7 +18,7 @@ import net.form105.web.base.model.filter.AbstractUIFilter;
  *
  * @param <T>
  */
-public abstract class FilterDataProvider<T> extends SortableDataProvider {
+public abstract class FilterDataProvider<T> extends AbstractDataProvider<T> {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -72,11 +70,10 @@ public abstract class FilterDataProvider<T> extends SortableDataProvider {
 		return filteredList;
 	}
 
-	@Override
-	public abstract Iterator iterator(int first, int count);
+
 
 	@Override
-	public abstract IModel model(Object object);
+	public abstract IModel<T> model(Object object);
 
 	@Override
 	public abstract int size();
