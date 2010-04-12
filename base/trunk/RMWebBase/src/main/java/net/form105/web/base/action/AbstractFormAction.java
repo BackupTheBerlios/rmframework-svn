@@ -16,11 +16,11 @@ import org.apache.wicket.markup.html.form.Form;
 public abstract class AbstractFormAction<T> extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
-	private Form form;
+	private Form<T> form;
 	private String name;
 	private T context;
 	
-	public AbstractFormAction(MarkupContainer markupContainer, Form form, String name) {
+	public AbstractFormAction(MarkupContainer markupContainer, Form<T> form, String name) {
 		super(markupContainer);
 		this.form = form;
 		this.name = name;
@@ -42,7 +42,7 @@ public abstract class AbstractFormAction<T> extends AbstractAction {
 	@Override
 	public abstract String getId();
 	
-	public Form getForm() {
+	public Form<T> getForm() {
 		return form;
 	}
 	

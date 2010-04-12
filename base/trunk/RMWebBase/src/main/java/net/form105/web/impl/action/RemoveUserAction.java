@@ -40,7 +40,7 @@ public class RemoveUserAction extends AbstractFormAction<User> {
 	@Override
 	public IResult doAction() {
 		DataTablePanel<User> tablePanel = (DataTablePanel<User>) getMarkupContainer();
-		tablePanel.g
+		//tablePanel.g
 		
 		LocalServiceHandler<User> handler = new LocalServiceHandler<User>();
 		DeleteUserService service = new DeleteUserService();

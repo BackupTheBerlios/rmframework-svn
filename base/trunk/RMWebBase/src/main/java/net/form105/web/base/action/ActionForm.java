@@ -2,9 +2,9 @@ package net.form105.web.base.action;
 
 import org.apache.wicket.markup.html.form.Form;
 
-public class ActionForm<T> extends Form {
+public class ActionForm<T> extends Form<T> {
 	
-	private AbstractFormAction action;
+	private AbstractFormAction<T> action;
 
 	private static final long serialVersionUID = 1L;
 	
@@ -12,11 +12,11 @@ public class ActionForm<T> extends Form {
 		super(id);
 	}
 	
-	public void setAction(AbstractFormAction action) {
+	public void setAction(AbstractFormAction<T> action) {
 		this.action = action;
 	}
 	
-	public AbstractFormAction getAction() {
+	public AbstractFormAction<T> getAction() {
 		return action;
 	}
 	
