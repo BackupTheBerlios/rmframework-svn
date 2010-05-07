@@ -15,7 +15,9 @@
  */
 package net.form105.rm.base.container;
 
-import net.form105.rm.base.dao.resource.ResourceMasterDao;
+import net.form105.rm.base.dao.resource.IDao;
+import net.form105.rm.base.dao.resource.ResourceJcrDao;
+import net.form105.rm.base.model.Resource;
 
 /**
  * Creates the ResourceMasterDao and registers the sub daos to the master
@@ -25,7 +27,7 @@ import net.form105.rm.base.dao.resource.ResourceMasterDao;
 public class JcrDaoContainer extends AbstractContainer {
 	
 	private JcrContainer jcrContainer;
-	private ResourceMasterDao resourceMasterDao;
+	private ResourceJcrDao resourceDao;
 	
 	public JcrDaoContainer(JcrContainer jcrContainer) {
 		this.jcrContainer = jcrContainer;
@@ -33,18 +35,17 @@ public class JcrDaoContainer extends AbstractContainer {
 
 	@Override
 	public void start() {
-		resourceMasterDao = new ResourceMasterDao(jcrContainer.getDB());
-
+		resourceDao = new ResourceJcrDao(jcrContainer.getDB());
 	}
 
 	@Override
 	public void stop() {
-		// TODO Auto-generated method stub
+		
 
 	}
 	
-	public  ResourceMasterDao getResourceMasterDao() {
-		return resourceMasterDao;
+	public  IDao<Resource> getResourceDao() {
+		return resourceDao;
 	}
 
 }

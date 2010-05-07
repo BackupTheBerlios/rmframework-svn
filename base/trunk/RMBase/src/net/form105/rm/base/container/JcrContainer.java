@@ -34,7 +34,6 @@ public class JcrContainer extends AbstractContainer implements Startable {
 
 	@Override
 	public void stop() {
-		
 	}
 	
 	public Repository getDB() {

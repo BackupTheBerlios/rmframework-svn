@@ -47,6 +47,7 @@ public class ResourceMasterDao extends AbstractMasterDao<Resource> implements ID
 
 	@Override
 	public void delete(Resource object) {
+		
 		// TODO Auto-generated method stub
 		
 	}
@@ -113,9 +114,5 @@ public class ResourceMasterDao extends AbstractMasterDao<Resource> implements ID
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
 
 }

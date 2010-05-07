@@ -1,6 +1,9 @@
 package net.form105.rm.server.service;
 
 import net.form105.rm.base.Agent;
+import net.form105.rm.base.Container;
+import net.form105.rm.base.container.UserManagementContainer;
+import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.model.user.User;
@@ -20,7 +23,9 @@ public class CreateUserService extends AbstractService {
 
 	@Override
 	public void execute() throws Exception {
-		XMLUserObjectDAO dao = (XMLUserObjectDAO) Agent.getDaoLookup().getFirstContentObject(User.class);
+		
+		UserManagementContainer userContainer = (UserManagementContainer) Container.getContainer().getComponent("userMgmt");
+		IBasicDao<User> dao = userContainer.getUserObjectDao();
 
 		// check if user exists already
 		User existingUser = dao.findById(argument.user.getId());
