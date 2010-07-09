@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+img {
+	border: 0;
+}
+
+body {
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+body,input,select,textarea {
+	font-family: Arial, helvetica, sans-serif;
+	font-size: 11px;
+}
+
