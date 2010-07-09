@@ -1,0 +1,16 @@
+/* import core styles | Basis-Stylesheets */
+
+@import url(../yaml/core/base.css);
+
+/* import screen layout | Screen-Layout einbinden */
+@import url(../yaml/navigation/nav_shinybuttons.css);
+@import url(screen/basemod.css);
+@import url(screen/content.css);
+@import url(screen/custom_wicket.css);
+
+@import url(screen/commandHeader.css);
+@import url(screen/icon.css);
+@import url(screen/subMenuPanel.css);
+
+/* import print layout | Druck-Layout einbinden */
+@import url(../yaml/print/print_003_draft.css);

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+
+	.iconPanel {
+		text-align: right;
+	}
+	
+	.iconLink {
+		padding-left: 20px;
+	}
+	
+	.commandHeader {
+		height: 1.6em;
+	}
+	
+	#commandPanel {
+		float: left;
+	}
+	
+	#commandPanel li {
+		display: inline;
+		margin-left: 0px;
+		text-decoration: none;
+		margin-right: 1.2em;
+	}

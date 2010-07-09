@@ -1,0 +1,99 @@
+@charset "UTF-8";
+/**
+ * "Yet Another Multicolumn Layout" - (X)HTML/CSS Framework
+ *
+ * (en) Template for designing a screen layout
+ * (de) Gestaltungsvorlage für die Erstellung eines Screenlayouts
+ *
+ * @copyright       Copyright 2005-2008, Dirk Jesse
+ * @license         CC-A 2.0 (http://creativecommons.org/licenses/by/2.0/),
+ *                  YAML-C (http://www.yaml.de/en/license/license-conditions.html)
+ * @link            http://www.yaml.de
+ * @package         yaml
+ * @version         3.0.6
+ * @revision        $Revision: 202 $
+ * @lastmodified    $Date: 2008-06-07 14:29:18 +0200 (Sa, 07 Jun 2008) $
+ */
+
+@media screen, projection
+{
+ /*------------------------------------------------------------------------------------------------------*/
+
+ /**
+  * Design of the Basic Layout | Gestaltung des YAML Basis-Layouts
+  *
+  * @section layout-basics
+  */
+
+  /* Page margins and background | Randbereiche & Seitenhintergrund */
+  body {  }
+
+  /* Layout: Width, Background, Border | Layout: Breite, Hintergrund, Rahmen */
+  #page_margins {  }
+  #page{  }
+
+  /* Design of the Main Layout Elements | Gestaltung der Hauptelemente des Layouts */
+  #header {  
+  	border-top: 2px solid #ff8a00;
+	background-color: #eee;
+	width: 100%;
+	height: 50px;
+	}
+  
+  #topnav {  
+    width: 100%;
+	text-align: right;
+	line-height: 2em;
+	}
+	
+  #nav {
+    background-color: #CDE2FF;
+  }
+
+  #main { margin: 10px; }
+
+  #footer {  }
+
+ /*------------------------------------------------------------------------------------------------------*/
+
+ /**
+  * Formatting of the Content Area | Formatierung der Inhaltsbereichs
+  *
+  * @section layout-main
+  */
+
+  #col1 {  }
+  #col1_content { margin-top: 30px; }
+
+
+  #col2 { 
+  	width: 330px;
+   }
+  #col2_content { margin-top: 30px; }
+
+  #col3 { 
+  	margin-left: 210px;
+  	margin-right: 340px;
+   }
+   
+    /** background color for context panel
+      #col3 { 
+  	  margin-left: 210px;
+  	  margin-right: 0px;
+	  border-right: 340px solid #CDE2FF;
+    }*/
+   
+   
+  #col3_content { border: 1px solid #ddd; padding: 10px;}
+
+
+ /*------------------------------------------------------------------------------------------------------*/
+
+ /**
+  * Design of Additional Layout Elements | Gestaltung weiterer Layoutelemente
+  *
+  * @section layout-misc
+  */
+
+
+}
