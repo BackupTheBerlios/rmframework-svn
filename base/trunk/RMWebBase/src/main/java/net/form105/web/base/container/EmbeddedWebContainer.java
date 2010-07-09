@@ -1,19 +1,19 @@
 package net.form105.web.base.container;
 
-import java.io.File;
 import java.io.IOException;
 
 import net.form105.rm.base.container.AbstractContainer;
+import net.form105.web.base.jetty.EomMessageServlet;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.protocol.http.WicketServlet;
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.resource.ResourceCollection;
-import org.eclipse.jetty.webapp.WebAppContext;
 
 
 public class EmbeddedWebContainer extends AbstractContainer {
@@ -39,26 +39,31 @@ public class EmbeddedWebContainer extends AbstractContainer {
 		ContextHandlerCollection contexts = new ContextHandlerCollection();
         server.setHandler(contexts);
         
-        ServletContextHandler root = new ServletContextHandler(contexts,"/",ServletContextHandler.SESSIONS);
-        root.setResourceBase("./resources");
-        
-        
-		
+        ServletContextHandler context0 = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context0.setContextPath("/");
+
 		// Wicket
 		ServletHolder servletHolder = new ServletHolder(new WicketServlet());
 		servletHolder.setInitParameter("applicationClassName", "net.form105.web.base.Application");
 		servletHolder.setInitOrder(1);
 		
-		//webContext.addServlet(servletHolder, "/");
+		context0.addServlet(servletHolder,"/*");
 		
-		root.addServlet(servletHolder,"/");
+		
+		ServletContextHandler contextInbound = new ServletContextHandler(ServletContextHandler.SESSIONS);
+		contextInbound.setContextPath("/inbound");
+		contextInbound.addServlet(new ServletHolder(new EomMessageServlet()), "/");
+		
+		contexts.setHandlers(new Handler[] {context0, contextInbound});
 		
 		try {
 			
-			root.newResource("./webapp");
 			
-			ResourceCollection collection = new ResourceCollection(new Resource[] {Resource.newResource("./resources")});
-			//root.setBaseResource(collection);
+			ResourceCollection collection = new ResourceCollection(new Resource[] {Resource.newResource("./webapp")});
+			context0.setBaseResource(collection);
+			//root.newResource("file://./webapp");
+	
+			
 			
 				
 		} catch (IOException e1) {
