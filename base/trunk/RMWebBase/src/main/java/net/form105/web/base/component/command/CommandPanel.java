@@ -16,9 +16,11 @@
 
 package net.form105.web.base.component.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.web.base.action.AbstractFormAction;
+import net.form105.web.base.action.IAjaxLinkToModalWindowAction;
 import net.form105.web.base.action.IAjaxLinkToPanelAction;
 import net.form105.web.base.action.IPageAction;
 import net.form105.web.base.page.BasePage;
@@ -34,14 +36,39 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 
+/**
+ * The command panel has a bunch of links which executes actions. The actions
+ * can be added by the addAction() or provided by a list of actions in the
+ * constructor. Following types of links are implemented:
+ * <ul>
+ * <li>FormAction</li>
+ * <li>AjaxAction</li>
+ * </ul>
+ * 
+ * @author heikok
+ * 
+ * @param <T>
+ */
 public class CommandPanel<T> extends Panel {
-	
+
 	private static final long serialVersionUID = 1L;
+
 	public static Logger logger = Logger.getLogger(CommandPanel.class);
-	
+
+	private List<IPageAction> linkList;
+
 	public CommandPanel(String id, List<IPageAction> linkList) {
 		super(id);
-		
+		this.linkList = linkList;
+		add(createListView());
+	}
+
+	public CommandPanel(String id) {
+		this(id, new ArrayList<IPageAction>());
+	}
+
+	@SuppressWarnings("unchecked")
+	private ListView createListView() {
 		ListView lView = new ListView("commandLabels", linkList) {
 			private static final long serialVersionUID = 1L;
 
@@ -52,18 +79,18 @@ public class CommandPanel<T> extends Panel {
 				if (action instanceof AbstractFormAction) {
 					AbstractFormAction<T> formAction = (AbstractFormAction<T>) action;
 					submitLink = new SubmitLink("commandLink", formAction.getForm()) {
-						
+
+						private static final long serialVersionUID = 1L;
+
 						public void onSubmit() {
 							setResponsePage(this.getPage());
-							
 						}
 					};
-					
-					
+
 					Label label = new Label("commandLabel", formAction.getName());
 					submitLink.add(label);
 					item.add(submitLink);
-					
+
 				} else if (action instanceof IAjaxLinkToPanelAction) {
 					IAjaxLinkToPanelAction ajaxLinkAction = (IAjaxLinkToPanelAction) action;
 					AjaxLink ajaxLink = new AjaxLink("commandLink") {
@@ -74,17 +101,36 @@ public class CommandPanel<T> extends Panel {
 						public void onClick(AjaxRequestTarget target) {
 							Page page = getPage();
 							((BasePage) page).ajaxRequestReceived(target, null, EventType.ADD_EVENT);
-							
+
 						}
-						
+
 					};
 					Label label = new Label("commandLabel", ajaxLinkAction.getName());
 					ajaxLink.add(label);
 					item.add(ajaxLink);
-					
+
+				} else if (action instanceof IAjaxLinkToModalWindowAction) {
+					IAjaxLinkToModalWindowAction ajaxModalAction = (IAjaxLinkToModalWindowAction) action;
+					AjaxLink ajaxLink = new AjaxLink("commandLink") {
+
+						private static final long serialVersionUID = 1L;
+
+						@Override
+						public void onClick(AjaxRequestTarget target) {
+							Page page = getPage();
+							((BasePage) page).ajaxRequestReceived(target, null, EventType.ADD_MODAL);
+						}
+					};
+					Label label = new Label("commandLabel", ajaxModalAction.getName());
+					ajaxLink.add(label);
+					item.add(ajaxLink);
 				}
 			}
 		};
-		add(lView);	
+		return lView;
+	}
+
+	public void addAction(IPageAction action) {
+		this.linkList.add(action);
 	}
 }

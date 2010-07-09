@@ -64,7 +64,6 @@ public class DataTablePanel<T> extends Panel {
 
 			protected void onSubmit() {
 				if (getAction() != null) {
-					logger.info("action not null: "+getAction().toString());
 					for (T object : selectedList) {
 						getAction().setContext(object);
 						getAction().doAction();

@@ -32,7 +32,6 @@ public class UserDataProvider extends FilterDataProvider<User> {
 	public static Logger logger = Logger.getLogger(UserDataProvider.class);
 	public static String myString;
 	
-	private List<User> input;
 	private List<User> filteredInput;
 
 	public enum SortColumnId {
@@ -42,7 +41,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 
 	public UserDataProvider(AbstractFilterSequence<User> filterSequence) {
 		super(filterSequence);
-		input = createInput();
+		setInput(createInput());
 		SortParam sortParam = new SortParam(SortColumnId.ID.name(), true);
 		sort(sortParam);
 		
@@ -50,6 +49,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 
 	@Override
 	public Iterator<User> iterator(int first, int count) {
+		logger.info("iterator of userdataprovider executed");
 		filteredInput = getFilteredInput();
 
 		SortParam sortParam = getSort();
@@ -100,7 +100,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 					return sortParam.isAscending() ? result : -result;
 				}
 			};
-			Collections.sort(input, comparator);
+			Collections.sort(getInput(), comparator);
 			break;
 
 		case ID:
@@ -111,7 +111,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 					return sortParam.isAscending() ? result : -result;
 				}
 			};
-			Collections.sort(input, comparator);
+			Collections.sort(getInput(), comparator);
 			break;
 
 		case SHORTNAME:
@@ -122,7 +122,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 					return sortParam.isAscending() ? result : -result;
 				}
 			};
-			Collections.sort(input, comparator);
+			Collections.sort(getInput(), comparator);
 			break;
 
 		case SIRNAME:
@@ -133,7 +133,7 @@ public class UserDataProvider extends FilterDataProvider<User> {
 					return sortParam.isAscending() ? result : -result;
 				}
 			};
-			Collections.sort(input, comparator);
+			Collections.sort(getInput(), comparator);
 			break;
 
 		default:
@@ -141,9 +141,6 @@ public class UserDataProvider extends FilterDataProvider<User> {
 		}
 	}
 
-	public List<User> getInput() {
-		return input;
-	}
 	
 	private List<User> createInput() {
 		UserManagementContainer userContainer = (UserManagementContainer) Container.getContainer().getComponent("userMgmt");
@@ -155,6 +152,8 @@ public class UserDataProvider extends FilterDataProvider<User> {
 		List<User> users = result.getResultList();
 		return users;
 	}
+	
+	
 	
 	public class SelectionModel implements IModel, Serializable {
 

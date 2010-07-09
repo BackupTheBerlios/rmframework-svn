@@ -44,7 +44,7 @@ public abstract class FilterDataProvider<T> extends AbstractDataProvider<T> {
 		this.filters = filters;
 	}
 
-	public abstract List<T> getInput();
+
 	
 	public List<T> getFilteredInput() {
 		

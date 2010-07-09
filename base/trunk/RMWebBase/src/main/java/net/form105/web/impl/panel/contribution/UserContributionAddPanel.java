@@ -6,8 +6,6 @@ import net.form105.web.base.type.EventType;
 import net.form105.web.impl.form.AddUserForm;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
 
 public class UserContributionAddPanel extends ContributionPanel {
 	
@@ -17,19 +15,14 @@ public class UserContributionAddPanel extends ContributionPanel {
 	public UserContributionAddPanel(String id, EventType eventType) {
 		super(id, eventType);
 		
-		IModel loadableModel = new LoadableDetachableModel() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected Object load() {
-				return new User();
-			}
-		};
-		
-		AddUserForm form = new AddUserForm("userContributionAddForm", loadableModel, eventType);
+		AddUserForm form = new AddUserForm("userContributionAddForm", getLoadableModel(), eventType);
 		form.add(createButton("submitButton", "button.create"));
 		add(form);
 		
+	}
+	
+	protected Object getLoadableObject() {
+		return new User();
 	}
 
 }

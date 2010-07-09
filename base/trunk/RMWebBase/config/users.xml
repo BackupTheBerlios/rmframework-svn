@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_17" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_20" class="java.beans.XMLDecoder"> 
  <object class="net.form105.rm.base.model.user.UserList"> 
   <void property="users"> 
    <void method="put"> 
@@ -2435,6 +2435,9 @@
      <void property="EMail"> 
       <string>user88@kaiser-ag.ch</string> 
      </void> 
+     <void property="firstName"> 
+      <string>ftz</string> 
+     </void> 
      <void property="id"> 
       <long>100088</long> 
      </void> 
@@ -2442,12 +2445,10 @@
       <string>1234</string> 
      </void> 
      <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
+      <null/> 
      </void> 
      <void property="sirName"> 
-      <string>sirname88</string> 
+      <string>sirname888888</string> 
      </void> 
     </object> 
    </void> 
@@ -2611,6 +2612,9 @@
      <void property="EMail"> 
       <string>user80@kaiser-ag.ch</string> 
      </void> 
+     <void property="firstName"> 
+      <string>sysdf</string> 
+     </void> 
      <void property="id"> 
       <long>100080</long> 
      </void> 
@@ -2618,9 +2622,7 @@
       <string>1234</string> 
      </void> 
      <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
+      <null/> 
      </void> 
      <void property="sirName"> 
       <string>sirname80</string> 
@@ -2677,6 +2679,9 @@
      <void property="EMail"> 
       <string>user85@kaiser-ag.ch</string> 
      </void> 
+     <void property="firstName"> 
+      <string>sdfs</string> 
+     </void> 
      <void property="id"> 
       <long>100085</long> 
      </void> 
@@ -2684,12 +2689,10 @@
       <string>1234</string> 
      </void> 
      <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
+      <null/> 
      </void> 
      <void property="sirName"> 
-      <string>sirname85</string> 
+      <string>sirname86</string> 
      </void> 
     </object> 
    </void> 
@@ -2716,116 +2719,6 @@
     </object> 
    </void> 
    <void method="put"> 
-    <long>100074</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user74@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100074</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname74</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100075</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user75@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100075</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname75</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100072</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user72@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100072</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname72</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100073</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user73@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100073</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname73</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100078</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user78@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100078</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname78</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
     <long>100079</long> 
     <object class="net.form105.rm.base.model.user.User"> 
      <void property="EMail"> 
@@ -2848,508 +2741,22 @@
     </object> 
    </void> 
    <void method="put"> 
-    <long>100076</long> 
+    <long>1271324925392</long> 
     <object class="net.form105.rm.base.model.user.User"> 
      <void property="EMail"> 
-      <string>user76@kaiser-ag.ch</string> 
+      <string>h@k.de</string> 
+     </void> 
+     <void property="firstName"> 
+      <string>asdfadsf</string> 
      </void> 
      <void property="id"> 
-      <long>100076</long> 
+      <long>1271324925392</long> 
      </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
+     <void property="shortName"> 
+      <string>asdfasdf</string> 
      </void> 
      <void property="sirName"> 
-      <string>sirname76</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100077</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user77@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100077</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname77</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100066</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user66@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100066</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname66</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100067</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user67@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100067</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname67</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100064</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user64@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100064</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname64</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100065</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user65@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100065</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname65</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100070</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user70@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100070</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname70</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100071</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user71@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100071</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname71</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100068</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user68@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100068</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname68</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100057</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user57@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100057</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname57</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100056</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user56@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100056</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname56</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100059</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user59@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100059</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname59</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100058</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user58@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100058</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname58</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100061</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user61@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100061</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname61</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100060</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user60@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100060</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname60</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100063</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user63@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100063</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname63</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100062</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user62@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100062</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname62</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100051</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user51@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100051</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname51</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100050</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user50@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100050</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname50</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100053</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user53@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100053</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname53</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100052</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user52@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100052</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname52</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100055</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user55@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100055</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname55</string> 
-     </void> 
-    </object> 
-   </void> 
-   <void method="put"> 
-    <long>100054</long> 
-    <object class="net.form105.rm.base.model.user.User"> 
-     <void property="EMail"> 
-      <string>user54@kaiser-ag.ch</string> 
-     </void> 
-     <void property="id"> 
-      <long>100054</long> 
-     </void> 
-     <void property="password"> 
-      <string>1234</string> 
-     </void> 
-     <void property="roles"> 
-      <void method="add"> 
-       <string>user</string> 
-      </void> 
-     </void> 
-     <void property="sirName"> 
-      <string>sirname54</string> 
+      <string>asdfsdf</string> 
      </void> 
     </object> 
    </void> 

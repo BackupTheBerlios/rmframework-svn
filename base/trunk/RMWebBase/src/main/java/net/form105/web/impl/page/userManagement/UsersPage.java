@@ -11,6 +11,7 @@ import net.form105.web.base.component.command.CommandPanel;
 import net.form105.web.base.component.command.IconPanel;
 import net.form105.web.base.component.subMenu.ExampleMenuPanel;
 import net.form105.web.base.component.table.DataTablePanel;
+import net.form105.web.base.component.window.CommitModalContentPage;
 import net.form105.web.base.model.filter.AbstractFilterSequence;
 import net.form105.web.base.model.filter.StringPatternFilter;
 import net.form105.web.base.model.filter.TypeFilter;
@@ -18,14 +19,17 @@ import net.form105.web.base.model.provider.FilterDataProvider;
 import net.form105.web.base.template.DefaultMainTemplate;
 import net.form105.web.base.type.EventType;
 import net.form105.web.impl.action.ContributionAddUserAction;
+import net.form105.web.impl.action.ContributionModalWindowAction;
 import net.form105.web.impl.action.IconContributionAction;
 import net.form105.web.impl.action.RemoveUserAction;
 import net.form105.web.impl.panel.contribution.NoContributionPanel;
 import net.form105.web.impl.panel.contribution.TabbedUserContributionPanel;
 import net.form105.web.impl.panel.filter.FilterSelectionPanel;
 
+import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.TextFilteredPropertyColumn;
@@ -38,10 +42,15 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 	private AbstractFilterSequence<User> filterSequence;
 	
 	private FilterDataProvider<User> filterProvider;
+	
+	ModalWindow modalDummy;
 
 	public UsersPage() {
 		//super(new ConfigurationSubMenuPanel("panel.subNavigation", "menuItem", UsersPage.class), new NoContributionPanel("panel.contribution"));
 		super(new ExampleMenuPanel("panel.subNavigation"), new NoContributionPanel("panel.contribution"));
+		
+		modalDummy = new ModalWindow("modal1");
+		add(modalDummy);
 		
 		filterSequence = getFilterSequence();
 		
@@ -54,6 +63,7 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 		
 		commandList.add(new RemoveUserAction(dataTablePanel, dataTablePanel.getActionForm(), getString("label.action.remove")));
 		commandList.add(new ContributionAddUserAction(dataTablePanel, getString("label.action.add")));
+		commandList.add(new ContributionModalWindowAction(dataTablePanel, "toModal"));
 		CommandPanel<User> commandPanel = new CommandPanel<User>("panel.command", commandList);
 		add(commandPanel);
 		
@@ -97,6 +107,23 @@ public class UsersPage extends DefaultMainTemplate implements IAuthenticatedPage
 			getContextPanel().replaceWith(addPanel);
 			contextPanel = addPanel;
 			target.addComponent(addPanel);
+			break;
+			
+		case ADD_MODAL:
+			logger.info("Add_modal event received");
+			ModalWindow modal = new ModalWindow("modal1");
+			modal.setOutputMarkupId(true);
+			modalDummy.replaceWith(modal);
+			modalDummy = modal;
+			
+			modal.setPageCreator(new ModalWindow.PageCreator() {
+				@Override
+				public Page createPage() {
+					return new CommitModalContentPage();
+				}
+			});
+			//target.addComponent(modal);
+			modal.show(target);
 			break;
 			
 		case ADD_FILTER_EVENT:

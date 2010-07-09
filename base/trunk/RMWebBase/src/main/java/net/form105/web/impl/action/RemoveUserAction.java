@@ -7,10 +7,13 @@ import net.form105.rm.server.service.DeleteUserService;
 import net.form105.web.base.action.AbstractFormAction;
 import net.form105.web.base.component.table.DataTablePanel;
 
+import org.apache.log4j.Logger;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.form.Form;
 
 public class RemoveUserAction extends AbstractFormAction<User> {
+	
+	public static Logger logger = Logger.getLogger(RemoveUserAction.class);
 	
 	public RemoveUserAction(MarkupContainer markup, Form form, String name) {
 		super(markup, form, name);
@@ -40,7 +43,7 @@ public class RemoveUserAction extends AbstractFormAction<User> {
 	@Override
 	public IResult doAction() {
 		DataTablePanel<User> tablePanel = (DataTablePanel<User>) getMarkupContainer();
-		//tablePanel.g
+		tablePanel.getDataProvider().removeInput(context);
 		
 		LocalServiceHandler<User> handler = new LocalServiceHandler<User>();
 		DeleteUserService service = new DeleteUserService();
@@ -51,6 +54,9 @@ public class RemoveUserAction extends AbstractFormAction<User> {
 	}
 
 
+	private void refresh() {
+		logger.info("Markup: "+getMarkupContainer());
+	}
 	
 
 }

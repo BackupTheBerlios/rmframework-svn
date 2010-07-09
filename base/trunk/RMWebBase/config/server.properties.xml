@@ -1,6 +1,6 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-    <entry key="server.rmi.port">10099</entry>
+    <entry key="server.rmi.port">10999</entry>
     <entry key="server.model.name">model.xml</entry>
     
     

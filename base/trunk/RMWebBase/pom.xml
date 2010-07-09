@@ -144,6 +144,11 @@
 			<artifactId>soap</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>example-jetty-embedded</artifactId>
+			<version>8.0.0.M0</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<version.wicket>1.4.7</version.wicket>
