@@ -40,21 +40,21 @@ public class EmbeddedWebContainer extends AbstractContainer {
         server.setHandler(contexts);
         
         ServletContextHandler context0 = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context0.setContextPath("/");
+        //context0.setContextPath("/wicket");
 
 		// Wicket
 		ServletHolder servletHolder = new ServletHolder(new WicketServlet());
 		servletHolder.setInitParameter("applicationClassName", "net.form105.web.base.Application");
 		servletHolder.setInitOrder(1);
 		
-		context0.addServlet(servletHolder,"/*");
+		context0.addServlet(servletHolder,"/");
 		
 		
 		ServletContextHandler contextInbound = new ServletContextHandler(ServletContextHandler.SESSIONS);
-		contextInbound.setContextPath("/inbound");
-		contextInbound.addServlet(new ServletHolder(new EomMessageServlet()), "/");
+		contextInbound.setContextPath("/");
+		contextInbound.addServlet(new ServletHolder(new EomMessageServlet()), "/inbound/*");
 		
-		contexts.setHandlers(new Handler[] {context0, contextInbound});
+		contexts.setHandlers(new Handler[] {contextInbound, context0});
 		
 		try {
 			
