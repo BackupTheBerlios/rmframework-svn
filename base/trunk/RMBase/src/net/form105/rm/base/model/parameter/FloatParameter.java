@@ -5,23 +5,25 @@
 
 package net.form105.rm.base.model.parameter;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-
-import net.form105.rm.base.model.IXmlObjectLoadable;
-import net.form105.xml.schema.model.ParameterDocument.Parameter;
-
-import org.apache.xmlbeans.XmlObject;
 
 /**
  *
  * @author hk
  */
 
-public class FloatParameter extends AbstractParameter<BigDecimal> implements IXmlObjectLoadable<IParameter> {
+public class FloatParameter extends AbstractParameter<BigDecimal> implements Serializable {
     
 	private static final long serialVersionUID = 1L;
 	private BigDecimal parameterValue;
+	
+	public FloatParameter() {}
 
+	public FloatParameter(BigDecimal decimal) {
+		this.parameterValue = decimal;
+	}
+	
     public BigDecimal getParameterValue() {
         return parameterValue;
     }
@@ -35,16 +37,4 @@ public class FloatParameter extends AbstractParameter<BigDecimal> implements IXm
     public String getValueAsString() {
         return parameterValue.toEngineeringString();
     }
-
-    public IParameter loadFromXml(XmlObject xmlObject) {
-            Parameter parameter = (Parameter) xmlObject;
-            this.setElementId(parameter.getId());
-            this.setName(parameter.getName());
-            BigDecimal floatValue = new BigDecimal(parameter.getValue());
-            this.setParameterValue(floatValue);
-            return this;
-    }
-
-    
-    
 }

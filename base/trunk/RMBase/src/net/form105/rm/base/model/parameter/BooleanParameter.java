@@ -20,6 +20,12 @@ public class BooleanParameter extends AbstractParameter<Boolean> implements IXml
     private static final long serialVersionUID = 1L;
 
     private Boolean parameterValue;
+    
+    public BooleanParameter() {}
+    
+    public BooleanParameter(Boolean value) {
+    	this.parameterValue = value;
+    }
 
     public Boolean getParameterValue() {
         return parameterValue;

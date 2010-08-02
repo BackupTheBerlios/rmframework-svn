@@ -20,7 +20,9 @@ import java.util.List;
 import javax.jcr.Credentials;
 import javax.jcr.LoginException;
 import javax.jcr.Node;
+import javax.jcr.Property;
 import javax.jcr.PropertyIterator;
+import javax.jcr.PropertyType;
 import javax.jcr.Repository;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
@@ -30,8 +32,11 @@ import javax.jcr.query.QueryManager;
 import javax.jcr.query.QueryResult;
 
 import net.form105.rm.base.model.Resource;
+import net.form105.rm.base.model.parameter.BooleanParameter;
+import net.form105.rm.base.model.parameter.IParameter;
 
 import org.apache.log4j.Logger;
+
 
 public class ResourceJcrDao extends AbstractDao<Resource> {
 
@@ -76,15 +81,41 @@ public class ResourceJcrDao extends AbstractDao<Resource> {
 	@SuppressWarnings("deprecation")
 	@Override
 	public Resource findById(Long id) {
+		Resource resource = new Resource();
 		Node rn = getRootNode();
 		try {
 			QueryManager qm = this.getSession(credentials).getWorkspace().getQueryManager();
 			Query query = qm.createQuery("Resources/Resource[@id="+id+"]", Query.XPATH);
 			QueryResult result = query.execute();
 			Node firstNode = result.getNodes().nextNode();
+			
+			String paramId = firstNode.getProperty("id").getString();
+			String paramName = firstNode.getProperty("name").getString();
+			Property valueProperty = firstNode.getProperty("value");
+			
+			
+			
 			PropertyIterator iter = firstNode.getProperties();
-			for (Object object : iter) {
+			
+			while (iter.hasNext()) {
+				IParameter parameter;
+				Property p = iter.nextProperty();
 				
+				int propType = p.getType();
+				
+				switch (propType) {
+				case PropertyType.BOOLEAN:
+ 					resource.addParameter(new BooleanParameter(p.getBoolean()));
+					break;
+				case PropertyType.DATE: {
+					//int p.getDate().getTimeInMillis();
+					break;
+				}
+
+				default:
+					break;
+				}
+			
 			}
 			
 			String uuid = firstNode.getIdentifier();

@@ -11,7 +11,8 @@ import net.form105.xml.schema.model.ParameterDocument.Parameter;
 import org.apache.xmlbeans.XmlObject;
 
 /**
- *
+ * Don't use this. 
+ * @deprecated Use LongParameter instead
  * @author hk
  */
 

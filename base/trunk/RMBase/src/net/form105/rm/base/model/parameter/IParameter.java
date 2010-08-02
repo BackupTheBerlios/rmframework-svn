@@ -13,4 +13,5 @@ public interface IParameter extends Serializable {
     public void setName(String name);
 
     public void setElementId(String parameterId);
+    
 }

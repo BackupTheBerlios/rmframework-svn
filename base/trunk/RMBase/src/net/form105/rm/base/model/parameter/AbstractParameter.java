@@ -8,7 +8,6 @@ package net.form105.rm.base.model.parameter;
 import java.io.Serializable;
 
 import net.form105.rm.base.model.AgentObject;
-import net.form105.rm.base.model.IXmlObjectLoadable;
 
 
 /**
@@ -16,7 +15,7 @@ import net.form105.rm.base.model.IXmlObjectLoadable;
  * @author heiko
  */
 
-public abstract class AbstractParameter<T> extends AgentObject implements IParameter, IXmlObjectLoadable<IParameter>, Serializable {
+public abstract class AbstractParameter<T> extends AgentObject implements IParameter, Serializable {
     
     private static final long serialVersionUID = 1L;
     private Long id;

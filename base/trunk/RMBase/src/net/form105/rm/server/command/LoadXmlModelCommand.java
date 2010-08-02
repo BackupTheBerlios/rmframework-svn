@@ -66,29 +66,10 @@ public class LoadXmlModelCommand extends AbstractCommand {
 
     public void execute() throws RMException {
         ILookup daoLookup = Agent.getDaoLookup();
-        for (Resource resource : loadResources(loadXmlModelFile(file))) {
-            List<AbstractAgentObjectDao<Resource>> daos = (List<AbstractAgentObjectDao<Resource>>) daoLookup.getEntryAsList(Resource.class);
-            for (AbstractAgentObjectDao<Resource> dao : daos) {
-                logger.info("Saving resource to dao: "+resource.getElementId());
-                dao.save(resource);
-            }
-
-        }
-
+        
     }
 
-    private List<Resource> loadResources(ModelDocument modelDocument) {
-        List<Resource> resourceList = new ArrayList<Resource>();
-
-        ResourceDocument.Resource[] resources = modelDocument.getModel().getResourceArray();
-        for (ResourceDocument.Resource xmlResource : resources) {
-            net.form105.rm.base.model.Resource modelResource = new net.form105.rm.base.model.Resource();
-            modelResource.loadFromXml(xmlResource);
-            resourceList.add(modelResource);
-            logger.info("Resource with id: " + modelResource.getElementId() + " loaded.");
-        }
-        return resourceList;
-    }
+    
 
     protected ModelDocument loadXmlModelFile(String fileName) {
         ModelDocument modelDocument = null;
