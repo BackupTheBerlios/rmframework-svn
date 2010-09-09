@@ -9,7 +9,6 @@ package net.form105.rm.base;
 import net.form105.rm.base.config.PropertyConfiguration;
 import net.form105.rm.base.config.SimpleConfiguration;
 import net.form105.rm.base.container.LookupContainer;
-import net.form105.rm.base.container.PersistenceModeContainer;
 import net.form105.rm.base.container.PropertiesContainer;
 import net.form105.rm.base.lookup.ILookup;
 
@@ -74,10 +73,6 @@ public class Agent {
         return container.getDaoLookup();
     }
     
-    public static PersistenceModeContainer getPersistenceContainer() {
-    	PersistenceModeContainer container = (PersistenceModeContainer) Container.getContainer().getComponent(PersistenceModeContainer.class);
-    	return container;
-    }
 
     public static String getRMProperty(String key) {
         PropertiesContainer container = (PropertiesContainer) getContainer(PropertiesContainer.class);

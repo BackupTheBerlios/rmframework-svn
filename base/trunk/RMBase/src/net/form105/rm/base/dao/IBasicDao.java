@@ -1,9 +1,4 @@
-/**
- * 
- * @author Sebastian Hennebrueder
- * created Feb 14, 2006
- * copyright 2006 by http://www.laliluna.de
- */
+
 package net.form105.rm.base.dao;
 
 import java.util.List;

@@ -19,8 +19,6 @@ import java.util.List;
 
 import net.form105.rm.base.model.AgentObject;
 
-import com.db4o.foundation.NotSupportedException;
-
 public class NullDao<T extends AgentObject> implements IBasicDao<T> {
 
     @Override
@@ -30,25 +28,24 @@ public class NullDao<T extends AgentObject> implements IBasicDao<T> {
 
     @Override
     public List<T> findAll() {
-    	// supported by persistence dao
-    	throw new NotSupportedException();
+    	return null;
     }
 
     @Override
     public T findByElementId(String elementId) {
     	// supported by persistence dao
-    	throw new NotSupportedException();
+    	return null;
     }
 
     @Override
     public T findById(Long id) {
     	// supported by persistence dao
-    	throw new NotSupportedException();
+    	return null;
     }
 
     @Override
     public T merge(T object) {
-        throw new NotSupportedException();
+    	return null;
     }
 
     @Override

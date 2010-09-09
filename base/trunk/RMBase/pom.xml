@@ -132,16 +132,12 @@
 			<artifactId>xmlbeans</artifactId>
 			<version>2.3.0</version>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-core</artifactId>
 			<version>2.0.0-M3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.4.2</version>
-		</dependency>
+		</dependency -->
+
 		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
@@ -157,36 +153,15 @@
 			<artifactId>joda-time</artifactId>
 			<version>1.6</version>
 		</dependency>
-		<dependency>
-			<groupId>com.db4o</groupId>
-			<artifactId>com.springsource.com.db4o.java5</artifactId>
-			<version>7.2.54.11278</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.apache.xmlbeans</groupId>
 			<artifactId>xmlbeans</artifactId>
 			<version>2.4.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.jackrabbit</groupId>
-			<artifactId>jackrabbit-core</artifactId>
-			<version>2.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j13</artifactId>
-			<version>1.0.1</version>
-		</dependency>
-		<!-- dependency>
-			<groupId>RM</groupId>
-			<artifactId>RMxmlHelper</artifactId>
-			<version>0.1</version>
-		</dependency -->
-		<dependency>
-			<groupId>javax.jcr</groupId>
-			<artifactId>jcr</artifactId>
-			<version>2.0</version>
-		</dependency>
+
+
+		
 	</dependencies>
 
 </project>

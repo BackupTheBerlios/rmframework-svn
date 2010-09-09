@@ -17,12 +17,8 @@ package net.form105.rm.base.persistence;
 
 import java.util.HashMap;
 
-import net.form105.rm.base.Agent;
-import net.form105.rm.base.container.PersistenceModeContainer;
 import net.form105.rm.base.dao.IBasicDao;
-import net.form105.rm.base.dao.resource.ResourceMapDao;
 import net.form105.rm.base.model.AgentObject;
-import net.form105.rm.base.model.Resource;
 
 import org.apache.log4j.Logger;
 
@@ -35,19 +31,12 @@ public class PersistenceHandler {
     
 
     public PersistenceHandler() {
-        ResourceMapDao rMapDao = new ResourceMapDao();
-        addDao(Resource.class, rMapDao);
-        
-        Resource resource = (Resource) getDao(Resource.class).findByElementId("333");
+    
         
     }
 
     public void saveAgentObject(AgentObject aObject) {
-        if (aObject instanceof Resource) {
-            PersistenceModeContainer container = Agent.getPersistenceContainer();
-            IBasicDao<Resource> dao = container.getResourceDao();
-            dao.save((Resource) aObject);
-        }
+
     }
 
     
