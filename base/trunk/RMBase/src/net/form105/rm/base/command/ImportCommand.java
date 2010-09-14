@@ -7,7 +7,8 @@ import net.form105.rm.server.mapping.CSVTemplate;
 
 public class ImportCommand extends AbstractCommand {
 	
-	private final String id = "IMPORT_COMMAND";
+	private final String oid = "IMPORT_COMMAND";
+	private final String name = "ImportCommand";
 	private String sourceFilename;
 	private String templateFilename;
 	
@@ -26,8 +27,12 @@ public class ImportCommand extends AbstractCommand {
 		reader.importAll();
 	}
 	
-	public String getId() {
-		return id;
+	public String getOid() {
+		return oid;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 }

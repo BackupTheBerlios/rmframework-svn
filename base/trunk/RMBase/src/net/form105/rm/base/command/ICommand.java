@@ -16,6 +16,12 @@ public interface ICommand {
     
     public void execute() throws RMException;
     
-    public String getId();
+    public String getOid();
+    
+    /**
+     * The name of the command.
+     * @return
+     */
+    public String getName();
 
 }

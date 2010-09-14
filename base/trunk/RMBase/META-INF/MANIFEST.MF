@@ -42,6 +42,7 @@ Export-Package:
  net.form105.rm.base.util,
  net.form105.rm.base.util.helper,
  net.form105.rm.base.util.xml,
+ net.form105.rm.base.validator,
  net.form105.rm.server.command,
  net.form105.rm.server.filter.other,
  net.form105.rm.server.i18n,

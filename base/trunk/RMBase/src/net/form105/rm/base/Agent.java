@@ -63,6 +63,11 @@ public class Agent {
             return container;
         }
     }
+    
+    public static Object getComponentById(String id) {
+    	Object object = Container.getByObjectId(id);
+    	return object;
+    }
 
     /**
      * Getting the dao lookup

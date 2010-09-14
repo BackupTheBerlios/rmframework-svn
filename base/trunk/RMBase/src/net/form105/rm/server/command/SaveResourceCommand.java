@@ -16,7 +16,7 @@ public class SaveResourceCommand extends AbstractCommand {
 
     public static Logger logger = Logger.getLogger(SaveResourceCommand.class);
 
-    private final String id = "SAVE_RESOURCE_COMMAND";
+    private final String oid = "SAVE_RESOURCE_COMMAND";
 
     private Resource resource;
 
@@ -40,8 +40,8 @@ public class SaveResourceCommand extends AbstractCommand {
         }*/
     }
 
-    public String getId() {
-        return id;
+    public String getOid() {
+        return oid;
     }
 
 }

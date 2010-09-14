@@ -7,21 +7,15 @@ package net.form105.rm.server.command;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.Container;
 import net.form105.rm.base.command.AbstractCommand;
-import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
 import net.form105.rm.base.exception.FileNotFoundRMException;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.lookup.ILookup;
-import net.form105.rm.base.model.AgentObject;
-import net.form105.rm.base.model.Resource;
 import net.form105.rm.base.util.helper.FileHelper;
 import net.form105.xml.schema.model.ModelDocument;
-import net.form105.xml.schema.model.ResourceDocument;
 
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlException;
@@ -34,7 +28,7 @@ public class LoadXmlModelCommand extends AbstractCommand {
     
     public static Logger logger = Logger.getLogger(LoadXmlModelCommand.class);
 
-    private final String id = "LOAD_XML_MODEL_COMMAND";
+    private final String oid = "LOAD_XML_MODEL_COMMAND";
 
     private final String DEFAULT_NAME = "model.xml";
 
@@ -60,8 +54,8 @@ public class LoadXmlModelCommand extends AbstractCommand {
         file = FileHelper.appendFileSeparator(modelDir) + modelFileName;
     }
 
-    public final String getId() {
-        return id;
+    public final String getOid() {
+        return oid;
     }
 
     public void execute() throws RMException {

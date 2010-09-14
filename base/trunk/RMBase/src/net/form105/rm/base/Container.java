@@ -70,6 +70,13 @@ public class Container {
 		return factoryContainer;
 	}
 
+	public static Object getByObjectId(String id) {
+		if (getContainer().getComponent(id) != null) {
+			return getContainer().getComponent(id);
+		}
+		return getFactoryContainer().getComponent(id);
+	}
+
 	public static Container getInstance() {
 		return instance;
 	}
@@ -114,7 +121,7 @@ public class Container {
 					container.addComponent(id, containerClass);
 				} else {
 					String className = element.attributeValue("class");
-					String key = element.attributeValue("key");
+					String key = element.attributeValue("id");
 					logger.info("Loading class for factory container: " + className);
 					Class containerClass = Class.forName(className);
 					factoryContainer.addComponent(key, containerClass);

@@ -38,5 +38,9 @@ public abstract class AbstractCommand implements ICommand {
         return exceptions;
     }
     
+    public String getName() {
+    	return this.getClass().getName();
+    }
+    
 
 }
