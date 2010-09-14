@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<container>
+	<component-implementation id="logger" class='net.form105.rm.base.container.LoggerContainer' />
+    <component-implementation id="bgThread" class='net.form105.rm.base.container.BackgroundThreadContainer' />
+    <component-implementation id="properties" class='net.form105.rm.base.container.PropertiesContainer'/>
+    <component-implementation id="rmiServer" class='net.form105.rm.base.container.RMIServerContainer'/>
+    <component-implementation id="serviceHandler " class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
+    <component-implementation id="queryHandler" class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
+    <!-- component-implementation id="userMgmt" class='net.form105.rm.base.container.UserManagementContainer'/ -->
+    <component-implementation id="ant" class='net.form105.rm.server.ant.container.AntExecutionContainer'/>
+    
+    
+    <!-- Validator -->
+    <component-implementation factory="yes" id="fileValidator" class='net.form105.rm.server.ant.validator.FileValidator'/>
+    
+    <!-- Executor -->
+    <component-implementation factory="yes" id="fileValidator" class='net.form105.rm.server.ant.executor.AntRunner'/>
+    
+</container>
+
+

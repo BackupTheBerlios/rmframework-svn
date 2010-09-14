@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hotfolders>
+	<hotfolder>
+		<path>/Users/heikok/temp/hotfolder/1</path>
+		<validator>net.form105.rm.server.ant.validator.FileValidator</validator>
+		<execution>
+			<id>antExecutor</id><!-- instance of interface -->
+		</execution>
+	</hotfolder>
+	<hotfolder>
+		<path>/Users/heikok/temp/hotfolder/2</path>
+		<validator>net.form105.rm.server.ant.validator.FileValidator</validator>
+		<execution>
+			<class></class>
+		</execution>
+	</hotfolder>
+</hotfolders>

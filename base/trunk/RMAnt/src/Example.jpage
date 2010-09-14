@@ -1,0 +1,2 @@
+java.io.File file = new java.io.File("/Users/heikok/temp");
+System.out.println(file.hashCode());
