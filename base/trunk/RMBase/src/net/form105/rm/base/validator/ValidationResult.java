@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, form105 Heiko Kundlacz
+ * Copyright (c) 2008, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,10 @@
  */
 package net.form105.rm.base.validator;
 
-import net.form105.rm.base.service.IResult;
+import net.form105.rm.base.service.AbstractResult;
 
-/**
- * Interface for validating Object T
- * @author heikok
- *
- */
-public interface IValidator<T> {
-
-	public IResult<T> isValid(T Object);
+public class ValidationResult<T> extends AbstractResult<T> {
 	
+	
+
 }

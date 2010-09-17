@@ -1,10 +1,3 @@
-/*
- * DBContainer.java, Oct 13, 2007, 8:38:22 PM
- * 
- * Copyright (c) 2007, form105 Heiko Kundlacz
- * Licensed under the GNU GPL Version 3. For full terms see the file license.txt
- */
-
 package net.form105.rm.base.service;
 
 import java.util.List;
@@ -47,8 +40,8 @@ public abstract class AbstractResult<T> implements IResult<T> {
     /**
      * If the result contains an exception there shouldn't be a result list. 
      * The exception should be used for remoting where an remote exception
-     * can be transmitted to the client. Therefore it is importend that the result
-     * and the exceptions are remotable.
+     * can be transmitted to the client. Therefore it is important that the result
+     * and the exceptions are remoteble.
      * @return
      */
     public Exception getException() {

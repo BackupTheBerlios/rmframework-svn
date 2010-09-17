@@ -28,7 +28,4 @@ public class CommandResult<T> extends AbstractResult<T> {
     public void setResultList(List<T> resultList) {
         this.resultList = resultList;
     }
-
-  
-
 }
