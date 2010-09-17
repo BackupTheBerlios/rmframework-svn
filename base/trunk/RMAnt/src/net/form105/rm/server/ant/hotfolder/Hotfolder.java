@@ -1,14 +1,15 @@
 package net.form105.rm.server.ant.hotfolder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.validator.IValidator;
-import net.form105.rm.server.ant.AntAgent;
 import net.form105.rm.server.ant.executor.AntRunner;
+import net.form105.rm.server.ant.validator.ValidationHandler;
 
 import org.apache.log4j.Logger;
 import org.dom4j.Element;
@@ -17,11 +18,13 @@ public class Hotfolder implements Runnable {
 
 	public static Logger logger = Logger.getLogger(Hotfolder.class);
 
-	private File hotFolder;
+	private String hotFolderPathName;
 	private List<File> trackContentList = new ArrayList<File>();
 	private List<IValidator<File>> validatorList = new ArrayList<IValidator<File>>();
 	
-	private AntRunner antRunner;
+	private List<HotfolderListener> eListenerList = new ArrayList<HotfolderListener>();
+	
+	private ValidationHandler<File> validationHandler = new ValidationHandler<File>();
 
 	public Hotfolder() {
 
@@ -36,21 +39,25 @@ public class Hotfolder implements Runnable {
 	 * event to a listener
 	 */
 	public void compareContent() {
+		File hotFolder = new File(hotFolderPathName);
 		File[] contentFiles = hotFolder.listFiles();
 		for (File contentFile : contentFiles) {
 			
 			if (!trackContentList.contains(contentFile) && !contentFile.isHidden()) {
 				logger.info("Adding file to tracking: " + contentFile);
 				trackContentList.add(contentFile);
+				notifyFileArrived(contentFile);
 			}
 		}
 
 		List<File> contentFileList = Arrays.asList(contentFiles);
 		List<File> removeList = new ArrayList<File>();
-
+		
+		
 		for (File trackFile : trackContentList) {
 			if (!contentFileList.contains(trackFile)) {
 				removeList.add(trackFile);
+					notifyFileRemoved(trackFile);
 			}
 		}
 
@@ -64,6 +71,7 @@ public class Hotfolder implements Runnable {
 	public void run() {
 
 		while (true) {
+			//TODO: validationHandler.runValidation(object, validationList)
 			compareContent();
 			try {
 				Thread.sleep(500);
@@ -78,29 +86,35 @@ public class Hotfolder implements Runnable {
 		validatorList.add(validator);
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void initByXml(Element element) {
 		Element filePathElement = element.element("path");
-		this.hotFolder = new File(filePathElement.getStringValue());
+		this.hotFolderPathName = filePathElement.getStringValue();
 		for (Element valElement : (List<Element>) element.elements("validator")) {
 			String validatorId = valElement.getStringValue();
+			//IValidator<File> validator = (IValidator<File>) Agent.getComponentById(validatorId);
 			IValidator<File> validator = (IValidator<File>) Agent.getComponentById(validatorId);
 			addValidator(validator);
 		}
-		Element execElement = element.element("executor");
+		Element execElement = element.element("execution");
 		String executorId = execElement.element("id").getStringValue();
-		antRunner = (AntRunner) AntAgent.getContainer(executorId);
+		logger.info("Executor id: "+executorId);
+		AntRunner antRunner = (AntRunner) Agent.getComponentById(executorId);
+		this.addListener(antRunner);
+		
+		
 	}
 	
 	/**
 	 * Checks if the kind of type of file
 	 */
 	protected boolean isValid() {
-		
-		if (hotFolder.isFile()) {
+		File hotFolderFile = new File(hotFolderPathName);
+		if (hotFolderFile.isFile()) {
 			logger.error("Hotfolder is a file");
 			return false;
 		}
-		if (! hotFolder.exists()) {
+		if (! hotFolderFile.exists()) {
 			logger.error("Hotfolder doesn't exist");
 			return false;
 		}
@@ -110,8 +124,43 @@ public class Hotfolder implements Runnable {
 	/**
 	 * @return the hotFolder
 	 */
-	public File getFolder() {
-		return hotFolder;
+	public String getHotfolder() {
+		return hotFolderPathName;
 	}
+	
+	public void addListener(HotfolderListener listener) {
+		eListenerList.add(listener);
+	}
+	
+	public void removeListener(HotfolderListener listener) {
+		eListenerList.remove(listener);
+	}
+	
+	public void notifyFileArrived(File file) {
+		String filePathName = null;
+		try {
+			filePathName = file.getCanonicalPath();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		HotfolderEvent event = new HotfolderEvent(filePathName, hotFolderPathName);
+		for (HotfolderListener listener: eListenerList) {
+			listener.fileArrived(event);
+		}
+	}
+	
+	public void notifyFileRemoved(File file) {
+		String filePathName = null;
+		try {
+			filePathName = file.getCanonicalPath();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		HotfolderEvent event = new HotfolderEvent(filePathName, hotFolderPathName);
+		for (HotfolderListener listener: eListenerList) {
+			listener.fileRemoved(event);
+		}
+	}
+
 
 }

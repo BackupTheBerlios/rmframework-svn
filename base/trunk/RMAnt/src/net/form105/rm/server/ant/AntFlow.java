@@ -65,7 +65,7 @@ import org.apache.tools.ant.util.ProxySetup;
  * class to see how it manipulates the Ant project classes.
  *
  */
-public class AntFlow implements AntMain {
+public class AntFlow {
 
     /**
      * A Set of args are are handled by the launcher and should
@@ -189,7 +189,7 @@ public class AntFlow implements AntMain {
     public static void start(String[] args, Properties additionalUserProperties,
                              ClassLoader coreLoader) {
         AntFlow m = new AntFlow();
-        m.startAnt(args, additionalUserProperties, coreLoader);
+        m.startAntFlow(args, additionalUserProperties, coreLoader);
     }
 
     /**
@@ -201,17 +201,19 @@ public class AntFlow implements AntMain {
      *
      * @since Ant 1.6
      */
-    public void startAnt(String[] args, Properties additionalUserProperties,
+    public int startAntFlow(String[] args, Properties additionalUserProperties,
                          ClassLoader coreLoader) {
 
+    	int exitCode;
+    	
         try {
             Diagnostics.validateVersion();
             processArgs(args);
         } catch (Throwable exc) {
             handleLogfile();
             printMessage(exc);
-            exit(1);
-            return;
+            exitCode = 1;
+            return exitCode;
         }
 
         if (additionalUserProperties != null) {
@@ -224,7 +226,7 @@ public class AntFlow implements AntMain {
         }
 
         // expect the worst
-        int exitCode = 1;
+        exitCode = 1;
         try {
             try {
                 runBuild(coreLoader);
@@ -245,7 +247,7 @@ public class AntFlow implements AntMain {
         } finally {
             handleLogfile();
         }
-        exit(exitCode);
+        return exitCode;
     }
 
     /**

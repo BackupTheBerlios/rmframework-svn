@@ -54,7 +54,7 @@ public class HotfolderConfig {
 					hotfolderThread.start();
 					
 				} else {
-					logger.error("Hotfolder doesn't exist: "+hFolder.getFolder());
+					logger.error("Hotfolder doesn't exist: "+hFolder.getHotfolder());
 				}
 			}
 		}
