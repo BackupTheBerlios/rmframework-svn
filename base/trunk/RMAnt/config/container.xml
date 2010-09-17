@@ -12,10 +12,11 @@
     
     
     <!-- Validator -->
-    <component-implementation factory="yes" id="fileValidator" class='net.form105.rm.server.ant.validator.FileValidator'/>
+    <component-implementation factory="yes" id="fileValidator" class='net.form105.rm.server.ant.validator.RealFileValidator'/>
+    <component-implementation factory="yes" id="buildFileValidator" class='net.form105.rm.server.ant.validator.BuildFileValidator'/>
     
     <!-- Executor -->
-    <component-implementation factory="yes" id="fileValidator" class='net.form105.rm.server.ant.executor.AntRunner'/>
+    <component-implementation factory="yes" id="antExecutor" class='net.form105.rm.server.ant.executor.AntRunner'/>
     
 </container>
 
