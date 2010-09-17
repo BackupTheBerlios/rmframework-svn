@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="HelloWorld" default="init" basedir=".">
+	<description>
+		The Hello World Example
+    </description>
+	<!-- set global properties for this build -->
+	<!-- property name="src" location="src"/ -->
+
+	<target name="init" depends="clean">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<echo message="Basedir is: ${basedir}"></echo>
+	</target>
+
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<!-- delete dir="${build}" / -->
+		<!--  delete dir="${dist}" / -->
+	</target>
+</project>
