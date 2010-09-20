@@ -3,7 +3,8 @@ package net.form105.rm.server.ant.hotfolder;
 import java.util.EventListener;
 
 /**
- * A listener which reacts on events from hotfolders
+ * A listener which reacts on events from hotfolders. Implement this interface and register the object at the
+ * {@link Hotfolder} instance.
  * @author heikok
  *
  */

@@ -1,11 +1,6 @@
 package net.form105.rm.server.ant.hotfolder;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-
-import net.form105.rm.base.Agent;
-import net.form105.rm.base.validator.IValidator;
 
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
@@ -15,12 +10,16 @@ import org.dom4j.Element;
 import org.dom4j.XPath;
 import org.dom4j.io.SAXReader;
 
+/**
+ * The configuration for the hotfolders. Will be read in from a xml file. The xml library used is dom4j. 
+ * @author heikok
+ *
+ */
 public class HotfolderConfig {
 
 	public static Logger logger = Logger.getLogger(HotfolderConfig.class);
 	private String configFile;
 	private Document document;
-	private List<Hotfolder> hotfoldersList = new ArrayList<Hotfolder>();
 
 	public HotfolderConfig(String configFile) {
 		this.configFile = configFile;
@@ -28,8 +27,10 @@ public class HotfolderConfig {
 		initializeHotFolders();
 	}
 
+	/**
+	 * Initializes xml reader and loads the root element of the xml document
+	 */
 	private void configure() {
-		
 		SAXReader xmlReader = new SAXReader();
 	    try {
 			this.document = xmlReader.read(configFile);
@@ -39,6 +40,10 @@ public class HotfolderConfig {
 		}
 	}
 	
+	/**
+	 * Read in hotfolder structure from xml and create the hotfolder objects. Simple validation is done
+	 * by the isValid method from {@link Hotfolder}.  
+	 */
 	private void initializeHotFolders() {
 		// get configuration
 		XPath hotfoldersSelector = DocumentHelper.createXPath("//hotfolders");
