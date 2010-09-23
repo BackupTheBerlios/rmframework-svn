@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="AppleScript" default="osaexecute" basedir=".">
+	<description>
+		Takes a source applescript file, compile and run it
+		Properties required:
+		applescript.source.file	= The sourcefile which must be compiled
+		applescript.dest.file	= The compiled file
+		applescript.args		= The arguments of the applescript file
+    </description>
+
+	<target name="init">
+		
+		<property name="applescript.source.file" value="/Users/heikok/temp/aScript.as" />
+		<property name="applescript.dest.file" value="/Users/heikok/temp/aScript.scpt" />
+		<property name="applescript.args" value="'/Applications/Adobe Acrobat 8 Professional/Adobe Acrobat Professional.app' AP12345 PC12345 /Users/heikok/Documents/Switch_Workflow/MergeTester/AP88128_Jx398971_001EB_6.pdf"/>
+
+		<fail message="This project runs on mac only!">
+			<condition>
+				<not>
+					<os family="mac" />
+				</not>
+			</condition>
+		</fail>
+
+		<fail unless="applescript.source.file" message="Property applescript.source.file doesn't exist"></fail>
+		<fail unless="applescript.dest.file" message="Property applescript.dest.file doesn't exist"></fail>
+
+		<fail message="File ${applescript.source.file} doesn't exist">
+			<condition>
+				<not>
+					<available file="${applescript.source.file}" />
+				</not>
+			</condition>
+		</fail>
+
+	</target>
+
+	<target name="osacompile" depends="init">
+		<description>Compiles the AppleScript</description>
+
+		<exec executable="osacompile" failonerror="true">
+			<arg value="-d" />
+			<arg value="-o" />
+			<arg value="${applescript.dest.file}" />
+			<arg value="${applescript.source.file}" />
+		</exec>
+	</target>
+
+	<target name="osaexecute" depends="osacompile">
+		<description>Executes the AppleScript ${applescript.dest.file}</description>
+		<exec executable="osascript" failonerror="true" logError="true">
+			<arg value="${applescript.dest.file}" />
+			<arg line="${applescript.args}" />
+		</exec>
+	</target>
+
+</project>

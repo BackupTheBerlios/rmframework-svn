@@ -26,7 +26,6 @@ public class Hotfolder implements Runnable {
 
 	private List<HotfolderListener> eListenerList = new ArrayList<HotfolderListener>();
 
-	private ValidationHandler<File> validationHandler = new ValidationHandler<File>();
 
 	public Hotfolder() {
 
@@ -101,8 +100,6 @@ public class Hotfolder implements Runnable {
 		this.hotFolderPathName = filePathElement.getStringValue();
 		for (Element valElement : (List<Element>) element.elements("validator")) {
 			String validatorId = valElement.getStringValue();
-			// IValidator<File> validator = (IValidator<File>)
-			// Agent.getComponentById(validatorId);
 			IValidator<File> validator = (IValidator<File>) Agent.getComponentById(validatorId);
 			addValidator(validator);
 		}
