@@ -16,7 +16,6 @@ public interface ICommand {
     
     public void execute() throws RMException;
     
-    public String getOid();
     
     /**
      * The name of the command.

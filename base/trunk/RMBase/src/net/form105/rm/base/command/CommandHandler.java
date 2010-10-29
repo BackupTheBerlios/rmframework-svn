@@ -28,7 +28,7 @@ public class CommandHandler<T> extends AbstractCommandHandler<T> {
         try {
 
             for (ICommand command : commands) {
-                logger.info("Executing command: " + command.getOid());
+                logger.info("Executing command: " + command.getName());
                 command.execute();
             }
             getResult().setStatus(ResultStatus.SUCCESS);
