@@ -2,6 +2,8 @@ package net.form105.rm.server.ant.hotfolder;
 
 import java.util.List;
 
+import net.form105.rm.server.ant.AntAgent;
+
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -52,16 +54,22 @@ public class HotfolderConfig {
 			XPath hotfolderSelector = DocumentHelper.createXPath("//hotfolder");
 			List<Element> hotfolderElementList = hotfolderSelector.selectNodes(element);
 			
+			HotfolderMap hfMap = new HotfolderMap();
+			HotfolderWorker worker = new HotfolderWorker(hfMap);
+			
 			for (Element hfElement : hotfolderElementList) {
 				Hotfolder hFolder = new Hotfolder(hfElement);
+				hFolder.addListener(new CreateWorkflowHotfolderListener());
+				hFolder.addListener(new DefaultHotfolderListener());
 				if (hFolder.isValid()) {
-					Thread hotfolderThread = new Thread(hFolder);
-					hotfolderThread.start();
-					
+					hfMap.addHotfolder(hFolder);
 				} else {
 					logger.error("Hotfolder doesn't exist: "+hFolder.getHotfolder());
 				}
 			}
+			
+			Thread hotfolderThread = new Thread(worker);
+			hotfolderThread.start();
 		}
 	}
 }

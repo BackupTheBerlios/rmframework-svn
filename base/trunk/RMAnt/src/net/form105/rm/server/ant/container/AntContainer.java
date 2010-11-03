@@ -9,13 +9,13 @@ import net.form105.rm.server.ant.hotfolder.HotfolderConfig;
 
 import org.apache.log4j.Logger;
 
-public class AntExecutionContainer extends AbstractContainer{
+public class AntContainer extends AbstractContainer{
 	
-	public static Logger logger = Logger.getLogger(AntExecutionContainer.class);
+	public static Logger logger = Logger.getLogger(AntContainer.class);
 	
 	private PropertiesContainer propContainer;
 	
-	public AntExecutionContainer(PropertiesContainer propContainer) {
+	public AntContainer(PropertiesContainer propContainer) {
 		this.propContainer = propContainer;
 	}
 

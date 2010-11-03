@@ -33,6 +33,8 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 
+import net.form105.rm.server.ant.workflow.WorkflowListener;
+
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.BuildListener;
 import org.apache.tools.ant.BuildLogger;
@@ -48,7 +50,6 @@ import org.apache.tools.ant.ProjectHelperRepository;
 import org.apache.tools.ant.Target;
 import org.apache.tools.ant.input.DefaultInputHandler;
 import org.apache.tools.ant.input.InputHandler;
-import org.apache.tools.ant.launch.AntMain;
 import org.apache.tools.ant.util.ClasspathUtils;
 import org.apache.tools.ant.util.FileUtils;
 import org.apache.tools.ant.util.ProxySetup;
@@ -159,6 +160,8 @@ public class AntFlow {
      * proxy flag: default is false
      */
     private boolean proxy = false;
+    
+    private BuildListener workflowListener;
 
     /**
      * Prints the message of the Throwable if it (the message) is not
@@ -187,9 +190,9 @@ public class AntFlow {
      *        <code>null</code> in which case the system classloader is used.
      */
     public static void start(String[] args, Properties additionalUserProperties,
-                             ClassLoader coreLoader) {
+                             ClassLoader coreLoader, BuildListener workflowListener) {
         AntFlow m = new AntFlow();
-        m.startAntFlow(args, additionalUserProperties, coreLoader);
+        m.startAntFlow(args, additionalUserProperties, coreLoader, workflowListener);
     }
 
     /**
@@ -202,9 +205,10 @@ public class AntFlow {
      * @since Ant 1.6
      */
     public int startAntFlow(String[] args, Properties additionalUserProperties,
-                         ClassLoader coreLoader) {
+                         ClassLoader coreLoader, BuildListener workflowListener) {
 
     	int exitCode;
+    	this.workflowListener = workflowListener;
     	
         try {
             Diagnostics.validateVersion();
@@ -280,7 +284,7 @@ public class AntFlow {
      * @param args Command line arguments. Must not be <code>null</code>.
      */
     public static void main(String[] args) {
-        start(args, null, null);
+        start(args, null, null, null);
     }
 
     /**
@@ -757,8 +761,9 @@ public class AntFlow {
                 System.setErr(new PrintStream(new DemuxOutputStream(project, true)));
 
 
+                // removed by HK
                 if (!projectHelp) {
-                    project.fireBuildStarted();
+                    //project.fireBuildStarted();
                 }
 
                 // set the thread priorities
@@ -798,6 +803,8 @@ public class AntFlow {
                 }
 
                 ProjectHelper.configureProject(project, buildFile);
+                
+                project.fireBuildStarted();
 
                 if (projectHelp) {
                     printDescription(project);
@@ -864,6 +871,7 @@ public class AntFlow {
 
         // Add the default listener
         project.addBuildListener(createLogger());
+        project.addBuildListener(workflowListener);
 
         for (int i = 0; i < listeners.size(); i++) {
             String className = (String) listeners.elementAt(i);

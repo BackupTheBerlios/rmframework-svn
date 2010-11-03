@@ -4,16 +4,26 @@
 	<description>
 		Takes a source applescript file, compile and run it
 		Properties required:
-		applescript.source.file	= The sourcefile which must be compiled
-		applescript.dest.file	= The compiled file
-		applescript.args		= The arguments of the applescript file
+		applescript.source.file = The
+		sourcefile which must be compiled
+		applescript.dest.file = The compiled file
+		applescript.args = The arguments of the
+		applescript file
     </description>
 
 	<target name="init">
-		
+
 		<property name="applescript.source.file" value="/Users/heikok/temp/aScript.as" />
 		<property name="applescript.dest.file" value="/Users/heikok/temp/aScript.scpt" />
-		<property name="applescript.args" value="'/Applications/Adobe Acrobat 8 Professional/Adobe Acrobat Professional.app' AP12345 PC12345 /Users/heikok/Documents/Switch_Workflow/MergeTester/AP88128_Jx398971_001EB_6.pdf"/>
+		<property name="applescript.args"
+			value="'/Applications/Adobe Acrobat 8 Professional/Adobe Acrobat Professional.app' AP12345 PC12345 /Users/heikok/Documents/Switch_Workflow/MergeTester/AP88128_Jx398971_001EB_6.pdf" />
+
+		<available property="file.exists" file="/Users/heiko/temp/myfile1" />
+		<property name="myFile" value="/Users/heiko/temp/myfile1" if="${file.exists}" />
+		<available property="file.exists" file="/Users/heiko/temp/myfile2" />
+		<property name="myFile" value="/Users/heiko/temp/myfile2" />
+
+		<echo message="${myFile}" />
 
 		<fail message="This project runs on mac only!">
 			<condition>
@@ -54,5 +64,28 @@
 			<arg line="${applescript.args}" />
 		</exec>
 	</target>
+
+	<target name="checkFile">
+
+		<property name="file1" value="/Users/heikok/temp/myfile1" />
+		<property name="file2" value="/Users/heikok/temp/myfile2" />
+
+		<script language="javascript"> <![CDATA[
+		importClass(java.io.File);
+			var file1 = new File(project.getProperty("file1"));
+			var file2 = new File(project.getProperty("file2"));
+			
+			if (file1.exists()) {
+				project.setProperty("file.myFile", project.getProperty("file1"));
+			} else if (file2.exists()) {
+				project.setProperty("file.myFile", project.getProperty("file2"));
+			}
+   		]]>
+
+		</script>
+		<echo message="${file.myFile}" ></echo> 
+	</target>
+
+
 
 </project>

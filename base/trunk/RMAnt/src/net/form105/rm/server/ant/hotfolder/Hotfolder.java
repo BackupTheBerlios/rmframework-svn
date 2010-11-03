@@ -8,15 +8,25 @@ import java.util.List;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.validator.IValidator;
-import net.form105.rm.server.ant.executor.AntRunner;
-import net.form105.rm.server.ant.validator.ValidationHandler;
+import net.form105.rm.server.ant.command.AntCommandHandler;
+import net.form105.rm.server.ant.command.AntExecutionCommand;
+import net.form105.rm.server.ant.executor.IExecutionElement;
 
 import org.apache.log4j.Logger;
 import org.dom4j.Element;
 
-import sun.awt.windows.ThemeReader;
-
-public class Hotfolder implements Runnable {
+/**
+ * The hotfolder is a configurable directory which reacts on files that will be
+ * dropped in and removed from the directory. Listeners can be added to get be
+ * notified by events of removing and adding files. Validators can be added to
+ * check for the environment of the folder. These validators shouldn't be use
+ * for the files that are dropped in. They should be used to validate the folder
+ * at startup.
+ * 
+ * @author heikok
+ * 
+ */
+public class Hotfolder {
 
 	public static Logger logger = Logger.getLogger(Hotfolder.class);
 
@@ -24,8 +34,9 @@ public class Hotfolder implements Runnable {
 	private List<File> trackContentList = new ArrayList<File>();
 	private List<IValidator<File>> validatorList = new ArrayList<IValidator<File>>();
 
-	private List<HotfolderListener> eListenerList = new ArrayList<HotfolderListener>();
+	private List<IHotfolderListener> eListenerList = new ArrayList<IHotfolderListener>();
 
+	private AntCommandHandler comHandler = new AntCommandHandler();
 
 	public Hotfolder() {
 
@@ -36,8 +47,8 @@ public class Hotfolder implements Runnable {
 	}
 
 	/**
-	 * Compares the real content of the hotfolder with the tracked one. Sends events for added or removed files
-	 * to the {@link HotfolderListener}.
+	 * Compares the real content of the hotfolder with the tracked one. Sends
+	 * events for added or removed files to the {@link IHotfolderListener}.
 	 * event to a listener
 	 */
 	public void compareContent(boolean sendEvents) {
@@ -48,7 +59,12 @@ public class Hotfolder implements Runnable {
 			if (!trackContentList.contains(contentFile) && !contentFile.isHidden()) {
 				logger.info("Adding file to tracking: " + contentFile);
 				trackContentList.add(contentFile);
-				if (sendEvents) notifyFileArrived(contentFile);
+				if (sendEvents)
+					try {
+						notifyFileArrived(this.hotFolderPathName, contentFile.getCanonicalPath());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 			}
 		}
 
@@ -58,28 +74,18 @@ public class Hotfolder implements Runnable {
 		for (File trackFile : trackContentList) {
 			if (!contentFileList.contains(trackFile)) {
 				removeList.add(trackFile);
-				if (sendEvents)  notifyFileRemoved(trackFile);
+				if (sendEvents)
+					try {
+						notifyFileRemoved(trackFile.getCanonicalPath());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 			}
 		}
 
 		for (File removeFile : removeList) {
 			trackContentList.remove(removeFile);
 			logger.info("Removing file from tracking: " + removeFile);
-		}
-	}
-
-	@Override
-	public void run() {
-
-		while (true) {
-			// TODO: validationHandler.runValidation(object, validationList)
-			compareContent(true);
-			try {
-				Thread.sleep(500);
-				logger.info("Thread running " + System.currentTimeMillis());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -106,14 +112,14 @@ public class Hotfolder implements Runnable {
 		Element execElement = element.element("execution");
 		String executorId = execElement.element("id").getStringValue();
 		logger.info("Executor id: " + executorId);
-		AntRunner antRunner = (AntRunner) Agent.getComponentById(executorId);
-		this.addListener(antRunner);
+		IExecutionElement executor = (IExecutionElement) Agent.getComponentById(executorId);
+		//this.addListener(new DefaultHotfolderListener());
 		compareContent(false);
 
 	}
 
 	/**
-	 * Checks if the kind of type of file
+	 * Checks if it is a real file
 	 */
 	protected boolean isValid() {
 		File hotFolderFile = new File(hotFolderPathName);
@@ -142,7 +148,7 @@ public class Hotfolder implements Runnable {
 	 * 
 	 * @param listener
 	 */
-	public void addListener(HotfolderListener listener) {
+	public void addListener(IHotfolderListener listener) {
 		eListenerList.add(listener);
 	}
 
@@ -151,7 +157,7 @@ public class Hotfolder implements Runnable {
 	 * 
 	 * @param listener
 	 */
-	public void removeListener(HotfolderListener listener) {
+	public void removeListener(IHotfolderListener listener) {
 		eListenerList.remove(listener);
 	}
 
@@ -161,16 +167,17 @@ public class Hotfolder implements Runnable {
 	 * @param file
 	 *            The file which has been arrived
 	 */
-	public void notifyFileArrived(File file) {
-		String filePathName = null;
-		try {
-			filePathName = file.getCanonicalPath();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		HotfolderEvent event = new HotfolderEvent(filePathName, hotFolderPathName);
-		for (HotfolderListener listener : eListenerList) {
-			listener.fileArrived(event);
+	public void notifyFileArrived(String hotfolderPathName, String fileArrivedPathName) {
+
+		// send to handler
+		//AntExecutionCommand command = new AntExecutionCommand(hotfolderPathName+File.separator + "build.xml", fileArrivedPathName);
+		//comHandler.execute(command);
+
+		if (eListenerList.size() > 0) {
+			HotfolderEvent event = new HotfolderEvent(this, hotFolderPathName, fileArrivedPathName );
+			for (IHotfolderListener listener : eListenerList) {
+				listener.fileArrived(event);
+			}
 		}
 	}
 
@@ -180,17 +187,18 @@ public class Hotfolder implements Runnable {
 	 * @param file
 	 *            The file which has been removed
 	 */
-	public void notifyFileRemoved(File file) {
-		String filePathName = null;
-		try {
-			filePathName = file.getCanonicalPath();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		HotfolderEvent event = new HotfolderEvent(filePathName, hotFolderPathName);
-		for (HotfolderListener listener : eListenerList) {
+	public void notifyFileRemoved(String fileRemovedPathName) {
+	
+		HotfolderEvent event = new HotfolderEvent(this, hotFolderPathName, fileRemovedPathName);
+		for (IHotfolderListener listener : eListenerList) {
 			listener.fileRemoved(event);
 		}
+	}
+	
+	public void getFileArrivedId() {
+		
+		
+		
 	}
 
 }

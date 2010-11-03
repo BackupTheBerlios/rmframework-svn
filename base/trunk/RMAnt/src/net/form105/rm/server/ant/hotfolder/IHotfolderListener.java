@@ -8,7 +8,7 @@ import java.util.EventListener;
  * @author heikok
  *
  */
-public interface HotfolderListener extends EventListener {
+public interface IHotfolderListener extends EventListener {
 	
 	/**
 	 * Event for files which has been added to hotfolder
