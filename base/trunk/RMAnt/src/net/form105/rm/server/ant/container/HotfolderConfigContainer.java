@@ -1,8 +1,14 @@
-package net.form105.rm.server.ant.hotfolder;
+package net.form105.rm.server.ant.container;
 
 import java.util.List;
 
+import net.form105.rm.base.container.AbstractContainer;
+import net.form105.rm.base.container.PropertiesContainer;
 import net.form105.rm.server.ant.AntAgent;
+import net.form105.rm.server.ant.hotfolder.CreateWorkflowHotfolderListener;
+import net.form105.rm.server.ant.hotfolder.DefaultHotfolderListener;
+import net.form105.rm.server.ant.hotfolder.Hotfolder;
+import net.form105.rm.server.ant.hotfolder.HotfolderWorker;
 
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
@@ -17,16 +23,17 @@ import org.dom4j.io.SAXReader;
  * @author heikok
  *
  */
-public class HotfolderConfig {
+public class HotfolderConfigContainer extends AbstractContainer {
 
-	public static Logger logger = Logger.getLogger(HotfolderConfig.class);
-	private String configFile;
+	public static Logger logger = Logger.getLogger(HotfolderConfigContainer.class);
+	
 	private Document document;
+	private PropertiesContainer propContainer;
+	private HotfolderContainer hfContainer;
 
-	public HotfolderConfig(String configFile) {
-		this.configFile = configFile;
-		this.configure();
-		initializeHotFolders();
+	public HotfolderConfigContainer(PropertiesContainer propContainer, HotfolderContainer hfContainer) {
+		this.propContainer = propContainer;
+		this.hfContainer = hfContainer;
 	}
 
 	/**
@@ -35,7 +42,7 @@ public class HotfolderConfig {
 	private void configure() {
 		SAXReader xmlReader = new SAXReader();
 	    try {
-			this.document = xmlReader.read(configFile);
+			this.document = xmlReader.read(propContainer.getProperty("hotfolder.configFile"));
 			document.getRootElement();
 		} catch (DocumentException e) {
 			e.printStackTrace();
@@ -46,7 +53,7 @@ public class HotfolderConfig {
 	 * Read in hotfolder structure from xml and create the hotfolder objects. Simple validation is done
 	 * by the isValid method from {@link Hotfolder}.  
 	 */
-	private void initializeHotFolders() {
+	public void initializeHotFolders() {
 		// get configuration
 		XPath hotfoldersSelector = DocumentHelper.createXPath("//hotfolders");
 		List<Element> hotfoldersElementList = hotfoldersSelector.selectNodes(document);
@@ -54,15 +61,16 @@ public class HotfolderConfig {
 			XPath hotfolderSelector = DocumentHelper.createXPath("//hotfolder");
 			List<Element> hotfolderElementList = hotfolderSelector.selectNodes(element);
 			
-			HotfolderMap hfMap = new HotfolderMap();
-			HotfolderWorker worker = new HotfolderWorker(hfMap);
+			
+			
+			HotfolderWorker worker = new HotfolderWorker();
 			
 			for (Element hfElement : hotfolderElementList) {
 				Hotfolder hFolder = new Hotfolder(hfElement);
 				hFolder.addListener(new CreateWorkflowHotfolderListener());
 				hFolder.addListener(new DefaultHotfolderListener());
 				if (hFolder.isValid()) {
-					hfMap.addHotfolder(hFolder);
+					hfContainer.addHotfolder(hFolder);
 				} else {
 					logger.error("Hotfolder doesn't exist: "+hFolder.getHotfolder());
 				}
@@ -72,4 +80,18 @@ public class HotfolderConfig {
 			hotfolderThread.start();
 		}
 	}
+
+	@Override
+	public void start() {
+		
+		configure();
+		initializeHotFolders();
+	}
+
+	@Override
+	public void stop() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

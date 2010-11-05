@@ -9,7 +9,6 @@ import java.util.List;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.validator.IValidator;
 import net.form105.rm.server.ant.command.AntCommandHandler;
-import net.form105.rm.server.ant.command.AntExecutionCommand;
 import net.form105.rm.server.ant.executor.IExecutionElement;
 
 import org.apache.log4j.Logger;
@@ -121,7 +120,7 @@ public class Hotfolder {
 	/**
 	 * Checks if it is a real file
 	 */
-	protected boolean isValid() {
+	public boolean isValid() {
 		File hotFolderFile = new File(hotFolderPathName);
 		if (hotFolderFile.isFile()) {
 			logger.error("Hotfolder is a file");
@@ -194,11 +193,4 @@ public class Hotfolder {
 			listener.fileRemoved(event);
 		}
 	}
-	
-	public void getFileArrivedId() {
-		
-		
-		
-	}
-
 }

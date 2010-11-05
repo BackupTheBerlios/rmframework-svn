@@ -38,5 +38,4 @@ public class HotfolderMap {
 	public Collection<Hotfolder> getHotfolderList() {
 		return hotfolderMap.values();
 	}
-
 }

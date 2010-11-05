@@ -15,19 +15,20 @@
  */
 package net.form105.rm.server.ant.container;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.picocontainer.Startable;
-
 import net.form105.rm.server.ant.model.Workflow;
+
+import org.picocontainer.Startable;
 
 public class WorkflowContainer implements Startable {
 
 	private Map<String, Workflow> workflowMap;
 
 	public WorkflowContainer() {
-
+		
 	}
 
 	@Override
@@ -49,6 +50,10 @@ public class WorkflowContainer implements Startable {
 
 	public Workflow getWorkflowById(String id) {
 		return workflowMap.get(id);
+	}
+	
+	public Collection<Workflow> getWorkflows() {
+		return workflowMap.values();
 	}
 
 }

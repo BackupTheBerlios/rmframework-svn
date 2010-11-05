@@ -12,7 +12,6 @@ public class ExecutionHandlerContainer implements Startable {
 	public void start() {
 		eHandler = new AntCommandHandler();
 		eHandler.start();
-		
 	}
 
 	@Override

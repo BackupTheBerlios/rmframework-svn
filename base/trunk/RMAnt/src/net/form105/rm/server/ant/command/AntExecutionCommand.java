@@ -3,7 +3,9 @@ package net.form105.rm.server.ant.command;
 import net.form105.rm.base.command.AbstractCallbackCommand;
 import net.form105.rm.base.command.CommandEvent;
 import net.form105.rm.base.exception.RMException;
+import net.form105.rm.server.ant.AntAgent;
 import net.form105.rm.server.ant.AntFlow;
+import net.form105.rm.server.ant.container.HotfolderContainer;
 import net.form105.rm.server.ant.workflow.WorkflowListener;
 
 /**
@@ -30,8 +32,7 @@ public class AntExecutionCommand extends AbstractCallbackCommand implements Runn
 	public AntExecutionCommand(String workflowId, String buildFilePath, String incomingFilePath) {
 		this.buildFilePath = buildFilePath;
 		this.workflowId = workflowId;
-		wfListener = new WorkflowListener(workflowId);	
-		
+		wfListener = new WorkflowListener(workflowId);
 	}
 
 	public void executeAsThread() throws RMException {
@@ -63,4 +64,9 @@ public class AntExecutionCommand extends AbstractCallbackCommand implements Runn
 	public String getWorkflowId() {
 		return workflowId;
 	}
+	
+	/*public boolean reRun() {
+		HotfolderContainer hfContainer = (HotfolderContainer) AntAgent.getComponentById("hotfolders");
+		
+	}*/
 }

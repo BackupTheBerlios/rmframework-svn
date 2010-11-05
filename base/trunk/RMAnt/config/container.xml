@@ -7,16 +7,16 @@
     <component-implementation id="rmiServer" class='net.form105.rm.base.container.RMIServerContainer'/>
     <component-implementation id="serviceHandler " class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
     <component-implementation id="queryHandler" class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
-    <!-- component-implementation id="userMgmt" class='net.form105.rm.base.container.UserManagementContainer'/ -->
     <component-implementation id="ant" class='net.form105.rm.server.ant.container.AntContainer'/>
+    <component-implementation id="hotfolders" class='net.form105.rm.server.ant.container.HotfolderContainer' ></component-implementation>
+    <component-implementation id="hotfolderConfig" class='net.form105.rm.server.ant.container.HotfolderConfigContainer' ></component-implementation>
     
     <!-- Model -->
-    <component-implementation id="workflowMap" class="net.form105.rm.server.ant.container.WorkflowContainer"></component-implementation>
+    <component-implementation id="workflows" class="net.form105.rm.server.ant.container.WorkflowContainer"></component-implementation>
     <component-implementation id="taskMap" class="net.form105.rm.server.ant.container.TaskMapContainer"></component-implementation>
         
     <!-- handler -->
     <component-implementation id="commandHandler" class="net.form105.rm.server.ant.command.AntCommandHandler"></component-implementation>
-    <component-implementation id="hotfolderHandler" class="net.form105.rm.server.ant.hotfolder.HotfolderHandler"></component-implementation>
     <!-- Validator -->
     <component-implementation factory="yes" id="fileValidator" class='net.form105.rm.server.ant.validator.RealFileValidator'/>
     <component-implementation factory="yes" id="buildFileValidator" class='net.form105.rm.server.ant.validator.BuildFileValidator'/>

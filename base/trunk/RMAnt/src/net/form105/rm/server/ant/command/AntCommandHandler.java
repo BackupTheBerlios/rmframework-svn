@@ -58,6 +58,7 @@ public class AntCommandHandler implements Runnable, Startable {
 				// check if a comand is running for the same hotfolder
 				
 				
+				
 				// use the workflow map and check if a blocking workflow is running
 				// blocking workflow: only one workflow can run on a hotfolder
 				if (command != null) execute(command);
@@ -66,7 +67,6 @@ public class AntCommandHandler implements Runnable, Startable {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-			
 		}
 	}
 	

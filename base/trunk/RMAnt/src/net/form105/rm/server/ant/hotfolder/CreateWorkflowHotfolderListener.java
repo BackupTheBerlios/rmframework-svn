@@ -15,8 +15,14 @@
  */
 package net.form105.rm.server.ant.hotfolder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.form105.rm.base.command.CommandHandler;
+import net.form105.rm.base.command.ICommand;
+import net.form105.rm.base.model.attribute.StringAttribute;
 import net.form105.rm.base.service.IResult;
+import net.form105.rm.server.ant.command.AddAttributeCommand;
 import net.form105.rm.server.ant.command.AddWorkflowCommand;
 import net.form105.rm.server.ant.model.Workflow;
 
@@ -35,16 +41,22 @@ public class CreateWorkflowHotfolderListener extends AbstractHotfolderListener {
 		String id = getId(hotEvent);
 		String name = hotEvent.getIncomingFilePath();
 		String type = "hotfolder";
+		
 		AddWorkflowCommand command = new AddWorkflowCommand(id, name, type);
+		StringAttribute hotfolderAttribute = new StringAttribute("hotfolder", "Path to the Hotfolder", hotEvent.getHotfolderPath());
+		StringAttribute incomingFileAttribute = new StringAttribute("inboundFile", "Path to the incoming file", name);
+		
 		CommandHandler<Workflow> handler = new CommandHandler<Workflow>();
-		handler.execute(command);
+		List<ICommand> commandList = new ArrayList<ICommand>();
+		commandList.add(new AddAttributeCommand(id, hotfolderAttribute));
+		commandList.add(new AddAttributeCommand(id, incomingFileAttribute));
+		handler.execute(commandList);
 		IResult<Workflow> result = handler.getResult();
 		// TODO: Result should be sent to handler in case of exceptions
 	}
 
 	@Override
 	public void fileRemoved(HotfolderEvent hotEvent) {
-		// TODO: Should we remove the workflow?
+		
 	}
-
 }

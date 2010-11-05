@@ -17,7 +17,7 @@ public class DefaultHotfolderListener extends AbstractHotfolderListener {
 	public void fileArrived(HotfolderEvent hotfolderEvent) {
 		String buildFilePath = hotfolderEvent.getHotfolderPath() + File.separator + "build.xml";
 		String incomingFilePath = hotfolderEvent.getIncomingFilePath();
-		handleCommand(getId(hotfolderEvent), buildFilePath+File.separator+"build.xml", incomingFilePath);
+		handleCommand(getId(hotfolderEvent), buildFilePath, incomingFilePath);
 	}
 	
 	@Override

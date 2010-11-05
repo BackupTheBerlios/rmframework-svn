@@ -15,45 +15,43 @@
  */
 package net.form105.rm.server.ant.container;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
+import net.form105.rm.base.container.AbstractContainer;
+import net.form105.rm.base.container.PropertiesContainer;
 import net.form105.rm.server.ant.hotfolder.Hotfolder;
-
-import org.picocontainer.Startable;
+import net.form105.rm.server.ant.hotfolder.HotfolderMap;
 
 /**
- * A simple handler to access the hotfolders.
+ * A simple handler to access the hotfolders. Currently this is used for integration with remote tests.
  * @author heikok
  *
  */
-public class HotfolderContainer implements Startable {
+public class HotfolderContainer extends AbstractContainer {
 	
-	private List<Hotfolder> hotfolderList;
+	private HotfolderMap hotfolderMap;
 	
-	public void addHotfolder(Hotfolder hf) {
-		hotfolderList.add(hf);
+	public HotfolderContainer(PropertiesContainer propContainer) {
+		
 	}
 	
-	public List<Hotfolder> getHotfolderList() {
-		return hotfolderList;
+	public void addHotfolder(Hotfolder hf) {
+		hotfolderMap.addHotfolder(hf);
+	}
+	
+	public Collection<Hotfolder> getHotfolderList() {
+		return hotfolderMap.getHotfolderList();
 	}
 	
 	public Hotfolder getHotfolderByName(String hotfolderPathName) {
-		for (Hotfolder hotfolder : hotfolderList) {
-			if (hotfolder.getHotfolder().equals(hotfolderPathName)) return hotfolder;
-		}
-		return null;
+		return hotfolderMap.getHotfolder(hotfolderPathName);
 	}
 
-	@Override
 	public void start() {
-		hotfolderList = new ArrayList<Hotfolder>();
+		hotfolderMap = new HotfolderMap();
 	}
 
-	@Override
 	public void stop() {
 		
 	}
-
 }
