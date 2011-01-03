@@ -6,6 +6,8 @@ import java.util.List;
 
 public abstract class AbstractWorkflowElement implements IModelObject, Serializable {
 	
+	private static final long serialVersionUID = -663894453799798995L;
+	
 	private List<IModelObject> children;
 	private IModelObject parent;
 	private String id;

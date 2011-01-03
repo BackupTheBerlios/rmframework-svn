@@ -3,10 +3,13 @@ package net.form105.rm.server.ant.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.form105.rm.base.model.attribute.IAttribute;
+import net.form105.rm.base.model.AgentObject;
+import net.form105.rm.base.model.attribute.AbstractAttribute;
 import net.form105.rm.base.model.attribute.NullAttribute;
 
-public class Workflow {
+public class Workflow extends AgentObject {
+	
+	private static final long serialVersionUID = 1671714225911687893L;
 	
 	private String id;
 	private String name;
@@ -15,7 +18,7 @@ public class Workflow {
 	private long creationTime = 0;
 	
 	private List<Task> taskList = new ArrayList<Task>();
-	private List<IAttribute<?>> attributeList = new ArrayList<IAttribute<?>>();
+	private List<AbstractAttribute<?>> attributeList = new ArrayList<AbstractAttribute<?>>();
 	
 	
 	public Workflow(String id, String name, String type) {
@@ -53,13 +56,13 @@ public class Workflow {
 		return creationTime;
 	}
 	
-	public void addAttribute(IAttribute<?> attribute) {
+	public void addAttribute(AbstractAttribute<?> attribute) {
 		attributeList.add(attribute);
 	}
 	
-	public IAttribute<?> getAttributeById(String id) {
-		for (IAttribute<?> attribute : attributeList) {
-			if (attribute.getId().equals(id)) return attribute;
+	public AbstractAttribute<?> getAttributeById(String id) {
+		for (AbstractAttribute<?> attribute : attributeList) {
+			if (attribute.getElementId().equals(id)) return attribute;
 		}
 		return new NullAttribute(id, "fail", "fail");
 	}

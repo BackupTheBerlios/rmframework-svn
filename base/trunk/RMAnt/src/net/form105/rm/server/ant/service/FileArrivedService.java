@@ -15,6 +15,7 @@
  */
 package net.form105.rm.server.ant.service;
 
+
 import net.form105.rm.base.service.AbstractService;
 import net.form105.rm.base.service.IArgument;
 import net.form105.rm.server.ant.AntAgent;
@@ -23,6 +24,11 @@ import net.form105.rm.server.ant.hotfolder.Hotfolder;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Used for testing purposes
+ * @author heikok
+ *
+ */
 public class FileArrivedService extends AbstractService {
 
 	private static final long serialVersionUID = 3344224917021024307L;

@@ -22,6 +22,7 @@ import net.form105.rm.base.command.CommandHandler;
 import net.form105.rm.base.command.ICommand;
 import net.form105.rm.base.model.attribute.StringAttribute;
 import net.form105.rm.base.service.IResult;
+import net.form105.rm.server.ant.Globals;
 import net.form105.rm.server.ant.command.AddAttributeCommand;
 import net.form105.rm.server.ant.command.AddWorkflowCommand;
 import net.form105.rm.server.ant.model.Workflow;
@@ -43,8 +44,8 @@ public class CreateWorkflowHotfolderListener extends AbstractHotfolderListener {
 		String type = "hotfolder";
 		
 		AddWorkflowCommand command = new AddWorkflowCommand(id, name, type);
-		StringAttribute hotfolderAttribute = new StringAttribute("hotfolder", "Path to the Hotfolder", hotEvent.getHotfolderPath());
-		StringAttribute incomingFileAttribute = new StringAttribute("inboundFile", "Path to the incoming file", name);
+		StringAttribute hotfolderAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Path to the Hotfolder", hotEvent.getHotfolderPath());
+		StringAttribute incomingFileAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_INBOUND_FILE, "Path to the incoming file", name);
 		
 		CommandHandler<Workflow> handler = new CommandHandler<Workflow>();
 		List<ICommand> commandList = new ArrayList<ICommand>();

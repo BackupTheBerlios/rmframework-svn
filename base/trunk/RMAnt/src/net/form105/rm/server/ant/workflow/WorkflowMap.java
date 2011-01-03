@@ -1,5 +1,6 @@
 package net.form105.rm.server.ant.workflow;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,6 +43,10 @@ public class WorkflowMap {
 	 */
 	public Workflow getWorkflowById(String id) {
 		return workflowMap.get(id);
+	}
+	
+	public Collection<Workflow> getAllWorkflows() {
+		return workflowMap.values();
 	}
 
 }

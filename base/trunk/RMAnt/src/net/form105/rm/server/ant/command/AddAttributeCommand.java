@@ -18,16 +18,16 @@ package net.form105.rm.server.ant.command;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.command.AbstractCommand;
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.base.model.attribute.IAttribute;
+import net.form105.rm.base.model.attribute.AbstractAttribute;
 import net.form105.rm.server.ant.container.WorkflowContainer;
 import net.form105.rm.server.ant.model.Workflow;
 
 public class AddAttributeCommand extends AbstractCommand {
 	
 	private String workflowId;
-	private IAttribute<?> attribute;
+	private AbstractAttribute<?> attribute;
 	
-	public AddAttributeCommand(String workflowId, IAttribute<?> attribute) {
+	public AddAttributeCommand(String workflowId, AbstractAttribute<?> attribute) {
 		this.workflowId = workflowId;
 		this.attribute = attribute;
 	}

@@ -36,7 +36,6 @@ public class Task extends AgentObject {
 	
 	public void setStartTime() {
 		startTime = System.currentTimeMillis();
-		state = ExecutionState.Started;
 	}
 	
 	public long getFinishTime() {

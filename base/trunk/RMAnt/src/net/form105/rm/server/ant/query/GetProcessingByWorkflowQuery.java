@@ -17,39 +17,43 @@ package net.form105.rm.server.ant.query;
 
 import java.util.List;
 
-import org.apache.tools.ant.taskdefs.AntStructure;
-
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.model.attribute.IAttribute;
-import net.form105.rm.base.query.AbstractQuery;
+import net.form105.rm.base.query.FilterQuery;
+import net.form105.rm.base.selection.ISelection;
 import net.form105.rm.server.ant.container.WorkflowContainer;
 import net.form105.rm.server.ant.model.ExecutionState;
 import net.form105.rm.server.ant.model.Workflow;
+import net.form105.rm.server.ant.selection.WorkflowByAttributeSelection;
 
 /**
  * A query which returns the processing workflow for a specified hotfolder
  * @author heikok
  *
  */
-public class GetProcessingByWorkflowQuery extends AbstractQuery<Workflow> {
+public class GetProcessingByWorkflowQuery extends FilterQuery<Workflow> {
 
 	private static final long serialVersionUID = 3383859788353208555L;
 	
 	private String hotfolderPathName;
 	
-	public GetProcessingByWorkflowQuery(String hotfolderPathName) {
-		this.hotfolderPathName = hotfolderPathName;
+	public GetProcessingByWorkflowQuery(WorkflowByAttributeSelection selection) {
+		super(selection);
+		
 	}
 
-	
-	
+
+
+
 	@Override
 	public List<Workflow> execute() {
 		WorkflowContainer wfContainer = (WorkflowContainer) Agent.getComponentById("workflows");
 		for (Workflow workflow : wfContainer.getWorkflows()) {
 			IAttribute<?> hotfolderAttr = workflow.getAttributeById("hotfolder");
 			IAttribute<?> stateAttr = workflow.getAttributeById("state");
-			if (hotfolderAttr.getValue().equals(hotfolderPathName) && stateAttr.getValue().equals(ExecutionState.Running.name())
+			if (hotfolderAttr.getValue().equals(hotfolderPathName) && stateAttr.getValue().equals(ExecutionState.Running.name())) {
+				//
+			}
 		}
 		return null;
 	}

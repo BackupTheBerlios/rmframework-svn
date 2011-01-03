@@ -9,7 +9,6 @@ import java.util.List;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.validator.IValidator;
 import net.form105.rm.server.ant.command.AntCommandHandler;
-import net.form105.rm.server.ant.executor.IExecutionElement;
 
 import org.apache.log4j.Logger;
 import org.dom4j.Element;
@@ -111,8 +110,6 @@ public class Hotfolder {
 		Element execElement = element.element("execution");
 		String executorId = execElement.element("id").getStringValue();
 		logger.info("Executor id: " + executorId);
-		IExecutionElement executor = (IExecutionElement) Agent.getComponentById(executorId);
-		//this.addListener(new DefaultHotfolderListener());
 		compareContent(false);
 
 	}
@@ -167,11 +164,6 @@ public class Hotfolder {
 	 *            The file which has been arrived
 	 */
 	public void notifyFileArrived(String hotfolderPathName, String fileArrivedPathName) {
-
-		// send to handler
-		//AntExecutionCommand command = new AntExecutionCommand(hotfolderPathName+File.separator + "build.xml", fileArrivedPathName);
-		//comHandler.execute(command);
-
 		if (eListenerList.size() > 0) {
 			HotfolderEvent event = new HotfolderEvent(this, hotFolderPathName, fileArrivedPathName );
 			for (IHotfolderListener listener : eListenerList) {

@@ -7,7 +7,6 @@
     <component-implementation id="rmiServer" class='net.form105.rm.base.container.RMIServerContainer'/>
     <component-implementation id="serviceHandler " class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
     <component-implementation id="queryHandler" class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
-    <component-implementation id="ant" class='net.form105.rm.server.ant.container.AntContainer'/>
     <component-implementation id="hotfolders" class='net.form105.rm.server.ant.container.HotfolderContainer' ></component-implementation>
     <component-implementation id="hotfolderConfig" class='net.form105.rm.server.ant.container.HotfolderConfigContainer' ></component-implementation>
     
