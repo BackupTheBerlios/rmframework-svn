@@ -31,6 +31,7 @@ Export-Package:
  net.form105.rm.base.mapping.target,
  net.form105.rm.base.message,
  net.form105.rm.base.model,
+ net.form105.rm.base.model.attribute,
  net.form105.rm.base.model.category,
  net.form105.rm.base.model.parameter,
  net.form105.rm.base.model.user,

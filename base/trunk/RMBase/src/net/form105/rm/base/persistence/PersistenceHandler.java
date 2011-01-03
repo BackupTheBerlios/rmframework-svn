@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.model.AgentObject;
+import net.form105.rm.base.model.IAgentObject;
 
 import org.apache.log4j.Logger;
 
@@ -35,7 +36,7 @@ public class PersistenceHandler {
         
     }
 
-    public void saveAgentObject(AgentObject aObject) {
+    public void saveAgentObject(IAgentObject aObject) {
 
     }
 

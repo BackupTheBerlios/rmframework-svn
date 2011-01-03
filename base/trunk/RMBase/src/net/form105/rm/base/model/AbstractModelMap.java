@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class AbstractModelMap<T extends AgentObject> implements ModelMap, Serializable {
+public class AbstractModelMap<T extends IAgentObject> implements ModelMap, Serializable {
     
     private HashMap<String, ParameterizedElement> modelMap = (HashMap) Collections.synchronizedMap(new HashMap<String, ParameterizedElement>());
     

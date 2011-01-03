@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, form105 Heiko Kundlacz
+ * Copyright (c) 2010, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,27 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.command;
+package net.form105.rm.base.model.attribute;
 
-import java.util.EventObject;
+import net.form105.rm.base.model.AgentObject;
 
-public class CommandEvent extends EventObject {
+public abstract class AbstractAttribute<T> extends AgentObject implements IAttribute<T> {
 	
-	private static final long serialVersionUID = 9128918812693236416L;
-
-	private AbstractCommand command;
+	private static final long serialVersionUID = -4088163975279173261L;
 	
-	public CommandEvent(AbstractCommand command) {
-		super(command);
-		this.command = command;
+	private T value;
+	
+	public AbstractAttribute(String elementId, String name, T value) {
+		setName(name);
+		setElementId(elementId);
+		this.value = value;
 	}
 	
-	public AbstractCommand getCommand() {
-		return command;
+	/* (non-Javadoc)
+	 * @see net.form105.rm.base.model.attribute.IAttribute#getValue()
+	 */
+	public T getValue() {
+		return value;
 	}
-
-	
-	
-	
-
 }

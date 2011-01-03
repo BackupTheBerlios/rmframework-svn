@@ -19,10 +19,10 @@ import java.util.List;
 
 import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.dao.NullDao;
-import net.form105.rm.base.model.AgentObject;
+import net.form105.rm.base.model.IAgentObject;
 
 
-public abstract class AbstractAgentObjectDao<T extends AgentObject> implements IBasicDao<T> {
+public abstract class AbstractAgentObjectDao<T extends IAgentObject> implements IBasicDao<T> {
 
     private IBasicDao<T> transientDao = new NullDao<T>();
 

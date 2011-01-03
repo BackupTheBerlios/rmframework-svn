@@ -17,9 +17,9 @@ package net.form105.rm.base.dao;
 
 import java.util.List;
 
-import net.form105.rm.base.model.AgentObject;
+import net.form105.rm.base.model.IAgentObject;
 
-public class NullDao<T extends AgentObject> implements IBasicDao<T> {
+public class NullDao<T extends IAgentObject> implements IBasicDao<T> {
 
     @Override
     public void delete(T object) {

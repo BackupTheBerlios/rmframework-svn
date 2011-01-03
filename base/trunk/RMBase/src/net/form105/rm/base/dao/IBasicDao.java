@@ -3,7 +3,7 @@ package net.form105.rm.base.dao;
 
 import java.util.List;
 
-import net.form105.rm.base.model.AgentObject;
+import net.form105.rm.base.model.IAgentObject;
 
 
 
@@ -11,7 +11,7 @@ import net.form105.rm.base.model.AgentObject;
  * @author hk
  * 
  */
-public interface IBasicDao<T extends AgentObject> {
+public interface IBasicDao<T extends IAgentObject> {
 
 	/**
 	 * finds an object given by the id, returns null when the object was not

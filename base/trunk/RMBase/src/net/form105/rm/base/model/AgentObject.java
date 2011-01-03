@@ -3,7 +3,7 @@ package net.form105.rm.base.model;
 import java.io.Serializable;
 
 
-public class AgentObject implements Serializable {
+public class AgentObject implements IAgentObject {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -13,6 +13,9 @@ public class AgentObject implements Serializable {
 
     private String elementId;
 
+    /* (non-Javadoc)
+	 * @see net.form105.rm.base.model.IAgentObject#getName()
+	 */
     public String getName () {
         return name;
     }
@@ -21,6 +24,9 @@ public class AgentObject implements Serializable {
         this.name = name;
     }
 
+    /* (non-Javadoc)
+	 * @see net.form105.rm.base.model.IAgentObject#getElementId()
+	 */
     public String getElementId () {
         return elementId;
     }
@@ -33,6 +39,9 @@ public class AgentObject implements Serializable {
     	this.objectId = objectId;
     }
     
+    /* (non-Javadoc)
+	 * @see net.form105.rm.base.model.IAgentObject#getObjectId()
+	 */
     public Double getObjectId() {
     	return objectId;
     }

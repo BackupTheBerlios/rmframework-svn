@@ -6,7 +6,7 @@ import java.util.List;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.lookup.ILookup;
-import net.form105.rm.base.model.AgentObject;
+import net.form105.rm.base.model.IAgentObject;
 
 /**
  * This is a common Query to access Daos that implement the IBasicDao interface. You get back all objects
@@ -15,7 +15,7 @@ import net.form105.rm.base.model.AgentObject;
  *
  * @param <T> The class which is accessed by the dao
  */
-public class FindByIdDaoQuery<T extends AgentObject> extends AbstractSimpleQuery<T> {
+public class FindByIdDaoQuery<T extends IAgentObject> extends AbstractSimpleQuery<T> {
 
 	private static final long serialVersionUID = 1L;
 	private IBasicDao<T> dao;

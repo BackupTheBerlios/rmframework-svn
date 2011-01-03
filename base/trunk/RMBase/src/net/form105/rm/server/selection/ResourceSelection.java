@@ -20,7 +20,6 @@ import java.util.List;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.dao.resource.AbstractAgentObjectDao;
 import net.form105.rm.base.lookup.ILookup;
-import net.form105.rm.base.model.AgentObject;
 import net.form105.rm.base.model.Resource;
 import net.form105.rm.base.selection.AbstractSelection;
 

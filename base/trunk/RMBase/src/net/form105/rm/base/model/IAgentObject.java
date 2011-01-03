@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, form105 Heiko Kundlacz
+ * Copyright (c) 2010, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,27 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.command;
+package net.form105.rm.base.model;
 
-import java.util.EventObject;
+import java.io.Serializable;
 
-public class CommandEvent extends EventObject {
-	
-	private static final long serialVersionUID = 9128918812693236416L;
+public interface IAgentObject extends Serializable {
 
-	private AbstractCommand command;
-	
-	public CommandEvent(AbstractCommand command) {
-		super(command);
-		this.command = command;
-	}
-	
-	public AbstractCommand getCommand() {
-		return command;
-	}
+	public abstract String getName();
 
-	
-	
-	
+	public abstract String getElementId();
+
+	public abstract Double getObjectId();
 
 }

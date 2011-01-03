@@ -15,7 +15,7 @@
  */
 package net.form105.rm.base.command;
 
-public abstract class AbstractCallbackCommand extends AbstractCommand {
+public abstract class AbstractCallbackCommand extends AbstractCommand implements Runnable {
 	
 	private ICommandListener commandListener;
 	
@@ -37,7 +37,21 @@ public abstract class AbstractCallbackCommand extends AbstractCommand {
 		return commandListener;
 	}
 	
-	public void setCommandListener(ICommandListener commandListener) {
+	public void registerCommandListener(ICommandListener commandListener) {
 		this.commandListener = commandListener;
+	}
+	
+	public void unregisterCommandListener() {
+		this.commandListener = new ICommandListener() {
+			@Override
+			public void finished(CommandEvent event) {}
+
+			@Override
+			public void started(CommandEvent event) {}
+		};
+	}
+	
+	public void run() {
+		this.execute();
 	}
 }

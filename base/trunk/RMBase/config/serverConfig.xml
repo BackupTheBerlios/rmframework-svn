@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<connectionPool xmlns="http://xml.form105.net/schema/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.form105.net/schema/model ../../RMxmlHelper/src/main/resources/schema/serverConfig.xsd ">
-
+<!-- connectionPool xmlns="http://xml.form105.net/schema/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml.form105.net/schema/model ../../RMxmlHelper/src/main/resources/schema/serverConfig.xsd "-->
+<connectionPool>
   <inbound>
     <id>plc01</id>
     <alias>input_server_plc_01</alias>

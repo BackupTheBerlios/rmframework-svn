@@ -15,7 +15,7 @@ import net.form105.rm.base.service.IResult;
  *
  * @param <T>
  */
-public class FilterQuery<T> extends AbstractQuery<T> implements IQuery<T> {
+public class FilterQuery<T> extends AbstractQuery<T> {
 	
 
 	private static final long serialVersionUID = 1L;

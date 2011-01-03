@@ -23,13 +23,19 @@ public abstract class AbstractCommand implements ICommand {
     private List<Exception> exceptions;
     @SuppressWarnings("unused")
     private AbstractIdentity identity;
+    private String group;
     
-    public AbstractCommand(AbstractIdentity identity) {
+    public AbstractCommand(AbstractIdentity identity, String group) {
     	this.identity = identity;
+    	this.group = group;
+    }
+    
+    public AbstractCommand(String group) {
+    	this.group = group;
     }
     
     public AbstractCommand() {
-    	
+    	this.group = "";
     }
     
     public abstract void execute() throws RMException;
@@ -42,7 +48,11 @@ public abstract class AbstractCommand implements ICommand {
     	return this.getClass().getName();
     }
     
-
+    public String getGroup() {
+    	return group;
+    }
     
-
+    public void setGroup(String group) {
+    	this.group = group;
+    }
 }
