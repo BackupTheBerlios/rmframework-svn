@@ -19,8 +19,8 @@ import net.form105.rm.base.Agent;
 import net.form105.rm.base.command.AbstractCommand;
 import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.model.attribute.AbstractAttribute;
-import net.form105.rm.server.ant.container.WorkflowContainer;
 import net.form105.rm.server.ant.model.Workflow;
+import net.form105.rm.server.ant.workflow.WorkflowManager;
 
 public class AddAttributeCommand extends AbstractCommand {
 	
@@ -34,8 +34,8 @@ public class AddAttributeCommand extends AbstractCommand {
 
 	@Override
 	public void execute() throws RMException {
-		WorkflowContainer wfContainer = (WorkflowContainer) Agent.getComponentById("workflows");
-		Workflow workflow = wfContainer.getWorkflowById(workflowId);
+		WorkflowManager wfManager = (WorkflowManager) Agent.getComponentById("workflowManager");
+		Workflow workflow = wfManager.getWorkflowById(workflowId);
 		workflow.addAttribute(attribute);
 	}
 }

@@ -25,7 +25,7 @@ public class WorkflowMap {
 	 * @param workflow
 	 */
 	public void addWorkflow(Workflow workflow) {
-		workflowMap.put(workflow.getId(), workflow);
+		workflowMap.put(workflow.getElementId(), workflow);
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public class WorkflowMap {
 	 * @param workflow
 	 */
 	public void removeWorkflow(Workflow workflow) {
-		workflowMap.remove(workflow.getId());
+		workflowMap.remove(workflow.getElementId());
 	}
 	
 	/**
@@ -45,6 +45,10 @@ public class WorkflowMap {
 		return workflowMap.get(id);
 	}
 	
+	/**
+	 * Getting all existing workflows
+	 * @return Collection of workflows
+	 */
 	public Collection<Workflow> getAllWorkflows() {
 		return workflowMap.values();
 	}

@@ -6,17 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import net.form105.rm.base.command.AbstractCallbackCommand;
 import net.form105.rm.base.command.CommandEvent;
 import net.form105.rm.base.command.ICommandListener;
-import net.form105.rm.base.query.DefaultFilterQuery;
-import net.form105.rm.base.query.LocalQueryHandler;
-import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.ResultStatus;
-import net.form105.rm.server.ant.AntAgent;
-import net.form105.rm.server.ant.Globals;
-import net.form105.rm.server.ant.container.WorkflowContainer;
-import net.form105.rm.server.ant.filter.WorkflowByAttributeValueFilter;
 import net.form105.rm.server.ant.model.ExecutionState;
-import net.form105.rm.server.ant.model.Workflow;
-import net.form105.rm.server.ant.selection.WorkflowByAttributeSelection;
 
 import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
@@ -99,27 +89,6 @@ public class AntCommandHandler implements Runnable, Startable, ICommandListener 
 
 
 	
-	// how to get the workflow with the attribute value of the correct hotfolder in a fast and easy way?
-	// get HotfolderByAttributeValueQuery
-	@Override
-	public void finished(CommandEvent event) {
-		// notify the workflow that we are finished
-		String hotfolderValue = event.getCommand().getGroup();
-		String groupId = event.getCommand().getGroup();
-		WorkflowContainer wContainer = (WorkflowContainer) AntAgent.getComponentById("workflows");
-		WorkflowByAttributeSelection selection = new WorkflowByAttributeSelection(Globals.ATTRIBUTE_ID_HOTFOLDER, wContainer);
-		WorkflowByAttributeValueFilter filter = new WorkflowByAttributeValueFilter(Globals.ATTRIBUTE_ID_HOTFOLDER, hotfolderValue);
-		DefaultFilterQuery<Workflow> query = new DefaultFilterQuery<Workflow>(selection);
-
-		LocalQueryHandler queryHandler = new LocalQueryHandler();
-		IResult<Workflow> result = queryHandler.executeQuery(query);
-	
-		if (result.equals(ResultStatus.FAIL)) {
-			logger.error("Sorting out. Error in query");
-		}
-		
-		System.out.println("finished invoked");
-	}
 
 	@Override
 	public void started(CommandEvent event) {
@@ -127,8 +96,16 @@ public class AntCommandHandler implements Runnable, Startable, ICommandListener 
 		
 	}
 	
+	@Override
+	public void finished(CommandEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public Queue<AbstractCallbackCommand> getCommandQueue() {
 		return queue;
 	}
+
+	
 
 }

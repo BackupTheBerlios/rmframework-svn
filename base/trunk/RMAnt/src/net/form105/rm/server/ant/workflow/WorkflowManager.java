@@ -15,7 +15,12 @@
  */
 package net.form105.rm.server.ant.workflow;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.form105.rm.base.model.attribute.AbstractAttribute;
 import net.form105.rm.server.ant.model.NullWorkflow;
+import net.form105.rm.server.ant.model.Task;
 import net.form105.rm.server.ant.model.Workflow;
 
 /**
@@ -23,8 +28,6 @@ import net.form105.rm.server.ant.model.Workflow;
  * @author heikok
  *
  */
-
-
 
 public class WorkflowManager {
 	
@@ -34,12 +37,48 @@ public class WorkflowManager {
 		this.map = map;
 	}
 	
-	public Workflow getWorkflowByAttributeValue(String attributeId, String attributeValue) {
+	public List<Workflow> getWorkflowByAttributeValue(String attributeId, String attributeValue) {
+		List<Workflow> workflows = new ArrayList<Workflow>();
 		for (Workflow workflow : map.getAllWorkflows()) {
 			if (workflow.getAttributeById(attributeId).getValue().equals(attributeValue)) {
-				return workflow;
+				workflows.add(workflow);
 			}
 		}
-		return new NullWorkflow();
+		return workflows;
 	}
+	
+	public void addWorkflow(Workflow workflow) {
+		map.addWorkflow(workflow);
+	}
+	
+	public void removeWorkflow(Workflow workflow) {
+		map.removeWorkflow(workflow);
+	}
+	
+	/**
+	 * Sets a attribute of the workflow. The attribute value will be updated,
+	 * if the attribute with the specified id already exists 
+	 * @param <T>
+	 * @param attribute
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> void updateAttribute(String workflowId, AbstractAttribute<T> attribute) {
+		Workflow workflow = map.getWorkflowById(workflowId);
+		AbstractAttribute<T> existingAttribute = (AbstractAttribute<T>) workflow.getAttributeById(attribute.getElementId()); 
+		if (existingAttribute == null) {
+			workflow.addAttribute(attribute);
+		} else {
+			existingAttribute.setValue(attribute.getValue());
+		}
+	}
+	
+	public void addTask(Workflow workflow, Task task) {
+		workflow.addTask(task);
+	}
+	
+	public Workflow getWorkflowById(String id) {
+		return map.getWorkflowById(id);
+	}
+	
+	
 }

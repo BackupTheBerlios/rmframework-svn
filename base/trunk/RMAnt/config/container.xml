@@ -11,8 +11,9 @@
     <component-implementation id="hotfolderConfig" class='net.form105.rm.server.ant.container.HotfolderConfigContainer' ></component-implementation>
     
     <!-- Model -->
-    <component-implementation id="workflows" class="net.form105.rm.server.ant.container.WorkflowContainer"></component-implementation>
-    <component-implementation id="taskMap" class="net.form105.rm.server.ant.container.TaskMapContainer"></component-implementation>
+    <component-implementation id="workflowManager" class="net.form105.rm.server.ant.workflow.WorkflowManager"></component-implementation>
+    <component-implementation id="workflowMap" class="net.form105.rm.server.ant.workflow.WorkflowMap"></component-implementation>
+    
         
     <!-- handler -->
     <component-implementation id="commandHandler" class="net.form105.rm.server.ant.command.AntCommandHandler"></component-implementation>

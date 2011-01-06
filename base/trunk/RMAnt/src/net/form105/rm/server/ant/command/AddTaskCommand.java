@@ -18,10 +18,9 @@ package net.form105.rm.server.ant.command;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.command.AbstractCommand;
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.server.ant.container.TaskMapContainer;
-import net.form105.rm.server.ant.container.WorkflowContainer;
 import net.form105.rm.server.ant.model.Task;
 import net.form105.rm.server.ant.model.Workflow;
+import net.form105.rm.server.ant.workflow.WorkflowManager;
 
 /**
  * A command which adds a task to the workflow. The task must be added to the taskMap and the list in the workflow. 
@@ -40,10 +39,9 @@ public class AddTaskCommand extends AbstractCommand {
 
 	@Override
 	public void execute() throws RMException {
-		TaskMapContainer taskContainer = (TaskMapContainer) Agent.getComponentById("taskMap");
-		taskContainer.addTask(task);
-		WorkflowContainer wfContainer = (WorkflowContainer) Agent.getComponentById("workflowMap");
-		Workflow wf = wfContainer.getWorkflowById(workflowId);
+		
+		WorkflowManager wfManager = (WorkflowManager) Agent.getComponentById("workflowManager");
+		Workflow wf = wfManager.getWorkflowById(workflowId);
 		wf.addTask(task);
 	}
 

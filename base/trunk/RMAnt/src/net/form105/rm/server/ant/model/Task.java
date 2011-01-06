@@ -17,6 +17,8 @@ public class Task extends AgentObject {
 	public Task(Workflow parent, String id, String name) {
 		this.parent = parent;
 		this.updateState(ExecutionState.NotStarted);
+		super.setElementId(id);
+		super.setName(name);
 	}
 	
 	/**

@@ -15,8 +15,7 @@ public class DefaultHotfolderListener extends AbstractHotfolderListener {
 
 	@Override
 	public void fileArrived(HotfolderEvent hotfolderEvent) {
-		String buildFilePath = hotfolderEvent.getHotfolderPath() + File.separator + "build.xml";
-		String incomingFilePath = hotfolderEvent.getIncomingFilePath();
+		
 		handleCommand(getId(hotfolderEvent), buildFilePath, incomingFilePath);
 	}
 	
@@ -25,9 +24,8 @@ public class DefaultHotfolderListener extends AbstractHotfolderListener {
 		
 	}
 	
-	private void handleCommand(String workflowId, String buildFilename, String incomingFilePath) {
-		
-		AntExecutionCommand execCommand = new AntExecutionCommand(workflowId, buildFilename, incomingFilePath);
+	private void handleCommand(String workflowId, HotfolderInboundObject inboundObject) {
+		AntExecutionCommand execCommand = new AntExecutionCommand(workflowId, inboundObject);
 		execCommand.setGroup(incomingFilePath);
 		AntCommandHandler cHandler = (AntCommandHandler) Agent.getContainer("commandHandler");
 		cHandler.addToStack(execCommand);

@@ -164,6 +164,11 @@ public class Hotfolder {
 	 *            The file which has been arrived
 	 */
 	public void notifyFileArrived(String hotfolderPathName, String fileArrivedPathName) {
+		
+		HotfolderInboundObject inboundObject = new HotfolderInboundObject();
+		inboundObject.setHotfolderName(hotfolderPathName));
+		
+		
 		if (eListenerList.size() > 0) {
 			HotfolderEvent event = new HotfolderEvent(this, hotFolderPathName, fileArrivedPathName );
 			for (IHotfolderListener listener : eListenerList) {

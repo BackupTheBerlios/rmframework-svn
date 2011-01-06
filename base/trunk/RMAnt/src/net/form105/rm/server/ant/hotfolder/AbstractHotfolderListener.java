@@ -15,12 +15,9 @@
  */
 package net.form105.rm.server.ant.hotfolder;
 
-import java.io.File;
 
 public abstract class AbstractHotfolderListener implements IHotfolderListener {
 
-	
-	
 	@Override
 	public abstract void fileArrived(HotfolderEvent hotEvent);
 	
@@ -29,15 +26,12 @@ public abstract class AbstractHotfolderListener implements IHotfolderListener {
 	
 	/**
 	 * A file is always unique within a hotfolder and so is the timestamp of the last modification.
-	 * The id is constructed of the hashcode of hotfolders path and this timestamp 
 	 * @param hotEvent
 	 * @return
 	 */
 	public String getId(HotfolderEvent hotEvent) {
-		File file = new File(hotEvent.getIncomingFilePath());
-		long modStamp = file.lastModified();
-		long fileHashCode = hotEvent.getIncomingFilePath().hashCode();
-		return fileHashCode + "_" + modStamp;
+		IInboundObject object = hotEvent.getInboundObject();
+		return object.getWorkflowId();
 	}
 
 }

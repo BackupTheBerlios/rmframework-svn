@@ -4,16 +4,15 @@ import net.form105.rm.base.Agent;
 import net.form105.rm.base.command.AbstractCallbackCommand;
 import net.form105.rm.base.command.CommandEvent;
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.base.query.DefaultFilterQuery;
 import net.form105.rm.base.query.LocalQueryHandler;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
 import net.form105.rm.server.ant.AntFlow;
 import net.form105.rm.server.ant.Globals;
-import net.form105.rm.server.ant.container.WorkflowContainer;
+import net.form105.rm.server.ant.hotfolder.HotfolderInboundObject;
 import net.form105.rm.server.ant.model.Workflow;
-import net.form105.rm.server.ant.selection.WorkflowByAttributeSelection;
 import net.form105.rm.server.ant.workflow.WorkflowListener;
+import net.form105.rm.server.ant.workflow.WorkflowManager;
 
 /**
  * A command for executing an ant flow. It implements an callback listener for informations about start and ending the
@@ -39,9 +38,9 @@ public class AntExecutionCommand extends AbstractCallbackCommand implements Runn
 	 * @param buildFilePath The build file to start
 	 * @param incomingFilePath An incoming file. The path will be used as a property for ant (-d)
 	 */
-	public AntExecutionCommand(String workflowId, String buildFilePath, String incomingFilePath) {
-		this.incomingFilePath = incomingFilePath;
-		this.buildFilePath = buildFilePath;
+	public AntExecutionCommand(String workflowId, HotfolderInboundObject inboundObject) {
+		this.incomingFilePath = inboundObject.getInboundFilenName();
+		this.buildFilePath = inboundObject.getBuildTempFolderName();
 		this.workflowId = workflowId;
 		wfListener = new WorkflowListener(workflowId);
 	}
@@ -77,9 +76,9 @@ public class AntExecutionCommand extends AbstractCallbackCommand implements Runn
 	}
 	
 	public boolean reRun() {
-		WorkflowContainer container = (WorkflowContainer) Agent.getComponentById("workflows");
-		WorkflowByAttributeSelection selection = new WorkflowByAttributeSelection(Globals.ATTRIBUTE_ID_HOTFOLDER, container);
-		DefaultFilterQuery<Workflow> query = new DefaultFilterQuery<Workflow>(selection);
+		WorkflowManager manager = (WorkflowManager) Agent.getComponentById("workflowManager");
+		
+		manager.getWorkflowByAttributeValue(Globals.ATTRIBUTE_ID_HOTFOLDER, incomingFilePath);
 
 		LocalQueryHandler queryHandler = new LocalQueryHandler();
 		IResult<Workflow> result = queryHandler.executeQuery(query);

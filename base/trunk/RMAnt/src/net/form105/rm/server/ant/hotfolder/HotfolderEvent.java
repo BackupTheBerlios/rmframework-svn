@@ -11,34 +11,21 @@ public class HotfolderEvent extends EventObject {
 	
 	private static final long serialVersionUID = 1806008446708913667L;
 	
-	private String hotfolderPathName;
-	private String fileArrivedPathName;
+	private IInboundObject hotfolderObject;
 
 	/**
 	 * 
-	 * @param source The file that has been arrived
-	 * @param hotfolderPath Path to the hotfolder as a string
+	 * @param source The inbound object which triggers the flow.
 	 */
-	public HotfolderEvent(Object source, String hotfolderPathName, String fileArrivedPathName) {
+	public HotfolderEvent(IInboundObject source) {
 		super(source);
-		this.hotfolderPathName = hotfolderPathName;
-		this.fileArrivedPathName = fileArrivedPathName;
+		this.hotfolderObject = (IInboundObject) source;
 	}
 	
-	/**
-	 * Get the path of the hotfolder where the event has been occurred
-	 * @return The path of the hotfolder
-	 */
-	public String getHotfolderPath() {
-		return hotfolderPathName;
+	public IInboundObject getInboundObject() {
+		return hotfolderObject;
 	}
 	
-	/**
-	 * Get the path of the file which triggered this flow
-	 * @return
-	 */
-	public String getIncomingFilePath() {
-		return fileArrivedPathName;
-	}
+	
 
 }

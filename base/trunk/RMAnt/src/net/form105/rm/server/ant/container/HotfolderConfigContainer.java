@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.form105.rm.base.container.AbstractContainer;
 import net.form105.rm.base.container.PropertiesContainer;
-import net.form105.rm.server.ant.AntAgent;
+import net.form105.rm.server.ant.hotfolder.CreateTempEnvironmentListener;
 import net.form105.rm.server.ant.hotfolder.CreateWorkflowHotfolderListener;
 import net.form105.rm.server.ant.hotfolder.DefaultHotfolderListener;
 import net.form105.rm.server.ant.hotfolder.Hotfolder;
@@ -15,6 +15,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.Node;
 import org.dom4j.XPath;
 import org.dom4j.io.SAXReader;
 
@@ -55,6 +56,10 @@ public class HotfolderConfigContainer extends AbstractContainer {
 	 */
 	public void initializeHotFolders() {
 		// get configuration
+		XPath tempFolderSelector = DocumentHelper.createXPath("//tempFolder");
+		Node node = tempFolderSelector.selectSingleNode(document);
+		String tempBuildFolder = node.getStringValue();
+		
 		XPath hotfoldersSelector = DocumentHelper.createXPath("//hotfolders");
 		List<Element> hotfoldersElementList = hotfoldersSelector.selectNodes(document);
 		for (Element element : hotfoldersElementList) {
@@ -69,6 +74,7 @@ public class HotfolderConfigContainer extends AbstractContainer {
 				Hotfolder hFolder = new Hotfolder(hfElement);
 				hFolder.addListener(new CreateWorkflowHotfolderListener());
 				hFolder.addListener(new DefaultHotfolderListener());
+				hFolder.addListener(new CreateTempEnvironmentListener());
 				if (hFolder.isValid()) {
 					hfContainer.addHotfolder(hFolder);
 				} else {

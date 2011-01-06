@@ -1,55 +1,45 @@
 package net.form105.rm.server.ant.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.form105.rm.base.model.AgentObject;
 import net.form105.rm.base.model.attribute.AbstractAttribute;
-import net.form105.rm.base.model.attribute.NullAttribute;
 
 public class Workflow extends AgentObject {
 	
 	private static final long serialVersionUID = 1671714225911687893L;
 	
-	private String id;
-	private String name;
 	private String type;
-	private boolean singleRunWorkflow;
 	private long creationTime = 0;
 	
-	private List<Task> taskList = new ArrayList<Task>();
+	private Map<String, Task> taskMap = new HashMap<String, Task>();
 	private List<AbstractAttribute<?>> attributeList = new ArrayList<AbstractAttribute<?>>();
 	
 	
 	public Workflow(String id, String name, String type) {
 		this.creationTime = System.currentTimeMillis();
-		this.id = id;
-		this.name = name;
+		super.setElementId(id);
+		super.setName(name);
 		this.type = type;
-	}
-	
-	public String getId() {
-		return id;
-	}
-	
-	public String getName() {
-		return name;
 	}
 	
 	public String getType() {
 		return type;
 	}
 	
-	public boolean isSingleRunWorkflow() {
-		return singleRunWorkflow;
+	public Task getTask(String id) {
+		return taskMap.get(id);
 	}
 	
 	public void addTask(Task task) {
-		taskList.add(task);
+		taskMap.put(task.getElementId(), task);
 	}
 	
 	public void removeTask(Task task) {
-		taskList.remove(task);
+		taskMap.remove(task.getElementId());
 	}
 	
 	public long getCreationTime() {
@@ -64,6 +54,6 @@ public class Workflow extends AgentObject {
 		for (AbstractAttribute<?> attribute : attributeList) {
 			if (attribute.getElementId().equals(id)) return attribute;
 		}
-		return new NullAttribute(id, "fail", "fail");
+		return null;
 	}
 }
