@@ -19,6 +19,8 @@ public class Globals {
 
 	public static final String ATTRIBUTE_ID_HOTFOLDER = "hotfolder";
 	public static final String ATTRIBUTE_ID_INBOUND_FILE = "inboundFile";
+	public static final String ATTRIBUTE_ID_STATUS = "status";
+	public static final String ATTRIBUTE_NAME_STATUS = "Workflow Status";
 	
 	// Container ids
 	public static final String CONTAINER_ID_LOGGER = "logger"; // class='net.form105.rm.base.container.LoggerContainer' />
@@ -31,7 +33,7 @@ public class Globals {
 	public static final String CONTAINER_ID_HOTFOLDERS = "hotfolders"; //class='net.form105.rm.server.ant.container.HotfolderContainer' ></component-implementation>
 	public static final String CONTAINER_ID_HOTFOLDER_CONFIG = "hotfolderConfig"; //class='net.form105.rm.server.ant.container.HotfolderConfigContainer' ></component-implementation>
     
-	public static final String CONTAINER_ID_WORKFLOWS = "workflows"; // class="net.form105.rm.server.ant.container.WorkflowContainer"></component-implementation>
+	public static final String CONTAINER_ID_WORKFLOWS = "workflowManager"; // class="net.form105.rm.server.ant.container.WorkflowContainer"></component-implementation>
 	public static final String CONTAINER_ID_TASKS = "taskMap"; // class="net.form105.rm.server.ant.container.TaskMapContainer"></component-implementation>
         
 	public static final String CONTAINER_ID_COMMANDHANDLER = "commandHandler"; // class="net.form105.rm.server.ant.command.AntCommandHandler"></component-implementation>

@@ -33,15 +33,18 @@ public class Hotfolder {
 	private List<IValidator<File>> validatorList = new ArrayList<IValidator<File>>();
 
 	private List<IHotfolderListener> eListenerList = new ArrayList<IHotfolderListener>();
-
-	private AntCommandHandler comHandler = new AntCommandHandler();
+	
+	private String tempFolder;
+	
 
 	public Hotfolder() {
 
 	}
 
-	public Hotfolder(Element element) {
-		initByXml(element);
+	public Hotfolder(Element element, String tempFolder) {
+		initByXml(element, tempFolder);
+		this.tempFolder = tempFolder;
+		
 	}
 
 	/**
@@ -99,7 +102,8 @@ public class Hotfolder {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected void initByXml(Element element) {
+	protected void initByXml(Element element, String tempFolder) {
+		
 		Element filePathElement = element.element("path");
 		this.hotFolderPathName = filePathElement.getStringValue();
 		for (Element valElement : (List<Element>) element.elements("validator")) {
@@ -115,7 +119,7 @@ public class Hotfolder {
 	}
 
 	/**
-	 * Checks if it is a real file
+	 * Check if it is a real file
 	 */
 	public boolean isValid() {
 		File hotFolderFile = new File(hotFolderPathName);
@@ -165,12 +169,13 @@ public class Hotfolder {
 	 */
 	public void notifyFileArrived(String hotfolderPathName, String fileArrivedPathName) {
 		
-		HotfolderInboundObject inboundObject = new HotfolderInboundObject();
-		inboundObject.setHotfolderName(hotfolderPathName));
+		HotfolderInboundObject inboundObject = new HotfolderInboundObject(tempFolder);
+		inboundObject.setHotfolderName(hotfolderPathName);
+		inboundObject.setInboundFileName(fileArrivedPathName);
 		
 		
 		if (eListenerList.size() > 0) {
-			HotfolderEvent event = new HotfolderEvent(this, hotFolderPathName, fileArrivedPathName );
+			HotfolderEvent event = new HotfolderEvent(inboundObject);
 			for (IHotfolderListener listener : eListenerList) {
 				listener.fileArrived(event);
 			}
@@ -184,8 +189,11 @@ public class Hotfolder {
 	 *            The file which has been removed
 	 */
 	public void notifyFileRemoved(String fileRemovedPathName) {
+		
+		HotfolderInboundObject inboundObject = new HotfolderInboundObject(tempFolder);
+		inboundObject.setInboundFileName(fileRemovedPathName);
 	
-		HotfolderEvent event = new HotfolderEvent(this, hotFolderPathName, fileRemovedPathName);
+		HotfolderEvent event = new HotfolderEvent(inboundObject);
 		for (IHotfolderListener listener : eListenerList) {
 			listener.fileRemoved(event);
 		}

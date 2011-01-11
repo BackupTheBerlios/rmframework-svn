@@ -26,6 +26,7 @@ import net.form105.rm.server.ant.Globals;
 import net.form105.rm.server.ant.command.AddAttributeCommand;
 import net.form105.rm.server.ant.command.AddWorkflowCommand;
 import net.form105.rm.server.ant.model.Workflow;
+import net.form105.rm.server.ant.workflow.WorkflowStatus;
 
 /**
  * The listener creates a workflow after a file has been arrived. The workflow will have a special state
@@ -37,20 +38,22 @@ public class CreateWorkflowHotfolderListener extends AbstractHotfolderListener {
 
 	@Override
 	public void fileArrived(HotfolderEvent hotEvent) {
-		// create a pre workflow
-		// id for the workflow = filePath
+		
+		HotfolderInboundObject inboundObject = (HotfolderInboundObject) hotEvent.getInboundObject();
 		String id = getId(hotEvent);
-		String name = hotEvent.getIncomingFilePath();
+		String name = "Hotfolder Workflow";
 		String type = "hotfolder";
 		
 		AddWorkflowCommand command = new AddWorkflowCommand(id, name, type);
-		StringAttribute hotfolderAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Path to the Hotfolder", hotEvent.getHotfolderPath());
+		StringAttribute hotfolderAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Path to the Hotfolder", inboundObject.getHotfolderName());
 		StringAttribute incomingFileAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_INBOUND_FILE, "Path to the incoming file", name);
+		StringAttribute statusAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_STATUS, Globals.ATTRIBUTE_NAME_STATUS, WorkflowStatus.CREATED.toString());
 		
 		CommandHandler<Workflow> handler = new CommandHandler<Workflow>();
 		List<ICommand> commandList = new ArrayList<ICommand>();
 		commandList.add(new AddAttributeCommand(id, hotfolderAttribute));
 		commandList.add(new AddAttributeCommand(id, incomingFileAttribute));
+		commandList.add(new AddAttributeCommand(id, statusAttribute));
 		handler.execute(commandList);
 		IResult<Workflow> result = handler.getResult();
 		// TODO: Result should be sent to handler in case of exceptions
@@ -58,6 +61,6 @@ public class CreateWorkflowHotfolderListener extends AbstractHotfolderListener {
 
 	@Override
 	public void fileRemoved(HotfolderEvent hotEvent) {
-		
+		// nothing to do
 	}
 }

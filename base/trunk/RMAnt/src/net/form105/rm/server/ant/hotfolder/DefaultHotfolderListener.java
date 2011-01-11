@@ -1,7 +1,5 @@
 package net.form105.rm.server.ant.hotfolder;
 
-import java.io.File;
-
 import net.form105.rm.base.Agent;
 import net.form105.rm.server.ant.command.AntCommandHandler;
 import net.form105.rm.server.ant.command.AntExecutionCommand;
@@ -15,8 +13,9 @@ public class DefaultHotfolderListener extends AbstractHotfolderListener {
 
 	@Override
 	public void fileArrived(HotfolderEvent hotfolderEvent) {
+		HotfolderInboundObject inboundObject = (HotfolderInboundObject) hotfolderEvent.getInboundObject();
 		
-		handleCommand(getId(hotfolderEvent), buildFilePath, incomingFilePath);
+		handleCommand(getId(hotfolderEvent), inboundObject);
 	}
 	
 	@Override
@@ -26,7 +25,7 @@ public class DefaultHotfolderListener extends AbstractHotfolderListener {
 	
 	private void handleCommand(String workflowId, HotfolderInboundObject inboundObject) {
 		AntExecutionCommand execCommand = new AntExecutionCommand(workflowId, inboundObject);
-		execCommand.setGroup(incomingFilePath);
+		execCommand.setGroup(inboundObject.getHotfolderName());
 		AntCommandHandler cHandler = (AntCommandHandler) Agent.getContainer("commandHandler");
 		cHandler.addToStack(execCommand);
 	}

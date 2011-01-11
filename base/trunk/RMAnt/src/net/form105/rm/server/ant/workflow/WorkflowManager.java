@@ -19,9 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.model.attribute.AbstractAttribute;
-import net.form105.rm.server.ant.model.NullWorkflow;
 import net.form105.rm.server.ant.model.Task;
 import net.form105.rm.server.ant.model.Workflow;
+
+import org.picocontainer.Startable;
 
 /**
  * A manager which handles all requests and direct actions on a workflow
@@ -29,7 +30,7 @@ import net.form105.rm.server.ant.model.Workflow;
  *
  */
 
-public class WorkflowManager {
+public class WorkflowManager implements Startable {
 	
 	private WorkflowMap map;
 	
@@ -78,6 +79,18 @@ public class WorkflowManager {
 	
 	public Workflow getWorkflowById(String id) {
 		return map.getWorkflowById(id);
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stop() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

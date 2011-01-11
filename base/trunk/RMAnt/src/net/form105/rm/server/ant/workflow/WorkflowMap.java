@@ -6,13 +6,15 @@ import java.util.Map;
 
 import net.form105.rm.server.ant.model.Workflow;
 
+import org.picocontainer.Startable;
+
 /**
  * The workflow encapsulates the workflows in a map and gives access to the individual workflows by their
  * ids. 
  * @author heikok
  *
  */
-public class WorkflowMap {
+public class WorkflowMap implements Startable {
 	
 	private Map<String, Workflow> workflowMap = new HashMap<String, Workflow>();
 	
@@ -51,6 +53,18 @@ public class WorkflowMap {
 	 */
 	public Collection<Workflow> getAllWorkflows() {
 		return workflowMap.values();
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stop() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
