@@ -56,7 +56,7 @@ public class HotfolderConfigContainer extends AbstractContainer {
 	 */
 	public void initializeHotFolders() {
 		// get configuration
-		XPath tempFolderSelector = DocumentHelper.createXPath("/tempFolder");
+		XPath tempFolderSelector = DocumentHelper.createXPath("//tempFolder");
 		Node node = tempFolderSelector.selectSingleNode(document);
 		String tempBuildFolder = node.getStringValue();
 		
@@ -72,8 +72,9 @@ public class HotfolderConfigContainer extends AbstractContainer {
 			for (Element hfElement : hotfolderElementList) {
 				Hotfolder hFolder = new Hotfolder(hfElement, tempBuildFolder);
 				hFolder.addListener(new CreateWorkflowHotfolderListener());
-				hFolder.addListener(new DefaultHotfolderListener());
 				hFolder.addListener(new CreateTempEnvironmentListener());
+				hFolder.addListener(new DefaultHotfolderListener());
+				
 				if (hFolder.isValid()) {
 					hfContainer.addHotfolder(hFolder);
 				} else {

@@ -25,7 +25,7 @@ public class DefaultHotfolderListener extends AbstractHotfolderListener {
 	
 	private void handleCommand(String workflowId, HotfolderInboundObject inboundObject) {
 		AntExecutionCommand execCommand = new AntExecutionCommand(workflowId, inboundObject);
-		execCommand.setGroup(inboundObject.getHotfolderName());
+		execCommand.setGroup(inboundObject.getBuildTempFolderName());
 		AntCommandHandler cHandler = (AntCommandHandler) Agent.getContainer("commandHandler");
 		cHandler.addToStack(execCommand);
 	}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <hotfolders>
-	
+	<tempFolder>/Users/heikok/temp/tempBuildFolder</tempFolder>
 	<hotfolder>
 		<path>/Users/heikok/temp/hotfolder/1</path>
 		<validator>buildFileValidator</validator>
@@ -19,5 +19,5 @@
 		</execution>
 	</hotfolder>
 </hotfolders>
-<tempFolder>/Users/heikok/temp/tempBuildFolder</tempFolder>
+
 

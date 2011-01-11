@@ -39,7 +39,7 @@ public class HotfolderWorker implements Runnable {
 			for (Hotfolder hotfolder : hfContainer.getHotfolderList()) {
 				hotfolder.compareContent(true);
 			}
-			logger.info("finished iterating hotfolders");
+			//logger.info("finished iterating hotfolders");
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {

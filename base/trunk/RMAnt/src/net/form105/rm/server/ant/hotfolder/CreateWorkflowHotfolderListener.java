@@ -44,13 +44,16 @@ public class CreateWorkflowHotfolderListener extends AbstractHotfolderListener {
 		String name = "Hotfolder Workflow";
 		String type = "hotfolder";
 		
-		AddWorkflowCommand command = new AddWorkflowCommand(id, name, type);
+		AddWorkflowCommand addWorkflowCommand = new AddWorkflowCommand(id, name, type);
 		StringAttribute hotfolderAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Path to the Hotfolder", inboundObject.getHotfolderName());
-		StringAttribute incomingFileAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_INBOUND_FILE, "Path to the incoming file", name);
+		StringAttribute incomingFileAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_INBOUND_FILE, "Path to the incoming file", inboundObject.getBuildFileName());
 		StringAttribute statusAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_STATUS, Globals.ATTRIBUTE_NAME_STATUS, WorkflowStatus.CREATED.toString());
+		
+		
 		
 		CommandHandler<Workflow> handler = new CommandHandler<Workflow>();
 		List<ICommand> commandList = new ArrayList<ICommand>();
+		commandList.add(addWorkflowCommand);
 		commandList.add(new AddAttributeCommand(id, hotfolderAttribute));
 		commandList.add(new AddAttributeCommand(id, incomingFileAttribute));
 		commandList.add(new AddAttributeCommand(id, statusAttribute));

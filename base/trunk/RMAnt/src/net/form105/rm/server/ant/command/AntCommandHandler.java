@@ -56,7 +56,7 @@ public class AntCommandHandler implements Runnable, Startable, ICommandListener 
 	public void run() {
 		while (keepRunning) {
 			
-			logger.info("run thread");
+			
 
 			AbstractCallbackCommand command = queue.poll();
 

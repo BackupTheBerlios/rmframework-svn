@@ -43,8 +43,9 @@ public class AntExecutionCommand extends AbstractCallbackCommand implements Runn
 	 * @param incomingFilePath An incoming file. The path will be used as a property for ant (-d)
 	 */
 	public AntExecutionCommand(String workflowId, HotfolderInboundObject inboundObject) {
+		
 		this.incomingFilePath = inboundObject.getInboundFilenName();
-		this.buildFilePath = inboundObject.getBuildTempFolderName();
+		this.buildFilePath = inboundObject.getBuildFileName();
 		this.workflowId = workflowId;
 		wfListener = new WorkflowListener(workflowId);
 	}
@@ -58,7 +59,7 @@ public class AntExecutionCommand extends AbstractCallbackCommand implements Runn
 	@Override
 	public void execute() {
 		antFlow = new AntFlow();
-		antFlow.startAntFlow(new String[] { "-buildfile", buildFilePath, "-DincomingFile="+incomingFilePath }, null, null, wfListener);
+		antFlow.startAntFlow(new String[] { "-buildfile", buildFilePath + "/build.xml", "-DincomingFile="+incomingFilePath }, null, null, wfListener);
 	}
 	
 	/**
