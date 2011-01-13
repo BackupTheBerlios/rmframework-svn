@@ -37,45 +37,42 @@ public class WorkflowManagerTest {
 	private WorkflowManager wfManager;
 	private final int PRODUCT_COUNT = 2;
 	private final String HOTFOLDER_ATTR = "hotfolder";
-	@Mock private WorkflowManager mockWorkflows;
+	private WorkflowManager workflowManager;
 	@Mock private WorkflowMap mockWorkflowMap;
+	@Mock private Workflow mockWorkflow;
 	@Mock private Workflow wf1;
 	@Mock private Workflow wf2;
+	@Mock private StringAttribute mockStringAttribute;
 	
 	@Before
 	public void setUp() throws Exception {
-		
 		MockitoAnnotations.initMocks(this);
-
-
-		
-		//wfManager.addWorkflow(wf1);
-		//wfManager.addWorkflow(wf2);
-		
+		workflowManager = new WorkflowManager(mockWorkflowMap);
 	}
 	
 	@Test 
-	public void addAttributesTest() {
-		StringAttribute attr1 = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Hotfolder 1", "/Users/heikok/temp/hotfolder/1");
-		StringAttribute attr2 = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Hotfolder 2", "/Users/heikok/temp/hotfolder/2");
-		
-		//when(mockWorkflowMap.getWorkflowById())
-		
-		wf1.addAttribute(attr1);
-		wf2.addAttribute(attr2);
-		
-		verify(wf1).addAttribute(attr1);
-		verify(wf2).addAttribute(attr2);
-		
-		System.out.println("attribute: "+wf1.getAttributeById(Globals.ATTRIBUTE_ID_HOTFOLDER));
-		//verify(mockWorkflowMap).getAllWorkflows();
+	public void addAttributeExistTest() {
+		// if an attribute exists, update its value (means return value is the attribute)
+		when(mockWorkflow.getAttributeById(anyString())).thenReturn(mockStringAttribute);
+		when(mockWorkflowMap.getWorkflowById(anyString())).thenReturn(mockWorkflow);
+		workflowManager.updateAttribute("myWorkflowId", mockStringAttribute);
+		verify(mockStringAttribute).setValue(anyString());
+	}
+	
+	@Test
+	public void addAttributeNotExist() {
+		// if an attribute doesn't exist, add it (means return value = null)
+		when(mockWorkflow.getAttributeById(anyString())).thenReturn(null);
+		when(mockWorkflowMap.getWorkflowById(anyString())).thenReturn(mockWorkflow);
+		workflowManager.updateAttribute("myWorkflowId", mockStringAttribute);
+		verify(mockWorkflow).addAttribute(any(StringAttribute.class));
 	}
 	
 	
 	public void testWorkflowAttributeValue() {
-		List<Workflow> workflows = mockWorkflows.getWorkflowByAttributeValue(Globals.ATTRIBUTE_ID_HOTFOLDER, "/Users/heikok/temp/hotfolder/1");
+		List<Workflow> workflows = workflowManager.getWorkflowByAttributeValue(Globals.ATTRIBUTE_ID_HOTFOLDER, "/Users/heikok/temp/hotfolder/1");
 		Assert.assertEquals(1, workflows.size());
-		workflows = mockWorkflows.getWorkflowByAttributeValue(Globals.ATTRIBUTE_ID_HOTFOLDER, "/Users/heikok/temp/hotfolder/2");
+		workflows = workflowManager.getWorkflowByAttributeValue(Globals.ATTRIBUTE_ID_HOTFOLDER, "/Users/heikok/temp/hotfolder/2");
 		Assert.assertEquals(1, workflows.size());
 	}
 	
@@ -86,5 +83,16 @@ public class WorkflowManagerTest {
 		verify(mockWorkflowMap).addWorkflow(wf1);
 		verify(mockWorkflowMap).addWorkflow(wf2);
 	}
-
+	
+	@Test
+	public void addWorkflowTest() {
+		workflowManager.addWorkflow(mockWorkflow);
+		verify(mockWorkflowMap).addWorkflow(mockWorkflow);
+	}
+	
+	@Test
+	public void removeWorkflowTest() {
+		workflowManager.removeWorkflow(mockWorkflow);
+		verify(mockWorkflowMap).removeWorkflow(mockWorkflow);
+	}
 }

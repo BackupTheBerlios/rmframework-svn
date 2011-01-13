@@ -50,8 +50,8 @@ public class Workflow extends AgentObject {
 		attributeList.add(attribute);
 	}
 	
-	public AbstractAttribute<?> getAttributeById(String id) {
-		for (AbstractAttribute<?> attribute : attributeList) {
+	public AbstractAttribute getAttributeById(String id) {
+		for (AbstractAttribute attribute : attributeList) {
 			if (attribute.getElementId().equals(id)) return attribute;
 		}
 		return null;

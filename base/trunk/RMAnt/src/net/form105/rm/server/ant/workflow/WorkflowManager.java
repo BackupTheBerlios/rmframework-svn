@@ -58,7 +58,7 @@ public class WorkflowManager implements Startable {
 	
 	/**
 	 * Sets a attribute of the workflow. The attribute value will be updated,
-	 * if the attribute with the specified id already exists 
+	 * if the attribute with the specified id already exists otherwise a new instance will be added
 	 * @param <T>
 	 * @param attribute
 	 */
@@ -83,13 +83,11 @@ public class WorkflowManager implements Startable {
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void stop() {
-		// TODO Auto-generated method stub
 		
 	}
 	
