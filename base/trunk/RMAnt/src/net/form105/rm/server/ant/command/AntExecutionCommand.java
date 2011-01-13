@@ -1,22 +1,11 @@
 package net.form105.rm.server.ant.command;
 
-import java.util.List;
-
-import net.form105.rm.base.Agent;
 import net.form105.rm.base.command.AbstractCallbackCommand;
 import net.form105.rm.base.command.CommandEvent;
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.base.model.attribute.AbstractAttribute;
-import net.form105.rm.base.query.LocalQueryHandler;
-import net.form105.rm.base.service.IResult;
-import net.form105.rm.base.service.ResultStatus;
 import net.form105.rm.server.ant.AntFlow;
-import net.form105.rm.server.ant.Globals;
 import net.form105.rm.server.ant.hotfolder.HotfolderInboundObject;
-import net.form105.rm.server.ant.model.Workflow;
 import net.form105.rm.server.ant.workflow.WorkflowListener;
-import net.form105.rm.server.ant.workflow.WorkflowManager;
-import net.form105.rm.server.ant.workflow.WorkflowStatus;
 
 /**
  * A command for executing an ant flow. It implements an callback listener for informations about start and ending the
@@ -24,15 +13,15 @@ import net.form105.rm.server.ant.workflow.WorkflowStatus;
  * @author heikok
  *
  */
-public class AntExecutionCommand extends AbstractCallbackCommand implements Runnable {
+public class AntExecutionCommand extends AbstractCallbackCommand {
 	
 	private String buildFilePath;
 	private String incomingFilePath;
 	private AntFlow antFlow;
 	private WorkflowListener wfListener;
 	private Thread threadCommand;
+	private HotfolderInboundObject inObject;
 	
-	private String workflowId;
 	public CommandEvent event;
 
 	
@@ -42,12 +31,11 @@ public class AntExecutionCommand extends AbstractCallbackCommand implements Runn
 	 * @param buildFilePath The build file to start
 	 * @param incomingFilePath An incoming file. The path will be used as a property for ant (-d)
 	 */
-	public AntExecutionCommand(String workflowId, HotfolderInboundObject inboundObject) {
-		
+	public AntExecutionCommand(HotfolderInboundObject inboundObject) {
+		this.inObject = inboundObject;
 		this.incomingFilePath = inboundObject.getInboundFilenName();
 		this.buildFilePath = inboundObject.getBuildFileName();
-		this.workflowId = workflowId;
-		wfListener = new WorkflowListener(workflowId);
+		wfListener = new WorkflowListener(inboundObject);
 	}
 
 	public void executeAsThread() throws RMException {
@@ -59,7 +47,7 @@ public class AntExecutionCommand extends AbstractCallbackCommand implements Runn
 	@Override
 	public void execute() {
 		antFlow = new AntFlow();
-		antFlow.startAntFlow(new String[] { "-buildfile", buildFilePath + "/build.xml", "-DincomingFile="+incomingFilePath }, null, null, wfListener);
+		antFlow.startAntFlow(new String[] { "-buildfile", buildFilePath, "-DincomingFile="+incomingFilePath }, null, null, wfListener);
 	}
 	
 	/**
@@ -70,30 +58,12 @@ public class AntExecutionCommand extends AbstractCallbackCommand implements Runn
 		return wfListener;
 	}
 	
-	@Override
-	public void run() {
-		antFlow = new AntFlow();
-		antFlow.startAntFlow(new String[] { "-buildfile", buildFilePath }, null, null, wfListener);
+	
+
+	
+	public HotfolderInboundObject getInboundObject() {
+		return inObject;
 	}
 	
-	public String getWorkflowId() {
-		return workflowId;
-	}
 	
-	public boolean mustReRun() {
-		WorkflowManager manager = (WorkflowManager) Agent.getComponentById("workflowManager");
-		
-		List<Workflow> workflows = manager.getWorkflowByAttributeValue(Globals.ATTRIBUTE_ID_HOTFOLDER, incomingFilePath);
-		
-		for (Workflow workflow : workflows) {
-			 AbstractAttribute<?> attr = workflow.getAttributeById(Globals.ATTRIBUTE_ID_STATUS);
-			 boolean created = attr.getValueAsString().equals(WorkflowStatus.CREATED.toString());
-			 boolean finished = attr.getValueAsString().equals(WorkflowStatus.FINISHED.toString());
-			 if ((! created) && (! finished)) {
-				 return true;
-			 }
-		}
-		
-		return false;
-	}
 }

@@ -1,26 +1,39 @@
 package net.form105.rm.server.ant.command;
 
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import net.form105.rm.base.command.AbstractCallbackCommand;
-import net.form105.rm.base.command.CommandEvent;
-import net.form105.rm.base.command.ICommandListener;
+import net.form105.rm.base.Agent;
+import net.form105.rm.base.command.AbstractCommandHandler;
+import net.form105.rm.base.command.ICommand;
+import net.form105.rm.base.model.attribute.AbstractAttribute;
+import net.form105.rm.base.service.IResult;
+import net.form105.rm.server.ant.Globals;
+import net.form105.rm.server.ant.hotfolder.HotfolderInboundObject;
 import net.form105.rm.server.ant.model.ExecutionState;
+import net.form105.rm.server.ant.model.Workflow;
+import net.form105.rm.server.ant.workflow.WorkflowManager;
+import net.form105.rm.server.ant.workflow.WorkflowStatus;
 
 import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
 
-public class AntCommandHandler implements Runnable, Startable, ICommandListener {
+public class AntCommandHandler extends AbstractCommandHandler<Object> implements Runnable, Startable {
 
 	public static Logger logger = Logger.getLogger(AntCommandHandler.class);
 
 	private ExecutionState currentState = ExecutionState.NotStarted;
 	private boolean keepRunning = true;
 	private Thread executionThread;
-
-	Queue<AbstractCallbackCommand> queue = new ConcurrentLinkedQueue<AbstractCallbackCommand>();
+	private IResult<Object> result;
+	private IExecutionStrategy strategy;
 	
+	public AntCommandHandler(IExecutionStrategy strategy) {
+		this.strategy = strategy;
+	}
+
+	Queue<ICommand> queue = new ConcurrentLinkedQueue<ICommand>();
 
 	/**
 	 * If a queue is initialized and contains objects we need to trigger the
@@ -30,14 +43,16 @@ public class AntCommandHandler implements Runnable, Startable, ICommandListener 
 
 	}
 
-	/**
-	 * Executes an object from the stack. Takes the first from the queue
-	 */
-	public void execute(AbstractCallbackCommand command) {
-		// There are two types of commands (threaded and synchronized)
-		// TODO: implement both versions (threaded and synchronized)
-		Thread thread = new Thread(command);
-		thread.start();
+	@Override
+	public void execute(ICommand command) {
+		addToStack(command);
+	}
+
+	@Override
+	public void execute(List<ICommand> commands) {
+		for (ICommand command : commands) {
+			addToStack(command);
+		}
 	}
 
 	/**
@@ -45,7 +60,7 @@ public class AntCommandHandler implements Runnable, Startable, ICommandListener 
 	 * 
 	 * @param command
 	 */
-	public void addToStack(AbstractCallbackCommand command) {
+	public void addToStack(ICommand command) {
 		queue.add(command);
 	}
 
@@ -55,15 +70,8 @@ public class AntCommandHandler implements Runnable, Startable, ICommandListener 
 
 	public void run() {
 		while (keepRunning) {
-			
-			
-
-			AbstractCallbackCommand command = queue.poll();
-
-			// use the workflow map and check if a blocking workflow is running
-			// blocking workflow: only one workflow can run on a hotfolder
-			if (command != null)
-				execute(command);
+				// using external method for testing purposes
+				singleRun();
 			try {
 				Thread.currentThread().sleep(200);
 			} catch (InterruptedException e) {
@@ -72,10 +80,17 @@ public class AntCommandHandler implements Runnable, Startable, ICommandListener 
 		}
 	}
 	
-	// queue execution strategy
-	//public void executeStrategy(AbstractCommand command, Queue<AbstractCommand>, ) {
-		
-	//}
+	public void singleRun() {
+		AntExecutionCommand command = (AntExecutionCommand) queue.poll();
+		if (command != null) {
+			if (strategy.isExecutable(command.getInboundObject())) {
+				Thread thread = new CommandThread(command);
+				thread.start();
+			} else {
+				queue.add(command);
+			}
+		}
+	}
 
 	public void start() {
 		this.keepRunning = true;
@@ -87,25 +102,26 @@ public class AntCommandHandler implements Runnable, Startable, ICommandListener 
 		keepRunning = false;
 	}
 
-
-	
-
-	@Override
-	public void started(CommandEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void finished(CommandEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public Queue<AbstractCallbackCommand> getCommandQueue() {
+	public Queue<ICommand> getStack() {
 		return queue;
 	}
 
-	
+	public IResult<Object> getResult() {
+		return result;
+	}
+
+	private class CommandThread extends Thread {
+
+		private ICommand command;
+
+		public CommandThread(ICommand command) {
+			this.command = command;
+		}
+
+		public void run() {
+			command.execute();
+		}
+
+	}
 
 }

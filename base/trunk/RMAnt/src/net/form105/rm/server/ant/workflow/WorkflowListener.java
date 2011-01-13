@@ -2,6 +2,9 @@ package net.form105.rm.server.ant.workflow;
 
 import java.util.Hashtable;
 
+import net.form105.rm.base.Agent;
+import net.form105.rm.server.ant.hotfolder.HotfolderInboundObject;
+
 import org.apache.log4j.Logger;
 import org.apache.tools.ant.BuildEvent;
 import org.apache.tools.ant.BuildListener;
@@ -13,14 +16,12 @@ public class WorkflowListener implements BuildListener {
 
 	public static Logger logger = Logger.getLogger(WorkflowListener.class);
 
-	private String buildId;
-
-	private boolean firstTargetStarted = false;
 	private String workflowId;
-	
+	private WorkflowManager wfManager;
 
-	public WorkflowListener(String workflowId) {
-		this.workflowId = workflowId;
+	public WorkflowListener(HotfolderInboundObject inboundObject) {
+		this.workflowId = inboundObject.getWorkflowId();
+		wfManager = (WorkflowManager) Agent.getComponentById("workflowManager");
 	}
 
 	@Override
@@ -31,15 +32,9 @@ public class WorkflowListener implements BuildListener {
 	@Override
 	public void buildStarted(BuildEvent event) {
 		Project project = event.getProject();
-		
-		
-		
-		//AddWorkflowCommand wfCommand = new AddWorkflowCommand(Integer.toString(project.hashCode()), project.getName());
-		// get the existing workflow and modify it. 
-		// a workflow has already been created at file arrival
 
 		
-		
+		logger.info("Workflow id: "+workflowId);
 		
 		// logger.info("Project: "+myProject);
 		
@@ -56,14 +51,13 @@ public class WorkflowListener implements BuildListener {
 
 	@Override
 	public void targetFinished(BuildEvent event) {
-		Target target = event.getTarget();
-		// logger.info("Target has been finished: "+target.getName());
+		logger.info("Target finished: "+event.getTarget());
 	}
 
 	@Override
 	public void targetStarted(BuildEvent event) {
+		logger.info("target started: "+event.getTarget().getName());
 		
-		firstTargetStarted = false;
 		Hashtable table = event.getProject().getTargets();
 		for (Object object : table.keySet()) {
 			logger.info(object);
@@ -80,8 +74,8 @@ public class WorkflowListener implements BuildListener {
 	@Override
 	public void taskStarted(BuildEvent event) {
 		Task task = event.getTask();
-		// logger.info("Task started: "+task.getTaskName());
-		// logger.info("Task hash: "+task.hashCode());
+		//logger.info("Task started: "+task.getTaskName());
+		//logger.info("Task hash: "+task.hashCode());
 	}
 
 }

@@ -59,7 +59,7 @@ public class WorkflowManagerTest {
 		StringAttribute attr1 = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Hotfolder 1", "/Users/heikok/temp/hotfolder/1");
 		StringAttribute attr2 = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Hotfolder 2", "/Users/heikok/temp/hotfolder/2");
 		
-		when(mockWorkflowMap.getWorkflowById())
+		//when(mockWorkflowMap.getWorkflowById())
 		
 		wf1.addAttribute(attr1);
 		wf2.addAttribute(attr2);

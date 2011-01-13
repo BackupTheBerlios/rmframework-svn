@@ -18,6 +18,10 @@
     <!-- handler -->
     <component-implementation id="commandHandler" class="net.form105.rm.server.ant.command.AntCommandHandler"></component-implementation>
     <!-- Validator -->
+    
     <component-implementation factory="yes" id="fileValidator" class='net.form105.rm.server.ant.validator.RealFileValidator'/>
     <component-implementation factory="yes" id="buildFileValidator" class='net.form105.rm.server.ant.validator.BuildFileValidator'/>
+    <component-implementation factory="yes" id="hotfolderListener" class='net.form105.rm.server.ant.hotfolder.DefaultHotfolderListener'/>
+    <component-implementation factory="yes" id="executionStrategy" class='net.form105.rm.server.ant.command.AntExecutionStrategy'/>
+    
 </container>

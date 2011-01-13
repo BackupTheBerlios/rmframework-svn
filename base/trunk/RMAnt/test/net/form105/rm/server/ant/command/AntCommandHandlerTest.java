@@ -20,13 +20,21 @@ package net.form105.rm.server.ant.command;
 
 
 import junit.framework.Assert;
+
+import net.form105.rm.base.AbstractTest;
 import net.form105.rm.base.command.AbstractCallbackCommand;
 import net.form105.rm.base.command.CommandEvent;
+import net.form105.rm.base.command.ICommand;
 import net.form105.rm.base.exception.RMException;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
+
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.*;
+
 
 /**
  * The test should use the thread extensively. We use explicitely the AntCommandHandler in the threaded mode.
@@ -41,57 +49,48 @@ import org.junit.Test;
  * @author heikok
  *
  */
-public class AntCommandHandlerTest {
+public class AntCommandHandlerTest extends AbstractTest {
 	
 	public static Logger logger = Logger.getLogger(AntCommandHandlerTest.class);
 	
-	
-
-	AntCommandHandler handler;
+	@Mock private AntExecutionCommand command;
+	@Mock private IExecutionStrategy strategy;
+	private AntCommandHandler handler;
 	
 	@Before
 	public void setUp() throws Exception {
-		handler = new AntCommandHandler();
+		MockitoAnnotations.initMocks(this);
+		//super.setupContainer();
 		
-		Thread thread = new Thread(handler);
-		thread.start();	
 	}
 	
 	@Test
-	public void testAddToStack() throws Exception {
-		for (int i = 0; i <= 100; i++) {
-			handler.addToStack(new TestCommand("group1"));
-			handler.addToStack(new TestCommand("group2"));
-			
-			System.out.println("add to stack: "+i);
-		}
+	public void testCommandExecution() throws Exception {
+		handler = new AntCommandHandler(strategy);
+		when(strategy.isExecutable(any(ICommand.class))).thenReturn(true);
 		
-		Assert.assertEquals(201, handler.getCommandQueue().size());
+		// add to stack
+		handler.execute(command);
 		
+		// execute command
+		handler.singleRun();
+		verify(strategy).isExecutable(any(Object.class));
+		//Thread.sleep(500);
+		verify(command).execute();
+	}
+	
+	@Test
+	public void testCommandStackedOnQueue() {
+		handler = new AntCommandHandler(strategy);
+		when(strategy.isExecutable(any(ICommand.class))).thenReturn(false);
+		// add to stack
+		handler.execute(command);
+		// execute command
+		handler.singleRun();
+		verify(strategy).isExecutable(any(Object.class));
+		verify(command, never()).execute();
 		
 	}
 	
-	public class TestCommand extends AbstractCallbackCommand {
-		
-		public TestCommand(String group) {
-			setGroup(group);
-			registerCommandListener(handler);
-		}
-
-		@Override
-		public void execute() throws RMException {
-			
-			System.out.println("executed");
-			
-			try {
-				Thread.currentThread().sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			CommandEvent event = new CommandEvent(this);
-			this.getCommandListener().finished(event);
-		}
-		
-	}
 
 }

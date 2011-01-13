@@ -8,4 +8,5 @@ Bundle-Vendor: RMAnt.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.osgi.framework;version="1.3.0"
 Bundle-ActivationPolicy: lazy
-Require-Bundle: net.form105.rm.RMBase;bundle-version="0.1.0"
+Require-Bundle: net.form105.rm.RMBase;bundle-version="0.1.0",
+ org.junit4

@@ -2,6 +2,7 @@ package net.form105.rm.server.ant.container;
 
 import java.util.List;
 
+import net.form105.rm.base.Agent;
 import net.form105.rm.base.container.AbstractContainer;
 import net.form105.rm.base.container.PropertiesContainer;
 import net.form105.rm.server.ant.hotfolder.CreateTempEnvironmentListener;
@@ -73,7 +74,8 @@ public class HotfolderConfigContainer extends AbstractContainer {
 				Hotfolder hFolder = new Hotfolder(hfElement, tempBuildFolder);
 				hFolder.addListener(new CreateWorkflowHotfolderListener());
 				hFolder.addListener(new CreateTempEnvironmentListener());
-				hFolder.addListener(new DefaultHotfolderListener());
+				DefaultHotfolderListener hfListener = (DefaultHotfolderListener) Agent.getComponentById("hotfolderListener");
+				hFolder.addListener(hfListener);
 				
 				if (hFolder.isValid()) {
 					hfContainer.addHotfolder(hFolder);

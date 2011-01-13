@@ -1,6 +1,7 @@
 package net.form105.rm.server.ant.hotfolder;
 
 import net.form105.rm.base.Agent;
+import net.form105.rm.base.command.ICommandHandler;
 import net.form105.rm.server.ant.command.AntCommandHandler;
 import net.form105.rm.server.ant.command.AntExecutionCommand;
 
@@ -10,12 +11,18 @@ import net.form105.rm.server.ant.command.AntExecutionCommand;
  *
  */
 public class DefaultHotfolderListener extends AbstractHotfolderListener {
+	
+	private ICommandHandler<Object> commandHandler;
+	
+	public DefaultHotfolderListener(ICommandHandler commandHandler) {
+		this.commandHandler = commandHandler;
+	}
 
 	@Override
 	public void fileArrived(HotfolderEvent hotfolderEvent) {
 		HotfolderInboundObject inboundObject = (HotfolderInboundObject) hotfolderEvent.getInboundObject();
 		
-		handleCommand(getId(hotfolderEvent), inboundObject);
+		handleCommand(inboundObject);
 	}
 	
 	@Override
@@ -23,10 +30,9 @@ public class DefaultHotfolderListener extends AbstractHotfolderListener {
 		
 	}
 	
-	private void handleCommand(String workflowId, HotfolderInboundObject inboundObject) {
-		AntExecutionCommand execCommand = new AntExecutionCommand(workflowId, inboundObject);
+	private void handleCommand(HotfolderInboundObject inboundObject) {
+		AntExecutionCommand execCommand = new AntExecutionCommand(inboundObject);
 		execCommand.setGroup(inboundObject.getBuildTempFolderName());
-		AntCommandHandler cHandler = (AntCommandHandler) Agent.getContainer("commandHandler");
-		cHandler.addToStack(execCommand);
+		commandHandler.execute(execCommand);
 	}
 }
