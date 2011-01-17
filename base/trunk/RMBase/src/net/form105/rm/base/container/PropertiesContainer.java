@@ -13,7 +13,7 @@ import java.util.Properties;
 
 import net.form105.rm.base.Container;
 import net.form105.rm.base.exception.PropertyNotFoundException;
-import net.form105.rm.server.i18n.BaseI18NMessage;
+import net.form105.rm.base.i18n.BaseI18NMessage;
 
 import org.apache.log4j.Logger;
 import org.picocontainer.Startable;

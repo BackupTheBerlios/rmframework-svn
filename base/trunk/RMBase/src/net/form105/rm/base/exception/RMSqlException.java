@@ -18,7 +18,7 @@ package net.form105.rm.base.exception;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import net.form105.rm.server.i18n.I18nMessage;
+import net.form105.rm.base.i18n.I18nMessage;
 
 import org.apache.log4j.Logger;
 

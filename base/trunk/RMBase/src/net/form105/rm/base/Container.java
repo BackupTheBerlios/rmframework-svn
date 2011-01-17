@@ -16,6 +16,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.picocontainer.DefaultPicoContainer;
+import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.PicoContainer;
 import org.picocontainer.behaviors.Caching;
 
@@ -33,8 +34,9 @@ public class Container {
 
 	private Logger logger = Logger.getLogger(Container.class);
 	private static Container instance;
-	private static DefaultPicoContainer container;
-	private static DefaultPicoContainer factoryContainer;
+	private static MutablePicoContainer container;
+	private static MutablePicoContainer factoryContainer;
+	//private static MutablePicoContainer mContainer;
 
 	private ContainerConfiguration configuration;
 
@@ -47,7 +49,8 @@ public class Container {
 
 	public void initialize() {
 		container = new DefaultPicoContainer(new Caching());
-		factoryContainer = new DefaultPicoContainer();
+		factoryContainer = container.addChildContainer(new DefaultPicoContainer(container));
+		
 
 	}
 
@@ -91,6 +94,11 @@ public class Container {
 	 * @return
 	 */
 	public void load(ContainerConfiguration configuration) {
+		
+		if (container.getComponents().size() > 0 || factoryContainer.getComponents().size() > 0) {
+			System.err.println("Can't do Container.load(): Container already started. Do nothing!");
+			return;
+		}
 		this.configuration = configuration;
 
 		// check for log4j config file
@@ -109,6 +117,8 @@ public class Container {
 		Document document = loader.parseFile();
 		Element rootElement = document.getRootElement();
 		List<Element> classElements = rootElement.elements();
+		
+		
 
 		for (Element element : classElements) {
 
@@ -131,7 +141,11 @@ public class Container {
 				logger.error(ex, ex);
 			}
 		}
-		container.start();
+		
+		//container.addChildContainer(factoryContainer);
+		//factoryContainer.addChildContainer(container);
+		factoryContainer.start();
+		
 
 	}
 

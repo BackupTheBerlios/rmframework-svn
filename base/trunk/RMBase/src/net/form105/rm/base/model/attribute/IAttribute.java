@@ -20,5 +20,7 @@ public interface IAttribute<T> {
 	public abstract T getValue();
 
 	public abstract String getValueAsString();
+	
+	public abstract void setValue(T value);
 
 }

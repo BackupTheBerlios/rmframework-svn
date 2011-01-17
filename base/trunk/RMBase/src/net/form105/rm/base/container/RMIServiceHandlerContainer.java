@@ -31,11 +31,6 @@ public class RMIServiceHandlerContainer extends AbstractContainer implements Sta
             rmiServiceHandler = new RMIServiceHandler();
             Registry registry = rmiServerContainer.getRegistry();
             registry.rebind(rmiServiceHandler.getName(), rmiServiceHandler);
-            
-            //UnicastRemoteObject.unexportObject(registry, true);
-
-            //UnicastRemoteObject.unexportObject(registry, true);
-            
            
         } catch (RemoteException ex) {
             logger.error("Error in rebinding the RMIServiceHandler to the registry", ex);

@@ -13,26 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.model.attribute;
+package net.form105.rm.base.rmi;
 
-/**
- * Immutable String attribute which can be attached to a workflow
- * @author heikok
- *
- */
-public class StringAttribute extends AbstractAttribute<String> {
+import net.form105.rm.base.model.IAgentObject;
+
+public interface ICallbackClient {
 	
-	private static final long serialVersionUID = 3589606365224801720L;
-
-	public StringAttribute(String id, String name, String value) {
-		super(id, name, value);
-	}
-
-	@Override
-	public String getValueAsString() {
-		return getValue();
-	}
-
-
+	public void notifyMe(IAgentObject agentObject);
 
 }

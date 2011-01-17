@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, form105 Heiko Kundlacz
+ * Copyright (c) 2011, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,26 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.model.attribute;
+package net.form105.rm.base.model.workflow;
 
 /**
- * Immutable String attribute which can be attached to a workflow
+ * The possible status of a workflow
  * @author heikok
  *
  */
-public class StringAttribute extends AbstractAttribute<String> {
+public enum WorkflowStatus {
 	
-	private static final long serialVersionUID = 3589606365224801720L;
-
-	public StringAttribute(String id, String name, String value) {
-		super(id, name, value);
+	CREATED(10),
+	RUNNING(20),
+	FINISHED(30);
+	
+	private int statusNum;
+	
+	private WorkflowStatus(int statusNum) {
+		this.statusNum = statusNum;
 	}
-
-	@Override
-	public String getValueAsString() {
-		return getValue();
+	
+	public int getStatusNum() {
+		return this.statusNum;
 	}
-
-
+	
+	public String getStatusByInt(int statusNum) {
+		WorkflowStatus[] states = this.values();
+		for (WorkflowStatus wfStatus : states) {
+			if (wfStatus.getStatusNum() == statusNum) {
+				return wfStatus.toString();
+			}
+		}
+		
+		return "not defined";
+	}
 
 }

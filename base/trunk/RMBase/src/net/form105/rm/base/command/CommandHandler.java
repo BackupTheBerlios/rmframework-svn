@@ -9,8 +9,8 @@ package net.form105.rm.base.command;
 import java.util.List;
 
 import net.form105.rm.base.exception.RMException;
+import net.form105.rm.base.i18n.BaseI18NMessage;
 import net.form105.rm.base.service.ResultStatus;
-import net.form105.rm.server.i18n.BaseI18NMessage;
 
 import org.apache.log4j.Logger;
 

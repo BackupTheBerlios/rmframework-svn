@@ -13,26 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.model.attribute;
+package net.form105.rm.base;
 
-/**
- * Immutable String attribute which can be attached to a workflow
- * @author heikok
- *
- */
-public class StringAttribute extends AbstractAttribute<String> {
+import net.form105.rm.base.config.PropertyConfiguration;
+import net.form105.rm.base.config.SimpleConfiguration;
+
+public class AbstractTest {
 	
-	private static final long serialVersionUID = 3589606365224801720L;
-
-	public StringAttribute(String id, String name, String value) {
-		super(id, name, value);
+	public void setupContainer() {
+		ContainerConfiguration configuration;
+        if (System.getProperty("rmbase.home.dir") != null) {
+            configuration = new ContainerConfiguration(new PropertyConfiguration("rmbase.home.dir"));
+        } else {
+            configuration = new ContainerConfiguration(new SimpleConfiguration());
+        }
+        Container.getInstance().load(configuration);
 	}
-
-	@Override
-	public String getValueAsString() {
-		return getValue();
-	}
-
-
 
 }

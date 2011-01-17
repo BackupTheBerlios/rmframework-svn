@@ -15,8 +15,8 @@
  */
 package net.form105.rm.base.exception;
 
+import net.form105.rm.base.i18n.BaseI18NMessage;
 import net.form105.rm.base.model.parameter.IParameter;
-import net.form105.rm.server.i18n.BaseI18NMessage;
 
 public class ConvertingToParameterException extends RMException {
 	

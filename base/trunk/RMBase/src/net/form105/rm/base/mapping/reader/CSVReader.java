@@ -11,8 +11,8 @@ import java.util.StringTokenizer;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.exception.RMException;
+import net.form105.rm.base.i18n.BaseI18NMessage;
 import net.form105.rm.base.mapping.DefaultMapperControl;
-import net.form105.rm.server.i18n.BaseI18NMessage;
 
 /**
  * Reads a csv file and generates a List of @see String. This list will be pushed to the MappingControl

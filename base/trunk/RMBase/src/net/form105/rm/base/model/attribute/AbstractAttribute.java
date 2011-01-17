@@ -35,4 +35,8 @@ public abstract class AbstractAttribute<T> extends AgentObject implements IAttri
 	public T getValue() {
 		return value;
 	}
+	
+	public void setValue(T value) {
+		this.value = value;
+	}
 }

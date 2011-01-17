@@ -16,7 +16,7 @@
 package net.form105.rm.base.helper;
 
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.server.i18n.BaseI18NMessage;
+import net.form105.rm.base.i18n.BaseI18NMessage;
 
 public class ExceptionHelper {
 	
