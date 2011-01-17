@@ -17,6 +17,9 @@ package net.form105.rm.server.ant.workflow;
 
 import static org.mockito.Mockito.mock;
 
+import net.form105.rm.base.model.workflow.WorkflowManager;
+import net.form105.rm.base.model.workflow.WorkflowMap;
+
 import org.junit.Before;
 
 public class WorkflowManagerTest {

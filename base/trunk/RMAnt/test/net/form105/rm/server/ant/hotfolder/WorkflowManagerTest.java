@@ -19,10 +19,10 @@ import java.util.List;
 
 import junit.framework.Assert;
 import net.form105.rm.base.model.attribute.StringAttribute;
+import net.form105.rm.base.model.workflow.Workflow;
+import net.form105.rm.base.model.workflow.WorkflowManager;
+import net.form105.rm.base.model.workflow.WorkflowMap;
 import net.form105.rm.server.ant.Globals;
-import net.form105.rm.server.ant.model.Workflow;
-import net.form105.rm.server.ant.workflow.WorkflowManager;
-import net.form105.rm.server.ant.workflow.WorkflowMap;
 
 import org.junit.Before;
 import org.junit.Test;

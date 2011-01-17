@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workflow id="" name="" type="hotfolder">
-	<attribute id="hotfolder" name="Path to hotfolder" type="String" value="" />
-	<attribute id="inboundFile" name="Path to the incoming File" type="String" value="" />
-</workflow>
+<Workflow id="" name="" type="hotfolder">
+	<Attribute id="hotfolder" name="Path to hotfolder" type="String" value="" />
+	<Attribute id="inboundFile" name="Path to the incoming File" type="String" value="" />
+	
+	<Task id="antTargetId" name="antTargetDescription">
+		<State value="Started-Finished"></State>
+	
+	</Task>
+	
+</Workflow>

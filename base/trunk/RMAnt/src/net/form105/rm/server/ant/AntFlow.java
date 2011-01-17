@@ -33,7 +33,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 
-import net.form105.rm.server.ant.workflow.WorkflowListener;
+import net.form105.rm.server.ant.workflow.AntBuildListener;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.BuildListener;

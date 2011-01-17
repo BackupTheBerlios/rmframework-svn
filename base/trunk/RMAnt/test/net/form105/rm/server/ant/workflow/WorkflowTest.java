@@ -17,8 +17,8 @@ package net.form105.rm.server.ant.workflow;
 
 import junit.framework.Assert;
 import net.form105.rm.base.model.attribute.StringAttribute;
-import net.form105.rm.server.ant.model.Task;
-import net.form105.rm.server.ant.model.Workflow;
+import net.form105.rm.base.model.workflow.Task;
+import net.form105.rm.base.model.workflow.Workflow;
 
 import org.junit.Before;
 import org.junit.Test;

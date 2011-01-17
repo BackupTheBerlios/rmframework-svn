@@ -17,7 +17,7 @@ package net.form105.rm.server.ant.filter;
 
 import net.form105.rm.base.filter.IFilter;
 import net.form105.rm.base.model.attribute.AbstractAttribute;
-import net.form105.rm.server.ant.model.Workflow;
+import net.form105.rm.base.model.workflow.Workflow;
 
 /**
  * Checks if a workflow has an attribute with id hotfolder and the value equals to a provided filter value

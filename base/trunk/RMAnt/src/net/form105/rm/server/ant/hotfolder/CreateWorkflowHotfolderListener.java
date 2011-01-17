@@ -21,12 +21,12 @@ import java.util.List;
 import net.form105.rm.base.command.CommandHandler;
 import net.form105.rm.base.command.ICommand;
 import net.form105.rm.base.model.attribute.StringAttribute;
+import net.form105.rm.base.model.workflow.Workflow;
+import net.form105.rm.base.model.workflow.WorkflowStatus;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.server.ant.Globals;
 import net.form105.rm.server.ant.command.AddAttributeCommand;
 import net.form105.rm.server.ant.command.AddWorkflowCommand;
-import net.form105.rm.server.ant.model.Workflow;
-import net.form105.rm.server.ant.workflow.WorkflowStatus;
 
 /**
  * The listener creates a workflow after a file has been arrived. The workflow will have a special state

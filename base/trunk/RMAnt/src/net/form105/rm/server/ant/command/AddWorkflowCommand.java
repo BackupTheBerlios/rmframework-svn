@@ -18,8 +18,8 @@ package net.form105.rm.server.ant.command;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.command.AbstractCommand;
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.server.ant.model.Workflow;
-import net.form105.rm.server.ant.workflow.WorkflowManager;
+import net.form105.rm.base.model.workflow.Workflow;
+import net.form105.rm.base.model.workflow.WorkflowManager;
 
 public class AddWorkflowCommand extends AbstractCommand {
 	

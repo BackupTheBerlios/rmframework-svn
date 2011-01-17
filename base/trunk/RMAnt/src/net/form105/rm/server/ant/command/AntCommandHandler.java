@@ -7,14 +7,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.command.AbstractCommandHandler;
 import net.form105.rm.base.command.ICommand;
+import net.form105.rm.base.model.ExecutionState;
 import net.form105.rm.base.model.attribute.AbstractAttribute;
+import net.form105.rm.base.model.workflow.Workflow;
+import net.form105.rm.base.model.workflow.WorkflowManager;
+import net.form105.rm.base.model.workflow.WorkflowStatus;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.server.ant.Globals;
 import net.form105.rm.server.ant.hotfolder.HotfolderInboundObject;
-import net.form105.rm.server.ant.model.ExecutionState;
-import net.form105.rm.server.ant.model.Workflow;
-import net.form105.rm.server.ant.workflow.WorkflowManager;
-import net.form105.rm.server.ant.workflow.WorkflowStatus;
 
 import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
