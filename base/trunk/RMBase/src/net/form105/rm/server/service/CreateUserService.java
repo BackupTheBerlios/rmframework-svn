@@ -6,10 +6,10 @@ import net.form105.rm.base.container.UserManagementContainer;
 import net.form105.rm.base.dao.IBasicDao;
 import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.exception.RMException;
+import net.form105.rm.base.i18n.BaseI18NMessage;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.service.AbstractService;
 import net.form105.rm.base.service.IArgument;
-import net.form105.rm.server.i18n.BaseI18NMessage;
 
 public class CreateUserService extends AbstractService {
 
