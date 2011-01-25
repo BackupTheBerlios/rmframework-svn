@@ -10,8 +10,15 @@
     <component-implementation id="lookup" class='net.form105.rm.base.container.LookupContainer'/>
     <!-- component-implementation id="userMgmt" class='net.form105.rm.base.container.UserManagementContainer'/ -->
     <component-implementation id="modeConfigLoader" class='net.form105.rm.base.container.ModeContainer'/>
+    <component-implementation id="modelObservableContainer" class='net.form105.rm.base.container.AgentObjectObservableContainer'/>
     
     <component-implementation id="rmiCallbackServer" class='net.form105.rm.base.rmi.RMICallbackServer' />
+    
+    
+    
+    
+    <component-implementation factory="yes" id="workflowObserver" class='net.form105.rm.base.observer.WorkflowObserver'/>
+    <component-implementation factory="yes" id="workflowObservable" class='net.form105.rm.base.observer.WorkflowObservable'/>
 </container>
 
 

@@ -13,21 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.rmi;
+package net.form105.rm.base.observer;
 
-import net.form105.rm.base.model.IAgentObject;
 import net.form105.rm.base.model.workflow.Workflow;
 
-import org.apache.log4j.Logger;
+import org.picocontainer.Startable;
 
-public class RMICallbackClient implements ICallbackClient {
+public class WorkflowObservable extends AbstractAgentObjectObservable<Workflow> implements Startable {
 	
-	public static Logger logger = Logger.getLogger(RMICallbackClient.class);
+	private IWorkflowObserver[] observers;
+	
+	public WorkflowObservable(IWorkflowObserver[] observers) {
+		this.observers = observers;
+	}
 
 	@Override
-	public void notifyMe(IAgentObject agentObject) {
-		if (agentObject instanceof Workflow) {
-			logger.info("client notified by rmi callback with workflow object");
+	public void start() {
+		for (IWorkflowObserver observer : observers) {
+			this.addObserver(observer);
+		}
+	}
+
+	@Override
+	public void stop() {
+		for (IWorkflowObserver observer : observers) {
+			this.removeObserver(observer);
 		}
 	}
 }

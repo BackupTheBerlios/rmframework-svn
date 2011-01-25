@@ -15,19 +15,16 @@
  */
 package net.form105.rm.base.rmi;
 
-import net.form105.rm.base.model.IAgentObject;
+
 import net.form105.rm.base.model.workflow.Workflow;
+import net.form105.rm.base.query.AbstractRemoteTest;
 
-import org.apache.log4j.Logger;
+import org.junit.Before;
 
-public class RMICallbackClient implements ICallbackClient {
-	
-	public static Logger logger = Logger.getLogger(RMICallbackClient.class);
+public class CallbackTest extends AbstractRemoteTest<Workflow> {
 
-	@Override
-	public void notifyMe(IAgentObject agentObject) {
-		if (agentObject instanceof Workflow) {
-			logger.info("client notified by rmi callback with workflow object");
-		}
+	@Before
+	public void setUp() throws Exception {
 	}
+
 }

@@ -61,7 +61,8 @@ public class RMICallbackServer extends UnicastRemoteObject implements ICallbackS
 		}
 	}
 
-	public String getName() {
+	@Override
+	public String getName() throws RemoteException {
 		return registryName;
 	}
 

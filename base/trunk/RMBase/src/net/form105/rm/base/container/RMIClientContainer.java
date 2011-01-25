@@ -11,14 +11,16 @@ import java.rmi.RemoteException;
 import java.util.Properties;
 
 import net.form105.rm.base.query.IQueryHandler;
+import net.form105.rm.base.rmi.ICallbackServer;
+import net.form105.rm.base.rmi.RMICallbackClient;
 import net.form105.rm.base.service.IServiceHandler;
 
 import org.picocontainer.Startable;
 
 
 /**
- * The client container provides a connection to the rmi server. The parameters server.rmi.port and server.rmihost will be
- * provided by the system properties. 
+ * The client container provides a connection to the rmi server. The parameters server.rmi.port and server.rmihost
+ * are provided by the system properties. 
  * @author hk
  *
  */
@@ -29,8 +31,10 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
     private String host;
     private IServiceHandler serviceHandler;
     private IQueryHandler queryHandler;
+    private ICallbackServer callbackServer;
     private String serviceHandlerUrl;
     private String queryHandlerUrl;
+    private String callbackUrl;
 
     public RMIClientContainer(ClientPropertiesContainer propertiesContainer) {
         this.popertiesContainer = propertiesContainer;
@@ -50,10 +54,13 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
         logger.info("Service handler RMI url is: "+serviceHandlerUrl);
         queryHandlerUrl = "rmi://" + host + ":" + port + "/QueryHandler";
         logger.info("Query handler RMI url is: "+queryHandlerUrl);
+        callbackUrl = "rmi://"+ host + ":" + port + "/RmiCallbackServer";
         
         try {
             serviceHandler = (IServiceHandler) Naming.lookup(serviceHandlerUrl);
             queryHandler = (IQueryHandler) Naming.lookup(queryHandlerUrl);
+            callbackServer = (ICallbackServer) Naming.lookup(callbackUrl);
+            callbackServer.registerForCallback(new RMICallbackClient());
         } catch (NotBoundException nbex) {
             logger.error("ServiceHandler not bound to registry.", nbex);
         } catch (MalformedURLException muex) {
@@ -67,6 +74,7 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
     	try {
 			Naming.unbind(serviceHandlerUrl);
 			Naming.unbind(queryHandlerUrl);
+			Naming.unbind(callbackUrl);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
@@ -83,5 +91,9 @@ public class RMIClientContainer extends AbstractContainer implements Startable {
     
     public IQueryHandler getQueryHandler() {
     	return queryHandler;
+    }
+    
+    public ICallbackServer getCallbackServer() {
+    	return callbackServer;
     }
 }

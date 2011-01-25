@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, form105 Heiko Kundlacz
+ * Copyright (c) 2011, form105 Heiko Kundlacz
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.rmi;
+package net.form105.rm.base.observer;
+
+import java.util.Observable;
 
 import net.form105.rm.base.model.IAgentObject;
-import net.form105.rm.base.model.workflow.Workflow;
 
-import org.apache.log4j.Logger;
-
-public class RMICallbackClient implements ICallbackClient {
+public class AgentObjectObservable extends Observable {
 	
-	public static Logger logger = Logger.getLogger(RMICallbackClient.class);
-
-	@Override
-	public void notifyMe(IAgentObject agentObject) {
-		if (agentObject instanceof Workflow) {
-			logger.info("client notified by rmi callback with workflow object");
-		}
+	public void notifyObserver(IAgentObject agentObject) {
+		super.notifyObservers(agentObject);
 	}
+	
+
 }

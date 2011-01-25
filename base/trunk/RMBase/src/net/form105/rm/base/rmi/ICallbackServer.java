@@ -15,25 +15,28 @@
  */
 package net.form105.rm.base.rmi;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-public interface ICallbackServer {
+
+public interface ICallbackServer extends Remote {
 	
 	/**
 	 * This method registers a client on the server for callback operation
 	 * @param callbackClientObject The reference to the client. This object is registered on the server
 	 */
-	public void registerForCallback(ICallbackClient callbackClientObject);
+	public void registerForCallback(ICallbackClient callbackClientObject) throws RemoteException;
 
 	/**
 	 * This method unregisters the client on the server. 
 	 * @param callbackClientObject The reference to the client. This object will be unregistered on the server 
 	 */
-	public void unregisterForCallback(ICallbackClient callbackClientObject);
+	public void unregisterForCallback(ICallbackClient callbackClientObject) throws RemoteException;
 	
 	/**
 	 * Getting the name with which we register the callback server in the registry
 	 * @return The name of the server for registration
 	 */
-	public String getName();
+	public String getName() throws RemoteException;
 	
 }
