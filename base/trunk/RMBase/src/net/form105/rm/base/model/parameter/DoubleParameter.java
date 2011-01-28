@@ -5,9 +5,6 @@
 
 package net.form105.rm.base.model.parameter;
 
-import net.form105.xml.schema.model.ParameterDocument.Parameter;
-
-import org.apache.xmlbeans.XmlObject;
 
 /**
  * A parameter represents a double value
@@ -38,16 +35,6 @@ public class DoubleParameter extends AbstractParameter<Double> {
     @Override
     public String getValueAsString() {
         return parameterValue.toString();
-    }
-
-
-    public IParameter loadFromXml(XmlObject xmlObject) {
-        Parameter parameter = (Parameter) xmlObject;
-        this.setElementId(parameter.getId());
-        this.setName(parameter.getName());
-        Double doubleValue = new Double(parameter.getValue());
-        this.setParameterValue(doubleValue);
-        return this;
     }
 
 }

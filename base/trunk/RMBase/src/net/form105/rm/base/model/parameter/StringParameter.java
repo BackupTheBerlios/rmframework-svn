@@ -5,9 +5,6 @@
 
 package net.form105.rm.base.model.parameter;
 
-import net.form105.xml.schema.model.ParameterDocument.Parameter;
-
-import org.apache.xmlbeans.XmlObject;
 
 /**
  *
@@ -40,14 +37,6 @@ public class StringParameter extends AbstractParameter<String> {
     @Override
     public String getValueAsString() {
         return parameterValue;
-    }
-
-    public IParameter loadFromXml(XmlObject xmlObject) {
-        Parameter parameter = (Parameter) xmlObject;
-        this.setElementId(parameter.getId());
-        this.setName(parameter.getName());
-        this.setParameterValue(parameter.getValue());
-        return this;
     }
 
 }
