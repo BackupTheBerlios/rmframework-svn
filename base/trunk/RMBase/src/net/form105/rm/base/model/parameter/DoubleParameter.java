@@ -5,7 +5,6 @@
 
 package net.form105.rm.base.model.parameter;
 
-import net.form105.rm.base.model.IXmlObjectLoadable;
 import net.form105.xml.schema.model.ParameterDocument.Parameter;
 
 import org.apache.xmlbeans.XmlObject;
@@ -15,7 +14,7 @@ import org.apache.xmlbeans.XmlObject;
  * @author hk
  */
 
-public class DoubleParameter extends AbstractParameter<Double> implements IXmlObjectLoadable<IParameter> {
+public class DoubleParameter extends AbstractParameter<Double> {
 
     private static final long serialVersionUID = 1L;
 

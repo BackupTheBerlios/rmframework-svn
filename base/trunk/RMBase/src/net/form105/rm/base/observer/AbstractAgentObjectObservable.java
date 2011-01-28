@@ -29,6 +29,7 @@ public abstract class AbstractAgentObjectObservable <T extends IAgentObject> ext
 	public static Logger logger = Logger.getLogger(AbstractAgentObjectObservable.class);
 	
 	private List<IAgentObjectObserver<T>> observerList = Collections.synchronizedList(new ArrayList<IAgentObjectObserver<T>>());
+	 
 	
 	/* (non-Javadoc)
 	 * @see net.form105.rm.base.observer.IAgentObjectObservable#addObserver(net.form105.rm.base.observer.IAgentObjectObserver)
@@ -78,5 +79,7 @@ public abstract class AbstractAgentObjectObservable <T extends IAgentObject> ext
 			observer.updated(agentObject);
 		}
 	}
+	
+	
 	
 }

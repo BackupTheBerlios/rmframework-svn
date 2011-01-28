@@ -5,10 +5,6 @@
 
 package net.form105.rm.base.model.parameter;
 
-import net.form105.rm.base.model.IXmlObjectLoadable;
-import net.form105.xml.schema.model.ParameterDocument.Parameter;
-
-import org.apache.xmlbeans.XmlObject;
 
 /**
  * Don't use this. 
@@ -16,7 +12,7 @@ import org.apache.xmlbeans.XmlObject;
  * @author hk
  */
 
-public class IntParameter extends AbstractParameter<Integer> implements IXmlObjectLoadable<IParameter> {
+public class IntParameter extends AbstractParameter<Integer>  {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,15 +40,6 @@ public class IntParameter extends AbstractParameter<Integer> implements IXmlObje
     @Override
     public String getValueAsString() {
         return parameterValue.toString();
-    }
-
-    public IParameter loadFromXml(XmlObject xmlObject) {
-        Parameter parameter = (Parameter) xmlObject;
-        this.setElementId(parameter.getId());
-        this.setName(parameter.getName());
-        Integer intValue = new Integer(parameter.getValue());
-        this.setParameterValue(intValue);
-        return this;
     }
 
 }

@@ -37,6 +37,6 @@ public interface ICallbackServer extends Remote {
 	 * Getting the name with which we register the callback server in the registry
 	 * @return The name of the server for registration
 	 */
-	public String getName() throws RemoteException;
+	public String getName();
 	
 }

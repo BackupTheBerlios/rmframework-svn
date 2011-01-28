@@ -21,10 +21,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.form105.rm.base.container.RMIServerContainer;
+import net.form105.rm.base.model.IAgentObject;
 
 import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
 
+/**
+ * On this callback server client can be registered if they are interested in notifications from changes on
+ * agent objects. RMI clients registers by calling registerForCallback und unregister by calling 
+ * unregisterForCallback.
+ * Currently are three update calls available: added, removed and updated. Invoke these methods to notify the
+ * clients on changes of the model objects.
+ * @author heikok
+ *
+ */
 public class RMICallbackServer extends UnicastRemoteObject implements ICallbackServer, Startable {
 
 	private static final long serialVersionUID = 1586700339636394193L;
@@ -62,7 +72,7 @@ public class RMICallbackServer extends UnicastRemoteObject implements ICallbackS
 	}
 
 	@Override
-	public String getName() throws RemoteException {
+	public String getName() {
 		return registryName;
 	}
 
@@ -78,6 +88,28 @@ public class RMICallbackServer extends UnicastRemoteObject implements ICallbackS
 	@Override
 	public void stop() {
 
+	}
+
+	public List<ICallbackClient> getClientList() {
+		return clientList;
+	}
+
+	public void added(IAgentObject agentObject) {
+		for (ICallbackClient client : clientList) {
+			client.add(agentObject);
+		}
+	}
+
+	public void removed(IAgentObject agentObject) {
+		for (ICallbackClient client : clientList) {
+			client.remove(agentObject);
+		}
+	}
+
+	public void updated(IAgentObject agentObject) {
+		for (ICallbackClient client : clientList) {
+			client.update(agentObject);
+		}
 	}
 
 }

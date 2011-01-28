@@ -16,9 +16,11 @@
 package net.form105.rm.base.model.workflow;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import net.form105.rm.base.model.attribute.AbstractAttribute;
+import net.form105.rm.base.observer.WorkflowObservable;
 
 import org.picocontainer.Startable;
 
@@ -31,9 +33,11 @@ import org.picocontainer.Startable;
 public class WorkflowManager implements Startable {
 	
 	private WorkflowMap map;
+	private WorkflowObservable observable;
 	
-	public WorkflowManager(WorkflowMap map) {
+	public WorkflowManager(WorkflowMap map, WorkflowObservable observable) {
 		this.map = map;
+		this.observable = observable;
 	}
 	
 	public List<Workflow> getWorkflowByAttributeValue(String attributeId, String attributeValue) {
@@ -48,10 +52,12 @@ public class WorkflowManager implements Startable {
 	
 	public void addWorkflow(Workflow workflow) {
 		map.addWorkflow(workflow);
+		observable.notifyAdd(workflow);
 	}
 	
 	public void removeWorkflow(Workflow workflow) {
 		map.removeWorkflow(workflow);
+		observable.notifyRemove(workflow);
 	}
 	
 	/**
@@ -69,10 +75,12 @@ public class WorkflowManager implements Startable {
 		} else {
 			existingAttribute.setValue(attribute.getValue());
 		}
+		observable.notifyUpdate(workflow);
 	}
 	
 	public void addTask(Workflow workflow, Task task) {
 		workflow.addTask(task);
+		observable.notifyUpdate(workflow);
 	}
 	
 	public Workflow getWorkflowById(String id) {
@@ -90,6 +98,10 @@ public class WorkflowManager implements Startable {
 		Task task = workflow.getTask(taskId);
 		return task;
 	}
+	
+	public Collection<Workflow> getWorkflows() {
+		return map.getAllWorkflows();
+	}
 
 	@Override
 	public void start() {
@@ -100,6 +112,8 @@ public class WorkflowManager implements Startable {
 	public void stop() {
 		
 	}
+	
+	
 	
 	
 }

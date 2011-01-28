@@ -42,7 +42,6 @@ public class AgentObjectObservableContainer extends AbstractContainer {
 
 	@Override
 	public void stop() {
-		// TODO Auto-generated method stub
 
 	}
 

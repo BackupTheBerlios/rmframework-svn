@@ -16,30 +16,48 @@
 package net.form105.rm.base.observer;
 
 import net.form105.rm.base.model.workflow.Workflow;
+import net.form105.rm.base.rmi.RMICallbackServer;
 
-public class WorkflowObserver implements IWorkflowObserver {
+import org.picocontainer.Startable;
 
+/**
+ * This object delegates to the RMI callback interface to notify registered clients.
+ * @author heikok
+ *
+ */
+public class RMIWorkflowObserver implements IWorkflowObserver, Startable {
+	
+	private RMICallbackServer callbackServer;
 
 	
+	public RMIWorkflowObserver(RMICallbackServer callbackServer) {
+		this.callbackServer = callbackServer;
+	}
+
 	/* (non-Javadoc)
 	 * @see net.form105.rm.base.observer.WorkflowObservable#addWorkflow(net.form105.rm.base.model.workflow.Workflow)
 	 */
 	public void added(Workflow workflow) {
-		// delegate to RmiCallback
+		callbackServer.added(workflow);
 	}
 	
 	/* (non-Javadoc)
 	 * @see net.form105.rm.base.observer.WorkflowObservable#removeWorkflow(net.form105.rm.base.model.workflow.Workflow)
 	 */
 	public void removed(Workflow workflow) {
-		
+		callbackServer.removed(workflow);
 	}
 
 	/* (non-Javadoc)
 	 * @see net.form105.rm.base.observer.WorkflowObservable#updateWorkflow(net.form105.rm.base.model.workflow.Workflow)
 	 */
 	public void updated(Workflow workflow) {
-		
-		
+		callbackServer.updated(workflow);
 	}
+
+	@Override
+	public void start() {}
+
+	@Override
+	public void stop() {}
 }

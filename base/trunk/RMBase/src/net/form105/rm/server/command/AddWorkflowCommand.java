@@ -13,35 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.base.rmi;
+package net.form105.rm.server.command;
 
-import net.form105.rm.base.model.IAgentObject;
+import net.form105.rm.base.Agent;
+import net.form105.rm.base.command.AbstractCommand;
+import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.model.workflow.Workflow;
+import net.form105.rm.base.model.workflow.WorkflowManager;
 
-import org.apache.log4j.Logger;
-
-public class RMICallbackClient implements ICallbackClient {
+public class AddWorkflowCommand extends AbstractCommand {
 	
-	public static Logger logger = Logger.getLogger(RMICallbackClient.class);
-
-	@Override
-	public void add(IAgentObject agentObject) {
-		if (agentObject instanceof Workflow) {
-			logger.info("client notified: ADD");
-		}
+	private Workflow workflow;
+	
+	public AddWorkflowCommand(Workflow workflow) {
+		this.workflow = workflow;
 	}
 
 	@Override
-	public void remove(IAgentObject agentObject) {
-		if (agentObject instanceof Workflow) {
-			logger.info("client notified: REMOVE");
-		}		
-	}
-
-	@Override
-	public void update(IAgentObject agentObject) {
-		if (agentObject instanceof Workflow) {
-			logger.info("client notified: UPDATE");
-		}		
+	public void execute() throws RMException {
+		WorkflowManager manager = (WorkflowManager) Agent.getComponentById("workflowManager");
+		manager.addWorkflow(workflow);
 	}
 }

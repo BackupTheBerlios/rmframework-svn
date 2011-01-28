@@ -17,8 +17,18 @@ package net.form105.rm.base.rmi;
 
 import net.form105.rm.base.model.IAgentObject;
 
+/**
+ * The callback interface to notify clients by calling back. The agent object will be send by the individual
+ * method which identifies the action.
+ * @author heikok
+ *
+ */
 public interface ICallbackClient {
 	
-	public void notifyMe(IAgentObject agentObject);
+	public abstract void update(IAgentObject agentObject);
+	
+	public abstract void add(IAgentObject agentObject);
+	
+	public abstract void remove(IAgentObject agentObject);
 
 }

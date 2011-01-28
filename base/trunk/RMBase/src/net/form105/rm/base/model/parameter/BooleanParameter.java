@@ -5,17 +5,13 @@
 
 package net.form105.rm.base.model.parameter;
 
-import net.form105.rm.base.model.IXmlObjectLoadable;
-import net.form105.xml.schema.model.ParameterDocument;
-
-import org.apache.xmlbeans.XmlObject;
 
 /**
  *
  * @author hk
  */
 
-public class BooleanParameter extends AbstractParameter<Boolean> implements IXmlObjectLoadable<IParameter> {
+public class BooleanParameter extends AbstractParameter<Boolean> {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,15 +33,6 @@ public class BooleanParameter extends AbstractParameter<Boolean> implements IXml
 
     public String getValueAsString() {
         return parameterValue.toString();
-    }
-
-    public IParameter loadFromXml(XmlObject xmlObject) {
-        ParameterDocument.Parameter parameter = (ParameterDocument.Parameter) xmlObject;
-        this.setElementId(parameter.getId());
-        this.setName(parameter.getName());
-        Boolean boolValue = new Boolean(parameter.getValue());
-        this.setParameterValue(boolValue);
-        return this;
     }
 
 }
