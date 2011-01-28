@@ -28,7 +28,7 @@ public class WorkflowObserverTest {
 	
 	private WorkflowObservable wfObservable;
 	@Mock
-	private WorkflowObserver mockWfObserver;
+	private RMIWorkflowObserver mockWfObserver;
 	@Mock
 	private Workflow mockWorkflow;
 
