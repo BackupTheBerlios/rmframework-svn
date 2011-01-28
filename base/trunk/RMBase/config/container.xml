@@ -14,11 +14,14 @@
     
     <component-implementation id="rmiCallbackServer" class='net.form105.rm.base.rmi.RMICallbackServer' />
     
+    <component-implementation id="workflowManager" class="net.form105.rm.server.ant.workflow.WorkflowManager"></component-implementation>
+    <component-implementation id="workflowMap" class="net.form105.rm.server.ant.workflow.WorkflowMap"></component-implementation>
+    
     
     
     
     <component-implementation factory="yes" id="workflowObserver" class='net.form105.rm.base.observer.WorkflowObserver'/>
-    <component-implementation factory="yes" id="workflowObservable" class='net.form105.rm.base.observer.WorkflowObservable'/>
+    <component-implementation factory="yes" id="workflowObservable" class='net.form105.rm.base.observer.RMIWorkflowObservable'/>
 </container>
 
 
