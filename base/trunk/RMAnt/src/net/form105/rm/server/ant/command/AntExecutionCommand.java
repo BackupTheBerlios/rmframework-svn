@@ -7,6 +7,7 @@ import net.form105.rm.base.exception.RMException;
 import net.form105.rm.base.model.workflow.WorkflowManager;
 import net.form105.rm.server.ant.AntFlow;
 import net.form105.rm.server.ant.hotfolder.HotfolderInboundObject;
+import net.form105.rm.server.ant.property.IPropertyObject;
 import net.form105.rm.server.ant.workflow.AntBuildListener;
 
 /**
@@ -18,27 +19,25 @@ import net.form105.rm.server.ant.workflow.AntBuildListener;
 public class AntExecutionCommand extends AbstractCallbackCommand {
 	
 	private String buildFilePath;
-	private String incomingFilePath;
 	private AntFlow antFlow;
 	private AntBuildListener wfListener;
 	private Thread threadCommand;
-	private HotfolderInboundObject inObject;
+	private String buildId;
 	
 	public CommandEvent event;
-
+	
+	public IPropertyObject props;
 	
 	/**
-	 * 
-	 * @param workflowId An id for the data model. 
-	 * @param buildFilePath The build file to start
-	 * @param incomingFilePath An incoming file. The path will be used as a property for ant (-d)
+	 * Constructor for the command with properties provided for ant. The PropertyObject contains the properties
+	 * forwarded to ant. The buildFilePath is required to tell ant which build file to use. The id is a unique
+	 * identifier to reference the build.
+	 * @param props
 	 */
-	public AntExecutionCommand(HotfolderInboundObject inboundObject) {
-		this.inObject = inboundObject;
-		this.incomingFilePath = inboundObject.getInboundFilenName();
-		this.buildFilePath = inboundObject.getBuildFileName();
-		WorkflowManager wfManager = (WorkflowManager) Agent.getComponentById("workflowManager");
-		wfListener = new AntBuildListener(wfManager, inboundObject);
+	public AntExecutionCommand(IPropertyObject props, String buildFilePath, String buildId) {
+		this.props = props;
+		this.buildFilePath = buildFilePath;
+		this.buildId = buildId;
 	}
 
 	public void executeAsThread() throws RMException {
@@ -50,7 +49,7 @@ public class AntExecutionCommand extends AbstractCallbackCommand {
 	@Override
 	public void execute() {
 		antFlow = new AntFlow();
-		antFlow.startAntFlow(new String[] { "-buildfile", buildFilePath, "-DincomingFile="+incomingFilePath }, null, null, wfListener);
+		antFlow.startAntFlow(new String[] { "-buildfile", buildFilePath, props.getAsString() }, null, null, wfListener);
 	}
 	
 	/**
@@ -61,11 +60,8 @@ public class AntExecutionCommand extends AbstractCallbackCommand {
 		return wfListener;
 	}
 	
-	
-
-	
-	public HotfolderInboundObject getInboundObject() {
-		return inObject;
+	public String getBuildId() {
+		return buildId;
 	}
 	
 	

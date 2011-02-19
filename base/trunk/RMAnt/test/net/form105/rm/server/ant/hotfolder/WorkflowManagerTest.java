@@ -22,6 +22,7 @@ import net.form105.rm.base.model.attribute.StringAttribute;
 import net.form105.rm.base.model.workflow.Workflow;
 import net.form105.rm.base.model.workflow.WorkflowManager;
 import net.form105.rm.base.model.workflow.WorkflowMap;
+import net.form105.rm.base.observer.WorkflowObservable;
 import net.form105.rm.server.ant.Globals;
 
 import org.junit.Before;
@@ -39,6 +40,7 @@ public class WorkflowManagerTest {
 	private final String HOTFOLDER_ATTR = "hotfolder";
 	private WorkflowManager workflowManager;
 	@Mock private WorkflowMap mockWorkflowMap;
+	@Mock private WorkflowObservable observable;
 	@Mock private Workflow mockWorkflow;
 	@Mock private Workflow wf1;
 	@Mock private Workflow wf2;
@@ -47,14 +49,14 @@ public class WorkflowManagerTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		workflowManager = new WorkflowManager(mockWorkflowMap);
+		workflowManager = new WorkflowManager(mockWorkflowMap, observable);
 	}
 	
 	@Test 
 	public void addAttributeExistTest() {
 		// if an attribute exists, update its value (means return value is the attribute)
 		when(mockWorkflow.getAttributeById(anyString())).thenReturn(mockStringAttribute);
-		when(mockWorkflowMap.getWorkflowById(anyString())).thenReturn(mockWorkflow);
+		when(mockWorkflowMap.getElementById(anyString())).thenReturn(mockWorkflow);
 		workflowManager.updateAttribute("myWorkflowId", mockStringAttribute);
 		verify(mockStringAttribute).setValue(anyString());
 	}
@@ -63,7 +65,7 @@ public class WorkflowManagerTest {
 	public void addAttributeNotExist() {
 		// if an attribute doesn't exist, add it (means return value = null)
 		when(mockWorkflow.getAttributeById(anyString())).thenReturn(null);
-		when(mockWorkflowMap.getWorkflowById(anyString())).thenReturn(mockWorkflow);
+		when(mockWorkflowMap.getElementById(anyString())).thenReturn(mockWorkflow);
 		workflowManager.updateAttribute("myWorkflowId", mockStringAttribute);
 		verify(mockWorkflow).addAttribute(any(StringAttribute.class));
 	}
@@ -78,21 +80,21 @@ public class WorkflowManagerTest {
 	
 	@Test 
 	public void addWorkflowsTest() {
-		mockWorkflowMap.addWorkflow(wf1);
-		mockWorkflowMap.addWorkflow(wf2);
-		verify(mockWorkflowMap).addWorkflow(wf1);
-		verify(mockWorkflowMap).addWorkflow(wf2);
+		mockWorkflowMap.add(wf1);
+		mockWorkflowMap.add(wf2);
+		verify(mockWorkflowMap).add(wf1);
+		verify(mockWorkflowMap).add(wf2);
 	}
 	
 	@Test
 	public void addWorkflowTest() {
 		workflowManager.addWorkflow(mockWorkflow);
-		verify(mockWorkflowMap).addWorkflow(mockWorkflow);
+		verify(mockWorkflowMap).add(mockWorkflow);
 	}
 	
 	@Test
 	public void removeWorkflowTest() {
 		workflowManager.removeWorkflow(mockWorkflow);
-		verify(mockWorkflowMap).removeWorkflow(mockWorkflow);
+		verify(mockWorkflowMap).remove(mockWorkflow);
 	}
 }
