@@ -92,5 +92,4 @@ public class Agent {
         LookupContainer container = (LookupContainer) getContainer(LookupContainer.class);
         return container.getGlobalLookup();
     }
-
 }

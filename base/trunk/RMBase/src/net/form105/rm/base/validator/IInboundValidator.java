@@ -22,7 +22,7 @@ import net.form105.rm.base.service.IResult;
  * @author heikok
  *
  */
-public interface IValidator<T> {
+public interface IInboundValidator<T> {
 
 	public IResult<T> isValid(T Object);
 	

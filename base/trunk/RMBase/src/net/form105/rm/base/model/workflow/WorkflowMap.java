@@ -1,69 +1,26 @@
 package net.form105.rm.base.model.workflow;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
+import net.form105.rm.base.model.AbstractModelMap;
 
 import org.picocontainer.Startable;
 
 /**
- * The workflow encapsulates the workflows in a map and gives access to the individual workflows by their
- * ids. 
+ * The workflow encapsulates the workflows in a map and gives access to the
+ * individual workflows by their ids. The workflow map can be used on server and
+ * client side. On the client side it is a cache for rmi calls. 
+ * 
+ * 
  * @author heikok
- *
+ * 
  */
-public class WorkflowMap implements Startable {
+public class WorkflowMap extends AbstractModelMap<Workflow> implements Startable {
+
+	private static final long serialVersionUID = -5053248069697695094L;
 	
-	private Map<String, Workflow> workflowMap = new HashMap<String, Workflow>();
-	
-	public WorkflowMap() {
-		
-	}
-	
-	/**
-	 * Adds a workflow to the map
-	 * @param workflow
-	 */
-	public void addWorkflow(Workflow workflow) {
-		workflowMap.put(workflow.getElementId(), workflow);
-	}
-	
-	/**
-	 * Removes a workflow from the map
-	 * @param workflow
-	 */
-	public void removeWorkflow(Workflow workflow) {
-		workflowMap.remove(workflow.getElementId());
-	}
-	
-	/**
-	 * Get a workflow by its id.
-	 * @param id
-	 * @return
-	 */
-	public Workflow getWorkflowById(String id) {
-		return workflowMap.get(id);
-	}
-	
-	/**
-	 * Getting all existing workflows
-	 * @return Collection of workflows
-	 */
-	public Collection<Workflow> getAllWorkflows() {
-		return workflowMap.values();
-	}
+	@Override
+	public void start() {}
 
 	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void stop() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void stop() {}
 
 }

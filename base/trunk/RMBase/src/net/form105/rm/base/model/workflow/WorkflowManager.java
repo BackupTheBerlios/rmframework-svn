@@ -42,7 +42,7 @@ public class WorkflowManager implements Startable {
 	
 	public List<Workflow> getWorkflowByAttributeValue(String attributeId, String attributeValue) {
 		List<Workflow> workflows = new ArrayList<Workflow>();
-		for (Workflow workflow : map.getAllWorkflows()) {
+		for (Workflow workflow : map.getAll()) {
 			if (workflow.getAttributeById(attributeId).getValue().equals(attributeValue)) {
 				workflows.add(workflow);
 			}
@@ -51,12 +51,12 @@ public class WorkflowManager implements Startable {
 	}
 	
 	public void addWorkflow(Workflow workflow) {
-		map.addWorkflow(workflow);
+		map.add(workflow);
 		observable.notifyAdd(workflow);
 	}
 	
 	public void removeWorkflow(Workflow workflow) {
-		map.removeWorkflow(workflow);
+		map.remove(workflow);
 		observable.notifyRemove(workflow);
 	}
 	
@@ -68,7 +68,7 @@ public class WorkflowManager implements Startable {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> void updateAttribute(String workflowId, AbstractAttribute<T> attribute) {
-		Workflow workflow = map.getWorkflowById(workflowId);
+		Workflow workflow = map.getElementById(workflowId);
 		AbstractAttribute<T> existingAttribute = (AbstractAttribute<T>) workflow.getAttributeById(attribute.getElementId()); 
 		if (existingAttribute == null) {
 			workflow.addAttribute(attribute);
@@ -84,7 +84,7 @@ public class WorkflowManager implements Startable {
 	}
 	
 	public Workflow getWorkflowById(String id) {
-		return map.getWorkflowById(id);
+		return map.getElementById(id);
 	}
 	
 	/**
@@ -100,7 +100,7 @@ public class WorkflowManager implements Startable {
 	}
 	
 	public Collection<Workflow> getWorkflows() {
-		return map.getAllWorkflows();
+		return map.getAll();
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.dom4j.Element;
 
-public class ResourceMap extends AbstractModelMap<Resource> implements Serializable {
+public class ResourceMap  implements Serializable {
     
     public List<Resource> fromDom(Element rootNode) {
         
