@@ -1,0 +1,19 @@
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	
+
+	<entry key="server.rmi.port">10098</entry>
+	
+	<!-- jdbc connection / c3p0 -->
+	<entry key="connection.jdbcDriver">com.ddtek.jdbc.sequelink.SequeLinkDriver</entry>
+	<entry key="connection.jdbcUrl">jdbc:sequelink://localhost:2399;serverDataSource=rm</entry>
+	<entry key="connection.user">Admin</entry>
+	<entry key="connection.password">admin</entry>
+	
+	<!-- Cayenne -->
+	<entry key="db.cayenne.configFileName">cayenne.xml</entry>
+	
+	<!-- logging part -->
+	<entry key="log.jdbcIntegration">on</entry> <!-- enables logging for jdbc integration -->
+</properties>

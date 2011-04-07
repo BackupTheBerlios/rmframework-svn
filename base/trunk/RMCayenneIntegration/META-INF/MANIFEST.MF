@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RMCayenneIntegration
+Bundle-SymbolicName: RMCayenneIntegration
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: net.form105.rm.RMBase;bundle-version="0.1.0"

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/3.0/modelMap"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
+  project-version="3.0.0.1">
+	<property name="defaultSchema" value="public"/>
+	<property name="quoteSqlIdentifiers" value="true"/>
+	<db-entity name="serials" schema="public">
+		<db-attribute name="JobId" type="CLOB" length="2147483647"/>
+		<db-attribute name="SerialNumber" type="CLOB" isMandatory="true" length="2147483647"/>
+		<db-attribute name="creation_timestamp" type="TIMESTAMP" length="29"/>
+		<db-attribute name="uid" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+	</db-entity>
+	<obj-entity name="Serials" className="net.form105.db.cayenne.Serials" dbEntityName="serials" exclude-superclass-listeners="true">
+		<obj-attribute name="creationTimestamp" type="java.util.Date" db-attribute-path="creation_timestamp"/>
+		<obj-attribute name="jobId" type="java.lang.String" db-attribute-path="JobId"/>
+		<obj-attribute name="serialNumber" type="java.lang.String" db-attribute-path="SerialNumber"/>
+		<obj-attribute name="uid" type="java.lang.Long" db-attribute-path="uid"/>
+	</obj-entity>
+</data-map>
