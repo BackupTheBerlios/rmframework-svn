@@ -1,5 +1,6 @@
 package net.form105.db.web.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -19,13 +20,10 @@ public class SerialsManagerBean {
 	public static Logger logger = Logger.getLogger(SerialsManagerBean.class);
 	
 	private List<Serials> serials;
+	private String jobId;
 	
 	public SerialsManagerBean() {
-		SerialsByJobQuery query = new SerialsByJobQuery("J197765");
-		LocalQueryHandler queryHandler = new LocalQueryHandler();
-		IResult<Serials> serialsResult = queryHandler.executeQuery(query);
-		serials = serialsResult.getResultList();
-		logger.info("Query result size: " + serials.size());
+		
 	}
 	
 	//@PostConstruct
@@ -33,13 +31,31 @@ public class SerialsManagerBean {
 		
 	}
 	
-	
-	
-	public List<Serials> getSerials() {
-		SerialsByJobQuery query = new SerialsByJobQuery("J197765");
+	public void executeQuery() {
+		SerialsByJobQuery query = new SerialsByJobQuery(jobId);
 		LocalQueryHandler queryHandler = new LocalQueryHandler();
 		IResult<Serials> serialsResult = queryHandler.executeQuery(query);
 		serials = serialsResult.getResultList();
+		logger.info("Query result size: " + serials.size());
+	}
+	
+	public void setJobId(String jobId) {
+		this.jobId = jobId;
+	}
+	
+	public String getJobId() {
+		return jobId;
+	}
+	
+	
+	
+	public List<Serials> getSerials() {
+		if (serials == null) {
+			serials = new ArrayList<Serials>();
+		}
+		
+		logger.info("Found serials: "+serials.size());
+		
 		return serials;
 	}
 	

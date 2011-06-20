@@ -22,20 +22,25 @@ import net.form105.rm.base.model.ExecutionState;
 import net.form105.rm.base.model.attribute.AbstractAttribute;
 import net.form105.rm.base.model.workflow.Workflow;
 import net.form105.rm.base.model.workflow.WorkflowManager;
-import net.form105.rm.base.model.workflow.WorkflowStatus;
 import net.form105.rm.server.ant.Globals;
-import net.form105.rm.server.ant.hotfolder.HotfolderInboundObject;
 
+/**
+ * Checks if ant can be executed. Ant can be executed if the same build isn't running already. We want protect
+ * that a build isn't running twice. The same build process can be started if there isn't another running. A build
+ * has an id and is configured by its configuration. 
+ * @author heikok
+ *
+ */
 public class AntExecutionStrategy implements IExecutionStrategy {
 
 	@Override
 	public boolean isExecutable(Object object) {
 		
-		HotfolderInboundObject inObject = (HotfolderInboundObject) object;
+		String groupId = (String) object;
 		
 		WorkflowManager manager = (WorkflowManager) Agent.getComponentById("workflowManager");
 
-		List<Workflow> workflows = manager.getWorkflowByAttributeValue(Globals.ATTRIBUTE_ID_HOTFOLDER, inObject.getHotfolderName());
+		List<Workflow> workflows = manager.getWorkflowByAttributeValue(Globals.ATTRIBUTE_ID_HOTFOLDER, groupId);
 
 		for (Workflow workflow : workflows) {
 			AbstractAttribute<?> attr = workflow.getAttributeById(Globals.ATTRIBUTE_ID_STATUS);

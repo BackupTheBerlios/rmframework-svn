@@ -3,7 +3,7 @@
 
 	
 
-	<entry key="server.rmi.port">10099</entry>
+	<entry key="server.rmi.port">1099</entry>
 	
 	<!-- jdbc connection / c3p0 -->
 	<entry key="connection.jdbcDriver">com.ddtek.jdbc.sequelink.SequeLinkDriver</entry>

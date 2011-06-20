@@ -21,6 +21,10 @@ public class AntPropertyObject implements IPropertyObject {
 	
 	private Properties properties;
 	
+	public AntPropertyObject() {
+		properties = new Properties();
+	}
+	
 	public AntPropertyObject(Properties properties) {
 		this.properties = properties;
 	}

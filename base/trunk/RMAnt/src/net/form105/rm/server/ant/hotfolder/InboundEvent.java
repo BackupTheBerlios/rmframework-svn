@@ -7,7 +7,7 @@ import java.util.EventObject;
  * @author heikok
  *
  */
-public class HotfolderEvent extends EventObject {
+public class InboundEvent extends EventObject {
 	
 	private static final long serialVersionUID = 1806008446708913667L;
 	
@@ -17,7 +17,7 @@ public class HotfolderEvent extends EventObject {
 	 * 
 	 * @param source The inbound object which triggers the flow.
 	 */
-	public HotfolderEvent(IInboundObject source) {
+	public InboundEvent(IInboundObject source) {
 		super(source);
 		this.hotfolderObject = (IInboundObject) source;
 	}

@@ -44,9 +44,4 @@ public class InsertByEntityCommand extends AbstractCommand {
 		_result = handler.executeAction(_entity, ActionType.INSERT);
 	}
 
-	@Override
-	public String getId() {
-		return ID;
-	}
-
 }

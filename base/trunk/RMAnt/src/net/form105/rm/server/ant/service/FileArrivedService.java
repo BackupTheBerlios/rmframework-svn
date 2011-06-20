@@ -20,7 +20,7 @@ import net.form105.rm.base.service.AbstractService;
 import net.form105.rm.base.service.IArgument;
 import net.form105.rm.server.ant.AntAgent;
 import net.form105.rm.server.ant.container.HotfolderContainer;
-import net.form105.rm.server.ant.hotfolder.Hotfolder;
+import net.form105.rm.server.ant.hotfolder.HotfolderInboundReceiver;
 
 import org.apache.log4j.Logger;
 
@@ -41,7 +41,7 @@ public class FileArrivedService extends AbstractService {
 	public void execute() throws Exception {
 		ServiceArgument arg = (ServiceArgument) getArgument();
 		HotfolderContainer hfHandler = (HotfolderContainer) AntAgent.getComponentById("hotfolders");
-		Hotfolder hotfolder = hfHandler.getHotfolderByName(arg.hotfolderPath);
+		HotfolderInboundReceiver hotfolder = hfHandler.getHotfolderByName(arg.hotfolderPath);
 		hotfolder.notifyFileArrived(arg.hotfolderPath, arg.arrivedFilePath);
 		logger.info("Hotfolder path: "+arg.hotfolderPath);
 		logger.info("File path arrived: "+arg.arrivedFilePath);

@@ -37,16 +37,17 @@ import net.form105.rm.server.ant.command.AddWorkflowCommand;
 public class CreateWorkflowHotfolderListener extends AbstractHotfolderListener {
 
 	@Override
-	public void fileArrived(HotfolderEvent hotEvent) {
+	public void objectArrived(IInboundObject inboundObject) {
 		
-		HotfolderInboundObject inboundObject = (HotfolderInboundObject) hotEvent.getInboundObject();
-		String id = getId(hotEvent);
+		HotfolderInboundObject hfObject = (HotfolderInboundObject) inboundObject;
+		
+		String id = inboundObject.getId();
 		String name = "Hotfolder Workflow";
 		String type = "hotfolder";
 		
 		AddWorkflowCommand addWorkflowCommand = new AddWorkflowCommand(id, name, type);
-		StringAttribute hotfolderAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Path to the Hotfolder", inboundObject.getHotfolderName());
-		StringAttribute incomingFileAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_INBOUND_FILE, "Path to the incoming file", inboundObject.getBuildFileName());
+		StringAttribute hotfolderAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_HOTFOLDER, "Path to the Hotfolder", hfObject.getHotfolderName());
+		StringAttribute incomingFileAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_INBOUND_FILE, "Path to the incoming file", hfObject.getBuildFileName());
 		StringAttribute statusAttribute = new StringAttribute(Globals.ATTRIBUTE_ID_STATUS, Globals.ATTRIBUTE_NAME_STATUS, WorkflowStatus.CREATED.toString());
 		
 		
@@ -63,7 +64,7 @@ public class CreateWorkflowHotfolderListener extends AbstractHotfolderListener {
 	}
 
 	@Override
-	public void fileRemoved(HotfolderEvent hotEvent) {
+	public void objectRemoved(IInboundObject hotEvent) {
 		// nothing to do
 	}
 }

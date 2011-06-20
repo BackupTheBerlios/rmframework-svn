@@ -44,10 +44,4 @@ public class UpdateByEntityCommand extends AbstractCommand {
 		JdbcOutboundHandler handler = container.getHandler();
 		handler.executeAction(_entity, ActionType.UPDATE);
 	}
-
-	@Override
-	public String getId() {
-		return ID;
-	}
-
 }

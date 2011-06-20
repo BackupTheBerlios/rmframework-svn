@@ -18,5 +18,5 @@
 	<entry key="log.jdbcIntegration">on</entry> <!-- enables logging for jdbc integration -->
 	
 	<!-- hotfolder config -->
-	<entry key="hotfolder.configFile">config/hotfolder.xml</entry>
+	<entry key="hotfolder.configFile">config/inbound.xml</entry>
 </properties>

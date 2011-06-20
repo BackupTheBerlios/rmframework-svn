@@ -83,7 +83,7 @@ public class AntCommandHandler extends AbstractCommandHandler<Object> implements
 	public void singleRun() {
 		AntExecutionCommand command = (AntExecutionCommand) queue.poll();
 		if (command != null) {
-			if (strategy.isExecutable(command.getInboundObject())) {
+			if (strategy.isExecutable(command.getGroup())) {
 				Thread thread = new CommandThread(command);
 				thread.start();
 			} else {

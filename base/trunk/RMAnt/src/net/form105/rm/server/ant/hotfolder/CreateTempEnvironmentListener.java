@@ -23,14 +23,19 @@ import org.apache.commons.io.FileUtils;
 public class CreateTempEnvironmentListener extends AbstractHotfolderListener {
 
 	@Override
-	public void fileArrived(HotfolderEvent hotEvent) {
-		HotfolderInboundObject inboundObject = (HotfolderInboundObject) hotEvent.getInboundObject();
+	public void objectArrived(IInboundObject inObject) {
+	
+		HotfolderInboundObject hfObject = (HotfolderInboundObject) inObject;
 		
-		File buildSourceDir = new File(inboundObject.getHotfolderName() + File.separator + "build");
-		File buildTargetDir = new File(inboundObject.getBuildTempFolderName());
+		File buildSourceDir = new File(hfObject.getHotfolderName() + File.separator + "build");
+		File buildTargetDir = new File(hfObject.getTempFolderUniqueName());
+		
+		File inboundFile = hfObject.getInboundFile();
+		
 		
 		try {
 			FileUtils.copyDirectory(buildSourceDir, buildTargetDir);
+			FileUtils.copyFileToDirectory(inboundFile, buildTargetDir);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -39,7 +44,7 @@ public class CreateTempEnvironmentListener extends AbstractHotfolderListener {
 	}
 
 	@Override
-	public void fileRemoved(HotfolderEvent hotEvent) {
+	public void objectRemoved(IInboundObject hotEvent) {
 		// Do nothing
 
 	}

@@ -79,6 +79,14 @@ public class Container {
 		}
 		return getFactoryContainer().getComponent(id);
 	}
+	
+	@SuppressWarnings(value = { "unchecked", "rawtypes" })
+	public static Object getByClass(Class clazz) {
+		if (getContainer().getComponent(clazz) != null) {
+			return getContainer().getComponent(clazz);
+		}
+		return getFactoryContainer().getComponent(clazz);
+	}
 
 	public static Container getInstance() {
 		return instance;

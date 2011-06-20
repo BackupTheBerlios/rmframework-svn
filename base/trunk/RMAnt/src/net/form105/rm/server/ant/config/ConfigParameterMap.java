@@ -13,14 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.server.ant.hotfolder;
+package net.form105.rm.server.ant.config;
 
-public interface IInboundObject {
+import java.util.HashMap;
+import java.util.Map;
 
-	public abstract String getId();
-
-	public abstract String getWorkflowId();
+public class ConfigParameterMap {
 	
-	public abstract String getGroupId();
+	private Map<String, ConfigParameter> parameterMap;
+	
+	public ConfigParameterMap() {
+		parameterMap = new HashMap<String, ConfigParameter>();
+	}
+	
+	/**
+	 * Adding a parameter to the map
+	 * @param parameter
+	 */
+	public void addParameter(ConfigParameter parameter) {
+		parameterMap.put(parameter.getKey(), parameter);
+	}
+	
+	/**
+	 * Get a parameter value by its key.
+	 * @param key
+	 * @return
+	 */
+	public String getParameter(String key) {
+		return parameterMap.get(key).getKey();
+	}
 
 }

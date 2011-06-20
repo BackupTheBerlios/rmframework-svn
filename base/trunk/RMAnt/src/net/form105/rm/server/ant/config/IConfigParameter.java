@@ -13,14 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.form105.rm.server.ant.hotfolder;
+package net.form105.rm.server.ant.config;
 
-public interface IInboundObject {
-
-	public abstract String getId();
-
-	public abstract String getWorkflowId();
-	
-	public abstract String getGroupId();
-
+public interface IConfigParameter {
+	public String getKey();
+	public String getValue();
 }

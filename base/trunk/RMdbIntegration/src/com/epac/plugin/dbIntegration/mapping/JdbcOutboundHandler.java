@@ -23,9 +23,9 @@ import java.util.Map;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.exception.RMSqlException;
+import net.form105.rm.base.i18n.BaseI18NMessage;
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
-import net.form105.rm.server.i18n.BaseI18NMessage;
 
 import org.apache.log4j.Logger;
 

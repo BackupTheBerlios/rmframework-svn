@@ -15,29 +15,27 @@
  */
 package net.form105.rm.server.ant.hotfolder;
 
-import net.form105.rm.base.Agent;
-import net.form105.rm.server.ant.container.HotfolderContainer;
-
 import org.apache.log4j.Logger;
+import org.picocontainer.Startable;
 
-public class HotfolderWorker implements Runnable {
+public class HotfolderWorker implements Runnable, Startable {
 	
 	public static Logger logger = Logger.getLogger(HotfolderWorker.class);
 
 	private boolean running = true;
-
-	public HotfolderWorker() {
+	private AbstractInboundReceiver[] receivers;
+	
+	
+	public HotfolderWorker(AbstractInboundReceiver[] receivers) {
+		this.receivers = receivers;
 	}
 
 	@Override
 	public void run() {
 		while (running) {
 			
-			HotfolderContainer hfContainer = (HotfolderContainer) Agent.getComponentById("hotfolders");
-			
-			
-			for (Hotfolder hotfolder : hfContainer.getHotfolderList()) {
-				hotfolder.compareContent(true);
+			for (AbstractInboundReceiver receiver : receivers) {
+				receiver.prepareInboundObjects();
 			}
 			//logger.info("finished iterating hotfolders");
 			try {
@@ -48,5 +46,19 @@ public class HotfolderWorker implements Runnable {
 		}
 
 	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stop() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public 
 
 }

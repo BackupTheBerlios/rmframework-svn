@@ -46,14 +46,8 @@ public class SerialDao extends AbstractCayenneDao<Serials> {
 		qual = qual.expWithParameters(Collections.singletonMap("jobId", jobId));
 		SelectQuery query = new SelectQuery(Serials.class, qual);
 		List<Serials> list = getContext().performQuery(query);
-		
-		
-		
-		
 		return list;
 	}
-
-	
 
 	@Override
 	public Serials merge(Serials object) {

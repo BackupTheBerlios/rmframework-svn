@@ -4,7 +4,7 @@ import java.io.File;
 
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
-import net.form105.rm.base.validator.IValidator;
+import net.form105.rm.base.validator.IInboundValidator;
 import net.form105.rm.base.validator.ValidationResult;
 
 /**
@@ -12,7 +12,7 @@ import net.form105.rm.base.validator.ValidationResult;
  * @author heikok
  *
  */
-public class RealFileValidator implements IValidator<File> {
+public class RealFileValidator implements IInboundValidator<File> {
 	
 	public IResult<File> isValid(File hotfolder) {
 		

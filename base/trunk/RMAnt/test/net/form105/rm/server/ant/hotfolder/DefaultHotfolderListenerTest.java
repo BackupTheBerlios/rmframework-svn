@@ -36,7 +36,7 @@ public class DefaultHotfolderListenerTest extends AbstractTest{
 	@Mock private HotfolderInboundObject mockInboundObject;
 	@Mock private AntCommandHandler mockCommandHandler;
 	@Mock private DefaultHotfolderListener mockHotfolderListener;
-	@Mock private HotfolderEvent mockHotfolderEvent;
+	@Mock private InboundEvent mockHotfolderEvent;
 	@Mock private Agent mockAgent;
 
 	@Before
@@ -49,7 +49,7 @@ public class DefaultHotfolderListenerTest extends AbstractTest{
 		
 		when(mockHotfolderEvent.getInboundObject()).thenReturn(mockInboundObject);
 		
-		mockHotfolderListener.fileArrived(mockHotfolderEvent);
+		mockHotfolderListener.objectArrived(mockHotfolderEvent);
 		
 		AntCommandHandler cHandler = (AntCommandHandler) Agent.getContainer("commandHandler");
 		

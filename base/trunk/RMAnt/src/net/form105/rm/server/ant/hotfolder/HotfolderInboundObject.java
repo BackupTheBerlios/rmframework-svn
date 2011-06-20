@@ -29,15 +29,19 @@ import java.util.UUID;
 public class HotfolderInboundObject implements IInboundObject {
 	
 	private final String id;
-	private String hotfolderName;
-	private String buildTempFolderName;
 	private String buildFileName;
-	private String inboundFileName;
+	private File inboundFile;
+	private String tempFolderName;
+	private String tempFolderUniqueName;
+
+	private String hotfolderName;
 	
-	public HotfolderInboundObject(String tempFolder) {
+	public HotfolderInboundObject(File inboundFile, String tempFolderName) {
+		this.inboundFile = inboundFile;
+		this.tempFolderName = tempFolderName;
 		this.id = UUID.randomUUID().toString();
-		this.buildTempFolderName = tempFolder + File.separator + id;
-		this.buildFileName = buildTempFolderName + File.separator + "build.xml";
+		this.tempFolderUniqueName = tempFolderName + File.separator + id;
+		this.buildFileName = tempFolderUniqueName + File.separator + "build.xml";
 	}
 	
 	/* (non-Javadoc)
@@ -62,32 +66,32 @@ public class HotfolderInboundObject implements IInboundObject {
 		this.hotfolderName = hotfolderName;
 	}
 	
-	public String getBuildTempFolderName() {
-		return buildTempFolderName;
+	public String getTempFolderName() {
+		return tempFolderName;
 	}
 	
 	/**
-	 * 
-	 * @param folderName
+	 * Getting the final temp folder which is unique and has been generated with an id in its name
+	 * @return
 	 */
-	public void setBuildTempFolderName(String folderName) {
-		this.buildTempFolderName = folderName;
+	public String getTempFolderUniqueName() {
+		return tempFolderUniqueName;
 	}
 	
 	/**
 	 * Getting the name of the inbound file
 	 * @return
 	 */
-	public String getInboundFilenName() {
-		return inboundFileName;
+	public String getInboundFileName() {
+		return inboundFile.getPath();
 	}
 	
 	/**
-	 * Setting the name of the inbound file
-	 * @param inboundFileName
+	 * Getting the file that has arrived
+	 * @return
 	 */
-	public void setInboundFileName(String inboundFileName) {
-		this.inboundFileName = inboundFileName;
+	public File getInboundFile() {
+		return inboundFile;
 	}
 	
 	/**
@@ -97,6 +101,23 @@ public class HotfolderInboundObject implements IInboundObject {
 	public String getBuildFileName() {
 		return buildFileName;
 	}
+	
+	public String getGroupId() {
+		return getHotfolderName();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof HotfolderInboundObject) {
+			HotfolderInboundObject inObject = (HotfolderInboundObject) obj;
+			if (inObject.getInboundFileName().equals(((HotfolderInboundObject) obj).getInboundFileName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
 	
 	
 

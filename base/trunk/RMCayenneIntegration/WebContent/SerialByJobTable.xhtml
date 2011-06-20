@@ -9,17 +9,23 @@
 </h:head>
 
 <h:body>
-
+	<h:graphicImage id="imageLogo" alt="Epac Logo" salt="jsf-sun" url="/image/epac_logo.png" />
 	<h:form>
+		<h:inputText value="#{serialsManager.jobId}"></h:inputText>
+		<p:commandButton action="#{serialsManager.executeQuery}"
+			value="Confirm" ajax="false"></p:commandButton>
 		<p:dataTable value="#{serialsManager.serials}" var="serial">
-			<!-- h:column>
-				<h:commandButton action="#{userList.delete}" value="Delete">
-					<f:setPropertyActionListener value="#{user}"
-						target="#{userList.selectedUser}" />
-				</h:commandButton>
-			</h:column -->
 			<p:column>
+				<f:facet name="header">Job Id</f:facet>
 				<h:outputText value="#{serial.jobId}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Access Code</f:facet>
+				<h:outputText value="#{serial.serialNumber}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Creation Timestamp</f:facet>
+				<h:outputText value="#{serial.creationTimestamp}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>

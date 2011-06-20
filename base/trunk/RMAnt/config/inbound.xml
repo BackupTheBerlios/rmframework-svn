@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<inbounds>
+	<inbound class="net.form105.rm.server.ant.HotfolderInboundReceiver"><!-- must implement IInboundHandler -->
+		<parameters>
+			<parameter key="hotfolder" value="/Users/heikok/temp/hotfolder/1" />
+			<parameter key="tempHotfolder" value="/Users/heikok/temp/tempBuildFolder" />
+		</parameters>
+		<listeners><!-- must implement net.form105.rm.server.ant.hotfolder.IInboundListener -->
+			<listener>net.form105.rm.server.ant.hotfolder.CreateTempEnvironmentListener</listener>
+			<listener>net.form105.rm.server.ant.hotfolder.CreateWorkflowHotfolderListener</listener>
+			<!-- executes the ant command on a command handler -->
+			<listener>net.form105.rm.server.ant.hotfolder.DefaultHotfolderListener</listener>
+		</listeners>
+		<validators>
+			<validator>buildFileValidator</validator>
+			<validator>fileValidator</validator>
+		</validators>
+		<executor>antExecutionCommand</executor>
+	</inbound>
+</inbounds>
+
+

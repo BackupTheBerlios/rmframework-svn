@@ -4,14 +4,14 @@ import java.util.List;
 
 import net.form105.rm.base.service.IResult;
 import net.form105.rm.base.service.ResultStatus;
-import net.form105.rm.base.validator.IValidator;
+import net.form105.rm.base.validator.IInboundValidator;
 import net.form105.rm.base.validator.ValidationResult;
 
 public class ValidationHandler<T> {
 	
-	public IResult<T> runValidation(T object, List<IValidator<T>> validationList) {
+	public IResult<T> runValidation(T object, List<IInboundValidator<T>> validationList) {
 		
-		for (IValidator<T> validator : validationList) {
+		for (IInboundValidator<T> validator : validationList) {
 				IResult<T> result = validator.isValid(object);
 				if (result.getStatus() == ResultStatus.FAIL) {
 					return result;

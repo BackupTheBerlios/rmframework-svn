@@ -19,7 +19,7 @@ import java.util.Collection;
 
 import net.form105.rm.base.container.AbstractContainer;
 import net.form105.rm.base.container.PropertiesContainer;
-import net.form105.rm.server.ant.hotfolder.Hotfolder;
+import net.form105.rm.server.ant.hotfolder.HotfolderInboundReceiver;
 import net.form105.rm.server.ant.hotfolder.HotfolderMap;
 
 /**
@@ -35,15 +35,15 @@ public class HotfolderContainer extends AbstractContainer {
 		
 	}
 	
-	public void addHotfolder(Hotfolder hf) {
+	public void addHotfolder(HotfolderInboundReceiver hf) {
 		hotfolderMap.addHotfolder(hf);
 	}
 	
-	public Collection<Hotfolder> getHotfolderList() {
+	public Collection<HotfolderInboundReceiver> getHotfolderList() {
 		return hotfolderMap.getHotfolderList();
 	}
 	
-	public Hotfolder getHotfolderByName(String hotfolderPathName) {
+	public HotfolderInboundReceiver getHotfolderByName(String hotfolderPathName) {
 		return hotfolderMap.getHotfolder(hotfolderPathName);
 	}
 

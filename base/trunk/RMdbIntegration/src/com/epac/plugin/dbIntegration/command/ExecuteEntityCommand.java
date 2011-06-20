@@ -43,9 +43,4 @@ public class ExecuteEntityCommand extends AbstractCommand {
 		handler.executeAction(_entity, _actionType);
 	}
 
-	@Override
-	public String getId() {
-		return ID;
-	}
-
 }

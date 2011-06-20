@@ -1,9 +1,8 @@
 package net.form105.rm.server.ant.hotfolder;
 
-import net.form105.rm.base.Agent;
 import net.form105.rm.base.command.ICommandHandler;
-import net.form105.rm.server.ant.command.AntCommandHandler;
 import net.form105.rm.server.ant.command.AntExecutionCommand;
+import net.form105.rm.server.ant.property.AntPropertyObject;
 
 /**
  * The default listener if a file arrives in a hotfolder.
@@ -19,20 +18,19 @@ public class DefaultHotfolderListener extends AbstractHotfolderListener {
 	}
 
 	@Override
-	public void fileArrived(HotfolderEvent hotfolderEvent) {
-		HotfolderInboundObject inboundObject = (HotfolderInboundObject) hotfolderEvent.getInboundObject();
-		
-		handleCommand(inboundObject);
+	public void objectArrived(IInboundObject inboundObject) {
+		HotfolderInboundObject hfIObject = (HotfolderInboundObject) inboundObject;
+		handleCommand(hfIObject);
 	}
 	
 	@Override
-	public void fileRemoved(HotfolderEvent hotEvent) {
+	public void objectRemoved(IInboundObject hotEvent) {
 		
 	}
 	
 	private void handleCommand(HotfolderInboundObject inboundObject) {
-		AntExecutionCommand execCommand = new AntExecutionCommand(inboundObject);
-		execCommand.setGroup(inboundObject.getBuildTempFolderName());
+		AntPropertyObject props = new AntPropertyObject();
+		AntExecutionCommand execCommand = new AntExecutionCommand(props, inboundObject.getBuildFileName(), inboundObject.getId());
 		commandHandler.execute(execCommand);
 	}
 }

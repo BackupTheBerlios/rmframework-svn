@@ -16,7 +16,7 @@
 package com.epac.plugin.dbIntegration.validator;
 
 import net.form105.rm.base.exception.RMException;
-import net.form105.rm.server.i18n.BaseI18NMessage;
+import net.form105.rm.base.i18n.BaseI18NMessage;
 
 import com.epac.plugin.dbIntegration.mapping.AbstractDBEntity;
 import com.epac.plugin.dbIntegration.mapping.AMappingTable;
