@@ -4,7 +4,6 @@ import net.form105.rm.base.service.IResult;
 import net.form105.web.base.action.IAjaxLinkToPanelAction;
 
 import org.apache.wicket.Page;
-import org.apache.wicket.model.IModel;
 
 public class IconContributionAction implements IAjaxLinkToPanelAction {
 	

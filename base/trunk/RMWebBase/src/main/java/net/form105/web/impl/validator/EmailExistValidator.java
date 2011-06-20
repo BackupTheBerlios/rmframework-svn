@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.form105.rm.base.Agent;
 import net.form105.rm.base.container.UserManagementContainer;
-import net.form105.rm.base.dao.XMLUserObjectDAO;
 import net.form105.rm.base.model.user.User;
 import net.form105.rm.base.query.FindAllDaoQuery;
 import net.form105.rm.base.query.LocalQueryHandler;

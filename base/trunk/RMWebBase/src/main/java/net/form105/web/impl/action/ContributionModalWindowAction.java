@@ -1,10 +1,9 @@
 package net.form105.web.impl.action;
 
-import org.apache.wicket.MarkupContainer;
-
 import net.form105.rm.base.service.IResult;
 import net.form105.web.base.action.IAjaxLinkToModalWindowAction;
-import net.form105.web.base.action.IAjaxLinkToPanelAction;
+
+import org.apache.wicket.MarkupContainer;
 
 public class ContributionModalWindowAction extends AbstractAction implements IAjaxLinkToModalWindowAction {
 

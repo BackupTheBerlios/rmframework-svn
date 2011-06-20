@@ -1,6 +1,5 @@
 package net.form105.web.base.template;
 
-import net.form105.web.base.component.subMenu.SubMenuPanel;
 import net.form105.web.base.type.EventType;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;

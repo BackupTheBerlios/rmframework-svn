@@ -44,7 +44,7 @@ public class EmbeddedWebContainer extends AbstractContainer {
 
 		// Wicket
 		ServletHolder servletHolder = new ServletHolder(new WicketServlet());
-		servletHolder.setInitParameter("applicationClassName", "net.form105.web.base.Application");
+		//servletHolder.setInitParameter("applicationClassName", "net.form105.web.base.Application");
 		servletHolder.setInitOrder(1);
 		
 		context0.addServlet(servletHolder,"/");
