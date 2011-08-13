@@ -18,10 +18,8 @@ package net.form105.rm.server.ant.hotfolder;
 
 public abstract class AbstractHotfolderListener implements IInboundListener {
 
-	@Override
 	public abstract void objectArrived(IInboundObject inboundObject);
 	
-	@Override
 	public abstract void objectRemoved(IInboundObject inboundObject);
 	
 	/**
