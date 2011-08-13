@@ -1,5 +1,6 @@
 package net.form105.rm.base.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,12 @@ public abstract class AbstractResult<T> implements IResult<T> {
     
     public void setResultList(List<T> resultList) {
     	this.resultList = resultList;
+    }
+    
+    public void setSingleResult(T object) {
+    	ArrayList<T> resultList = new ArrayList<T>();
+    	resultList.add(object);
+    	setResultList(resultList);
     }
     
     /**
