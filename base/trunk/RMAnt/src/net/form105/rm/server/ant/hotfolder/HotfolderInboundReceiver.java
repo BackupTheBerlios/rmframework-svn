@@ -1,21 +1,15 @@
 package net.form105.rm.server.ant.hotfolder;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.form105.rm.base.validator.IInboundValidator;
-import net.form105.rm.server.ant.config.ConfigParameterMap;
 import net.form105.rm.server.ant.container.InboundConfiguration;
 
 import org.apache.log4j.Logger;
-import org.picocontainer.Startable;
-
-import com.sun.tools.javac.code.Attribute.Array;
 
 /**
  * The hotfolder is a configurable directory which reacts on files that will be
@@ -28,25 +22,19 @@ import com.sun.tools.javac.code.Attribute.Array;
  * @author heikok
  * 
  */
-public class HotfolderInboundReceiver extends AbstractInboundReceiver implements IInboundHandler, Startable {
+public class HotfolderInboundReceiver extends AbstractInboundReceiver {
 
-	public static Logger logger = Logger.getLogger(HotfolderInboundReceiver.class);
+	public static Logger logger = Logger
+			.getLogger(HotfolderInboundReceiver.class);
 
 	private String hotfolderPathName;
-	private Map<File, IInboundObject> trackContentMap = new HashMap<File, IInboundObject>();
-	
+	private Map<File, InboundObject> trackContentMap = new HashMap<File, InboundObject>();
 
-	
-	private String tempFolderPathName;
-	
-	private InboundConfiguration config;
-	
+
 	private boolean sendEvents = false;
-	
 
-	public HotfolderInboundReceiver(List<IInboundListener> inboundListenerList, List<IInboundValidator> validatorList, ConfigParameterMap paramMap) {
-		super(inboundListenerList, validatorList, paramMap);
-		getInbounds();
+	public HotfolderInboundReceiver(InboundConfiguration config) {
+		super(config);
 	}
 
 	/**
@@ -58,19 +46,18 @@ public class HotfolderInboundReceiver extends AbstractInboundReceiver implements
 		File[] contentFiles = hotFolder.listFiles();
 		for (File contentFile : contentFiles) {
 
-			if (!trackContentMap.containsKey(contentFile) && !contentFile.isHidden()) {
+			if (!trackContentMap.containsKey(contentFile)
+					&& !contentFile.isHidden()) {
 				logger.info("Adding file for tracking: " + contentFile);
-				String hotfolderName = config.getParameter("hotfolder");
-				String tempHotfolderName = config.getParameter("tempHotfolder");
-				HotfolderInboundObject inObject = new HotfolderInboundObject(contentFile, tempHotfolderName);
+				String hotfolderName = getConfiguration().getParameter("hotfolder");
+				String tempHotfolderName = getConfiguration().getParameter("tempHotfolder");
+				HotfolderInboundObject inObject = new HotfolderInboundObject(
+						contentFile, tempHotfolderName);
 				inObject.setHotfolderName(hotfolderName);
 				trackContentMap.put(contentFile, inObject);
 				if (sendEvents)
-					try {
-						notifyInbound(inObject);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					notifyInbound(inObject);
+
 			}
 		}
 
@@ -80,12 +67,7 @@ public class HotfolderInboundReceiver extends AbstractInboundReceiver implements
 		for (File trackFile : trackContentMap.keySet()) {
 			if (!contentFileList.contains(trackFile)) {
 				removeList.add(trackFile);
-				if (sendEvents)
-					try {
-						notifyInboundClear(trackContentMap.get(trackFile));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+				if (sendEvents) notifyInboundClear(trackContentMap.get(trackFile));
 			}
 		}
 
@@ -94,9 +76,6 @@ public class HotfolderInboundReceiver extends AbstractInboundReceiver implements
 			logger.info("Removing file from tracking: " + removeFile);
 		}
 	}
-
-	
-
 
 	/**
 	 * Check if it is a real file

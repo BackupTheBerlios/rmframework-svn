@@ -15,7 +15,7 @@
  */
 package net.form105.rm.server.ant.hotfolder;
 
-public interface IInboundObject {
+public interface InboundObject {
 
 	public abstract String getId();
 

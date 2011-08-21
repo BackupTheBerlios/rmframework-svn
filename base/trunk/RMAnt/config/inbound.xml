@@ -14,7 +14,7 @@
 		</listeners>
 		<validators>
 			<validator>buildFileValidator</validator>
-			<validator>fileValidator</validator>
+			<validator>realFileValidator</validator>
 		</validators>
 		<executor>antExecutionCommand</executor>
 	</inbound>

@@ -15,6 +15,9 @@
  */
 package net.form105.rm.server.ant.hotfolder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.picocontainer.Startable;
 
@@ -23,12 +26,8 @@ public class HotfolderWorker implements Runnable, Startable {
 	public static Logger logger = Logger.getLogger(HotfolderWorker.class);
 
 	private boolean running = true;
-	private AbstractInboundReceiver[] receivers;
+	private List<AbstractInboundReceiver> receivers = new ArrayList<AbstractInboundReceiver>();
 	
-	
-	public HotfolderWorker(AbstractInboundReceiver[] receivers) {
-		this.receivers = receivers;
-	}
 
 	@Override
 	public void run() {
@@ -37,7 +36,6 @@ public class HotfolderWorker implements Runnable, Startable {
 			for (AbstractInboundReceiver receiver : receivers) {
 				receiver.prepareInboundObjects();
 			}
-			//logger.info("finished iterating hotfolders");
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
@@ -46,10 +44,15 @@ public class HotfolderWorker implements Runnable, Startable {
 		}
 
 	}
+	
+	public synchronized void addReceiver(AbstractInboundReceiver receiver) {
+		receivers.add(receiver);
+	}
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
+		Thread thread = new Thread(this);
+		thread.start();
 		
 	}
 
@@ -59,6 +62,6 @@ public class HotfolderWorker implements Runnable, Startable {
 		
 	}
 	
-	public 
+	
 
 }

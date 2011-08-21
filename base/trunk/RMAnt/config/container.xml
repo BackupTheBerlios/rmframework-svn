@@ -7,8 +7,7 @@
     <component-implementation id="rmiServer" class='net.form105.rm.base.container.RMIServerContainer'/>
     <component-implementation id="serviceHandler " class='net.form105.rm.base.container.RMIServiceHandlerContainer'/>
     <component-implementation id="queryHandler" class='net.form105.rm.base.container.RMIQueryHandlerContainer'/>
-    <component-implementation id="hotfolders" class='net.form105.rm.server.ant.container.HotfolderContainer' ></component-implementation>
-    <component-implementation id="hotfolderConfig" class='net.form105.rm.server.ant.container.InboundConfigContainer' ></component-implementation>
+
     
     <!-- Model -->
     <component-implementation id="workflowManager" class="net.form105.rm.server.ant.workflow.WorkflowManager"></component-implementation>
@@ -17,16 +16,20 @@
         
     <!-- handler -->
     <component-implementation id="commandHandler" class="net.form105.rm.server.ant.command.AntCommandHandler"></component-implementation>
-    <!-- Validator -->
     
-    <component-implementation factory="yes" id="fileValidator" class='net.form105.rm.server.ant.validator.RealFileValidator'/>
-    <component-implementation factory="yes" id="buildFileValidator" class='net.form105.rm.server.ant.validator.BuildFileValidator'/>
+
+	<!-- Hotfolder Environment -->
+	<component-implementation id="inboundConfig" class="net.form105.rm.server.ant.container.InboundConfigContainer"></component-implementation>
+    <component-implementation id="hfWorker" class="net.form105.rm.server.ant.hotfolder.HotfolderWorker"></component-implementation>
+    
+    <!-- Validator -->
+    <component-implementation id="buildFileValidator" class="net.form105.rm.server.ant.validator.BuildFileValidator"></component-implementation>
+    <component-implementation id="realFileValidator" class="net.form105.rm.server.ant.validator.RealFileValidator"></component-implementation>
+    
     
     <component-implementation factory="yes" id="executionStrategy" class='net.form105.rm.server.ant.command.AntExecutionStrategy'/>
     
     <!-- listener for hotfolder -->
-    <component-implementation factory="yes" id="createTempListener" class='net.form105.rm.server.ant.hotfolder.CreateTempEnvironmentListener'/>
-    <component-implementation factory="yes" id="createWorkflowListener" class='net.form105.rm.server.ant.hotfolder.CreateWorkflowHotfolderListener'/>
-    <component-implementation factory="yes" id="hotfolderListener" class='net.form105.rm.server.ant.hotfolder.DefaultHotfolderListener'/>
+
     
 </container>

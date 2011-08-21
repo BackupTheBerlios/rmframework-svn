@@ -1,0 +1,26 @@
+Global setup:
+ Set up git
+  git config --global user.name "Heiko Kundlacz"
+  git config --global user.email heiko.kundlacz@gmail.com
+  Add your public key
+        
+Next steps:
+  mkdir RMAnt
+  cd RMAnt
+  git init
+  touch README
+  git add README
+  git commit -m 'first commit'
+  git remote add origin git@github.com:heikok/RMAnt.git
+  git push -u origin master
+      
+Existing Git Repo?
+  cd existing_git_repo
+  git remote add origin git@github.com:heikok/RMAnt.git
+  git push -u origin master
+      
+Importing a Subversion Repo?
+  Click here
+      
+When you're done:
+  Continue

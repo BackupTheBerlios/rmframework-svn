@@ -37,7 +37,7 @@ import net.form105.rm.server.ant.command.AddWorkflowCommand;
 public class CreateWorkflowHotfolderListener extends AbstractHotfolderListener {
 
 	@Override
-	public void objectArrived(IInboundObject inboundObject) {
+	public void objectArrived(InboundObject inboundObject) {
 		
 		HotfolderInboundObject hfObject = (HotfolderInboundObject) inboundObject;
 		
@@ -64,7 +64,7 @@ public class CreateWorkflowHotfolderListener extends AbstractHotfolderListener {
 	}
 
 	@Override
-	public void objectRemoved(IInboundObject hotEvent) {
+	public void objectRemoved(InboundObject hotEvent) {
 		// nothing to do
 	}
 }

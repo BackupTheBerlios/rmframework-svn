@@ -18,9 +18,9 @@ package net.form105.rm.server.ant.hotfolder;
 
 public abstract class AbstractHotfolderListener implements IInboundListener {
 
-	public abstract void objectArrived(IInboundObject inboundObject);
+	public abstract void objectArrived(InboundObject inboundObject);
 	
-	public abstract void objectRemoved(IInboundObject inboundObject);
+	public abstract void objectRemoved(InboundObject inboundObject);
 	
 	/**
 	 * A file is always unique within a hotfolder and so is the timestamp of the last modification.
@@ -28,7 +28,7 @@ public abstract class AbstractHotfolderListener implements IInboundListener {
 	 * @return
 	 */
 	public String getId(InboundEvent hotEvent) {
-		IInboundObject object = hotEvent.getInboundObject();
+		InboundObject object = hotEvent.getInboundObject();
 		return object.getWorkflowId();
 	}
 

@@ -25,6 +25,7 @@ import net.form105.rm.server.ant.config.ConfigParameter;
 import net.form105.rm.server.ant.config.ConfigParameterMap;
 import net.form105.rm.server.ant.hotfolder.IInboundListener;
 
+import org.apache.log4j.Logger;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Node;
@@ -33,19 +34,17 @@ import org.picocontainer.Startable;
 
 public class InboundConfiguration implements Startable {
 	
+	private static Logger logger = Logger.getLogger(InboundConfiguration.class);
+	
 	private String inboundType;
 	
 	private Element xmlElement;
-	private List<IInboundListener> listenerList;
-	private List<IInboundValidator> validatorList;
-	private ConfigParameterMap paramMap;
+	private List<IInboundListener> listenerList = new ArrayList<IInboundListener>();
+	private List<IInboundValidator> validatorList  = new ArrayList<IInboundValidator>();
+	private ConfigParameterMap paramMap = new ConfigParameterMap();
 	
 	private AbstractCallbackCommand command;
 	
-	
-	public InboundConfiguration() {
-		listenerList = new ArrayList<IInboundListener>();
-	}
 	
 	public void readXml(Node xmlNode) {
 		
@@ -55,34 +54,37 @@ public class InboundConfiguration implements Startable {
 		inboundType = xmlNode.valueOf("@type");
 		
 		xPath = DocumentHelper.createXPath("//inbound/parameters/parameter");
-		nodes = (List<Node>) xPath.selectNodes(xmlElement);
+		nodes = (List<Node>) xPath.selectNodes(xmlNode);
 		
 		for (Node node : nodes) {
+			logger.info(node);
 			paramMap.addParameter(new ConfigParameter(node.valueOf("@key"), node.valueOf("@value")));
 		}
 		
 		xPath = DocumentHelper.createXPath("//inbound/validators/validator");
-		nodes = (List<Node>) xPath.selectNodes(xmlElement);
+		nodes = (List<Node>) xPath.selectNodes(xmlNode);
 		for (Node node : nodes) {
+
 			IInboundValidator validator = (IInboundValidator) Agent.getComponentById(node.getText());
 			validatorList.add(validator);
 		}
 		
 		xPath = DocumentHelper.createXPath("//inbound/listeners/listener");
-		nodes = (List<Node>) xPath.selectNodes(xmlElement);
+		nodes = (List<Node>) xPath.selectNodes(xmlNode);
 		for (Node node : nodes) {
 			IInboundListener inboundListener = (IInboundListener) Agent.getComponentById(node.getText());
 			listenerList.add(inboundListener);
 		}
 		
-		xPath = DocumentHelper.createXPath("//inbound/executor/listener");
-		command = (AbstractCallbackCommand) Agent.getComponentById(xPath.selectSingleNode(xmlElement).getText());
+		xPath = DocumentHelper.createXPath("//inbound/executor");
+		logger.info(xPath.selectSingleNode(xmlNode).getText());
+		
+		command = (AbstractCallbackCommand) Agent.getComponentById(xPath.selectSingleNode(xmlNode).getText());
 	}
 
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -103,7 +105,7 @@ public class InboundConfiguration implements Startable {
 		return listenerList;
 	}
 	
-	public List<IInboundValidator> getConfiguredValidators() {
+	public List<IInboundValidator> getValidators() {
 		return validatorList;
 	}
 	

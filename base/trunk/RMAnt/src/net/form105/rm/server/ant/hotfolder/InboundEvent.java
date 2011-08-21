@@ -11,18 +11,18 @@ public class InboundEvent extends EventObject {
 	
 	private static final long serialVersionUID = 1806008446708913667L;
 	
-	private IInboundObject hotfolderObject;
+	private InboundObject hotfolderObject;
 
 	/**
 	 * 
 	 * @param source The inbound object which triggers the flow.
 	 */
-	public InboundEvent(IInboundObject source) {
+	public InboundEvent(InboundObject source) {
 		super(source);
-		this.hotfolderObject = (IInboundObject) source;
+		this.hotfolderObject = (InboundObject) source;
 	}
 	
-	public IInboundObject getInboundObject() {
+	public InboundObject getInboundObject() {
 		return hotfolderObject;
 	}
 	

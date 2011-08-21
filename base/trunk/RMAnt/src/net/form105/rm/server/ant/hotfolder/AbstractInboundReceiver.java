@@ -4,20 +4,19 @@ import java.io.File;
 import java.util.List;
 
 import net.form105.rm.base.validator.IInboundValidator;
-import net.form105.rm.server.ant.config.ConfigParameterMap;
+import net.form105.rm.server.ant.container.InboundConfiguration;
 
 public abstract class AbstractInboundReceiver {
 
 	private List<IInboundValidator> validatorList;
 	private List<IInboundListener> eListenerList;
-	private ConfigParameterMap parameterMap;
+	private InboundConfiguration config;
 
 
-	public AbstractInboundReceiver(List<IInboundListener> inboundListenerList,
-			List<IInboundValidator> validatorList, ConfigParameterMap paramMap) {
-		this.eListenerList = inboundListenerList;
-		this.validatorList = validatorList;
-		this.parameterMap = paramMap;
+	public AbstractInboundReceiver(InboundConfiguration config) {
+		this.config = config;
+		eListenerList = config.getConfiguredListeners();
+		validatorList = config.getValidators();
 	}
 	
 	public abstract void  prepareInboundObjects();
@@ -68,7 +67,7 @@ public abstract class AbstractInboundReceiver {
 	 * @param file
 	 *            The file which has been arrived
 	 */
-	public void notifyInbound(IInboundObject inboundObject) {
+	public void notifyInbound(InboundObject inboundObject) {
 		if (eListenerList.size() > 0) {
 			InboundEvent event = new InboundEvent(inboundObject);
 			for (IInboundListener listener : eListenerList) {
@@ -83,11 +82,15 @@ public abstract class AbstractInboundReceiver {
 	 * @param file
 	 *            The file which has been removed
 	 */
-	public void notifyInboundClear(IInboundObject inboundObject) {
+	public void notifyInboundClear(InboundObject inboundObject) {
 		InboundEvent event = new InboundEvent(inboundObject);
 		for (IInboundListener listener : eListenerList) {
 			listener.objectRemoved(inboundObject);
 		}
+	}
+	
+	protected InboundConfiguration getConfiguration() {
+		return config;
 	}
 
 }

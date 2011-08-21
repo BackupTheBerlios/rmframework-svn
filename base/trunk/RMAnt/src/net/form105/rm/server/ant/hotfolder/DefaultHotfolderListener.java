@@ -18,13 +18,13 @@ public class DefaultHotfolderListener extends AbstractHotfolderListener {
 	}
 
 	@Override
-	public void objectArrived(IInboundObject inboundObject) {
+	public void objectArrived(InboundObject inboundObject) {
 		HotfolderInboundObject hfIObject = (HotfolderInboundObject) inboundObject;
 		handleCommand(hfIObject);
 	}
 	
 	@Override
-	public void objectRemoved(IInboundObject hotEvent) {
+	public void objectRemoved(InboundObject hotEvent) {
 		
 	}
 	

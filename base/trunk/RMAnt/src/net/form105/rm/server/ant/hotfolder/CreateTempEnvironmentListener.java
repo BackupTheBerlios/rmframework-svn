@@ -23,7 +23,7 @@ import org.apache.commons.io.FileUtils;
 public class CreateTempEnvironmentListener extends AbstractHotfolderListener {
 
 	@Override
-	public void objectArrived(IInboundObject inObject) {
+	public void objectArrived(InboundObject inObject) {
 	
 		HotfolderInboundObject hfObject = (HotfolderInboundObject) inObject;
 		
@@ -44,7 +44,7 @@ public class CreateTempEnvironmentListener extends AbstractHotfolderListener {
 	}
 
 	@Override
-	public void objectRemoved(IInboundObject hotEvent) {
+	public void objectRemoved(InboundObject hotEvent) {
 		// Do nothing
 
 	}
