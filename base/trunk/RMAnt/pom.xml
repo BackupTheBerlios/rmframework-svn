@@ -5,23 +5,18 @@
   <version>0.0.1-SNAPSHOT</version>
   <description>Plugin for Ant Integration</description>
   
-  <parent>
+  <!-- parent>
 		<groupId>net.form105.rm</groupId>
 		<artifactId>RMBase</artifactId>
 		<version>0.1</version>
 		<relativePath>../RMBase/pom.xml</relativePath>
-	</parent>
+	</parent> -->
   
   <dependencies>
   	<dependency>
   		<groupId>org.apache.ant</groupId>
   		<artifactId>ant</artifactId>
   		<version>1.8.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>log4j</groupId>
-  		<artifactId>log4j</artifactId>
-  		<version>1.2.16</version>
   	</dependency>
   	<dependency>
   		<groupId>jaxen</groupId>
